@@ -5,8 +5,8 @@ GameEngine::GameEngine() {
 	this->initVariables();
 }
 
-GameEngine::~GameEngine() {
-	delete window;
+GameEngine::~GameEngine() { 
+	delete this->window;
 }
 
 void GameEngine::run() {
