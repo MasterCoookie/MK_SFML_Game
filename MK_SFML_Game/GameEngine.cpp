@@ -6,7 +6,7 @@ GameEngine::GameEngine() {
 }
 
 GameEngine::~GameEngine() {
-
+	delete window;
 }
 
 void GameEngine::run() {
@@ -19,7 +19,7 @@ void GameEngine::run() {
 }
 
 void GameEngine::initVariables() {
-	this->gejmobdzekt = new GameObject();
+	
 }
 
 void GameEngine::initWindow() {

@@ -7,7 +7,7 @@ public:
 	GameEngine();
 	~GameEngine();
 
-	GameObject* gejmobdzekt;
+	
 
 	void run();
 private:
