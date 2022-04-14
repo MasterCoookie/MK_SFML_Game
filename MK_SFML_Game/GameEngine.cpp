@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
+	//all inits
 	this->initWindow();
 	this->initVariables();
 }
