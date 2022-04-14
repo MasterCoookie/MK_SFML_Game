@@ -1,15 +1,13 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include "GameObject.h"
 
 class GameEngine {
 public:
 	GameEngine();
 	~GameEngine();
+
+	GameObject* gejmobdzekt;
 
 	void run();
 private:
@@ -17,6 +15,7 @@ private:
 
 	//inits
 	void initWindow();
+	void initVariables();
 
 
 	void pollEvents();

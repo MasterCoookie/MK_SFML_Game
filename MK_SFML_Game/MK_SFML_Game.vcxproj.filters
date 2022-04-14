@@ -21,9 +21,15 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
   </ItemGroup>

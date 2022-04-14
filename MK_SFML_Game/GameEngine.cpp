@@ -2,6 +2,7 @@
 
 GameEngine::GameEngine() {
 	this->initWindow();
+	this->initVariables();
 }
 
 GameEngine::~GameEngine() {
@@ -15,6 +16,10 @@ void GameEngine::run() {
 		this->update();
 		this->render();
 	}
+}
+
+void GameEngine::initVariables() {
+	this->gejmobdzekt = new GameObject();
 }
 
 void GameEngine::initWindow() {
@@ -39,8 +44,8 @@ void GameEngine::pollEvents() {
 	}
 }
 
-void GameEngine::update()
-{
+void GameEngine::update() {
+
 }
 
 void GameEngine::render() {
