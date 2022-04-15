@@ -22,6 +22,10 @@ public:
 	//getters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;
+
+	//virtual methods
+	virtual void update() = 0;
+	virtual void render(sf::RenderTarget* target) = 0;
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
