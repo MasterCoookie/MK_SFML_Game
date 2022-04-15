@@ -7,7 +7,7 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	this->deleteWindow();
+	
 }
 
 void SceneManager::run()
@@ -24,7 +24,3 @@ void SceneManager::initWindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
-void SceneManager::deleteWindow()
-{
-	delete window;
-}

@@ -12,6 +12,6 @@ private:
 	sf::RenderWindow* window;
 
 	void initWindow();
-	void deleteWindow();
+	
 };
 

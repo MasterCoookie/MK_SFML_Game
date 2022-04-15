@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Player.h"
-
-class GameEngine {
+#include "Scene.h"
+class GameEngine : Scene{
 public:
 	GameEngine();
 	GameEngine(sf::RenderWindow* win);
@@ -10,7 +10,8 @@ public:
 
 	
 
-	void run();
+	void run() override;
+	std::string getResult() override;
 private:
 	sf::RenderWindow* window;
 
@@ -19,15 +20,15 @@ private:
 	void initVariables();
 
 
-	void pollEvents();
+	void pollEvents() override;
 
 
 	//updates
-	void update();
+	void update() override;
 
 
 
 	// renders
-	void render();
+	void render() override;
 
 };

@@ -25,6 +25,11 @@ void GameEngine::run() {
 	}
 }
 
+std::string GameEngine::getResult()
+{
+	return "";
+}
+
 void GameEngine::initVariables() {
 	
 }
