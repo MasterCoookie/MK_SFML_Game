@@ -26,12 +26,16 @@ public:
 	//virtual methods
 	virtual void update() = 0;
 	virtual void render(sf::RenderTarget* target) = 0;
+protected:
+	//inits
+	void initTexture(std::string textureName);
+	void initSprite();
+	virtual void initVariables() = 0;
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	
-	//inits
-	void initTexture(std::string textureName);
-	void initSprite();
-	void initVariables();
+	
+	
+	
 };

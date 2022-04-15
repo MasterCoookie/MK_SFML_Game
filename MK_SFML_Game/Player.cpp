@@ -1,7 +1,8 @@
 #include "Player.h"
 
 Player::Player() {
-
+	this->initTexture("player.png");
+	this->initSprite();
 }
 
 Player::~Player() {
