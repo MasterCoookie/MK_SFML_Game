@@ -3,8 +3,7 @@
 class Scene
 {
 public:
-	Scene();
-	~Scene();
+	
 	
 
 	// Metoda odpowiedzialna za dzia³anie sceny
