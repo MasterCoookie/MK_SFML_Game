@@ -20,6 +20,14 @@ void GameObject::move(const float x, const float y) {
 	this->sprite.move(x, y);
 }
 
+const sf::Vector2f& GameObject::getPosition() const {
+	return this->sprite.getPosition();
+}
+
+const sf::FloatRect GameObject::getBounds() const {
+	return this->sprite.getGlobalBounds();
+}
+
 void GameObject::initTexture(std::string textureName) {
 	//load texture form file
 	if (!this->texture.loadFromFile("./Textures/" + textureName)) {

@@ -18,6 +18,10 @@ public:
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(const float x, const float y);
 	void move(const float x, const float y);
+
+	//getters
+	const sf::Vector2f& getPosition() const;
+	const sf::FloatRect getBounds() const;
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
