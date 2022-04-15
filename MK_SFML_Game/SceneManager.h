@@ -9,7 +9,7 @@ public:
 	void run();
 private:
 
-	sf::Window* window;
+	sf::RenderWindow* window;
 
 	void initWindow();
 	void deleteWindow();

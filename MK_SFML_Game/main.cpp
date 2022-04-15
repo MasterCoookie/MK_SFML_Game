@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "GameEngine.h"
+#include "SceneManager.h"
 
 int main() {
 	
-	GameEngine game;
-	game.run();
+	SceneManager kumbat;
+	kumbat.run();
 	
 	return 0;
 }

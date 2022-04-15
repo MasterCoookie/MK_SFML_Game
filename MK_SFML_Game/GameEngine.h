@@ -5,6 +5,7 @@
 class GameEngine {
 public:
 	GameEngine();
+	GameEngine(sf::RenderWindow* win);
 	~GameEngine();
 
 	

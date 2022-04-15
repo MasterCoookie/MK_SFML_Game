@@ -6,6 +6,12 @@ GameEngine::GameEngine() {
 	this->initVariables();
 }
 
+GameEngine::GameEngine(sf::RenderWindow* win)
+{
+	this->window = win;
+	this->initVariables();
+}
+
 GameEngine::~GameEngine() { 
 	delete this->window;
 }

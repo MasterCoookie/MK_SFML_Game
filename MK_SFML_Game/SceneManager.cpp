@@ -12,6 +12,8 @@ SceneManager::~SceneManager()
 
 void SceneManager::run()
 {
+	GameEngine game(this->window);
+	game.run();
 }
 
 void SceneManager::initWindow()
