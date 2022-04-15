@@ -6,7 +6,7 @@ SceneLoadingScreen::~SceneLoadingScreen() {};
 
 void SceneLoadingScreen::run() {};
 
-std::string SceneLoadingScreen::getResult() {};
+std::string SceneLoadingScreen::getResult() { return ""; };
 
 void SceneLoadingScreen::pollEvents() {};
 
