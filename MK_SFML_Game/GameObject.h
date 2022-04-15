@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -11,14 +14,16 @@ public:
 	GameObject();
 	~GameObject();
 
+	//setters
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(const float x, const float y);
+	void move(const float x, const float y);
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	
 	//inits
-	void initTexture();
+	void initTexture(std::string textureName);
 	void initSprite();
 	void initVariables();
 };
