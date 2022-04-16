@@ -18,6 +18,7 @@ private:
 	//inits
 	void initWindow();
 	void initVariables();
+	void initWorld(std::string textureName);
 
 
 	void pollEvents() override;
@@ -30,5 +31,14 @@ private:
 
 	// renders
 	void render() override;
+	void renderWorld();
 
+
+	//World
+	sf::Texture worldBcgTex;
+	sf::Sprite worldBcg;
+
+	//Players
+	Player* player1;
+	Player* player2;
 };

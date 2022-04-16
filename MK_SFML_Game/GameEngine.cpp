@@ -10,6 +10,7 @@ GameEngine::GameEngine(sf::RenderWindow* win)
 {
 	this->window = win;
 	this->initVariables();
+	this->initWorld("bcg.png");
 }
 
 GameEngine::~GameEngine() { 
@@ -32,6 +33,15 @@ std::string GameEngine::getResult()
 
 void GameEngine::initVariables() {
 	
+}
+
+void GameEngine::initWorld(std::string textureName) {
+	//load texture from file
+	if (!this->worldBcgTex.loadFromFile("./Textures/" + textureName)) {
+		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load bcg img" << std::endl;
+	}
+	//set bcg to loaded texture
+	this->worldBcg.setTexture(this->worldBcgTex);
 }
 
 void GameEngine::initWindow() {
@@ -65,8 +75,12 @@ void GameEngine::render() {
 	this->window->clear();
 
 	//draw stuf here
-
+	this->renderWorld();
 
 	//display stuff
 	this->window->display();
+}
+
+void GameEngine::renderWorld() {
+	this->window->draw(this->worldBcg);
 }
