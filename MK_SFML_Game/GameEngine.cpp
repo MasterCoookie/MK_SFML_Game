@@ -51,7 +51,8 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	this->player2 = new Player(p2charName);
 
 	//place players in the right position
-	this->player1->setPosition(200, 800);
+	this->player1->setPosition(200.f, 800.f - this->player1->getBounds().height);
+	this->player2->setPosition(1080.f - this->player2->getBounds().width, 800.f - this->player2->getBounds().height);
 }
 
 void GameEngine::initWindow() {
