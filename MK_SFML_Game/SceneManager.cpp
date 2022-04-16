@@ -11,7 +11,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::run()
 {
-	GameEngine game(this->window);
+	GameEngine game(this->window, "char1", "char2");
 	SceneLoadingScreen loading(this->window);
 	Scene* ptr1 = &loading;
 	Scene* ptr2 = &game;

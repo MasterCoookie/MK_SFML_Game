@@ -31,9 +31,10 @@ protected:
 	void initTexture(std::string textureName);
 	void initSprite();
 	virtual void initVariables() = 0;
+
+	sf::Sprite sprite;
 private:
 	sf::Texture texture;
-	sf::Sprite sprite;
 	
 	
 	

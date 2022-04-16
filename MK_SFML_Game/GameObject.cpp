@@ -28,10 +28,10 @@ const sf::FloatRect GameObject::getBounds() const {
 	return this->sprite.getGlobalBounds();
 }
 
-void GameObject::initTexture(std::string textureName) {
+void GameObject::initTexture(std::string texturePath) {
 	//load texture form file
-	if (!this->texture.loadFromFile("./Textures/" + textureName)) {
-		std::cout << "ERR: PLAYER::INITTEXTURE: Could not load texture file" << std::endl;
+	if (!this->texture.loadFromFile(texturePath)) {
+		std::cout << "ERR: GAMEOBJECT::INITTEXTURE: Could not load texture file" << std::endl;
 	}
 }
 

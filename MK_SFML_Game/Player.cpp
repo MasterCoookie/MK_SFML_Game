@@ -1,7 +1,11 @@
 #include "Player.h"
 
 Player::Player() {
-	this->initTexture("player.png");
+}
+
+Player::Player(std::string charName) {
+	// init player baset on character name
+	this->initTexture("./Characters/" + charName + "/tex.png");
 	this->initSprite();
 }
 
@@ -14,5 +18,9 @@ void Player::update() {
 }
 
 void Player::render(sf::RenderTarget* target) {
+	target->draw(this->sprite);
+}
+
+void Player::initVariables() {
 
 }

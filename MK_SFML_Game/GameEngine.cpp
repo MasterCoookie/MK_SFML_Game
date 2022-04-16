@@ -6,11 +6,12 @@ GameEngine::GameEngine() {
 	this->initVariables();
 }
 
-GameEngine::GameEngine(sf::RenderWindow* win)
+GameEngine::GameEngine(sf::RenderWindow* win, std::string p1charName, std::string p2charName)
 {
 	this->window = win;
 	this->initVariables();
 	this->initWorld("bcg.png");
+	this->initPlayers(p1charName, p2charName);
 }
 
 GameEngine::~GameEngine() { 
@@ -42,6 +43,12 @@ void GameEngine::initWorld(std::string textureName) {
 	}
 	//set bcg to loaded texture
 	this->worldBcg.setTexture(this->worldBcgTex);
+}
+
+void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
+	//create players, based on character names
+	this->player1 = new Player(p1charName);
+	this->player2 = new Player(p2charName);
 }
 
 void GameEngine::initWindow() {

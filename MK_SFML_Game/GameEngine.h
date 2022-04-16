@@ -5,7 +5,7 @@
 class GameEngine : public Scene{
 public:
 	GameEngine();
-	GameEngine(sf::RenderWindow* win);
+	GameEngine(sf::RenderWindow* win, std::string p1charName, std::string p2charName);
 	~GameEngine();
 
 	
@@ -19,6 +19,7 @@ private:
 	void initWindow();
 	void initVariables();
 	void initWorld(std::string textureName);
+	void initPlayers(std::string p1charName, std::string p2charName);
 
 
 	void pollEvents() override;
