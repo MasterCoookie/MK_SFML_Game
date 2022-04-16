@@ -11,15 +11,13 @@ SceneManager::~SceneManager()
 
 void SceneManager::run()
 {
-	GameEngine game(this->window, "char1", "char2");
+	GameEngine game(this->window);
 	SceneLoadingScreen loading(this->window);
-	Scene* ptr1 = &loading;
-	Scene* ptr2 = &game;
-
-
 	std::vector<Scene*> vec;
-	vec.push_back(ptr1);
-	vec.push_back(ptr2);
+	vec.push_back(&loading);
+	vec.push_back(&game);
+	std::vector<std::string> vec2 = { "char1","char2" };
+	game.setInterSceneValues(vec2);
 	for (auto it = vec.begin(); it != vec.end(); it++) {
 		(*it)->run();
 	}

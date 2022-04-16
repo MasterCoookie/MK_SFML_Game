@@ -5,13 +5,14 @@
 class GameEngine : public Scene{
 public:
 	GameEngine();
-	GameEngine(sf::RenderWindow* win, std::string p1charName, std::string p2charName);
+	GameEngine(sf::RenderWindow* win);
 	~GameEngine();
 
 	
 
 	void run() override;
-	std::string getResult() override;
+	std::vector<std::string> getResult() override;
+	void setInterSceneValues(std::vector<std::string>& vec) override;
 private:
 	sf::RenderWindow* window;
 

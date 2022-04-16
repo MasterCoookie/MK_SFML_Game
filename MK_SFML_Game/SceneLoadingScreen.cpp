@@ -11,7 +11,14 @@ SceneLoadingScreen::~SceneLoadingScreen() {};
 
 void SceneLoadingScreen::run() {};
 
-std::string SceneLoadingScreen::getResult() { return ""; };
+std::vector<std::string> SceneLoadingScreen::getResult() {
+	std::vector<std::string> vec;
+	return vec; 
+}
+void SceneLoadingScreen::setInterSceneValues(std::vector<std::string>& vec)
+{
+}
+;
 
 void SceneLoadingScreen::pollEvents() {};
 

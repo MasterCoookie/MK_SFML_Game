@@ -6,12 +6,11 @@ GameEngine::GameEngine() {
 	this->initVariables();
 }
 
-GameEngine::GameEngine(sf::RenderWindow* win, std::string p1charName, std::string p2charName)
+GameEngine::GameEngine(sf::RenderWindow* win)
 {
 	this->window = win;
 	this->initVariables();
 	this->initWorld("bcg.png");
-	this->initPlayers(p1charName, p2charName);
 }
 
 GameEngine::~GameEngine() { 
@@ -27,9 +26,15 @@ void GameEngine::run() {
 	}
 }
 
-std::string GameEngine::getResult()
+std::vector<std::string> GameEngine::getResult()
 {
-	return "";
+	std::vector<std::string> vec;
+	return vec;
+}
+
+void GameEngine::setInterSceneValues(std::vector<std::string>& vec)
+{
+	this->initPlayers(vec[0], vec[1]);
 }
 
 void GameEngine::initVariables() {

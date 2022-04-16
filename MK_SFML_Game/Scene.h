@@ -16,8 +16,8 @@ public:
 	virtual void run() = 0;
 	
 	// Metoda wyci¹gaj¹ca wynik ze sceny (kto wygra³ albo jakie postacie zosta³y wybrane)
-	virtual std::string getResult() = 0;
-
+	virtual std::vector<std::string> getResult() = 0;
+	virtual void setInterSceneValues(std::vector<std::string>& vec) = 0 ;
 	virtual void pollEvents() = 0;
 
 
