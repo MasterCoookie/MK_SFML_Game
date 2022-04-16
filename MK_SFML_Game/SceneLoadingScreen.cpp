@@ -3,6 +3,7 @@
 SceneLoadingScreen::SceneLoadingScreen() {}
 SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
 {
+	this->window = win;
 }
 ;
 

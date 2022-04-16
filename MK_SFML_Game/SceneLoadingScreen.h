@@ -15,7 +15,7 @@ public:
     void update() override;
     void render() override;
 private:
-
+    sf::RenderWindow* window;
 
 };
 
