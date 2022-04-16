@@ -2,7 +2,7 @@
 
 #include "Player.h"
 #include "Scene.h"
-class GameEngine : Scene{
+class GameEngine : public Scene{
 public:
 	GameEngine();
 	GameEngine(sf::RenderWindow* win);
