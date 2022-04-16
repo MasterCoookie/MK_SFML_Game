@@ -2,6 +2,7 @@
 
 #include "GameEngine.h"
 #include "SceneLoadingScreen.h"
+#include "SceneMenu.h"
 
 class SceneManager
 {
