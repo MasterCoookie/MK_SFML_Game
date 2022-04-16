@@ -1,6 +1,10 @@
 #include "SceneLoadingScreen.h"
 
-SceneLoadingScreen::SceneLoadingScreen() {};
+SceneLoadingScreen::SceneLoadingScreen() {}
+SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
+{
+}
+;
 
 SceneLoadingScreen::~SceneLoadingScreen() {};
 

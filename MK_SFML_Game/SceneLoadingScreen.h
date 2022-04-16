@@ -5,6 +5,7 @@ class SceneLoadingScreen :
 {
 public:
     SceneLoadingScreen();
+    SceneLoadingScreen(sf::RenderWindow* win);
     ~SceneLoadingScreen();
 
     void run() override;
