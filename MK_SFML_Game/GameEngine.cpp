@@ -49,6 +49,9 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	//create players, based on character names
 	this->player1 = new Player(p1charName);
 	this->player2 = new Player(p2charName);
+
+	//place players in the right position
+	this->player1->setPosition(200, 800);
 }
 
 void GameEngine::initWindow() {
