@@ -11,20 +11,22 @@ SceneManager::~SceneManager()
 
 void SceneManager::run()
 {
-	GameEngine game(this->window);
-	SceneLoadingScreen loading(this->window);
-	SceneMenu menu(this->window);
-
-	std::vector<Scene*> vec;
-	vec.push_back(&loading);
-	vec.push_back(&menu);
-	vec.push_back(&game);
-	std::vector<std::string> vec2;
-	for (auto it = vec.begin(); it != vec.end(); it++) {
-		(*it)->setInterSceneValues(vec2);
-		(*it)->run();
-		vec2 = (*it)->getResult();
+	
+	std::vector<std::string> vec2={""};
+	//while (vec2[0] == "") {
+		GameEngine game(this->window);
+		SceneLoadingScreen loading(this->window);
+		SceneMenu menu(this->window);
+		std::vector<Scene*> vec;
+		vec.push_back(&loading);
+		vec.push_back(&menu);
+		vec.push_back(&game);
+		for (auto it = vec.begin(); it != vec.end(); it++) {
+			(*it)->setInterSceneValues(vec2);
+			(*it)->run();
+			vec2 = (*it)->getResult();
 		}
+	//}
 	
 
 }

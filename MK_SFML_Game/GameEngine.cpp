@@ -28,7 +28,7 @@ void GameEngine::run() {
 
 std::vector<std::string> GameEngine::getResult()
 {
-	std::vector<std::string> vec;
+	std::vector<std::string> vec={""};
 	return vec;
 }
 
