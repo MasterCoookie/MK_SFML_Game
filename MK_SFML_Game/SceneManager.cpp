@@ -1,5 +1,4 @@
 #include "SceneManager.h"
-
 SceneManager::SceneManager()
 {
 	this->initWindow();
@@ -13,7 +12,19 @@ SceneManager::~SceneManager()
 void SceneManager::run()
 {
 	GameEngine game(this->window);
-	game.run();
+	SceneLoadingScreen loading(this->window);
+	Scene* ptr1 = &loading;
+	Scene* ptr2 = &game;
+
+
+	std::vector<Scene*> vec;
+	vec.push_back(ptr1);
+	vec.push_back(ptr2);
+	for (auto it = vec.begin(); it != vec.end(); it++) {
+		(*it)->run();
+	}
+	
+
 }
 
 void SceneManager::initWindow()

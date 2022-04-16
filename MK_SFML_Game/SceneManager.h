@@ -1,5 +1,8 @@
 #pragma once
+
 #include "GameEngine.h"
+#include "SceneLoadingScreen.h"
+
 class SceneManager
 {
 public:
