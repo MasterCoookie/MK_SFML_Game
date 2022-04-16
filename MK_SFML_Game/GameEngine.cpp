@@ -84,6 +84,10 @@ void GameEngine::render() {
 	//draw stuf here
 	this->renderWorld();
 
+	this->player1->render(this->window);
+	this->player2->render(this->window);
+
+
 	//display stuff
 	this->window->display();
 }
