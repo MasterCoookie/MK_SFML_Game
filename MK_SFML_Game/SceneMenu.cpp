@@ -9,12 +9,12 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 
 void SceneMenu::run()
 {
-	//while(!this->charactersPicked && this->window->isOpen()){ //UNCOMMENT TO WORK
-	//	this->pollEvents();
-	//	this->update();
-	//	this->render();
-	//
-	//}
+	while(!this->charactersPicked && this->window->isOpen()){ //UNCOMMENT TO WORK
+		this->pollEvents();
+		this->update();
+		this->render();
+	
+	}
 }
 
 std::vector<std::string> SceneMenu::getResult()
@@ -41,6 +41,9 @@ void SceneMenu::pollEvents()
 			//escape button
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
+			}
+			if (e.Event::key.code == sf::Keyboard::Space) {
+				this->setCharactersPicked(true);
 			}
 		}
 	}
