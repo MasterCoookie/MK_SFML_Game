@@ -17,6 +17,11 @@ Player::~Player() {
 
 void Player::setRightFacing(bool facing) {
 	this->isRightFacing = facing;
+	if (facing && this->sprite.getScale().x < 0) {
+		this->sprite.scale(-1.f, 1.f);
+	} else if(!facing && this->sprite.getScale().x >= 0) {
+		this->sprite.scale(-1.f, 1.f);
+	}
 }
 
 void Player::setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick) {

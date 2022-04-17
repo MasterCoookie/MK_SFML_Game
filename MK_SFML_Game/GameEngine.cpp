@@ -82,12 +82,8 @@ void GameEngine::pollEvents() {
 			//escape button
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
-			} else {
-				
-			}
-			
+			} 
 		}
-		
 	}
 }
 
