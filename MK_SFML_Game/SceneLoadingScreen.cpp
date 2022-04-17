@@ -15,11 +15,11 @@ SceneLoadingScreen::~SceneLoadingScreen() {};
 
 void SceneLoadingScreen::run() {
 	//UNCOMMENT TO DISPLAY LOADING SCREEN!
-	/*while (!this->overTime && this->window->isOpen()) { 
+	while (!this->overTime && this->window->isOpen()) { 
 		this->pollEvents();
 		this->update();
 		this->render();
-	}*/
+	}
 };
 
 std::vector<std::string> SceneLoadingScreen::getResult() {
