@@ -21,6 +21,12 @@ void Player::render(sf::RenderTarget* target) {
 	target->draw(this->sprite);
 }
 
-void Player::initVariables() {
+bool Player::canMove() {
+	//TODO - develop further
+	return this->isAirborne;
+}
 
+void Player::initVariables() {
+	this->isAirborne = false;
+	this->xAxisMomentum = 0;
 }
