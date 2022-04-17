@@ -75,15 +75,52 @@ void GameEngine::pollEvents() {
 		if (e.Event::type == sf::Event::Closed) {
 			this->window->close();
 		}
-		//escape button
-		else if (e.Event::KeyPressed && e.Event::key.code == sf::Keyboard::Escape) {
-			this->window->close();
+		//were keys pressed?
+		else if (e.Event::KeyPressed) {
+			//escape button
+			if (e.Event::key.code == sf::Keyboard::Escape) {
+				this->window->close();
+			} else {
+				//check for attack codes, if none, potentially move player
+				
+				//player1 starts
+				if (e.Event::key.code == sf::Keyboard::F || e.Event::key.code == sf::Keyboard::G || e.Event::key.code == sf::Keyboard::H) {
+					//TODO - translate attacks
+				} else {
+					this->player1->setMovementMatrix(
+						(e.Event::key.code == sf::Keyboard::A) && !this->player1->rightFacing(),
+						(e.Event::key.code == sf::Keyboard::D) && this->player1->rightFacing(),
+						(e.Event::key.code == sf::Keyboard::W),
+						(e.Event::key.code == sf::Keyboard::S),
+						0, 0, 0
+					);
+				}
+				//player1 ends
+				//player2 starts
+				if (e.Event::key.code == sf::Keyboard::Left || e.Event::key.code == sf::Keyboard::Down || e.Event::key.code == sf::Keyboard::Right) {
+					//TODO - translate attacks
+				} else {
+					this->player2->setMovementMatrix(
+						(e.Event::key.code == sf::Keyboard::J) && !this->player2->rightFacing(),
+						(e.Event::key.code == sf::Keyboard::L) && this->player2->rightFacing(),
+						(e.Event::key.code == sf::Keyboard::I),
+						(e.Event::key.code == sf::Keyboard::K),
+						0, 0, 0
+					);
+				}
+				//player2 ends
+			}
+			
 		}
+		
 	}
 }
 
 void GameEngine::update() {
-
+	//move players
+	if (this->player1->canMove()) {
+		//this->player1->move();
+	}
 }
 
 void GameEngine::render() {

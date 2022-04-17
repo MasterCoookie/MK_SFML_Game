@@ -7,6 +7,14 @@ public:
 	Player(std::string charName);
 	~Player();
 	
+	//setters
+	void setRightFacing(bool facing);
+	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
+
+	//getters
+	const bool rightFacing();
+	const bool getMovementMatrix();
+	
 	//overrides
 	void update() override;
 	void render(sf::RenderTarget* target) override;
@@ -16,7 +24,10 @@ public:
 private:
 	//properties
 	bool isAirborne;
+	bool isRightFacing;
 	float xAxisMomentum;
+
+	bool movementMatrix[7] = { 0 };
 
 	//inits
 	void initVariables() override;
