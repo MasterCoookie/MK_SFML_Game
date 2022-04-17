@@ -12,10 +12,11 @@ public:
     void run() override;
     std::vector<std::string> getResult() override;
     void setInterSceneValues(std::vector<std::string>& vec) override;
+    
+private:
     void pollEvents() override;
     void update() override;
     void render() override;
-private:
     void initTexture(std::string name);
     void setCurrentSeconds(float num);
     void setShowForSeconds(float num);

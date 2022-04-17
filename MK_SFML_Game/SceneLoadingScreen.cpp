@@ -14,11 +14,11 @@ SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
 SceneLoadingScreen::~SceneLoadingScreen() {};
 
 void SceneLoadingScreen::run() {
-	while (!this->overTime && this->window->isOpen()) {
-		this->pollEvents();
-		this->update();
-		this->render();
-	}
+	//while (!this->overTime && this->window->isOpen()) { //UNCOMMENT TO DISPLAY LOADING SCREEN!
+	//	this->pollEvents();
+	//	this->update();
+	//	this->render();
+	//}
 };
 
 std::vector<std::string> SceneLoadingScreen::getResult() {
