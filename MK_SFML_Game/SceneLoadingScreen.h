@@ -16,7 +16,16 @@ public:
     void update() override;
     void render() override;
 private:
+    void initTexture(std::string name);
+    void setCurrentSeconds(float num);
+    void setShowForSeconds(float num);
+    void setOverTime(bool value);
+private:
     sf::RenderWindow* window;
-
+    sf::Texture loadingScreenTexture;
+    sf::Sprite loadingScreenSprite;
+    float showForSeconds;
+    float currentSeconds;
+    bool overTime;
 };
 
