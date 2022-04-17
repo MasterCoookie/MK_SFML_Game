@@ -16,7 +16,9 @@ Player::~Player() {
 }
 
 void Player::setRightFacing(bool facing) {
+	//change direction in which player is facing
 	this->isRightFacing = facing;
+	//reverse player sprite
 	if (facing && this->sprite.getScale().x < 0) {
 		this->sprite.scale(-1.f, 1.f);
 		this->sprite.move(-this->getBounds().width, 0);
@@ -39,11 +41,13 @@ void Player::setMovementMatrix(bool forward, bool back, bool up, bool down, bool
 }
 
 void Player::resetMovementMatrix() {
+	//used after movement
 	memset(this->movementMatrix, 0, 7);
 }
 
 void Player::move() {
 	const int movementSpeed = 14;
+	//move the player, dependent on direction its facing
 	if (this->isRightFacing) {
 		this->sprite.move(this->movementMatrix[0] * movementSpeed, 0);
 		this->sprite.move(-this->movementMatrix[1] * movementSpeed, 0);

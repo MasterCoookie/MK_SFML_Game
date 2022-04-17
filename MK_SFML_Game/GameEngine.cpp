@@ -1,13 +1,13 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
-	//all inits
+	//not really used
 	this->initWindow();
 	this->initVariables();
 }
 
-GameEngine::GameEngine(sf::RenderWindow* win)
-{
+GameEngine::GameEngine(sf::RenderWindow* win) {
+	//all inits
 	this->window = win;
 	this->initVariables();
 	this->initWorld("bcg.png");
@@ -32,8 +32,7 @@ std::vector<std::string> GameEngine::getResult()
 	return vec;
 }
 
-void GameEngine::setInterSceneValues(std::vector<std::string>& vec)
-{
+void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 	this->initPlayers(vec[0], vec[1]);
 }
 
@@ -97,11 +96,13 @@ void GameEngine::update() {
 		this->player2->move();
 	}
 
+	//TODO - attack
+
+	this->updatePlayersCross();
+
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
 	this->player2->resetMovementMatrix();
-
-	this->updatePlayersCross();
 }
 
 void GameEngine::updateInput() {
@@ -144,7 +145,7 @@ void GameEngine::updatePlayersCross() {
 		this->player1->setRightFacing(false);
 		this->player2->setRightFacing(true);
 	}
-	//cross from left
+	//cross from left													// the spite is scaled on negative, so his x has to be lowered by its width
 	if (this->player2->rightFacing() && (this->player2->getPosition().x > this->player1->getPosition().x - this->player1->getBounds().width)) {
 		//cross happended, switch player facing
 		this->player2->setRightFacing(false);
