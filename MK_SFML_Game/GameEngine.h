@@ -29,6 +29,7 @@ private:
 	//updates
 	void update() override;
 	void updateInput();
+	void updatePlayersCross();
 
 
 

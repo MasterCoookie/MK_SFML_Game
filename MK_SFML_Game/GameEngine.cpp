@@ -97,10 +97,11 @@ void GameEngine::update() {
 		this->player2->move();
 	}
 
-
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
 	this->player2->resetMovementMatrix();
+
+	this->updatePlayersCross();
 }
 
 void GameEngine::updateInput() {
@@ -134,6 +135,21 @@ void GameEngine::updateInput() {
 		);
 	}
 	//player2 ends
+}
+
+void GameEngine::updatePlayersCross() {
+	//cross from right
+	if (this->player1->rightFacing() && (this->player1->getPosition().x > this->player2->getPosition().x - this->player2->getBounds().width)) {
+		//cross happended, switch player facing
+		this->player1->setRightFacing(false);
+		this->player2->setRightFacing(true);
+	}
+	//cross from left
+	if (this->player2->rightFacing() && (this->player2->getPosition().x > this->player1->getPosition().x - this->player1->getBounds().width)) {
+		//cross happended, switch player facing
+		this->player2->setRightFacing(false);
+		this->player1->setRightFacing(true);
+	}
 }
 
 void GameEngine::render() {

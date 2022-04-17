@@ -19,8 +19,12 @@ void Player::setRightFacing(bool facing) {
 	this->isRightFacing = facing;
 	if (facing && this->sprite.getScale().x < 0) {
 		this->sprite.scale(-1.f, 1.f);
+		this->sprite.move(-this->getBounds().width, 0);
+
 	} else if(!facing && this->sprite.getScale().x >= 0) {
 		this->sprite.scale(-1.f, 1.f);
+		this->sprite.move(this->getBounds().width, 0);
+
 	}
 }
 
