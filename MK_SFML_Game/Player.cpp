@@ -61,26 +61,27 @@ void Player::jump() {
 	//check if player is pressing up arrow
 	if (this->movementMatrix[2]) {
 		//add upwards momentum
-		this->yAxisMomentum = 50.f;
+		this->yAxisMomentum = -55.f;
 		this->isAirborne = true;
 		//if the player is also pressing dir arrow, add forwad x momentum
-		if (this->movementMatrix[0]) {
-			
+		const float baseXMomentum = 20.f;
+		if (this->movementMatrix[0]) {			
 			//bcs of +=/-= both keys will cancell eachother out
+			
 			if (this->isRightFacing) {
-				this->xAxisMomentum += 50.f;
+				this->xAxisMomentum += baseXMomentum;
 			}
 			else {
-				this->xAxisMomentum -= 50.f;
+				this->xAxisMomentum -= baseXMomentum;
 			}
 		}
 		//if the player is also pressing dir arrow, add back x momentum
 		if (this->movementMatrix[1]) {
 			if (this->isRightFacing) {
-				this->xAxisMomentum -= 50.f;
+				this->xAxisMomentum -= baseXMomentum;
 			}
 			else {
-				this->xAxisMomentum += 50.f;
+				this->xAxisMomentum += baseXMomentum;
 			}
 		}
 	}
@@ -95,7 +96,7 @@ const bool Player::getMovementMatrix() {
 }
 
 void Player::update() {
-
+	std::cout << this->getPosition().y << "\n";
 }
 
 void Player::render(sf::RenderTarget* target) {
@@ -116,11 +117,13 @@ void Player::initVariables() {
 void Player::updateJump() {
 	GameObject::move(xAxisMomentum, yAxisMomentum);
 	// gravity
-	this->yAxisMomentum -= 10.f;
+	this->yAxisMomentum += 4.5f;
+		
 	//check for landing
-	if (this->getPosition().x <= 300) {
+	if (this->getPosition().y > 425) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
 		this->isAirborne = false;
+		this->setPosition(this->getPosition().x, 425);
 	}
 }
