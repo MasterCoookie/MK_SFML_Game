@@ -14,7 +14,8 @@ SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
 SceneLoadingScreen::~SceneLoadingScreen() {};
 
 void SceneLoadingScreen::run() {
-	while (!this->overTime) {
+	while (!this->overTime && this->window->isOpen()) {
+		this->pollEvents();
 		this->update();
 		this->render();
 	}
@@ -28,7 +29,22 @@ void SceneLoadingScreen::setInterSceneValues(std::vector<std::string>& vec)
 {
 };
 
-void SceneLoadingScreen::pollEvents() {};
+void SceneLoadingScreen::pollEvents() {
+	sf::Event e;
+	while (this->window->pollEvent(e)) {
+		//red cross clicked
+		if (e.Event::type == sf::Event::Closed) {
+			this->window->close();
+		}
+		//were keys pressed?
+		else if (e.Event::KeyPressed) {
+			//escape button
+			if (e.Event::key.code == sf::Keyboard::Escape) {
+				this->window->close();
+			}
+		}
+	}
+};
 
 void SceneLoadingScreen::update() {
 	this->currentSeconds += 0.03;
