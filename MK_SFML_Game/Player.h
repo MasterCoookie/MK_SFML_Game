@@ -11,7 +11,7 @@ public:
 	void setRightFacing(bool facing);
 	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
 	void resetMovementMatrix();
-	void move();
+	
 
 	//getters
 	const bool rightFacing();
@@ -23,14 +23,22 @@ public:
 	
 	//methods
 	bool canMove();
+	void move();
+	void jump();
+
+	//updates
+	void updateJump();
+
 private:
 	//properties
 	bool isAirborne;
 	bool isRightFacing;
 	float xAxisMomentum;
+	float yAxisMomentum;
 
 	bool movementMatrix[7] = { 0 };
 
 	//inits
 	void initVariables() override;
+	
 };
