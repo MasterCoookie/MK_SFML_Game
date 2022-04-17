@@ -29,6 +29,20 @@ void Player::setMovementMatrix(bool forward, bool back, bool up, bool down, bool
 	this->movementMatrix[6] = kick;
 }
 
+void Player::resetMovementMatrix() {
+	memset(this->movementMatrix, 0, 7);
+}
+
+void Player::move() {
+	if (this->isRightFacing) {
+		this->sprite.move(this->movementMatrix[0] * 20, 0);
+		this->sprite.move(-this->movementMatrix[1] * 20, 0);
+	} else {
+		this->sprite.move(-this->movementMatrix[0] * 20, 0);
+		this->sprite.move(this->movementMatrix[1] * 20, 0);
+	}
+}
+
 const bool Player::rightFacing() {
 	return this->isRightFacing;
 }
@@ -47,7 +61,7 @@ void Player::render(sf::RenderTarget* target) {
 
 bool Player::canMove() {
 	//TODO - develop further
-	return this->isAirborne;
+	return !this->isAirborne;
 }
 
 void Player::initVariables() {

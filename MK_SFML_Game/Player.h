@@ -7,9 +7,11 @@ public:
 	Player(std::string charName);
 	~Player();
 	
-	//setters
+	//modifiers
 	void setRightFacing(bool facing);
 	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
+	void resetMovementMatrix();
+	void move();
 
 	//getters
 	const bool rightFacing();

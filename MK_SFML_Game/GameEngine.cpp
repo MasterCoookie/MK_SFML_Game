@@ -38,7 +38,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec)
 }
 
 void GameEngine::initVariables() {
-	
+
 }
 
 void GameEngine::initWorld(std::string textureName) {
@@ -57,7 +57,9 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 
 	//place players in the right position
 	this->player1->setPosition(200.f, 800.f - this->player1->getBounds().height);
+	this->player1->setRightFacing(true);
 	this->player2->setPosition(1080.f - this->player2->getBounds().width, 800.f - this->player2->getBounds().height);
+	this->player2->setRightFacing(false);
 }
 
 void GameEngine::initWindow() {
@@ -82,14 +84,15 @@ void GameEngine::pollEvents() {
 				this->window->close();
 			} else {
 				//check for attack codes, if none, potentially move player
-				
+
 				//player1 starts
 				if (e.Event::key.code == sf::Keyboard::F || e.Event::key.code == sf::Keyboard::G || e.Event::key.code == sf::Keyboard::H) {
 					//TODO - translate attacks
-				} else {
+				}
+				else {
 					this->player1->setMovementMatrix(
-						(e.Event::key.code == sf::Keyboard::A) && !this->player1->rightFacing(),
-						(e.Event::key.code == sf::Keyboard::D) && this->player1->rightFacing(),
+						((e.Event::key.code == sf::Keyboard::D) && this->player1->rightFacing()) || ((e.Event::key.code == sf::Keyboard::A) && !this->player1->rightFacing()),
+						((e.Event::key.code == sf::Keyboard::A) && this->player1->rightFacing()) || ((e.Event::key.code == sf::Keyboard::D) && !this->player1->rightFacing()),
 						(e.Event::key.code == sf::Keyboard::W),
 						(e.Event::key.code == sf::Keyboard::S),
 						0, 0, 0
@@ -99,10 +102,11 @@ void GameEngine::pollEvents() {
 				//player2 starts
 				if (e.Event::key.code == sf::Keyboard::Left || e.Event::key.code == sf::Keyboard::Down || e.Event::key.code == sf::Keyboard::Right) {
 					//TODO - translate attacks
-				} else {
+				}
+				else {
 					this->player2->setMovementMatrix(
-						(e.Event::key.code == sf::Keyboard::J) && !this->player2->rightFacing(),
-						(e.Event::key.code == sf::Keyboard::L) && this->player2->rightFacing(),
+						((e.Event::key.code == sf::Keyboard::J) && !this->player2->rightFacing()) || ((e.Event::key.code == sf::Keyboard::L) && this->player2->rightFacing()),
+						((e.Event::key.code == sf::Keyboard::L) && !this->player2->rightFacing()) || ((e.Event::key.code == sf::Keyboard::J) && this->player2->rightFacing()),
 						(e.Event::key.code == sf::Keyboard::I),
 						(e.Event::key.code == sf::Keyboard::K),
 						0, 0, 0
@@ -119,8 +123,16 @@ void GameEngine::pollEvents() {
 void GameEngine::update() {
 	//move players
 	if (this->player1->canMove()) {
-		//this->player1->move();
+		this->player1->move();
 	}
+	if (this->player2->canMove()) {
+		this->player2->move();
+	}
+
+
+	//reset movementMatrixes
+	this->player1->resetMovementMatrix();
+	this->player2->resetMovementMatrix();
 }
 
 void GameEngine::render() {
