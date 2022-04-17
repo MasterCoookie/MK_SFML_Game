@@ -83,36 +83,7 @@ void GameEngine::pollEvents() {
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
 			} else {
-				//check for attack codes, if none, potentially move player
-
-				//player1 starts
-				if (e.Event::key.code == sf::Keyboard::F || e.Event::key.code == sf::Keyboard::G || e.Event::key.code == sf::Keyboard::H) {
-					//TODO - translate attacks
-				}
-				else {
-					this->player1->setMovementMatrix(
-						((e.Event::key.code == sf::Keyboard::D) && this->player1->rightFacing()) || ((e.Event::key.code == sf::Keyboard::A) && !this->player1->rightFacing()),
-						((e.Event::key.code == sf::Keyboard::A) && this->player1->rightFacing()) || ((e.Event::key.code == sf::Keyboard::D) && !this->player1->rightFacing()),
-						(e.Event::key.code == sf::Keyboard::W),
-						(e.Event::key.code == sf::Keyboard::S),
-						0, 0, 0
-					);
-				}
-				//player1 ends
-				//player2 starts
-				if (e.Event::key.code == sf::Keyboard::Left || e.Event::key.code == sf::Keyboard::Down || e.Event::key.code == sf::Keyboard::Right) {
-					//TODO - translate attacks
-				}
-				else {
-					this->player2->setMovementMatrix(
-						((e.Event::key.code == sf::Keyboard::J) && !this->player2->rightFacing()) || ((e.Event::key.code == sf::Keyboard::L) && this->player2->rightFacing()),
-						((e.Event::key.code == sf::Keyboard::L) && !this->player2->rightFacing()) || ((e.Event::key.code == sf::Keyboard::J) && this->player2->rightFacing()),
-						(e.Event::key.code == sf::Keyboard::I),
-						(e.Event::key.code == sf::Keyboard::K),
-						0, 0, 0
-					);
-				}
-				//player2 ends
+				
 			}
 			
 		}
@@ -121,6 +92,7 @@ void GameEngine::pollEvents() {
 }
 
 void GameEngine::update() {
+	this->updateInput();
 	//move players
 	if (this->player1->canMove()) {
 		this->player1->move();
@@ -133,6 +105,39 @@ void GameEngine::update() {
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
 	this->player2->resetMovementMatrix();
+}
+
+void GameEngine::updateInput() {
+	//check for attack codes, if none, potentially move player
+
+	//player1 starts
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
+		//TODO - translate attacks
+	}
+	else {
+		this->player1->setMovementMatrix(
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !this->player1->rightFacing()),
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !this->player1->rightFacing()),
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W),
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S),
+			0, 0, 0
+		);
+	}
+	//player1 ends
+	//player2 starts
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+		//TODO - translate attacks
+	}
+	else {
+		this->player2->setMovementMatrix(
+			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->player2->rightFacing()),
+			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->player2->rightFacing()),
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I),
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K),
+			0, 0, 0
+		);
+	}
+	//player2 ends
 }
 
 void GameEngine::render() {

@@ -34,12 +34,13 @@ void Player::resetMovementMatrix() {
 }
 
 void Player::move() {
+	const int movementSpeed = 14;
 	if (this->isRightFacing) {
-		this->sprite.move(this->movementMatrix[0] * 20, 0);
-		this->sprite.move(-this->movementMatrix[1] * 20, 0);
+		this->sprite.move(this->movementMatrix[0] * movementSpeed, 0);
+		this->sprite.move(-this->movementMatrix[1] * movementSpeed, 0);
 	} else {
-		this->sprite.move(-this->movementMatrix[0] * 20, 0);
-		this->sprite.move(this->movementMatrix[1] * 20, 0);
+		this->sprite.move(-this->movementMatrix[0] * movementSpeed, 0);
+		this->sprite.move(this->movementMatrix[1] * movementSpeed, 0);
 	}
 }
 
