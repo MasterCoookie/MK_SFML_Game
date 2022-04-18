@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 
+enum Position { STANDING, DUCKING, AIRBORNE };
+
 class Player : public GameObject {
 public:
 	Player();
@@ -25,13 +27,14 @@ public:
 	bool canMove();
 	void move();
 	void jump();
+	void duck();
 
 	//updates
-	void updateJump();
+	void updateMovement();
 
 private:
 	//properties
-	bool isAirborne;
+	enum Position position;
 	bool isRightFacing;
 	float xAxisMomentum;
 	float yAxisMomentum;

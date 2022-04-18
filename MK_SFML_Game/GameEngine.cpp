@@ -95,13 +95,14 @@ void GameEngine::update() {
 	if (this->player1->canMove()) {
 		this->player1->move();
 		this->player1->jump();
+		this->player1->duck();
 	}
 	if (this->player2->canMove()) {
 		this->player2->move();
 		this->player2->jump();
 	}
-	this->player1->updateJump();
-	this->player2->updateJump();
+	this->player1->updateMovement();
+	this->player2->updateMovement();
 	//TODO - attack
 
 	this->updatePlayersCross();

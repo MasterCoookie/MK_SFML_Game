@@ -62,7 +62,7 @@ void Player::jump() {
 	if (this->movementMatrix[2]) {
 		//add upwards momentum
 		this->yAxisMomentum = -55.f;
-		this->isAirborne = true;
+		this->position = AIRBORNE;
 		//if the player is also pressing dir arrow, add forwad x momentum
 		const float baseXMomentum = 20.f;
 		if (this->movementMatrix[0]) {			
@@ -87,6 +87,10 @@ void Player::jump() {
 	}
 }
 
+void Player::duck() {
+	this->position = DUCKING;
+}
+
 const bool Player::rightFacing() {
 	return this->isRightFacing;
 }
@@ -96,7 +100,7 @@ const bool Player::getMovementMatrix() {
 }
 
 void Player::update() {
-	std::cout << this->getPosition().y << "\n";
+	//std::cout << this->getPosition().y << "\n";
 }
 
 void Player::render(sf::RenderTarget* target) {
@@ -105,16 +109,16 @@ void Player::render(sf::RenderTarget* target) {
 
 bool Player::canMove() {
 	//TODO - develop further
-	return !this->isAirborne;
+	return !this->position;
 }
 
 void Player::initVariables() {
-	this->isAirborne = false;
+	this->position = STANDING;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
 }
 
-void Player::updateJump() {
+void Player::updateMovement() {
 	GameObject::move(xAxisMomentum, yAxisMomentum);
 	// gravity
 	this->yAxisMomentum += 4.5f;
@@ -123,7 +127,7 @@ void Player::updateJump() {
 	if (this->getPosition().y > 425) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
-		this->isAirborne = false;
+		this->position = STANDING;
 		this->setPosition(this->getPosition().x, 425);
 	}
 }
