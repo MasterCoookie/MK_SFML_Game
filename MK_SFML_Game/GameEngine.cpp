@@ -100,6 +100,7 @@ void GameEngine::update() {
 	if (this->player2->canMove()) {
 		this->player2->move();
 		this->player2->jump();
+		this->player2->duck();
 	}
 	this->player1->updateMovement();
 	this->player2->updateMovement();

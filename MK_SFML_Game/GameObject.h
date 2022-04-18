@@ -28,13 +28,12 @@ public:
 	virtual void render(sf::RenderTarget* target) = 0;
 protected:
 	//inits
-	void initTexture(std::string textureName);
-	void initTexture(sf::Texture& targetTexture, std::string textureName);
+	void initTexture(std::string texturePath);
+	void initTexture(sf::Texture& targetTexture, std::string texturePath);
 	void initSprite();
 	virtual void initVariables() = 0;
 
-
+	sf::Texture texture;
 	sf::Sprite sprite;
 private:
-	sf::Texture texture;
 };

@@ -7,7 +7,8 @@ Player::Player() {
 Player::Player(std::string charName) {
 	this->initVariables();
 	// init player baset on character name
-	this->initTexture("./Characters/" + charName + "/tex.png");
+	this->GameObject::initTexture("./Characters/" + charName + "/tex.png");
+	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initSprite();
 }
 
@@ -62,7 +63,7 @@ void Player::jump() {
 	if (this->movementMatrix[2]) {
 		//add upwards momentum
 		this->yAxisMomentum = -55.f;
-		this->position = AIRBORNE;
+		this->position = Position::AIRBORNE;
 		//if the player is also pressing dir arrow, add forwad x momentum
 		const float baseXMomentum = 20.f;
 		if (this->movementMatrix[0]) {			
@@ -88,8 +89,10 @@ void Player::jump() {
 }
 
 void Player::duck() {
-	if (this->movementMatrix[3]) {
-		this->position = DUCKING;
+	if (this->movementMatrix[3] && this->position != Position::DUCKING) {
+		this->position = Position::DUCKING;
+		this->sprite.setTexture(this->duckingTexture, true);
+		this->setPosition(this->getPosition().x, this->getPosition().y + 150.f);
 	}
 }
 
@@ -111,14 +114,17 @@ void Player::render(sf::RenderTarget* target) {
 
 bool Player::canMove() {
 	//TODO - develop further
-	return !this->position;
+	return (this->position == Position::STANDING);
 }
 
 void Player::initVariables() {
-	this->position = STANDING;
+	this->position = Position::STANDING;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
+
+	
 }
+
 
 void Player::updateMovement() {
 	GameObject::move(xAxisMomentum, yAxisMomentum);
@@ -129,7 +135,17 @@ void Player::updateMovement() {
 	if (this->getPosition().y > 425) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
-		this->position = STANDING;
-		this->setPosition(this->getPosition().x, 425);
+		if (this->position == Position::AIRBORNE) {
+			this->position = Position::STANDING;
+			this->setPosition(this->getPosition().x, 425);
+		}
+	}
+
+	//check if still ducking
+	if (!this->movementMatrix[3] && this->position == Position::DUCKING) {
+		this->position = Position::STANDING;
+		this->sprite.setTexture(this->texture, true);
+		this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
+
 	}
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-enum Position { STANDING, DUCKING, AIRBORNE };
+enum class Position { STANDING, DUCKING, AIRBORNE };
 
 class Player : public GameObject {
 public:
@@ -34,14 +34,20 @@ public:
 
 private:
 	//properties
+	//positions
 	enum Position position;
 	bool isRightFacing;
 	float xAxisMomentum;
 	float yAxisMomentum;
 
+	//textures
+	sf::Texture duckingTexture;
+	sf::Texture jumpingTexture;
+
 	bool movementMatrix[7] = { 0 };
 
 	//inits
 	void initVariables() override;
+	
 	
 };
