@@ -29,6 +29,7 @@ public:
 protected:
 	//inits
 	void initTexture(std::string textureName);
+	void initTexture(sf::Texture& targetTexture, std::string textureName);
 	void initSprite();
 	virtual void initVariables() = 0;
 

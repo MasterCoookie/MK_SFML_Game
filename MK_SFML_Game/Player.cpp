@@ -88,7 +88,9 @@ void Player::jump() {
 }
 
 void Player::duck() {
-	this->position = DUCKING;
+	if (this->movementMatrix[3]) {
+		this->position = DUCKING;
+	}
 }
 
 const bool Player::rightFacing() {
