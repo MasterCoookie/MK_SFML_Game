@@ -2,6 +2,7 @@
 SceneManager::SceneManager()
 {
 	this->initWindow();
+	this->interSceneData = { "" };
 }
 
 SceneManager::~SceneManager()
@@ -12,7 +13,7 @@ SceneManager::~SceneManager()
 void SceneManager::run()
 {
 	
-	std::vector<std::string> vec2={""};
+	//std::vector<std::string> vec2={""};
 	//while (vec2[0] == "") {
 		GameEngine game(this->window);
 		SceneLoadingScreen loading(this->window);
@@ -21,14 +22,26 @@ void SceneManager::run()
 		vec.push_back(&loading);
 		vec.push_back(&menu);
 		vec.push_back(&game);
-		for (auto it = vec.begin(); it != vec.end(); it++) {
-			(*it)->setInterSceneValues(vec2);
-			(*it)->run();
-			vec2 = (*it)->getResult();
-		}
+		std::for_each(vec.begin(), vec.end(), [this](Scene* s) {	// for each <3
+																	// for each <3
+			this->executeScene(s);									// for each <3
+																	// for each <3
+			});
+		//for (auto it = vec.begin(); it != vec.end(); it++) {
+		//	(*it)->setInterSceneValues(vec2);
+		//	(*it)->run();
+		//	vec2 = (*it)->getResult();
+		//}
 	//}
 	
 
+}
+
+void SceneManager::executeScene(Scene* s)
+{
+	s->setInterSceneValues(this->interSceneData);
+	s->run();
+	this->interSceneData = s->getResult();
 }
 
 void SceneManager::initWindow()

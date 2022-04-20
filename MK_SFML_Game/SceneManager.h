@@ -1,5 +1,5 @@
 #pragma once
-
+#include <algorithm>
 #include "GameEngine.h"
 #include "SceneLoadingScreen.h"
 #include "SceneMenu.h"
@@ -14,8 +14,9 @@ public:
 private:
 
 	sf::RenderWindow* window;
-
+	void executeScene(Scene* s);
 	void initWindow();
-	
+private:
+	std::vector<std::string> interSceneData;
 };
 
