@@ -23,7 +23,7 @@ private:
     void setOverTime(bool value);
 private:
     sf::RenderWindow* window;
-    sf::Texture loadingScreenTexture;
+    sf::Texture loadingScreenTexture;  
     sf::Sprite loadingScreenSprite;
     float showForSeconds;
     float currentSeconds;

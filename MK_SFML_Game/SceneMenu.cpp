@@ -19,13 +19,14 @@ void SceneMenu::run()
 
 std::vector<std::string> SceneMenu::getResult()
 {
-	std::vector<std::string> vec = { "char1", "char2" };
+	std::vector<std::string> vec = { "char1", "char2" }; //returns PATH to the files with chosen characters
 	return vec;
 
 }
 
 void SceneMenu::setInterSceneValues(std::vector<std::string>& vec)
 {
+	//does nothing, no need to
 }
 
 void SceneMenu::pollEvents()
@@ -42,8 +43,8 @@ void SceneMenu::pollEvents()
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
 			}
-			if (e.Event::key.code == sf::Keyboard::Space) {
-				this->setCharactersPicked(true);
+			if (e.Event::key.code == sf::Keyboard::Space) {			//Written to ommit the menu screen while developing the game
+				this->setCharactersPicked(true);					//
 			}
 		}
 	}

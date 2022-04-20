@@ -5,9 +5,9 @@ SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
 {
 	this->window = win;
 	this->setCurrentSeconds(0.f);
-	this->setShowForSeconds(5.f);
-	this->initTexture("load.png");
-	this->setOverTime(false);
+	this->setShowForSeconds(5.f); //initialize for how long the loading screen should display
+	this->initTexture("load.png"); //loading screen
+	this->setOverTime(false); //initialize the flag 
 }
 ;
 
@@ -23,7 +23,7 @@ void SceneLoadingScreen::run() {
 };
 
 std::vector<std::string> SceneLoadingScreen::getResult() {
-	std::vector<std::string> vec;
+	std::vector<std::string> vec; //returns nothing, no need to pass any parameters beetwen scene loading screen and rest of the programme
 	return vec; 
 }
 void SceneLoadingScreen::setInterSceneValues(std::vector<std::string>& vec)
