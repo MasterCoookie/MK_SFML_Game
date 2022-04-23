@@ -25,6 +25,9 @@ private:
 
 	void pollEvents() override;
 
+	//otehers
+	void printDebug();
+
 
 	//updates
 	void update() override;
@@ -44,4 +47,5 @@ private:
 	//Players
 	Player* player1;
 	Player* player2;
+
 };

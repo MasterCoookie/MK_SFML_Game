@@ -86,6 +86,11 @@ void GameEngine::pollEvents() {
 	}
 }
 
+void GameEngine::printDebug(){
+	std::cout << "P1 x: " << this->player1->getPosition().x << "\n";
+	std::cout << "P2 x: " << this->player2->getPosition().x << "\n";
+}
+
 void GameEngine::update() {
 	//TMP
 	this->player1->update();
@@ -107,6 +112,7 @@ void GameEngine::update() {
 	
 
 	this->updatePlayersCross();
+	this->printDebug();
 	this->updatePlayersCollision();
 
 	//TODO - attack
@@ -167,7 +173,10 @@ void GameEngine::updatePlayersCross() {
 void GameEngine::updatePlayersCollision() {
 	if (this->player1->getBodyPosition() == Position::STANDING && this->player2->getBodyPosition() == Position::STANDING) {
 		if (this->player1->getBounds().intersects(this->player2->getBounds())) {
-			std::cout << "Collision" << std::endl;
+			if (this->player1->rightFacing()) {
+				this->player1->GameObject::move(-(this->player1->getPosition().x + 2 * this->player1->getBounds().width - this->player2->getPosition().x) / 2, 0.f);
+				this->player2->GameObject::move((this->player2->getPosition().x - this->player1->getPosition().x)/2, 0.f);
+			}
 		}
 	}
 }
