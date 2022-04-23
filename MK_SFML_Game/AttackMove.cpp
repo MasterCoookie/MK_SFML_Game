@@ -1,6 +1,7 @@
 #include "AttackMove.h"
 
 AttackMove::AttackMove() {
+	this->wasThrown = false;
 	this->initVariables();
 }
 
@@ -36,6 +37,23 @@ const int AttackMove::getKnockup() const {
 	return this->knockup;
 }
 
+void AttackMove::throwAttack() {
+	this->wasThrown = true;
+}
+
+void AttackMove::registerHit() {
+	this->wasHitRegistered = true;
+}
+
+void AttackMove::update() {
+	if (this->wasThrown) {
+
+	}
+	if (this->wasHitRegistered) {
+		//increase counters
+	}
+}
+
 void AttackMove::initVariables() {
 	//those values are alaways the same initially
 	//potentialy run only in copy constuctor
@@ -43,4 +61,6 @@ void AttackMove::initVariables() {
 	this->lifespan = 0;
 	this->wasHitRegistered = false;
 }
+
+
 

@@ -8,6 +8,7 @@ public:
 	AttackMove();
 	~AttackMove();
 
+	//accessors
 	const int getOnHitStagger() const;
 	const int getOnBlockStagger() const;
 	const targetHeight getTargetHeight() const;
@@ -15,6 +16,14 @@ public:
 	const bool getWasHitRegistered() const;
 	const int getKnockback() const;
 	const int getKnockup() const;
+
+	//modifiers
+	
+
+	//methods
+	void registerHit();
+
+	void update() override;
 
 private:
 	//properties
@@ -31,6 +40,9 @@ private:
 	
 	// aimed where?
 	targetHeight targetH;
+
+	//only after attack becomes active
+	bool wasThrown;
 
 	// stagger propertiers
 	// for how long is the target going to be staggered for
