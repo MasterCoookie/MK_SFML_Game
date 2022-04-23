@@ -171,11 +171,22 @@ void GameEngine::updatePlayersCross() {
 }
 
 void GameEngine::updatePlayersCollision() {
-	if (this->player1->getBodyPosition() == Position::STANDING && this->player2->getBodyPosition() == Position::STANDING) {
+	//only resolve collision when players are not jumping
+	if (this->player1->getBodyPosition() != Position::AIRBORNE && this->player2->getBodyPosition() != Position::AIRBORNE) {
+		//check for collision
 		if (this->player1->getBounds().intersects(this->player2->getBounds())) {
+			float posDiff = 0.f;
+			//position calculations differ depending on orientation
 			if (this->player1->rightFacing()) {
-				this->player1->GameObject::move(-(this->player1->getPosition().x + 2 * this->player1->getBounds().width - this->player2->getPosition().x) / 2, 0.f);
-				this->player2->GameObject::move((this->player2->getPosition().x - this->player1->getPosition().x)/2, 0.f);
+				//calculate difference																						devide to move both players (pushing)
+				posDiff = (this->player1->getPosition().x + 2 * this->player1->getBounds().width - this->player2->getPosition().x) / 2.f;
+				//move players (also differs on oreintation)
+				this->player1->GameObject::move(-posDiff, 0.f);
+				this->player2->GameObject::move(posDiff, 0.f);
+			} else {
+				posDiff = (this->player2->getPosition().x + 2 * this->player2->getBounds().width - this->player1->getPosition().x) / 2.f;
+				this->player1->GameObject::move(posDiff, 0.f);
+				this->player2->GameObject::move(-posDiff, 0.f);
 			}
 		}
 	}
