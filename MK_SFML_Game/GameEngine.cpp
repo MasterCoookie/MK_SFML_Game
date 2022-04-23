@@ -87,6 +87,7 @@ void GameEngine::pollEvents() {
 }
 
 void GameEngine::printDebug(){
+	//use wherever needed
 	std::cout << "P1 x: " << this->player1->getPosition().x << "\n";
 	std::cout << "P2 x: " << this->player2->getPosition().x << "\n";
 }
@@ -112,7 +113,7 @@ void GameEngine::update() {
 	
 
 	this->updatePlayersCross();
-	this->printDebug();
+	//this->printDebug();
 	this->updatePlayersCollision();
 
 	//TODO - attack
@@ -171,7 +172,7 @@ void GameEngine::updatePlayersCross() {
 }
 
 void GameEngine::updatePlayersCollision() {
-	//only resolve collision when players are not jumping
+	//only resolve player to player collision when players are not jumping
 	if (this->player1->getBodyPosition() != Position::AIRBORNE && this->player2->getBodyPosition() != Position::AIRBORNE) {
 		//check for collision
 		if (this->player1->getBounds().intersects(this->player2->getBounds())) {
