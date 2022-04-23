@@ -50,5 +50,4 @@ private:
 	//inits
 	void initVariables() override;
 	
-	
 };
