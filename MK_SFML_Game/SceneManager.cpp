@@ -22,10 +22,10 @@ void SceneManager::run()
 		vec.push_back(&loading);
 		vec.push_back(&menu);
 		vec.push_back(&game);
-		std::for_each(vec.begin(), vec.end(), [this](Scene* s) {	// for each <3
-																	// for each <3
-			this->executeScene(s);									// for each <3
-																	// for each <3
+		std::for_each(vec.begin(), vec.end(), [this](Scene* s) {	// for each <3 brachu 
+																	// for each <3 brachu 
+			this->executeScene(s);									// for each <3 brachu 
+																	// for each <3 brachu 
 			});
 		//for (auto it = vec.begin(); it != vec.end(); it++) {
 		//	(*it)->setInterSceneValues(vec2);

@@ -9,6 +9,8 @@ Player::Player(std::string charName) {
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + charName + "/tex.png");
 	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
+	// TODO - create actual jumping texture
+	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initSprite();
 }
 
@@ -63,7 +65,13 @@ void Player::jump() {
 	if (this->movementMatrix[2]) {
 		//add upwards momentum
 		this->yAxisMomentum = -55.f;
+		//change pos
 		this->position = Position::AIRBORNE;
+		//change texture
+		this->sprite.setTexture(this->duckingTexture, true);
+
+		//move up ??
+		//this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
 		//if the player is also pressing dir arrow, add forwad x momentum
 		const float baseXMomentum = 20.f;
 		if (this->movementMatrix[0]) {			
@@ -90,8 +98,11 @@ void Player::jump() {
 
 void Player::duck() {
 	if (this->movementMatrix[3] && this->position != Position::DUCKING) {
+		//change pos
 		this->position = Position::DUCKING;
+		//change texture
 		this->sprite.setTexture(this->duckingTexture, true);
+		// move down
 		this->setPosition(this->getPosition().x, this->getPosition().y + 150.f);
 	}
 }
@@ -137,6 +148,7 @@ void Player::updateMovement() {
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
 			this->position = Position::STANDING;
+			this->sprite.setTexture(this->texture, true);
 			this->setPosition(this->getPosition().x, 425);
 		}
 	}
