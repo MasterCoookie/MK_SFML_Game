@@ -18,6 +18,7 @@ public:
 	//getters
 	const bool rightFacing();
 	const bool getMovementMatrix();
+	const Position getBodyPosition();
 	
 	//overrides
 	void update() override;

@@ -115,6 +115,10 @@ const bool Player::getMovementMatrix() {
 	return this->movementMatrix;
 }
 
+const Position Player::getBodyPosition() {
+	return this->position;
+}
+
 void Player::update() {
 	//std::cout << this->getPosition().y << "\n";
 }
@@ -132,12 +136,11 @@ void Player::initVariables() {
 	this->position = Position::STANDING;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
-
-	
 }
 
 
 void Player::updateMovement() {
+	//move for momentum
 	GameObject::move(xAxisMomentum, yAxisMomentum);
 	// gravity
 	this->yAxisMomentum += 4.5f;
@@ -155,9 +158,9 @@ void Player::updateMovement() {
 
 	//check if still ducking
 	if (!this->movementMatrix[3] && this->position == Position::DUCKING) {
+		//stand up if button was released
 		this->position = Position::STANDING;
 		this->sprite.setTexture(this->texture, true);
 		this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
-
 	}
 }

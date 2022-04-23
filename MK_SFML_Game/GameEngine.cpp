@@ -104,10 +104,13 @@ void GameEngine::update() {
 	}
 	this->player1->updateMovement();
 	this->player2->updateMovement();
-	//TODO - attack
+	
 
 	this->updatePlayersCross();
+	this->updatePlayersCollision();
 
+	//TODO - attack
+	
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
 	this->player2->resetMovementMatrix();
@@ -158,6 +161,14 @@ void GameEngine::updatePlayersCross() {
 		//cross happended, switch player facing
 		this->player2->setRightFacing(false);
 		this->player1->setRightFacing(true);
+	}
+}
+
+void GameEngine::updatePlayersCollision() {
+	if (this->player1->getBodyPosition() == Position::STANDING && this->player2->getBodyPosition() == Position::STANDING) {
+		if (this->player1->getBounds().intersects(this->player2->getBounds())) {
+			std::cout << "Collision" << std::endl;
+		}
 	}
 }
 
