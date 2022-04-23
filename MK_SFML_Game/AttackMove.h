@@ -21,6 +21,7 @@ public:
 	
 
 	//methods
+	void throwAttack();
 	void registerHit();
 
 	void update() override;
