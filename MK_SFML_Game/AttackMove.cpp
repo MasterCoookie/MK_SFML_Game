@@ -8,6 +8,34 @@ AttackMove::~AttackMove() {
 
 }
 
+const int AttackMove::getOnHitStagger() const {
+	return this->onHitStagger;
+}
+
+const int AttackMove::getOnBlockStagger() const {
+	return this->onHitStagger;
+}
+
+const targetHeight AttackMove::getTargetHeight() const {
+	return this->targetH;
+}
+
+const int AttackMove::getDmg() const {
+	return this->dmg;
+}
+
+const bool AttackMove::getWasHitRegistered() const {
+	return this->wasHitRegistered;
+}
+
+const int AttackMove::getKnockback() const {
+	return this->knockback;
+}
+
+const int AttackMove::getKnockup() const {
+	return this->knockup;
+}
+
 void AttackMove::initVariables() {
 	//those values are alaways the same initially
 	//potentialy run only in copy constuctor

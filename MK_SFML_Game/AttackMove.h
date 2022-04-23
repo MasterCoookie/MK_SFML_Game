@@ -8,6 +8,14 @@ public:
 	AttackMove();
 	~AttackMove();
 
+	const int getOnHitStagger() const;
+	const int getOnBlockStagger() const;
+	const targetHeight getTargetHeight() const;
+	const int getDmg() const;
+	const bool getWasHitRegistered() const;
+	const int getKnockback() const;
+	const int getKnockup() const;
+
 private:
 	//properties
 	// life properties
@@ -41,9 +49,9 @@ private:
 	//hit
 	int dmg;
 	bool wasHitRegistered;
-	//xAxisMomentum added on-hit
+	//xAxisMomentum, added on-hit
 	int knockback;
-	//yAxisMomentum added on-hit
+	//yAxisMomentum, added on-hit
 	int knockup;
 
 	void initVariables();
