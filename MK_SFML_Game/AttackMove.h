@@ -16,13 +16,18 @@ public:
 	const bool getWasHitRegistered() const;
 	const int getKnockback() const;
 	const int getKnockup() const;
+	const bool getIsActive() const;
 
 	//modifiers
 	
 
 	//methods
+	//startup frames ended, activates attack, can now hit oppontent
 	void throwAttack();
+	//on-hit
 	void registerHit();
+	//active frames ended, apply recovery to player
+	void endAttack();
 
 	void update() override;
 
@@ -42,8 +47,8 @@ private:
 	// aimed where?
 	targetHeight targetH;
 
-	//only after attack becomes active
-	bool wasThrown;
+	//only after attack becomes active - true - it can now hit
+	bool isActive;
 
 	// stagger propertiers
 	// for how long is the target going to be staggered for
@@ -68,4 +73,5 @@ private:
 	int knockup;
 
 	void initVariables();
+
 };

@@ -1,7 +1,6 @@
 #include "AttackMove.h"
 
 AttackMove::AttackMove() {
-	this->wasThrown = false;
 	this->initVariables();
 }
 
@@ -37,20 +36,33 @@ const int AttackMove::getKnockup() const {
 	return this->knockup;
 }
 
+const bool AttackMove::getIsActive() const {
+	return this->isActive;
+}
+
 void AttackMove::throwAttack() {
-	this->wasThrown = true;
+	this->isActive = true;
 }
 
 void AttackMove::registerHit() {
 	this->wasHitRegistered = true;
 }
 
-void AttackMove::update() {
-	if (this->wasThrown) {
+void AttackMove::endAttack() {
+	//TODO
+}
 
+void AttackMove::update() {
+	if (!this->isActive) {
+		++this->startupTime;
+	} else {
+		++this->lifespan;
 	}
-	if (this->wasHitRegistered) {
-		//increase counters
+	if (this->startupTime >= this->startupTimeMax) {
+		this->throwAttack();
+	}
+	if (this->lifespan >= this->lifespanMax) {
+		this->endAttack();
 	}
 }
 
@@ -60,6 +72,7 @@ void AttackMove::initVariables() {
 	this->startupTime = 0;
 	this->lifespan = 0;
 	this->wasHitRegistered = false;
+	this->isActive = false;
 }
 
 
