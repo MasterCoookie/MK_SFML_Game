@@ -96,20 +96,21 @@ void GameEngine::printDebug(){
 }
 
 void GameEngine::update() {
-	//TMP
-	this->player1->update();
 
 	this->updateInput();
+
+	//attacking
+	
 	//move players
 	if (this->player1->canMove()) {
+		this->player1->duck();
 		this->player1->move();
 		this->player1->jump();
-		this->player1->duck();
 	}
 	if (this->player2->canMove()) {
+		this->player2->duck();
 		this->player2->move();
 		this->player2->jump();
-		this->player2->duck();
 	}
 	this->player1->updateMovement();
 	this->player2->updateMovement();
@@ -119,7 +120,7 @@ void GameEngine::update() {
 	//this->printDebug();
 	this->updatePlayersCollision();
 
-	//TODO - attack
+	
 	
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();

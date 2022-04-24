@@ -146,7 +146,7 @@ void Player::render(sf::RenderTarget* target) {
 
 bool Player::canMove() {
 	//TODO - develop further
-	return (this->position == Position::STANDING);
+	return (this->position == Position::STANDING && this->state == State::IDLE);
 }
 
 void Player::initVariables() {

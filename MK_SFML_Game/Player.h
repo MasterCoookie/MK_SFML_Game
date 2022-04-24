@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "AttackMove.h"
 
 enum class Position { STANDING, DUCKING, AIRBORNE };
 
