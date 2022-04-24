@@ -24,6 +24,7 @@ public:
 	const bool getMovementMatrix();
 	const Position getBodyPosition();
 	const State getState();
+	AttackMove& getCurrentAttack();
 	
 	//overrides
 	void update() override;
@@ -34,13 +35,14 @@ public:
 	void move();
 	void jump();
 	void duck();
+	void attack();
 
 	//updates
 	void updateMovement();
 
 private:
 	//properties
-	//positions
+	//positions and state
 	enum Position position;
 	enum State state;
 	bool isRightFacing;
@@ -52,6 +54,9 @@ private:
 	sf::Texture jumpingTexture;
 
 	bool movementMatrix[7] = { 0 };
+
+	//copy of an attack
+	AttackMove currentAttack;
 
 	//inits
 	void initVariables() override;

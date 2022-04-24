@@ -120,6 +120,14 @@ void Player::duck() {
 	}
 }
 
+void Player::attack() {
+	if ((this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
+		//TMP
+		//TODO - DECODE ATTACK
+		this->currentAttack = AttackMove();
+	}
+}
+
 const bool Player::rightFacing() {
 	return this->isRightFacing;
 }

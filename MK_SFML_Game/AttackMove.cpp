@@ -66,6 +66,10 @@ void AttackMove::update() {
 	}
 }
 
+void AttackMove::render(sf::RenderTarget* target) {
+	target->draw(this->sprite);
+}
+
 void AttackMove::initVariables() {
 	//those values are alaways the same initially
 	//potentialy run only in copy constuctor
