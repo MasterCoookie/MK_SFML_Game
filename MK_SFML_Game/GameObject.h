@@ -26,9 +26,11 @@ public:
 	//virtual methods
 	virtual void update() = 0;
 	virtual void render(sf::RenderTarget* target) = 0;
+
+	void initTexture(std::string texturePath);
 protected:
 	//inits
-	void initTexture(std::string texturePath);
+	
 	void initTexture(sf::Texture& targetTexture, std::string texturePath);
 	void initSprite();
 	virtual void initVariables() = 0;

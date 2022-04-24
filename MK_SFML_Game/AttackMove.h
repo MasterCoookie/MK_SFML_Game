@@ -6,6 +6,7 @@ enum class TargetHeight { LOW, MID, HIGH, OVERHEAD };
 class AttackMove : public GameObject {
 public:
 	AttackMove();
+	AttackMove(const sf::Vector2f pos, float xSize, float ySize);
 	~AttackMove();
 
 	//accessors
@@ -14,9 +15,12 @@ public:
 	const TargetHeight getTargetHeight() const;
 	const int getDmg() const;
 	const bool getWasHitRegistered() const;
+	const bool getDidMiss() const;
 	const int getKnockback() const;
 	const int getKnockup() const;
 	const bool getIsActive() const;
+	bool getHasEnded();
+	const sf::RectangleShape& getShape() const;
 
 	//modifiers
 	
@@ -39,17 +43,20 @@ private:
 	// how long it takes for move to become active
 	int startupTimeMax;
 	//how many frames has the move been starting for
+	// !dont read from file!
 	int startupTime;
 	// how long does the move stay active for
 	int lifespanMax;
 	// for how long has the move been active for
 	// !begins to increase only after the move becomes active!
+	// !dont read from file!
 	int lifespan;
 	
 	// aimed where?
 	TargetHeight targetH;
 
 	//only after attack becomes active - true - it can now hit
+	// !dont read from file!
 	bool isActive;
 
 	// stagger propertiers
@@ -68,11 +75,20 @@ private:
 
 	//hit
 	int dmg;
+	// !dont read from file!
 	bool wasHitRegistered;
+	// !dont read from file!
+	bool didMiss;
 	//xAxisMomentum, added on-hit
 	int knockback;
 	//yAxisMomentum, added on-hit
 	int knockup;
+
+	//offsets
+	float xOffset;
+	float yOffset;
+
+	sf::RectangleShape shape;
 
 	void initVariables();
 

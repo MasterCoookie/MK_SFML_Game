@@ -1,7 +1,21 @@
 #include "AttackMove.h"
 
 AttackMove::AttackMove() {
+
+}
+
+AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize) {
 	this->initVariables();
+
+	this->shape.setFillColor(sf::Color::Red);;
+	this->shape.setSize(sf::Vector2f(xSize, ySize));
+
+	//this->setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
+	//this->setPosition(20.f, 20.f);
+	//this->shape.setPosition(20.f, 20.f);
+	this->xOffset = 130;
+	this->yOffset = 30;
+	this->shape.setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
 
 	//USED ONLY IN DEBUG
 	this->startupTimeMax = 10;
@@ -18,6 +32,8 @@ AttackMove::AttackMove() {
 	this->dmg = 10;
 	this->knockback = 50;
 	this->knockup = 20;
+
+	
 }
 
 AttackMove::~AttackMove() {
@@ -44,6 +60,10 @@ const bool AttackMove::getWasHitRegistered() const {
 	return this->wasHitRegistered;
 }
 
+const bool AttackMove::getDidMiss() const {
+	return this->didMiss;
+}
+
 const int AttackMove::getKnockback() const {
 	return this->knockback;
 }
@@ -56,8 +76,17 @@ const bool AttackMove::getIsActive() const {
 	return this->isActive;
 }
 
+bool AttackMove::getHasEnded() {
+	return (this->lifespan >= this->lifespanMax);
+}
+
+const sf::RectangleShape& AttackMove::getShape() const {
+	return this->shape;
+}
+
 void AttackMove::throwAttack() {
 	this->isActive = true;
+	
 }
 
 void AttackMove::registerHit() {
@@ -66,6 +95,7 @@ void AttackMove::registerHit() {
 
 void AttackMove::endAttack() {
 	//TODO
+	this->isActive = false;
 }
 
 void AttackMove::update() {
@@ -74,7 +104,7 @@ void AttackMove::update() {
 	} else {
 		++this->lifespan;
 	}
-	if (this->startupTime >= this->startupTimeMax) {
+	if (this->startupTime >= this->startupTimeMax && !isActive) {
 		this->throwAttack();
 	}
 	if (this->lifespan >= this->lifespanMax) {
@@ -83,7 +113,10 @@ void AttackMove::update() {
 }
 
 void AttackMove::render(sf::RenderTarget* target) {
-	target->draw(this->sprite);
+	if (this->isActive) {
+		target->draw(this->shape);
+	}
+	
 }
 
 void AttackMove::initVariables() {
@@ -93,7 +126,6 @@ void AttackMove::initVariables() {
 	this->lifespan = 0;
 	this->wasHitRegistered = false;
 	this->isActive = false;
+	this->didMiss = false;
 }
-
-
 

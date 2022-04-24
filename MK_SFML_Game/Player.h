@@ -42,6 +42,7 @@ public:
 
 	//updates
 	void updateMovement();
+	void updateAttack();
 
 private:
 	//properties
@@ -64,4 +65,5 @@ private:
 	//inits
 	void initVariables() override;
 	
+	std::string charName;
 };

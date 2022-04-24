@@ -12,6 +12,8 @@ Player::Player(std::string charName) {
 	// TODO - create actual jumping texture
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initSprite();
+
+	this->charName = charName;
 }
 
 Player::~Player() {
@@ -123,14 +125,15 @@ void Player::duck() {
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
-	this->currentAttack = AttackMove();
+	this->currentAttack = AttackMove(this->getPosition(), 125, 50);
 	return true;
 }
 
 void Player::attack() {
 	if ((this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
 		if (this->selectAttack()) {
-			this->currentAttack.throwAttack();
+			//this->currentAttack.throwAttack();
+			this->state = State::ATTACKING;
 		}
 	}
 }
@@ -161,6 +164,9 @@ void Player::update() {
 
 void Player::render(sf::RenderTarget* target) {
 	target->draw(this->sprite);
+	if (this->state == State::ATTACKING) {
+		this->currentAttack.render(target);
+	}
 }
 
 bool Player::canMove() {
@@ -203,5 +209,12 @@ void Player::updateMovement() {
 		this->position = Position::STANDING;
 		this->sprite.setTexture(this->texture, true);
 		this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
+	}
+}
+
+void Player::updateAttack() {
+	this->currentAttack.update();
+	if (this->currentAttack.getHasEnded()) {
+		this->state = State::IDLE;
 	}
 }

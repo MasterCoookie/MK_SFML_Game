@@ -116,6 +116,8 @@ void GameEngine::update() {
 
 	if (this->player1->canAttack() && this->player1->selectAttack()) {
 		this->player1->attack();
+	} else {
+		this->player1->updateAttack();
 	}
 
 	this->updatePlayersCross();
