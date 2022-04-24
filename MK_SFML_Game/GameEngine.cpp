@@ -82,6 +82,7 @@ void GameEngine::pollEvents() {
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
 			}
+			//reading attack inputs
 			this->player1->setMovementMatrix((e.Event::key.code == sf::Keyboard::F), (e.Event::key.code == sf::Keyboard::G), (e.Event::key.code == sf::Keyboard::H));
 			this->player2->setMovementMatrix((e.Event::key.code == sf::Keyboard::Left), (e.Event::key.code == sf::Keyboard::Down), (e.Event::key.code == sf::Keyboard::Right));
 		}
@@ -129,30 +130,30 @@ void GameEngine::updateInput() {
 	//check for attack codes, if none, potentially move player
 
 	//player1 starts
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
-		//TODO - translate attacks
-	}
-	else {
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
+	//	//TODO - translate attacks
+	//}
+	//else {
 		this->player1->setMovementMatrix(
 			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !this->player1->rightFacing()),
 			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !this->player1->rightFacing()),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)
 		);
-	}
+	//}
 	//player1 ends
 	//player2 starts
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-		//TODO - translate attacks
-	}
-	else {
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+	//	//TODO - translate attacks
+	//}
+	//else {
 		this->player2->setMovementMatrix(
 			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->player2->rightFacing()),
 			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->player2->rightFacing()),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K)
 		);
-	}
+	//}
 	//player2 ends
 }
 
