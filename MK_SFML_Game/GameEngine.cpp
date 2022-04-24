@@ -135,8 +135,7 @@ void GameEngine::updateInput() {
 			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !this->player1->rightFacing()),
 			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !this->player1->rightFacing()),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S),
-			0, 0, 0
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)
 		);
 	}
 	//player1 ends
@@ -149,8 +148,7 @@ void GameEngine::updateInput() {
 			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->player2->rightFacing()),
 			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->player2->rightFacing()),
 			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K),
-			0, 0, 0
+			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K)
 		);
 	}
 	//player2 ends

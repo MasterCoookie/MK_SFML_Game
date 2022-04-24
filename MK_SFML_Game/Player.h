@@ -3,6 +3,8 @@
 
 enum class Position { STANDING, DUCKING, AIRBORNE };
 
+enum class State { IDLE, BLOCKING, ATTACKING, HIT_STAGGERED, BLOCK_STAGGERED };
+
 class Player : public GameObject {
 public:
 	Player();
@@ -11,6 +13,8 @@ public:
 	
 	//modifiers
 	void setRightFacing(bool facing);
+	void setMovementMatrix(bool lHand, bool rHand, bool kick);
+	void setMovementMatrix(bool forward, bool back, bool up, bool down);
 	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
 	void resetMovementMatrix();
 	
@@ -19,6 +23,7 @@ public:
 	const bool rightFacing();
 	const bool getMovementMatrix();
 	const Position getBodyPosition();
+	const State getState();
 	
 	//overrides
 	void update() override;
@@ -37,6 +42,7 @@ private:
 	//properties
 	//positions
 	enum Position position;
+	enum State state;
 	bool isRightFacing;
 	float xAxisMomentum;
 	float yAxisMomentum;

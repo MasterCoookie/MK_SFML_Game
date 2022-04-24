@@ -33,6 +33,19 @@ void Player::setRightFacing(bool facing) {
 	}
 }
 
+void Player::setMovementMatrix(bool lHand, bool rHand, bool kick) {
+	this->movementMatrix[4] = lHand;
+	this->movementMatrix[5] = rHand;
+	this->movementMatrix[6] = kick;
+}
+
+void Player::setMovementMatrix(bool forward, bool back, bool up, bool down) {
+	this->movementMatrix[0] = forward;
+	this->movementMatrix[1] = back;
+	this->movementMatrix[2] = up;
+	this->movementMatrix[3] = down;
+}
+
 void Player::setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick) {
 	this->movementMatrix[0] = forward;
 	this->movementMatrix[1] = back;
@@ -117,6 +130,10 @@ const bool Player::getMovementMatrix() {
 
 const Position Player::getBodyPosition() {
 	return this->position;
+}
+
+const State Player::getState() {
+	return this->state;
 }
 
 void Player::update() {
