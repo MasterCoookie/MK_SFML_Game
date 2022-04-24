@@ -81,7 +81,9 @@ void GameEngine::pollEvents() {
 			//escape button
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
-			} 
+			}
+			this->player1->setMovementMatrix((e.Event::key.code == sf::Keyboard::F), (e.Event::key.code == sf::Keyboard::G), (e.Event::key.code == sf::Keyboard::H));
+			this->player2->setMovementMatrix((e.Event::key.code == sf::Keyboard::Left), (e.Event::key.code == sf::Keyboard::Down), (e.Event::key.code == sf::Keyboard::Right));
 		}
 	}
 }

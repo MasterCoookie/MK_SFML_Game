@@ -151,6 +151,7 @@ bool Player::canMove() {
 
 void Player::initVariables() {
 	this->position = Position::STANDING;
+	this->state = State::IDLE;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
 }
