@@ -32,9 +32,12 @@ public:
 	
 	//methods
 	bool canMove();
+	bool canAttack();
 	void move();
 	void jump();
 	void duck();
+	// sets currentAttack. returns true if key combo matched, false if it didnt
+	bool selectAttack();
 	void attack();
 
 	//updates

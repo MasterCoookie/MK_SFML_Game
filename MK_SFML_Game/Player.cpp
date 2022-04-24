@@ -120,11 +120,18 @@ void Player::duck() {
 	}
 }
 
+bool Player::selectAttack() {
+	//TMP
+	//TODO - actually select an attack
+	this->currentAttack = AttackMove();
+	return true;
+}
+
 void Player::attack() {
 	if ((this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
-		//TMP
-		//TODO - DECODE ATTACK
-		this->currentAttack = AttackMove();
+		if (this->selectAttack()) {
+			this->currentAttack.throwAttack();
+		}
 	}
 }
 
@@ -144,6 +151,10 @@ const State Player::getState() {
 	return this->state;
 }
 
+AttackMove& Player::getCurrentAttack() {
+	return this->currentAttack;
+}
+
 void Player::update() {
 	//std::cout << this->getPosition().y << "\n";
 }
@@ -155,6 +166,10 @@ void Player::render(sf::RenderTarget* target) {
 bool Player::canMove() {
 	//TODO - develop further
 	return (this->position == Position::STANDING && this->state == State::IDLE);
+}
+
+bool Player::canAttack() {
+	return this->state == State::IDLE;
 }
 
 void Player::initVariables() {

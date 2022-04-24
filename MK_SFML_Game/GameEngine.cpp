@@ -99,7 +99,6 @@ void GameEngine::update() {
 
 	this->updateInput();
 
-	//attacking
 	
 	//move players
 	if (this->player1->canMove()) {
@@ -114,7 +113,10 @@ void GameEngine::update() {
 	}
 	this->player1->updateMovement();
 	this->player2->updateMovement();
-	
+
+	if (this->player1->canAttack() && this->player1->selectAttack()) {
+		this->player1->attack();
+	}
 
 	this->updatePlayersCross();
 	//this->printDebug();

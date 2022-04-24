@@ -2,6 +2,22 @@
 
 AttackMove::AttackMove() {
 	this->initVariables();
+
+	//USED ONLY IN DEBUG
+	this->startupTimeMax = 10;
+	this->lifespanMax = 6;
+	this->targetH = TargetHeight::HIGH;
+	this->onHitStagger = 8;
+
+	this->onBlockStagger = 5;
+	this->onHitRecovery = 7;
+
+	this->onBlockRecovery = 12;
+	this->onMissRecovery = 14;
+
+	this->dmg = 10;
+	this->knockback = 50;
+	this->knockup = 20;
 }
 
 AttackMove::~AttackMove() {
@@ -16,7 +32,7 @@ const int AttackMove::getOnBlockStagger() const {
 	return this->onHitStagger;
 }
 
-const targetHeight AttackMove::getTargetHeight() const {
+const TargetHeight AttackMove::getTargetHeight() const {
 	return this->targetH;
 }
 

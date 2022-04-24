@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-enum class targetHeight { LOW, MID, HIGH, OVERHEAD };
+enum class TargetHeight { LOW, MID, HIGH, OVERHEAD };
 
 class AttackMove : public GameObject {
 public:
@@ -11,7 +11,7 @@ public:
 	//accessors
 	const int getOnHitStagger() const;
 	const int getOnBlockStagger() const;
-	const targetHeight getTargetHeight() const;
+	const TargetHeight getTargetHeight() const;
 	const int getDmg() const;
 	const bool getWasHitRegistered() const;
 	const int getKnockback() const;
@@ -47,7 +47,7 @@ private:
 	int lifespan;
 	
 	// aimed where?
-	targetHeight targetH;
+	TargetHeight targetH;
 
 	//only after attack becomes active - true - it can now hit
 	bool isActive;
