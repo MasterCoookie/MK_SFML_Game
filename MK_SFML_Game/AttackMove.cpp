@@ -30,8 +30,8 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize) {
 	this->onMissRecovery = 14;
 
 	this->dmg = 10;
-	this->knockback = 50;
-	this->knockup = 20;
+	this->knockback = 40;
+	this->knockup = -20;
 
 	
 }

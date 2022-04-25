@@ -201,6 +201,7 @@ void GameEngine::updatePlayersCollision() {
 
 void GameEngine::updateAttacksCollision() {
 	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player2->getBounds())) {
+		this->player2->takeHit(this->player1->getCurrentAttack());
 		std::cout << "Hit!\n";
 	}
 }

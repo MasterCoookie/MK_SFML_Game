@@ -142,7 +142,20 @@ void Player::takeHit(AttackMove& hitBy) {
 	if (this->state == State::BLOCKING) {
 		//TODO - block
 	} else {
+		//TODO resolve ducking and target
+		this->hp -= hitBy.getDmg();
+		//TMP
+		std::cout << this->hp << "\n";
+		this->xAxisMomentum = hitBy.getKnockback();
+		if (hitBy.getKnockup()) {
+			this->position = Position::AIRBORNE;
+			this->yAxisMomentum = hitBy.getKnockup();
+		} else {
+			//todo - stagger attacked
+		}
 		
+		
+		hitBy.registerHit();
 	}
 }
 
