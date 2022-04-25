@@ -7,9 +7,12 @@ AttackMove::AttackMove() {
 AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing) {
 	this->initVariables();
 
+	//USED ONLY IN DEBUG
 	this->shape.setFillColor(sf::Color::Red);;
 	this->shape.setSize(sf::Vector2f(xSize, ySize));
+	//USED ONLY IN DEBUG ENDS
 
+	// DO THIS IN OTHER CONSTRUCTORS TOO
 	//Y axis offset is alaways the same
 	this->yOffset = 30.f;
 
@@ -27,6 +30,8 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 		this->shape.scale(-1.f, 1.f);;
 	}
 
+	// DO THIS IN OTHER CONSTRUCTORS TOO ENDS
+
 	//USED ONLY IN DEBUG
 	this->startupTimeMax = 10;
 	this->lifespanMax = 6;
@@ -42,7 +47,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->dmg = 10;
 	this->knockback = 40;
 	this->knockup = -20;
-
+	//USED ONLY IN DEBUG ENDS
 	
 }
 
@@ -101,6 +106,7 @@ void AttackMove::throwAttack() {
 
 void AttackMove::registerHit() {
 	this->wasHitRegistered = true;
+	this->isActive = false;
 }
 
 void AttackMove::endAttack() {
@@ -116,7 +122,7 @@ void AttackMove::update() {
 	} else {
 		++this->lifespan;
 	}
-	if (this->startupTime >= this->startupTimeMax && !isActive) {
+	if (this->startupTime >= this->startupTimeMax && !isActive && !this->wasHitRegistered) {
 		this->throwAttack();
 	}
 	if (this->lifespan >= this->lifespanMax) {
