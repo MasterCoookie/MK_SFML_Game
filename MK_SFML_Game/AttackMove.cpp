@@ -4,18 +4,28 @@ AttackMove::AttackMove() {
 
 }
 
-AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize) {
+AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing) {
 	this->initVariables();
 
 	this->shape.setFillColor(sf::Color::Red);;
 	this->shape.setSize(sf::Vector2f(xSize, ySize));
 
-	//this->setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
-	//this->setPosition(20.f, 20.f);
-	//this->shape.setPosition(20.f, 20.f);
-	this->xOffset = 130;
-	this->yOffset = 30;
+	//Y axis offset is alaways the same
+	this->yOffset = 30.f;
+
+	//reverse X axis offset if player is facing left
+	if (!isRightFacing) {
+		this->xOffset = -130.f;
+	} else {
+		this->xOffset = 130.f;
+	}
+	
 	this->shape.setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
+
+	//reverse shape if player is facing left
+	if (!isRightFacing) {
+		this->shape.scale(-1.f, 1.f);;
+	}
 
 	//USED ONLY IN DEBUG
 	this->startupTimeMax = 10;

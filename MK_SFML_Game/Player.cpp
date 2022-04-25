@@ -125,7 +125,7 @@ void Player::duck() {
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
-	this->currentAttack = AttackMove(this->getPosition(), 125, 50);
+	this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing);
 	return true;
 }
 

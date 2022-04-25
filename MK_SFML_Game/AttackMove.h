@@ -6,7 +6,7 @@ enum class TargetHeight { LOW, MID, HIGH, OVERHEAD };
 class AttackMove : public GameObject {
 public:
 	AttackMove();
-	AttackMove(const sf::Vector2f pos, float xSize, float ySize);
+	AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing);
 	~AttackMove();
 
 	//accessors
