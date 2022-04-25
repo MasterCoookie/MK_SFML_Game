@@ -10,6 +10,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	//USED ONLY IN DEBUG
 	this->shape.setFillColor(sf::Color::Red);;
 	this->shape.setSize(sf::Vector2f(xSize, ySize));
+	this->knockback = 40;
 	//USED ONLY IN DEBUG ENDS
 
 	// DO THIS IN OTHER CONSTRUCTORS TOO
@@ -25,9 +26,10 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	
 	this->shape.setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
 
-	//reverse shape if player is facing left
+	//reverse shape if player is facing left + reverse knockback
 	if (!isRightFacing) {
 		this->shape.scale(-1.f, 1.f);;
+		this->knockback = -this->knockback;
 	}
 
 	// DO THIS IN OTHER CONSTRUCTORS TOO ENDS
@@ -45,7 +47,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->onMissRecovery = 14;
 
 	this->dmg = 10;
-	this->knockback = 40;
+	
 	this->knockup = -20;
 	//USED ONLY IN DEBUG ENDS
 	
