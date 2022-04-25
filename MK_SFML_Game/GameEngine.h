@@ -34,6 +34,7 @@ private:
 	void updateInput();
 	void updatePlayersCross();
 	void updatePlayersCollision();
+	void updateAttacksCollision();
 
 	// renders
 	void render() override;

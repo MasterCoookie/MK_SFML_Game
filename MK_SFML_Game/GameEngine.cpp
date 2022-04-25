@@ -124,7 +124,7 @@ void GameEngine::update() {
 	//this->printDebug();
 	this->updatePlayersCollision();
 
-	
+	this->updateAttacksCollision();
 	
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
@@ -196,6 +196,12 @@ void GameEngine::updatePlayersCollision() {
 				this->player2->GameObject::move(-posDiff, 0.f);
 			}
 		}
+	}
+}
+
+void GameEngine::updateAttacksCollision() {
+	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player2->getBounds())) {
+		std::cout << "Hit!\n";
 	}
 }
 

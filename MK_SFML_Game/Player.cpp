@@ -193,7 +193,7 @@ void Player::updateMovement() {
 	this->yAxisMomentum += 4.5f;
 		
 	//check for landing
-	if (this->getPosition().y > 425) {
+	if (this->getPosition().y >= 425) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
