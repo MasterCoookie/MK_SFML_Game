@@ -39,6 +39,7 @@ public:
 	// sets currentAttack. returns true if key combo matched, false if it didnt
 	bool selectAttack();
 	void attack();
+	void takeHit(AttackMove& hitBy);
 
 	//updates
 	void updateMovement();
@@ -52,6 +53,9 @@ private:
 	bool isRightFacing;
 	float xAxisMomentum;
 	float yAxisMomentum;
+
+	float hpMax;
+	float hp;
 
 	//textures
 	sf::Texture duckingTexture;

@@ -138,6 +138,14 @@ void Player::attack() {
 	}
 }
 
+void Player::takeHit(AttackMove& hitBy) {
+	if (this->state == State::BLOCKING) {
+		//TODO - block
+	} else {
+		
+	}
+}
+
 const bool Player::rightFacing() {
 	return this->isRightFacing;
 }
@@ -183,6 +191,8 @@ void Player::initVariables() {
 	this->state = State::IDLE;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
+	this->hpMax = 100.f;
+	this->hp = hpMax;
 }
 
 

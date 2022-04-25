@@ -100,7 +100,9 @@ void AttackMove::endAttack() {
 
 void AttackMove::update() {
 	if (!this->isActive) {
-		++this->startupTime;
+		if (!this->wasHitRegistered) {
+			++this->startupTime;
+		}
 	} else {
 		++this->lifespan;
 	}
