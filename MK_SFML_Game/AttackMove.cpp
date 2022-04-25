@@ -106,7 +106,6 @@ void AttackMove::throwAttack() {
 
 void AttackMove::registerHit() {
 	this->wasHitRegistered = true;
-	this->isActive = false;
 }
 
 void AttackMove::endAttack() {
