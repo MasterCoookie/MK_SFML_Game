@@ -17,6 +17,7 @@ public:
 	void setMovementMatrix(bool forward, bool back, bool up, bool down);
 	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
 	void resetMovementMatrix();
+	void setState(const State& state);
 	
 
 	//getters
@@ -36,6 +37,8 @@ public:
 	void move();
 	void jump();
 	void duck();
+	void block();
+	void dropBlock();
 	// sets currentAttack. returns true if key combo matched, false if it didnt
 	bool selectAttack();
 	void attack();

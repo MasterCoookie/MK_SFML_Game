@@ -111,13 +111,26 @@ void GameEngine::update() {
 		this->player2->move();
 		this->player2->jump();
 	}
-	this->player1->updateMovement();
-	this->player2->updateMovement();
+
+	if (this->player1->getState() != State::BLOCKING) {
+		this->player1->updateMovement();
+	}
+	
+	if (this->player2->getState() != State::BLOCKING) {
+		this->player2->updateMovement();
+	}
 
 	if (this->player1->canAttack() && this->player1->selectAttack()) {
 		this->player1->attack();
 	} else {
 		this->player1->updateAttack();
+	}
+
+	if (this->player2->canAttack() && this->player2->selectAttack()) {
+		this->player2->attack();
+	}
+	else {
+		this->player2->updateAttack();
 	}
 
 	this->updatePlayersCross();
@@ -133,8 +146,17 @@ void GameEngine::update() {
 
 void GameEngine::updateInput() {
 	//blocking
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T) && this->player1->getState() != State::HIT_STAGGERED && this->player1->getBodyPosition() != Position::AIRBORNE) {
-		std::cout << "blocking\n";
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T) && this->player1->getState() != State::HIT_STAGGERED && this->player1->getState() != State::BLOCK_STAGGERED && this->player1->getBodyPosition() != Position::AIRBORNE) {
+		this->player1->block();
+	} else if (this->player1->getState() == State::BLOCKING) {
+		this->player1->dropBlock();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && this->player2->getState() != State::HIT_STAGGERED && this->player2->getState() != State::BLOCK_STAGGERED && this->player2->getBodyPosition() != Position::AIRBORNE) {
+		this->player2->block();
+	}
+	else if (this->player2->getState() == State::BLOCKING) {
+		this->player2->dropBlock();
 	}
 
 	//check for attack codes, if none, potentially move player
@@ -207,6 +229,11 @@ void GameEngine::updatePlayersCollision() {
 void GameEngine::updateAttacksCollision() {
 	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player2->getBounds())) {
 		this->player2->takeHit(this->player1->getCurrentAttack());
+		std::cout << "Hit!\n";
+	}
+
+	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player1->getBounds())) {
+		this->player1->takeHit(this->player2->getCurrentAttack());
 		std::cout << "Hit!\n";
 	}
 }

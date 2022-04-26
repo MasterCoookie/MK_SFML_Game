@@ -64,6 +64,10 @@ void Player::resetMovementMatrix() {
 	memset(this->movementMatrix, 0, 7);
 }
 
+void Player::setState(const State& state) {
+	this->state = state;
+}
+
 void Player::move() {
 	const int movementSpeed = 14;
 	//move the player, dependent on direction its facing
@@ -123,11 +127,25 @@ void Player::duck() {
 	}
 }
 
+void Player::block() {
+	this->state = State::BLOCKING;
+	this->sprite.setTexture(this->blockingTexture);
+}
+
+void Player::dropBlock() {
+	this->state = State::IDLE;
+	this->sprite.setTexture(this->texture);
+}
+
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
-	this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing);
-	return true;
+	if (this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
+		this->state = State::ATTACKING;
+		this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing);
+		return true;
+	}
+	return false;
 }
 
 void Player::attack() {
@@ -142,9 +160,8 @@ void Player::attack() {
 void Player::takeHit(AttackMove& hitBy) {
 	if (!hitBy.getWasHitRegistered()) {
 		if (this->state == State::BLOCKING) {
-			//TODO - block
-		}
-		else {
+			//TODO - block, register that hit was blocked
+		} else {
 			//TODO resolve ducking and target
 			this->hp -= hitBy.getDmg();
 			//TMP
@@ -186,7 +203,7 @@ AttackMove& Player::getCurrentAttack() {
 }
 
 void Player::update() {
-	//std::cout << this->getPosition().y << "\n";
+	std::cout << this->getPosition().y << "\n";
 }
 
 void Player::render(sf::RenderTarget* target) {
@@ -242,8 +259,11 @@ void Player::updateMovement() {
 }
 
 void Player::updateAttack() {
-	this->currentAttack.update();
-	if (this->currentAttack.getHasEnded()) {
-		this->state = State::IDLE;
+	if (this->state == State::ATTACKING) {
+		this->currentAttack.update();
+		if (this->currentAttack.getHasEnded()) {
+			this->state = State::IDLE;
+		}
 	}
+	
 }
