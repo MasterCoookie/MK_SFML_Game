@@ -60,6 +60,7 @@ private:
 	//textures
 	sf::Texture duckingTexture;
 	sf::Texture jumpingTexture;
+	sf::Texture blockingTexture;
 
 	bool movementMatrix[7] = { 0 };
 

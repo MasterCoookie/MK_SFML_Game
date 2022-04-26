@@ -11,6 +11,7 @@ Player::Player(std::string charName) {
 	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
 	// TODO - create actual jumping texture
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
+	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking.png");
 	this->initSprite();
 
 	this->charName = charName;

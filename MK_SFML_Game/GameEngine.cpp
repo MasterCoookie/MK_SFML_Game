@@ -132,6 +132,11 @@ void GameEngine::update() {
 }
 
 void GameEngine::updateInput() {
+	//blocking
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T) && this->player1->getState() != State::HIT_STAGGERED && this->player1->getBodyPosition() != Position::AIRBORNE) {
+		std::cout << "blocking\n";
+	}
+
 	//check for attack codes, if none, potentially move player
 
 	//player1 starts
