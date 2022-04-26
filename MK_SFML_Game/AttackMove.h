@@ -6,7 +6,7 @@ enum class TargetHeight { LOW, MID, HIGH, OVERHEAD };
 class AttackMove : public GameObject {
 public:
 	AttackMove();
-	AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing);
+	AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing, std::string charName);
 	~AttackMove();
 
 	//accessors
@@ -91,5 +91,8 @@ private:
 	sf::RectangleShape shape;
 
 	void initVariables();
+
+	//tmp
+	sf::Texture atkTexture;
 
 };

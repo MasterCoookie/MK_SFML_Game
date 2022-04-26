@@ -4,12 +4,17 @@ AttackMove::AttackMove() {
 
 }
 
-AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing) {
+AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing, std::string charName) {
 	this->initVariables();
 
 	//USED ONLY IN DEBUG
-	this->shape.setFillColor(sf::Color::Red);;
-	this->shape.setSize(sf::Vector2f(xSize, ySize));
+	/*this->shape.setFillColor(sf::Color::Red);;
+	this->shape.setSize(sf::Vector2f(xSize, ySize));*/
+
+	this->initTexture(this->atkTexture, "./Characters/" + charName + "/attack.png");
+	//this->initTexture("./Characters/" + charName + "/attack.png");
+	//this->sprite.setTexture(this->atkTexture);
+
 	this->knockback = 40;
 	//USED ONLY IN DEBUG ENDS
 
@@ -26,9 +31,12 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	
 	this->shape.setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
 
+	this->sprite.setPosition(pos.x + this->xOffset, pos.y + this->yOffset);
+
 	//reverse shape if player is facing left + reverse knockback
 	if (!isRightFacing) {
-		this->shape.scale(-1.f, 1.f);;
+		this->shape.scale(-1.f, 1.f);
+		this->sprite.scale(-1.f, 1.f);
 		this->knockback = -this->knockback;
 	}
 
@@ -132,8 +140,10 @@ void AttackMove::update() {
 }
 
 void AttackMove::render(sf::RenderTarget* target) {
+		
 	if (this->isActive) {
-		target->draw(this->shape);
+		this->sprite.setTexture(this->atkTexture);
+		target->draw(this->sprite);
 	}
 	
 }
@@ -146,5 +156,6 @@ void AttackMove::initVariables() {
 	this->wasHitRegistered = false;
 	this->isActive = false;
 	this->didMiss = false;
+
 }
 

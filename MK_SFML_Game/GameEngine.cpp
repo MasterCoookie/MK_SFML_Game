@@ -227,14 +227,12 @@ void GameEngine::updatePlayersCollision() {
 }
 
 void GameEngine::updateAttacksCollision() {
-	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player2->getBounds())) {
+	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getBounds().intersects(this->player2->getBounds())) {
 		this->player2->takeHit(this->player1->getCurrentAttack());
-		std::cout << "Hit!\n";
 	}
 
-	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getShape().getGlobalBounds().intersects(this->player1->getBounds())) {
+	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getBounds().intersects(this->player1->getBounds())) {
 		this->player1->takeHit(this->player2->getCurrentAttack());
-		std::cout << "Hit!\n";
 	}
 }
 

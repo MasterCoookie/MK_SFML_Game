@@ -140,9 +140,9 @@ void Player::dropBlock() {
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
-	if (this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
+	if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
 		this->state = State::ATTACKING;
-		this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing);
+		this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing, this->charName);
 		return true;
 	}
 	return false;
