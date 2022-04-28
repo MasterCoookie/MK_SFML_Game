@@ -38,7 +38,7 @@ public:
 	void jump();
 	void duck();
 	void block();
-	void dropBlock();
+	void dropBlock(const bool continueDucking);
 	// sets currentAttack. returns true if key combo matched, false if it didnt
 	bool selectAttack();
 	void attack();
@@ -64,6 +64,7 @@ private:
 	sf::Texture duckingTexture;
 	sf::Texture jumpingTexture;
 	sf::Texture blockingTexture;
+	sf::Texture blockingDuckTexture;
 
 	bool movementMatrix[7] = { 0 };
 
@@ -72,6 +73,9 @@ private:
 
 	//inits
 	void initVariables() override;
+
+	//private methods
+	bool wasAttackBlocked(const AttackMove& hitBy);
 	
 	std::string charName;
 };

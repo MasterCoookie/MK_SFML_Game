@@ -12,6 +12,7 @@ Player::Player(std::string charName) {
 	// TODO - create actual jumping texture
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking.png");
+	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block.png");
 	this->initSprite();
 
 	this->charName = charName;
@@ -129,12 +130,20 @@ void Player::duck() {
 
 void Player::block() {
 	this->state = State::BLOCKING;
-	this->sprite.setTexture(this->blockingTexture);
+	if (this->position == Position::STANDING) {
+		this->sprite.setTexture(this->blockingTexture);
+	} else {
+		this->sprite.setTexture(this->blockingDuckTexture);
+	}
 }
 
-void Player::dropBlock() {
+void Player::dropBlock(const bool continueDuckin) {
 	this->state = State::IDLE;
-	this->sprite.setTexture(this->texture);
+	if (continueDuckin) {
+		this->sprite.setTexture(this->duckingTexture);
+	} else {
+		this->sprite.setTexture(this->texture);
+	}
 }
 
 bool Player::selectAttack() {
@@ -159,8 +168,9 @@ void Player::attack() {
 
 void Player::takeHit(AttackMove& hitBy) {
 	if (!hitBy.getWasHitRegistered()) {
-		if (this->state == State::BLOCKING) {
+		if (this->wasAttackBlocked(hitBy)) {
 			//TODO - block, register that hit was blocked
+			std::cout << "Blocked\n";
 		} else {
 			//TODO resolve ducking and target
 			this->hp -= hitBy.getDmg();
@@ -229,6 +239,17 @@ void Player::initVariables() {
 	this->yAxisMomentum = 0;
 	this->hpMax = 100.f;
 	this->hp = hpMax;
+}
+
+bool Player::wasAttackBlocked(const AttackMove& hitBy) {
+	if (this->state != State::BLOCKING) {
+		return false;
+	} else if(hitBy.getTargetHeight() == TargetHeight::LOW && this->position == Position::STANDING) {
+		return false;
+	} else if (hitBy.getTargetHeight() == TargetHeight::OVERHEAD && this->position == Position::DUCKING) {
+		return false;
+	}
+	return true;
 }
 
 

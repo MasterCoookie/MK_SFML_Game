@@ -149,14 +149,14 @@ void GameEngine::updateInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::T) && this->player1->getState() != State::HIT_STAGGERED && this->player1->getState() != State::BLOCK_STAGGERED && this->player1->getBodyPosition() != Position::AIRBORNE) {
 		this->player1->block();
 	} else if (this->player1->getState() == State::BLOCKING) {
-		this->player1->dropBlock();
+		this->player1->dropBlock(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S));
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) && this->player2->getState() != State::HIT_STAGGERED && this->player2->getState() != State::BLOCK_STAGGERED && this->player2->getBodyPosition() != Position::AIRBORNE) {
 		this->player2->block();
 	}
 	else if (this->player2->getState() == State::BLOCKING) {
-		this->player2->dropBlock();
+		this->player2->dropBlock(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K));
 	}
 
 	//check for attack codes, if none, potentially move player
