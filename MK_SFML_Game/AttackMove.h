@@ -15,6 +15,7 @@ public:
 	const TargetHeight getTargetHeight() const;
 	const int getDmg() const;
 	const bool getWasHitRegistered() const;
+	const bool getWasBlockRegistered() const;
 	const bool getDidMiss() const;
 	const int getKnockback() const;
 	const int getKnockup() const;
@@ -30,6 +31,7 @@ public:
 	void throwAttack();
 	//on-hit
 	void registerHit();
+	void registerBlock();
 	//active frames ended, apply recovery to player
 	void endAttack();
 
@@ -77,6 +79,8 @@ private:
 	int dmg;
 	// !dont read from file!
 	bool wasHitRegistered;
+	// !dont read from file!
+	bool wasBlockRegistered;
 	// !dont read from file!
 	bool didMiss;
 	//xAxisMomentum, added on-hit

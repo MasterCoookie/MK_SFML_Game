@@ -85,6 +85,10 @@ const bool AttackMove::getWasHitRegistered() const {
 	return this->wasHitRegistered;
 }
 
+const bool AttackMove::getWasBlockRegistered() const {
+	return this->wasBlockRegistered;
+}
+
 const bool AttackMove::getDidMiss() const {
 	return this->didMiss;
 }
@@ -116,6 +120,10 @@ void AttackMove::throwAttack() {
 
 void AttackMove::registerHit() {
 	this->wasHitRegistered = true;
+}
+
+void AttackMove::registerBlock(){
+	this->wasBlockRegistered = true;
 }
 
 void AttackMove::endAttack() {
@@ -156,6 +164,6 @@ void AttackMove::initVariables() {
 	this->wasHitRegistered = false;
 	this->isActive = false;
 	this->didMiss = false;
-
+	this->wasBlockRegistered = false;
 }
 

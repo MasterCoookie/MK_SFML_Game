@@ -167,10 +167,14 @@ void Player::attack() {
 }
 
 void Player::takeHit(AttackMove& hitBy) {
-	if (!hitBy.getWasHitRegistered()) {
+	if (!hitBy.getWasHitRegistered() && !hitBy.getWasBlockRegistered()) {
 		if (this->wasAttackBlocked(hitBy)) {
 			//TODO - block, register that hit was blocked
 			std::cout << "Blocked\n";
+			hitBy.registerBlock();
+			this->hp -= hitBy.getDmg()/10.f;
+			//TMP
+			std::cout << this->hp << "\n";
 		} else {
 			//TODO resolve ducking and target
 			this->hp -= hitBy.getDmg();
