@@ -174,7 +174,6 @@ void Player::attack() {
 void Player::takeHit(AttackMove& hitBy) {
 	if (!hitBy.getWasHitRegistered() && !hitBy.getWasBlockRegistered()) {
 		if (this->wasAttackBlocked(hitBy)) {
-			//TODO - block, register that hit was blocked
 			std::cout << "Blocked\n";
 			hitBy.registerBlock();
 			this->hp -= hitBy.getDmg()/10.f;
@@ -183,7 +182,6 @@ void Player::takeHit(AttackMove& hitBy) {
 
 			this->stagger(State::BLOCK_STAGGERED, hitBy.getOnBlockStagger());
 		} else {
-			//TODO resolve ducking and target
 			this->hp -= hitBy.getDmg();
 			//TMP
 			std::cout << this->hp << "\n";
@@ -235,7 +233,6 @@ void Player::render(sf::RenderTarget* target) {
 }
 
 bool Player::canMove() {
-	//TODO - develop further
 	return (this->position == Position::STANDING && this->state == State::IDLE);
 }
 
@@ -303,7 +300,7 @@ void Player::updateAttack() {
 void Player::updateStagger() {
 	if (this->staggerFrames > 0.f) {
 		//tmp
-		std::cout << this->staggerFrames << "\n";
+		//std::cout << this->staggerFrames << "\n";
 		--this->staggerFrames;
 	} else {
 		if (this->state == State::HIT_STAGGERED) {

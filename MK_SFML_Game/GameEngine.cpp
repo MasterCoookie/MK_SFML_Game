@@ -167,7 +167,6 @@ void GameEngine::updateInput() {
 
 	//player1 starts
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
-	//	//TODO - translate attacks
 	//}
 	//else {
 		this->player1->setMovementMatrix(
@@ -180,7 +179,6 @@ void GameEngine::updateInput() {
 	//player1 ends
 	//player2 starts
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-	//	//TODO - translate attacks
 	//}
 	//else {
 		this->player2->setMovementMatrix(
