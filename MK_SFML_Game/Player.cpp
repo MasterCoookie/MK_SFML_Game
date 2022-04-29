@@ -146,6 +146,11 @@ void Player::dropBlock(const bool continueDuckin) {
 	}
 }
 
+void Player::stagger(const State state, const float frames) {
+	this->state = state;
+	this->staggerFrames = frames;
+}
+
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
@@ -175,6 +180,8 @@ void Player::takeHit(AttackMove& hitBy) {
 			this->hp -= hitBy.getDmg()/10.f;
 			//TMP
 			std::cout << this->hp << "\n";
+
+			this->stagger(State::BLOCK_STAGGERED, hitBy.getOnBlockStagger());
 		} else {
 			//TODO resolve ducking and target
 			this->hp -= hitBy.getDmg();
@@ -186,7 +193,7 @@ void Player::takeHit(AttackMove& hitBy) {
 				this->yAxisMomentum = hitBy.getKnockup();
 			}
 			else {
-				//todo - stagger attacked
+				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
 			}
 
 
@@ -243,10 +250,11 @@ void Player::initVariables() {
 	this->yAxisMomentum = 0;
 	this->hpMax = 100.f;
 	this->hp = hpMax;
+	this->staggerFrames = 0.f;
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
-	if (this->state != State::BLOCKING) {
+	if (this->state != State::BLOCKING && this->state != State::BLOCK_STAGGERED) {
 		return false;
 	} else if(hitBy.getTargetHeight() == TargetHeight::LOW && this->position == Position::STANDING) {
 		return false;
@@ -290,5 +298,18 @@ void Player::updateAttack() {
 			this->state = State::IDLE;
 		}
 	}
-	
+}
+
+void Player::updateStagger() {
+	if (this->staggerFrames > 0.f) {
+		//tmp
+		std::cout << this->staggerFrames << "\n";
+		--this->staggerFrames;
+	} else {
+		if (this->state == State::HIT_STAGGERED) {
+			this->state = State::IDLE;
+		} else if(this->state == State::BLOCK_STAGGERED) {
+			this->dropBlock(this->movementMatrix[3]);
+		}
+	}
 }

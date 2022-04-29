@@ -39,6 +39,7 @@ public:
 	void duck();
 	void block();
 	void dropBlock(const bool continueDucking);
+	void stagger(const State state, const float frames);
 	// sets currentAttack. returns true if key combo matched, false if it didnt
 	bool selectAttack();
 	void attack();
@@ -47,6 +48,7 @@ public:
 	//updates
 	void updateMovement();
 	void updateAttack();
+	void updateStagger();
 
 private:
 	//properties
@@ -59,6 +61,8 @@ private:
 
 	float hpMax;
 	float hp;
+
+	float staggerFrames;
 
 	//textures
 	sf::Texture duckingTexture;

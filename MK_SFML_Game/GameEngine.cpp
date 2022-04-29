@@ -97,6 +97,8 @@ void GameEngine::printDebug(){
 
 void GameEngine::update() {
 
+	this->player1->updateStagger();
+	this->player2->updateStagger();
 	this->updateInput();
 
 	
@@ -132,6 +134,8 @@ void GameEngine::update() {
 	else {
 		this->player2->updateAttack();
 	}
+
+	
 
 	this->updatePlayersCross();
 	//this->printDebug();

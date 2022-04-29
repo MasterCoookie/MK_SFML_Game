@@ -15,7 +15,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	//this->initTexture("./Characters/" + charName + "/attack.png");
 	//this->sprite.setTexture(this->atkTexture);
 
-	this->knockback = 40;
+	this->knockback = 0;
 	//USED ONLY IN DEBUG ENDS
 
 	// DO THIS IN OTHER CONSTRUCTORS TOO
@@ -56,7 +56,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 
 	this->dmg = 10;
 	
-	this->knockup = -20;
+	this->knockup = 0;
 	//USED ONLY IN DEBUG ENDS
 	
 }
@@ -70,7 +70,7 @@ const int AttackMove::getOnHitStagger() const {
 }
 
 const int AttackMove::getOnBlockStagger() const {
-	return this->onHitStagger;
+	return this->onBlockStagger;
 }
 
 const TargetHeight AttackMove::getTargetHeight() const {
