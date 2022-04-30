@@ -151,6 +151,10 @@ void Player::stagger(const State state, const float frames) {
 	this->staggerFrames = frames;
 }
 
+void Player::recover(const float frames) {
+
+}
+
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
@@ -248,6 +252,7 @@ void Player::initVariables() {
 	this->hpMax = 100.f;
 	this->hp = hpMax;
 	this->staggerFrames = 0.f;
+	this->recoveryFrames = 0.f;
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
@@ -309,4 +314,8 @@ void Player::updateStagger() {
 			this->dropBlock(this->movementMatrix[3]);
 		}
 	}
+}
+
+void Player::updateRecovery()
+{
 }
