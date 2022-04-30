@@ -49,10 +49,10 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->onHitStagger = 8;
 
 	this->onBlockStagger = 5;
-	this->onHitRecovery = 7;
 
-	this->onBlockRecovery = 12;
-	this->onMissRecovery = 14;
+	this->onHitRecovery = 4;
+	this->onBlockRecovery = 8;
+	this->onMissRecovery = 12;
 
 	this->dmg = 10;
 	
@@ -71,6 +71,15 @@ const int AttackMove::getOnHitStagger() const {
 
 const int AttackMove::getOnBlockStagger() const {
 	return this->onBlockStagger;
+}
+
+const float AttackMove::getRecovery() const {
+	if (this->wasBlockRegistered) {
+		return this->onBlockRecovery;
+	} else if (this->wasHitRegistered) {
+		return this->onHitRecovery;
+	}
+	return this->onMissRecovery;
 }
 
 const TargetHeight AttackMove::getTargetHeight() const {

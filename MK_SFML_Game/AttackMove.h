@@ -12,6 +12,7 @@ public:
 	//accessors
 	const int getOnHitStagger() const;
 	const int getOnBlockStagger() const;
+	const float getRecovery() const;
 	const TargetHeight getTargetHeight() const;
 	const int getDmg() const;
 	const bool getWasHitRegistered() const;
@@ -69,11 +70,11 @@ private:
 
 	//recoeveries
 	//how long for the thrower to recover after hitting oponent
-	int onHitRecovery;
+	float onHitRecovery;
 	//how long for the thrower to recover after hitting blocking oponent
 	int onBlockRecovery;
 	//how long for the thrower to recover after missing completely
-	int onMissRecovery;
+	float onMissRecovery;
 
 	//hit
 	int dmg;

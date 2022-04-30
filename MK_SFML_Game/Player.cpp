@@ -152,7 +152,7 @@ void Player::stagger(const State state, const float frames) {
 }
 
 void Player::recover(const float frames) {
-
+	this->recoveryFrames = frames;
 }
 
 bool Player::selectAttack() {
@@ -296,8 +296,8 @@ void Player::updateMovement() {
 void Player::updateAttack() {
 	if (this->state == State::ATTACKING) {
 		this->currentAttack.update();
-		if (this->currentAttack.getHasEnded()) {
-			this->state = State::IDLE;
+		if (this->currentAttack.getHasEnded() && this->recoveryFrames <= 0.f) {
+			this->recover(this->currentAttack.getRecovery());
 		}
 	}
 }
@@ -308,7 +308,7 @@ void Player::updateStagger() {
 		//std::cout << this->staggerFrames << "\n";
 		--this->staggerFrames;
 	} else {
-		if (this->state == State::HIT_STAGGERED) {
+		if(this->state == State::HIT_STAGGERED) {
 			this->state = State::IDLE;
 		} else if(this->state == State::BLOCK_STAGGERED) {
 			this->dropBlock(this->movementMatrix[3]);
@@ -316,6 +316,13 @@ void Player::updateStagger() {
 	}
 }
 
-void Player::updateRecovery()
-{
+void Player::updateRecovery() {
+	if (this->state == State::ATTACKING && this->currentAttack.getHasEnded()) {
+		if (this->recoveryFrames > 0.f) {
+			if (--this->recoveryFrames <= 0) {
+				this->state = State::IDLE;
+			}
+		}
+	}
+	
 }

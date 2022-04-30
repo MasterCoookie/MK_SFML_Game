@@ -135,7 +135,11 @@ void GameEngine::update() {
 		this->player2->updateAttack();
 	}
 
+	if (this->player1->getState() == State::ATTACKING) {
+		this->player1->updateRecovery();
+	}
 	
+	this->player2->updateRecovery();
 
 	this->updatePlayersCross();
 	//this->printDebug();

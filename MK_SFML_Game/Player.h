@@ -50,6 +50,7 @@ public:
 	void updateMovement();
 	void updateAttack();
 	void updateStagger();
+	void updateRecovery();
 
 private:
 	//properties
