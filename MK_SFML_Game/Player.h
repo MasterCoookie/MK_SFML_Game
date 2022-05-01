@@ -52,6 +52,7 @@ public:
 	void updateAttack();
 	void updateStagger();
 	void updateRecovery();
+	void updateAnimation();
 
 private:
 	//properties

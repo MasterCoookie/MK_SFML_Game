@@ -143,6 +143,7 @@ void Player::dropBlock(const bool continueDuckin) {
 		this->sprite.setTexture(this->duckingTexture);
 	} else {
 		this->sprite.setTexture(this->texture);
+		this->initSprite(this->textureRect);
 	}
 }
 
@@ -254,7 +255,7 @@ void Player::initVariables() {
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
-	//this->animator = new Animator(this->textureRect);
+	this->animator = new Animator(this->textureRect, 150, 375, AnimationType::STANDING);
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
@@ -282,6 +283,7 @@ void Player::updateMovement() {
 		if (this->position == Position::AIRBORNE) {
 			this->position = Position::STANDING;
 			this->sprite.setTexture(this->texture, true);
+			this->initSprite(this->textureRect);
 			this->setPosition(this->getPosition().x, 425);
 		}
 	}
@@ -291,6 +293,7 @@ void Player::updateMovement() {
 		//stand up if button was released
 		this->position = Position::STANDING;
 		this->sprite.setTexture(this->texture, true);
+		this->initSprite(this->textureRect);
 		this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
 	}
 }
@@ -327,4 +330,10 @@ void Player::updateRecovery() {
 		}
 	}
 	
+}
+
+void Player::updateAnimation() {
+	if (this->state == State::IDLE && this->position == Position::STANDING) {
+		//animate standing
+	}
 }

@@ -5,7 +5,7 @@ GameObject::GameObject() {
 }
 
 GameObject::~GameObject() {
-
+	//delete this->textureRect;
 }
 
 void GameObject::setPosition(const sf::Vector2f pos) {

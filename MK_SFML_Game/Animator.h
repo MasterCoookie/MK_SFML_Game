@@ -1,17 +1,17 @@
 #pragma once
 #include "GameObject.h"
 
-enum class ANIMATION_TYPE { STANDING, WALKING_F, WALKING_B, JUMPING};
+enum class AnimationType { STANDING, WALKING_F, WALKING_B, JUMPING};
 
 class Animator {
 public:
-	Animator(sf::IntRect* textureRectRef, int xMax, int yMax);
+	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType);
 	~Animator();
 
 	void update();
 private:
-	ANIMATION_TYPE currAnimation;
-	sf::IntRect* textureRectRef;
+	AnimationType currAnimation;
+	sf::IntRect* textureRectPtr;
 
 	int xInterval;
 	int yIntervall;
