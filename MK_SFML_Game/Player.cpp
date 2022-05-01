@@ -255,7 +255,7 @@ void Player::initVariables() {
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
-	this->animator = new Animator(this->textureRect, 150, 375, AnimationType::STANDING);
+	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true);
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
@@ -340,6 +340,6 @@ void Player::updateAnimation() {
 	} else {
 		//start animating standing
 		delete this->animator;
-		this->animator = new Animator(this->textureRect, 150, 375, AnimationType::STANDING);
+		this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true);
 	}
 }
