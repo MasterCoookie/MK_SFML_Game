@@ -7,7 +7,7 @@ Player::Player() {
 Player::Player(std::string charName) {
 	this->initVariables();
 	// init player baset on character name
-	this->GameObject::initTexture("./Characters/" + charName + "/tex.png");
+	this->GameObject::initTexture("./Characters/" + charName + "/standing_1.png");
 	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
 	// TODO - create actual jumping texture
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
