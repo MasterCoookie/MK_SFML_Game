@@ -1,5 +1,6 @@
 #pragma once
 #include "AttackMove.h"
+#include "Animator.h"
 
 enum class Position { STANDING, DUCKING, AIRBORNE };
 
@@ -72,6 +73,9 @@ private:
 	sf::Texture jumpingTexture;
 	sf::Texture blockingTexture;
 	sf::Texture blockingDuckTexture;
+
+	//pointer to animator instance
+	Animator* animator;
 
 	bool movementMatrix[7] = { 0 };
 

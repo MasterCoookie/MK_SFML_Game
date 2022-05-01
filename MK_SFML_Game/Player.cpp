@@ -253,7 +253,8 @@ void Player::initVariables() {
 	this->hp = hpMax;
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
-	this->textureRect = sf::IntRect(0, 0, 150, 375);
+	this->textureRect = new sf::IntRect(0, 0, 150, 375);
+	//this->animator = new Animator(this->textureRect);
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
