@@ -145,6 +145,7 @@ void GameEngine::update() {
 	this->updateAttacksCollision();
 
 	this->player1->updateAnimation();
+	this->player2->updateAnimation();
 	
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
