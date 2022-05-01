@@ -13,7 +13,7 @@ Player::Player(std::string charName) {
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking.png");
 	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block.png");
-	this->initSprite(0, 0, 150, 375);
+	this->initSprite(this->textureRect);
 
 	this->charName = charName;
 }
@@ -253,6 +253,7 @@ void Player::initVariables() {
 	this->hp = hpMax;
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
+	this->textureRect = sf::IntRect(0, 0, 150, 375);
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
