@@ -8,6 +8,9 @@ public:
 	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType);
 	~Animator();
 
+	//getters
+	const AnimationType getCurrAnimationType();
+
 	void update();
 private:
 	AnimationType currAnimation;

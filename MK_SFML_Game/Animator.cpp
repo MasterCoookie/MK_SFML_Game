@@ -10,6 +10,10 @@ Animator::~Animator() {
 
 }
 
+const AnimationType Animator::getCurrAnimationType() {
+	return this->currAnimation;
+}
+
 void Animator::update() {
 	this->textureRectPtr->left += 150;
 }

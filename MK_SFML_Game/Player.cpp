@@ -333,7 +333,13 @@ void Player::updateRecovery() {
 }
 
 void Player::updateAnimation() {
-	if (this->state == State::IDLE && this->position == Position::STANDING) {
-		//animate standing
+	if (this->state == State::IDLE && this->position == Position::STANDING && this->animator->getCurrAnimationType() == AnimationType::STANDING) {
+		//continue animate standing
+		this->animator->update();
+		this->initSprite(this->textureRect);
+	} else {
+		//start animating standing
+		delete this->animator;
+		this->animator = new Animator(this->textureRect, 150, 375, AnimationType::STANDING);
 	}
 }
