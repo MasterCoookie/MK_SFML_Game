@@ -50,6 +50,23 @@ void GameObject::initSprite() {
 	this->sprite.scale(.5f, .5f);
 }
 
+void GameObject::initSprite(int startingX, int startingY, int sizeX, int sizeY) {
+	//set sprite texture
+	this->textureRect = sf::IntRect(startingX, startingY, sizeX, sizeY);
+	this->sprite.setTextureRect(this->textureRect);
+	this->sprite.setTexture(this->texture);
+
+	//scale sprite
+	//this->sprite.scale(.5f, .5f);
+}
+
+void GameObject::initSprite(sf::IntRect intRect) {
+	//set sprite texture
+	this->textureRect = intRect;
+	this->sprite.setTextureRect(this->textureRect);
+	this->sprite.setTexture(this->texture);
+}
+
 void GameObject::initVariables() {
 
 }

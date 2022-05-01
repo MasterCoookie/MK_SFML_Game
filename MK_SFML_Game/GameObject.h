@@ -33,9 +33,12 @@ protected:
 	
 	void initTexture(sf::Texture& targetTexture, std::string texturePath);
 	void initSprite();
+	void initSprite(int startingX, int startingY, int sizeX, int sizeY);
+	void initSprite(sf::IntRect intRect);
 	virtual void initVariables() = 0;
 
 	sf::Texture texture;
+	sf::IntRect textureRect;
 	sf::Sprite sprite;
 private:
 };

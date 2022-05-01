@@ -13,7 +13,7 @@ Player::Player(std::string charName) {
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
 	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking.png");
 	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block.png");
-	this->initSprite();
+	this->initSprite(0, 0, 150, 375);
 
 	this->charName = charName;
 }
