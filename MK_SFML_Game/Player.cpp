@@ -335,7 +335,7 @@ void Player::updateRecovery() {
 }
 
 void Player::updateAnimation() {
-	if (this->state == State::IDLE && this->movementMatrix[0]) {
+	if (this->state == State::IDLE && this->position == Position::STANDING && this->movementMatrix[0]) {
 		if (this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
 			//continue animate walking forward
 			this->animator->update();
