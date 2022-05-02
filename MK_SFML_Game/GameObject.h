@@ -35,6 +35,7 @@ protected:
 	void initSprite();
 	void initSprite(int startingX, int startingY, int sizeX, int sizeY);
 	void initSprite(sf::IntRect* intRect);
+	void initSprite(sf::Texture &tex, sf::IntRect* intRect);
 	virtual void initVariables() = 0;
 
 	sf::Texture texture;

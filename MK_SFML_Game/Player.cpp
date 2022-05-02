@@ -8,6 +8,8 @@ Player::Player(std::string charName) {
 	this->initVariables();
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + charName + "/standing_1.png");
+	this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + charName + "/walking_f_1.png");
+	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + charName + "/walking_b_1.png");
 	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
 	// TODO - create actual jumping texture
 	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
@@ -333,13 +335,31 @@ void Player::updateRecovery() {
 }
 
 void Player::updateAnimation() {
-	if (this->state == State::IDLE && this->position == Position::STANDING && this->animator->getCurrAnimationType() == AnimationType::STANDING) {
-		//continue animate standing
-		this->animator->update();
-		this->initSprite(this->textureRect);
-	} else {
-		//start animating standing
-		delete this->animator;
-		this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true);
+	if (this->state == State::IDLE && this->movementMatrix[0]) {
+		if (this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
+			//continue animate walking forward
+			this->animator->update();
+			this->initSprite(this->walkingFTexture, this->textureRect);
+		}
+		else {
+			//start animating walking forward
+			delete this->animator;
+			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true);
+		}
 	}
+	else {
+		if (this->state == State::IDLE && this->position == Position::STANDING) {
+			if (this->animator->getCurrAnimationType() == AnimationType::STANDING) {
+				//continue animate standing
+				this->animator->update();
+				this->initSprite(this->textureRect);
+			}
+			else {
+				//start animating standing
+				delete this->animator;
+				this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true);
+			}
+		}
+	}
+	
 }

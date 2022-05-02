@@ -67,6 +67,13 @@ void GameObject::initSprite(sf::IntRect* intRect) {
 	this->sprite.setTexture(this->texture);
 }
 
+void GameObject::initSprite(sf::Texture &tex, sf::IntRect* intRect) {
+	//set sprite texture
+	this->textureRect = intRect;
+	this->sprite.setTextureRect(*this->textureRect);
+	this->sprite.setTexture(tex);
+}
+
 void GameObject::initVariables() {
 
 }
