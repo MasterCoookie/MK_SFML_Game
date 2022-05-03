@@ -12,7 +12,7 @@ Player::Player(std::string charName) {
 	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + charName + "/walking_b_1.png");
 	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking_1.png");
 	// TODO - create actual jumping texture
-	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking_1.png");
+	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/jumping_1.png");
 	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking_1.png");
 	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
@@ -336,30 +336,48 @@ void Player::updateRecovery() {
 
 void Player::updateAnimation() {
 	if (this->state == State::IDLE && this->position == Position::STANDING && this->movementMatrix[0]) {
-		if (this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
-			//continue animate walking forward
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
+				//continue animate walking forward
 			this->animator->update();
 			this->initSprite(this->walkingFTexture, this->textureRect);
 		}
 		else {
 			//start animating walking forward
+			delete this->textureRect;
+			this->textureRect = new sf::IntRect(0, 0, 150, 375);
 			delete this->animator;
 			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
 		}
-	}
-	else {
+	} else if(this->state == State::IDLE && this->position == Position::AIRBORNE) {
+			//continue animate jumping forward
+			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
+				this->animator->update();
+				this->initSprite(this->jumpingTexture, this->textureRect);
+		}
+		else {
+			//start animating jumping
+			if (this->movementMatrix[0]) {
+				delete this->animator;
+				delete this->textureRect;
+				this->textureRect = new sf::IntRect(0, 0, 175, 175);
+				this->animator = new Animator(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
+			}
+			
+		}
+	} else {
 		if (this->state == State::IDLE && this->position == Position::STANDING) {
-			if (this->animator->getCurrAnimationType() == AnimationType::STANDING) {
+			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::STANDING) {
 				//continue animate standing
 				this->animator->update();
 				this->initSprite(this->textureRect);
 			}
 			else {
 				//start animating standing
+				delete this->textureRect;
+				this->textureRect = new sf::IntRect(0, 0, 150, 375);
 				delete this->animator;
 				this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 			}
 		}
 	}
-	
 }

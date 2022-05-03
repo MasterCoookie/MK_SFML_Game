@@ -6,6 +6,7 @@ enum class AnimationType { STANDING, WALKING_F, WALKING_B, JUMPING};
 class Animator {
 public:
 	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing);
+	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval);
 	~Animator();
 
 	//getters

@@ -4,6 +4,12 @@
 
 Animator::Animator(sf::IntRect* _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing) :
 	textureRectPtr(_textureRectPtr), xMax(_xMax), yMax(_yMax), currAnimation(aType), looping(_looping), bouncing(_bouncing) {
+	this->xInterval = 150;
+	this->initVariables();
+}
+
+Animator::Animator(sf::IntRect* _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval) :
+	textureRectPtr(_textureRectPtr), xMax(_xMax), yMax(_yMax), currAnimation(aType), looping(_looping), bouncing(_bouncing), xInterval(_xInterval) {
 	this->initVariables();
 }
 
@@ -17,8 +23,8 @@ const AnimationType Animator::getCurrAnimationType() {
 
 void Animator::update() {
 	if (this->ascending) {
-		if (this->xMax > this->textureRectPtr->left + 150) {
-			this->textureRectPtr->left += 150;
+		if (this->xMax > this->textureRectPtr->left + xInterval) {
+			this->textureRectPtr->left += xInterval;
 		} else if (this->looping) {
 			if (this->bouncing) {
 				this->ascending = false;
@@ -27,8 +33,8 @@ void Animator::update() {
 			}
 		}
 	} else if(this->looping) {
-		if (this->textureRectPtr->left - 150 >= 0) {
-			this->textureRectPtr->left -= 150;
+		if (this->textureRectPtr->left - xInterval >= 0) {
+			this->textureRectPtr->left -= xInterval;
 		}
 		else if (this->looping) {
 			this->ascending = true;
@@ -38,7 +44,6 @@ void Animator::update() {
 
 void Animator::initVariables() {
 	this->ascending = true;
-	this->xInterval = 150;
 	this->yIntervall = 0;
 }
 
