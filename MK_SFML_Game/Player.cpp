@@ -10,11 +10,11 @@ Player::Player(std::string charName) {
 	this->GameObject::initTexture("./Characters/" + charName + "/standing_1.png");
 	this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + charName + "/walking_f_1.png");
 	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + charName + "/walking_b_1.png");
-	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking.png");
+	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking_1.png");
 	// TODO - create actual jumping texture
-	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking.png");
-	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking.png");
-	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block.png");
+	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/ducking_1.png");
+	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking_1.png");
+	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
 
 	this->charName = charName;
@@ -126,14 +126,14 @@ void Player::duck() {
 		//change texture
 		this->sprite.setTexture(this->duckingTexture, true);
 		// move down
-		this->setPosition(this->getPosition().x, this->getPosition().y + 150.f);
+		this->setPosition(this->getPosition().x, this->getPosition().y + 125.f);
 	}
 }
 
 void Player::block() {
 	this->state = State::BLOCKING;
 	if (this->position == Position::STANDING) {
-		this->sprite.setTexture(this->blockingTexture);
+		this->sprite.setTexture(this->blockingTexture, true);
 	} else {
 		this->sprite.setTexture(this->blockingDuckTexture);
 	}
@@ -296,7 +296,7 @@ void Player::updateMovement() {
 		this->position = Position::STANDING;
 		this->sprite.setTexture(this->texture, true);
 		this->initSprite(this->textureRect);
-		this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
+		this->setPosition(this->getPosition().x, this->getPosition().y - 125.f);
 	}
 }
 
