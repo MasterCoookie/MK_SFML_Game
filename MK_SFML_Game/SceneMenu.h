@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "SelectableGUIElement.h"
+
 class SceneMenu :
     public Scene
 {

@@ -161,6 +161,7 @@
     <ClCompile Include="SceneLoadingScreen.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="SelectableGUIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="SceneLoadingScreen.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneMenu.h" />
+    <ClInclude Include="SelectableGUIElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
