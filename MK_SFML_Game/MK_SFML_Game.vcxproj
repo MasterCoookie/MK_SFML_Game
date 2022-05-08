@@ -163,6 +163,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SelectableGUIElement.cpp" />
+    <ClCompile Include="SelGUIElementsMatrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator.h" />
@@ -176,6 +177,10 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SelectableGUIElement.h" />
+    <ClInclude Include="SelGUIElementsMatrix.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

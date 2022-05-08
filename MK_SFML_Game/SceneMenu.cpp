@@ -3,14 +3,14 @@
 SceneMenu::SceneMenu(sf::RenderWindow* win)
 {
 	this->window = win;
-	this->setCharactersPicked(false);
+	this->arePicked=false;
 	this->initBackground("menu.png");
 	this->initCharactersMatrix("characters.png");
 }
 
 void SceneMenu::run()
 {
-	while(!this->charactersPicked && this->window->isOpen()){ //UNCOMMENT TO WORK
+	while(!this->arePicked && this->window->isOpen()){ //UNCOMMENT TO WORK
 		this->pollEvents();
 		this->update();
 		this->render();
@@ -45,7 +45,7 @@ void SceneMenu::pollEvents()
 				this->window->close();
 			}
 			if (e.Event::key.code == sf::Keyboard::Space) {			//Written to ommit the menu screen while developing the game
-				this->setCharactersPicked(true);					//
+				this->arePicked = true;					//
 			}
 		}
 	}
@@ -64,14 +64,7 @@ void SceneMenu::render()
 
 void SceneMenu::initCharactersMatrix(std::string textureName)
 {
-	const int sizeOfMatrix = 3;
-	this->charactersTexture = new sf::Texture;
-	if (!this->charactersTexture->loadFromFile("./Textures/" + textureName)) {
-		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load menu img" << std::endl;
-	}
-	for (int i = 0; i < sizeOfMatrix * sizeOfMatrix; i++) {
-
-	}
+	
 }
 
 void SceneMenu::initBackground(std::string textureName)
@@ -83,7 +76,7 @@ void SceneMenu::initBackground(std::string textureName)
 	this->menuScreenSprite.setTexture(this->menuScreenTexture);
 }
 
-void SceneMenu::setCharactersPicked(bool value)
+void SceneMenu::setAreCharactersPicked(bool value)
 {
-	this->charactersPicked = value;
+	this->arePicked = value;
 }

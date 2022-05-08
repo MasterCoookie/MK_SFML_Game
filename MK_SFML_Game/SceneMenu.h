@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
-#include "SelectableGUIElement.h"
+#include "SelGUIElementsMatrix.h"
+
 
 class SceneMenu :
     public Scene
@@ -18,13 +19,14 @@ private:
 	void render() override;
 	void initCharactersMatrix(std::string textureName);
 	void initBackground(std::string textureName);
-	void setCharactersPicked(bool value);
+	void setAreCharactersPicked(bool val);
+	
 private:
 	sf::RenderWindow* window;
 	sf::Texture menuScreenTexture;
 	sf::Sprite menuScreenSprite;
-	bool charactersPicked;
-	sf::Texture* charactersTexture;
-	std::vector<SelectableGUIElement*> charactersMatrix;
+	SelGUIElementsMatrix* matrix;
+	bool arePicked;
+	
 };
 
