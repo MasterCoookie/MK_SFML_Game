@@ -5,6 +5,7 @@ class SelectableGUIElement :
 {
 public:
     SelectableGUIElement(std::string fileName, int left, int top, int width, int height);
+    SelectableGUIElement(sf::Texture*, int left, int top, int width, int height);
     ~SelectableGUIElement();
     void update();
     void render(sf::RenderTarget* target);

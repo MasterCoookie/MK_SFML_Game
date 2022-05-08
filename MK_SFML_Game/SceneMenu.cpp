@@ -5,6 +5,7 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->window = win;
 	this->setCharactersPicked(false);
 	this->initBackground("menu.png");
+	this->initCharactersMatrix("characters.png");
 }
 
 void SceneMenu::run()
@@ -59,6 +60,18 @@ void SceneMenu::render()
 	this->window->clear();
 	this->window->draw(this->menuScreenSprite);
 	this->window->display();
+}
+
+void SceneMenu::initCharactersMatrix(std::string textureName)
+{
+	const int sizeOfMatrix = 3;
+	this->charactersTexture = new sf::Texture;
+	if (!this->charactersTexture->loadFromFile("./Textures/" + textureName)) {
+		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load menu img" << std::endl;
+	}
+	for (int i = 0; i < sizeOfMatrix * sizeOfMatrix; i++) {
+
+	}
 }
 
 void SceneMenu::initBackground(std::string textureName)

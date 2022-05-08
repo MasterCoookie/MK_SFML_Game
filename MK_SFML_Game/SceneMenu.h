@@ -16,6 +16,7 @@ private:
 	void pollEvents() override;
 	void update() override;
 	void render() override;
+	void initCharactersMatrix(std::string textureName);
 	void initBackground(std::string textureName);
 	void setCharactersPicked(bool value);
 private:
@@ -23,5 +24,7 @@ private:
 	sf::Texture menuScreenTexture;
 	sf::Sprite menuScreenSprite;
 	bool charactersPicked;
+	sf::Texture* charactersTexture;
+	std::vector<SelectableGUIElement*> charactersMatrix;
 };
 
