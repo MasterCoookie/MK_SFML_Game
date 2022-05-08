@@ -1,7 +1,7 @@
 #pragma once
-#include "GameObject.h"
+#include "GUIElement.h"
 class SelectableGUIElement :
-    public GameObject
+    public GUIElement
 {
 public:
     SelectableGUIElement(std::string fileName, int left, int top, int width, int height);
