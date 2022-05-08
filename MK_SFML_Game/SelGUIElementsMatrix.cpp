@@ -40,7 +40,7 @@ void SelGUIElementsMatrix::initCharactersMatrix(int nrows, int ncols)
 	this->rows = nrows;
 	this->cols = ncols;
 	this->charactersMatrix.resize(this->rows * this->cols);
-	int top, left;
+	int top=0, left=0; //to tak nie moze zostac 
 	for (int i = 0; i < this->rows; i++) {
 		for (int j = 0; j < this->cols; j++) {
 			charactersMatrix[i * (this->cols) + j] = new SelectableGUIElement(this->charactersTexture,left,top,this->elementWidth,this->elementHeight );

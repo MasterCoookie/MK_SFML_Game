@@ -16,7 +16,10 @@ private:
 	sf::RenderWindow* window;
 	void executeScene(Scene* s);
 	void initWindow();
+	void initScenesToExecute();
+	void initRematch();
 private:
 	std::vector<std::string> interSceneData;
+	std::vector<Scene*> scenesToExecute;
 };
 
