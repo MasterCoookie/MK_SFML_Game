@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Animator" Collapsed="true">
-    <Position X="280.25" Y="269.25" Width="1.5" />
+    <Position X="279.5" Y="270.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAEAAAAAAAEAAACABABAgAAAAEAAAgAAAEAQMAAA=</HashCode>
       <FileName>Animator.h</FileName>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AttackMove" Collapsed="true">
-    <Position X="276" Y="269.25" Width="1.75" />
+    <Position X="277" Y="269.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>BCAABCABCCQiAoACASCCQJIAAEQAIAgAARAwYAQ0FAE=</HashCode>
       <FileName>AttackMove.h</FileName>
@@ -78,10 +78,17 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Player" Collapsed="true">
-    <Position X="278.5" Y="269.25" Width="1.5" />
+    <Position X="279.25" Y="269.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>RAACwAAEDAIhAwCEQKAAICABAAllCAiUAADKQRMUBBQ=</HashCode>
       <FileName>Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Arena" Collapsed="true">
+    <Position X="275" Y="269.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arena.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
