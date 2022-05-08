@@ -1,95 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Animator" Collapsed="true">
-    <Position X="268.25" Y="267.5" Width="1.5" />
+    <Position X="280.25" Y="269.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAEAAAAAAAEAAACABABAgAAAAEAAAgAAAEAQMAAA=</HashCode>
       <FileName>Animator.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameObject" Collapsed="true">
-    <Position X="276" Y="267.5" Width="1.5" />
+    <Position X="275" Y="268" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAKQAAAAAAAACAACAAAAACABAQAgAAAAAAQAIUAAA=</HashCode>
       <FileName>GameObject.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GUIElement" Collapsed="true">
-    <Position X="273.25" Y="268.75" Width="1.5" />
+    <Position X="273.25" Y="269.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GUIElement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AttackMove" Collapsed="true">
-    <Position X="275.75" Y="268.75" Width="1.75" />
+    <Position X="276" Y="269.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>BCAABCABCCQiAoACASCCQJIAAEQAIAgAARAwYAQ0FAE=</HashCode>
       <FileName>AttackMove.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameEngine" Collapsed="true">
-    <Position X="268.25" Y="270.5" Width="1.5" />
+    <Position X="267.5" Y="270.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>wEAAAgAAAAABIABCASAAAAAgAAAA0AAICABQAHAUAAA=</HashCode>
       <FileName>GameEngine.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Scene" Collapsed="true">
-    <Position X="269.5" Y="269.5" Width="1.5" />
+    <Position X="269.5" Y="269.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAACAUAAA=</HashCode>
       <FileName>Scene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SceneLoadingScreen" Collapsed="true">
-    <Position X="270" Y="270.5" Width="1.5" />
+    <Position X="269.5" Y="270.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAwAAAAEAAgAAABAAAAIAAgAAUAAIAAAQACAckAA=</HashCode>
       <FileName>SceneLoadingScreen.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SceneManager" Collapsed="true">
-    <Position X="271.5" Y="268" Width="1.5" />
+    <Position X="267.5" Y="269.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAEEACAAEAAAAAAAAAAAAIAAAAAAAAAAQ=</HashCode>
       <FileName>SceneManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SceneMenu" Collapsed="true">
-    <Position X="271.75" Y="270.5" Width="1.5" />
+    <Position X="271.25" Y="270.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAAAAQCAAUIAAUCQIAAAAACAUAAQ=</HashCode>
       <FileName>SceneMenu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SelectableGUIElement" Collapsed="true">
-    <Position X="273.25" Y="269.75" Width="1.5" />
+    <Position X="273.25" Y="270.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAEAAQAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAUAAA=</HashCode>
       <FileName>SelectableGUIElement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SelGUIElementsMatrix" Collapsed="true">
-    <Position X="277.25" Y="270.25" Width="1.5" />
+    <Position X="270.75" Y="272" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAQAACAAAAAAAACBAAAAAAACAACAAAAAQAAARICA=</HashCode>
       <FileName>SelGUIElementsMatrix.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="AnimationType" Collapsed="true">
-    <Position X="268.25" Y="268.25" Width="1.5" />
+  <Class Name="Player" Collapsed="true">
+    <Position X="278.5" Y="269.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAA=</HashCode>
-      <FileName>Animator.h</FileName>
+      <HashCode>RAACwAAEDAIhAwCEQKAAICABAAllCAiUAADKQRMUBBQ=</HashCode>
+      <FileName>Player.h</FileName>
     </TypeIdentifier>
-  </Enum>
-  <Enum Name="TargetHeight" Collapsed="true">
-    <Position X="275.75" Y="269.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAQgAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>AttackMove.h</FileName>
-    </TypeIdentifier>
-  </Enum>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
