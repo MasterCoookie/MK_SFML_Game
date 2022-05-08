@@ -144,7 +144,7 @@ void Player::dropBlock(const bool continueDuckin) {
 	if (continueDuckin) {
 		this->sprite.setTexture(this->duckingTexture);
 	} else {
-		this->sprite.setTexture(this->texture);
+		this->sprite.setTexture(*(this->texture));
 		this->initSprite(this->textureRect);
 	}
 }
@@ -284,7 +284,7 @@ void Player::updateMovement() {
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
 			this->position = Position::STANDING;
-			this->sprite.setTexture(this->texture, true);
+			this->sprite.setTexture(*(this->texture), true);
 			this->initSprite(this->textureRect);
 			this->setPosition(this->getPosition().x, 425);
 		}
@@ -294,7 +294,7 @@ void Player::updateMovement() {
 	if (!this->movementMatrix[3] && this->position == Position::DUCKING) {
 		//stand up if button was released
 		this->position = Position::STANDING;
-		this->sprite.setTexture(this->texture, true);
+		this->sprite.setTexture(*(this->texture), true);
 		this->initSprite(this->textureRect);
 		this->setPosition(this->getPosition().x, this->getPosition().y - 125.f);
 	}

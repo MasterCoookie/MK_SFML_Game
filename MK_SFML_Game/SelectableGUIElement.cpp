@@ -2,7 +2,7 @@
 
 SelectableGUIElement::SelectableGUIElement(std::string fileName, int left, int top, int width, int height)
 {
-	this->initTexture(this->texture, fileName);
+	this->initTexture(*(this->texture), fileName);
 	this->isSelected = false;
 	this->initSprite(left,top,width,height);
 }

@@ -38,7 +38,7 @@ protected:
 	void initSprite(sf::Texture &tex, sf::IntRect* intRect);
 	virtual void initVariables() = 0;
 
-	sf::Texture texture;
+	sf::Texture* texture;
 	sf::IntRect* textureRect;
 	sf::Sprite sprite;
 private:
