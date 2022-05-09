@@ -200,8 +200,6 @@ void Player::takeHit(AttackMove& hitBy) {
 			else {
 				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
 			}
-
-
 			hitBy.registerHit();
 		}
 	}
@@ -366,7 +364,7 @@ void Player::updateAnimation() {
 		}
 	}
 	else if (this->state == State::ATTACKING) {
-		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::ATTACKING) {
 			//continue animate attacking
 			this->animator->update();
 			this->initSprite(*this->attackingTexture, this->textureRect);
@@ -377,7 +375,8 @@ void Player::updateAnimation() {
 			delete this->animator;
 			this->attackingTexture = this->currentAttack.getPlayerTexture();
 			this->initSprite(*this->attackingTexture, this->textureRect);
-			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
+			int maxW = 150 * this->currentAttack.getAnimationLen();
+			this->animator = new Animator(this->textureRect, maxW, 375, AnimationType::ATTACKING, false, false);
 		}
 	} 
 	else {

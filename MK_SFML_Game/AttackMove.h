@@ -19,6 +19,7 @@ public:
 	const bool getWasBlockRegistered() const;
 	const bool getDidMiss() const;
 	const int getKnockback() const;
+	const int getAnimationLen() const;
 	const int getKnockup() const;
 	const bool getIsActive() const;
 	bool getHasEnded();

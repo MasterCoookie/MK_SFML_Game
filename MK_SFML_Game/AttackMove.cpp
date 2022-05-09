@@ -12,11 +12,11 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->shape.setSize(sf::Vector2f(xSize, ySize));*/
 
 	this->initTexture(this->atkTexture, "./Characters/" + charName + "/attack.png");
-	this->initTexture(this->playerAtkTexture, "./Characters/" + charName + "/walking_f_1.png");
+	this->initTexture(this->playerAtkTexture, "./Characters/" + charName + "/atk_1.png");
 	//this->initTexture("./Characters/" + charName + "/attack.png");
 	//this->sprite.setTexture(this->atkTexture);
 
-	this->knockback = 0;
+	this->knockback = 15;
 	//USED ONLY IN DEBUG ENDS
 
 	// DO THIS IN OTHER CONSTRUCTORS TOO
@@ -57,7 +57,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 
 	this->dmg = 10;
 	
-	this->knockup = 0;
+	this->knockup = -35;
 	//USED ONLY IN DEBUG ENDS
 	
 }
@@ -105,6 +105,10 @@ const bool AttackMove::getDidMiss() const {
 
 const int AttackMove::getKnockback() const {
 	return this->knockback;
+}
+
+const int AttackMove::getAnimationLen() const {
+	return this->lifespanMax+this->startupTimeMax;
 }
 
 const int AttackMove::getKnockup() const {
