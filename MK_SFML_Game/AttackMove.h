@@ -23,6 +23,7 @@ public:
 	const bool getIsActive() const;
 	bool getHasEnded();
 	const sf::RectangleShape& getShape() const;
+	sf::Texture* getPlayerTexture();
 
 	//modifiers
 	
@@ -97,7 +98,7 @@ private:
 
 	void initVariables();
 
-	//tmp
 	sf::Texture atkTexture;
+	sf::Texture* playerAtkTexture;
 
 };

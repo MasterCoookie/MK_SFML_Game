@@ -44,6 +44,14 @@ void GameObject::initTexture(sf::Texture& targetTexture, std::string texturePath
 	}
 }
 
+void GameObject::initTexture(sf::Texture*& targetTexture, std::string texturePath) {
+	//load texture form file
+	targetTexture = new sf::Texture;
+	if (!targetTexture->loadFromFile(texturePath)) {
+		std::cout << "ERR: GAMEOBJECT::INITTEXTURE: Could not load texture file" << std::endl;
+	}
+}
+
 void GameObject::initSprite() {
 	//set sprite texture
 	this->sprite.setTexture(*(this->texture));

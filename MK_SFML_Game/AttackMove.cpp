@@ -12,6 +12,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->shape.setSize(sf::Vector2f(xSize, ySize));*/
 
 	this->initTexture(this->atkTexture, "./Characters/" + charName + "/attack.png");
+	this->initTexture(this->playerAtkTexture, "./Characters/" + charName + "/walking_f_1.png");
 	//this->initTexture("./Characters/" + charName + "/attack.png");
 	//this->sprite.setTexture(this->atkTexture);
 
@@ -120,6 +121,10 @@ bool AttackMove::getHasEnded() {
 
 const sf::RectangleShape& AttackMove::getShape() const {
 	return this->shape;
+}
+
+sf::Texture* AttackMove::getPlayerTexture() {
+	return this->playerAtkTexture;
 }
 
 void AttackMove::throwAttack() {

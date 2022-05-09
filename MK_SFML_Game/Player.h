@@ -76,6 +76,7 @@ private:
 	sf::Texture jumpingTexture;
 	sf::Texture blockingTexture;
 	sf::Texture blockingDuckTexture;
+	sf::Texture* attackingTexture;
 
 	//pointer to animator instance
 	Animator* animator;

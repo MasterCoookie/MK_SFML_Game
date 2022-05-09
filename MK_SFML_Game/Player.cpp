@@ -173,7 +173,7 @@ void Player::attack() {
 	if ((this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
 		if (this->selectAttack()) {
 			//this->currentAttack.throwAttack();
-			this->state = State::ATTACKING;
+			//this->state = State::ATTACKING;
 		}
 	}
 }
@@ -364,7 +364,23 @@ void Player::updateAnimation() {
 			}
 			
 		}
-	} else {
+	}
+	else if (this->state == State::ATTACKING) {
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
+			//continue animate attacking
+			this->animator->update();
+			this->initSprite(*this->attackingTexture, this->textureRect);
+		}
+		else {
+			delete this->textureRect;
+			this->textureRect = new sf::IntRect(0, 0, 150, 375);
+			delete this->animator;
+			this->attackingTexture = this->currentAttack.getPlayerTexture();
+			this->initSprite(*this->attackingTexture, this->textureRect);
+			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
+		}
+	} 
+	else {
 		if (this->state == State::IDLE && this->position == Position::STANDING) {
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::STANDING) {
 				//continue animate standing
