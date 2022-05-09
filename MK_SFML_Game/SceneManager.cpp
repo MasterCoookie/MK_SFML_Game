@@ -4,6 +4,7 @@ SceneManager::SceneManager()
 	this->initWindow();
 	this->interSceneData = { "" };
 	this->initScenesToExecute();
+	
 }
 
 SceneManager::~SceneManager()

@@ -14,6 +14,6 @@ private:
 private:
 	void initTexture(std::string texName);
 	void initVariables(int elementHeight, int elementWidth);
-	void initCharactersMatrix(int nrows, int ncols);
+	void initCharactersMatrix(int nrows, int ncols, int offsetScreen, int offsetTexture);
 };
 

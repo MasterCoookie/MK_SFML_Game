@@ -5,13 +5,13 @@ class SelectableGUIElement :
 {
 public:
     SelectableGUIElement(std::string fileName, int left, int top, int width, int height);
-    SelectableGUIElement(sf::Texture*, int left, int top, int width, int height);
+    SelectableGUIElement(sf::Texture*, int left, int top, int width, int height,unsigned int xOnScreen, unsigned int yOnScreen);
     ~SelectableGUIElement();
     void update();
     void render(sf::RenderTarget* target);
 private:
     void initVariables();
-    bool isSelected;
+    bool isSelected; //TODO zmieniæ na enum - trzy stany, selected by player1, player2, nonselected
 private:
     void switchState();
 };

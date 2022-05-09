@@ -7,10 +7,12 @@ SelectableGUIElement::SelectableGUIElement(std::string fileName, int left, int t
 	this->initSprite(left,top,width,height);
 }
 
-SelectableGUIElement::SelectableGUIElement(sf::Texture*, int left, int top, int width, int height)
+SelectableGUIElement::SelectableGUIElement(sf::Texture* tex, int left, int top, int width, int height, unsigned int xOnScreen, unsigned int yOnScreen)
 {
 	this->textureRect = new sf::IntRect(left, top, width, height);
 	this->isSelected = false;
+	this->initSprite(*tex,this->textureRect); //mo¿e siê dupiæ
+	this->setPosition(static_cast<float>(xOnScreen), static_cast<float>(yOnScreen)); //to do konwersja
 }
 
 void SelectableGUIElement::update()

@@ -5,7 +5,7 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->window = win;
 	this->arePicked=false;
 	this->initBackground("menu.png");
-	this->initCharactersMatrix("characters.png");
+	this->initCharactersMatrix("./SceneMenu/elem1.png");
 }
 
 void SceneMenu::run()
@@ -59,12 +59,13 @@ void SceneMenu::render()
 {
 	this->window->clear();
 	this->window->draw(this->menuScreenSprite);
+	this->matrix->render(this->window);
 	this->window->display();
 }
 
 void SceneMenu::initCharactersMatrix(std::string textureName)
 {
-	
+	this->matrix = new SelGUIElementsMatrix(textureName, 3, 3, 200, 200);
 }
 
 void SceneMenu::initBackground(std::string textureName)
