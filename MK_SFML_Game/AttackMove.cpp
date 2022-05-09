@@ -11,7 +11,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	/*this->shape.setFillColor(sf::Color::Red);;
 	this->shape.setSize(sf::Vector2f(xSize, ySize));*/
 
-	this->initTexture(this->atkTexture, "./Characters/" + charName + "/attack.png");
+	this->initTexture(this->atkTexture, "./Characters/" + charName + "/hand.png");
 	this->initTexture(this->playerAtkTexture, "./Characters/" + charName + "/atk_1.png");
 	//this->initTexture("./Characters/" + charName + "/attack.png");
 	//this->sprite.setTexture(this->atkTexture);
@@ -21,7 +21,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 
 	// DO THIS IN OTHER CONSTRUCTORS TOO
 	//Y axis offset is alaways the same
-	this->yOffset = 30.f;
+	this->yOffset = 60.f;
 
 	//reverse X axis offset if player is facing left
 	if (!isRightFacing) {
@@ -51,9 +51,9 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 
 	this->onBlockStagger = 5;
 
-	this->onHitRecovery = 4;
-	this->onBlockRecovery = 8;
-	this->onMissRecovery = 12;
+	this->onHitRecovery = 3;
+	this->onBlockRecovery = 2;
+	this->onMissRecovery = 2;
 
 	this->dmg = 10;
 	
@@ -166,7 +166,6 @@ void AttackMove::update() {
 }
 
 void AttackMove::render(sf::RenderTarget* target) {
-		
 	if (this->isActive) {
 		this->sprite.setTexture(this->atkTexture);
 		target->draw(this->sprite);
