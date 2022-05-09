@@ -53,7 +53,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 
 	this->onHitRecovery = 3;
 	this->onBlockRecovery = 2;
-	this->onMissRecovery = 2;
+	this->onMissRecovery = 1;
 
 	this->dmg = 10;
 	
