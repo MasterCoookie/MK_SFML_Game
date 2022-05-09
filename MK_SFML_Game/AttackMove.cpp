@@ -44,8 +44,8 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	// DO THIS IN OTHER CONSTRUCTORS TOO ENDS
 
 	//USED ONLY IN DEBUG
-	this->startupTimeMax = 10;
-	this->lifespanMax = 6;
+	this->startupTimeMax = 5;
+	this->lifespanMax = 4;
 	this->targetH = TargetHeight::HIGH;
 	this->onHitStagger = 8;
 
