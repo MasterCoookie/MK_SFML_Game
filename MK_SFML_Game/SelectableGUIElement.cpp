@@ -15,6 +15,11 @@ SelectableGUIElement::SelectableGUIElement(sf::Texture* tex, int left, int top, 
 	this->setPosition(static_cast<float>(xOnScreen), static_cast<float>(yOnScreen)); //to do konwersja
 }
 
+SelectableGUIElement::~SelectableGUIElement()
+{
+
+}
+
 void SelectableGUIElement::update()
 {
 	if (this->isSelected) {
