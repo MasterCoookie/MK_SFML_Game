@@ -6,6 +6,7 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->arePicked=false;
 	this->initBackground("menu.png");
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
+	
 }
 
 void SceneMenu::run()
@@ -20,7 +21,9 @@ void SceneMenu::run()
 
 std::vector<std::string> SceneMenu::getResult()
 {
-	std::vector<std::string> vec = { "char1", "char2" }; //returns PATH to the files with chosen characters
+	//std::vector<std::string> vec = { "char" + std::to_string(this->matrix->getPlayerOneChoice()+1), "char" + std::to_string(this->matrix->getPlayerTwoChoice() + 1) }; //returns PATH to the files with chosen characters
+	
+	std::vector<std::string> vec = { "char1","char2" };
 	return vec;
 
 }

@@ -5,6 +5,8 @@ SelGUIElementsMatrix::SelGUIElementsMatrix(std::string texName, int nrows, int  
 	this->initTexture(texName);
 	this->initVariables(elementHeight, elementWidth);
 	this->initCharactersMatrix(nrows, ncols,230,200); //  @TODO argumenty maj¹ byæ z konstruktora
+	this->playerOneChoice = 0;
+	this->playerTwoChoice = this->cols - 1;
 }
 
 SelGUIElementsMatrix::~SelGUIElementsMatrix()
@@ -26,6 +28,16 @@ void SelGUIElementsMatrix::render(sf::RenderTarget* win)
 	}
 }
 
+int SelGUIElementsMatrix::getPlayerOneChoice()
+{
+	return this->playerOneChoice;
+}
+
+int SelGUIElementsMatrix::getPlayerTwoChoice()
+{
+	return this->playerTwoChoice;
+}
+
 void SelGUIElementsMatrix::initTexture(std::string texName)
 {
 	this->charactersTexture = new sf::Texture;
@@ -38,6 +50,7 @@ void SelGUIElementsMatrix::initVariables(int elementHeight, int elementWidth)
 {
 	this->elementHeight = elementHeight;
 	this->elementWidth = elementWidth;
+	
 }
 
 void SelGUIElementsMatrix::initCharactersMatrix(int nrows, int ncols, int offsetScreen,int offsetTexture)
