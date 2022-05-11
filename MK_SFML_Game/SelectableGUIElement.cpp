@@ -35,6 +35,17 @@ void SelectableGUIElement::render(sf::RenderTarget* target)
 	target->draw(sprite);
 }
 
+void SelectableGUIElement::switchSprite(int newLeft)
+{
+	int top, height, width;
+	top = this->textureRect->top;
+	height = this->textureRect->height;
+	width = this->textureRect->width;
+	delete this->textureRect;
+	this->textureRect = new sf::IntRect(newLeft, top, width, height);
+	this->sprite.setTextureRect((*this->textureRect));
+}
+
 void SelectableGUIElement::initVariables()
 {
 }
