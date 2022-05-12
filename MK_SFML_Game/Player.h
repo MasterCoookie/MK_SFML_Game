@@ -78,6 +78,9 @@ private:
 	sf::Texture* blockingDuckTexture;
 	sf::Texture* attackingTexture;
 
+	//To map
+	std::unordered_map<std::string, sf::Texture*> playerTextures;
+
 	//pointer to animator instance
 	Animator* animator;
 
@@ -88,6 +91,7 @@ private:
 
 	//inits
 	void initVariables() override;
+	void initTexturesMap();
 
 	//private methods
 	bool wasAttackBlocked(const AttackMove& hitBy);
