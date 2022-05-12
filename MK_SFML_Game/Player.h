@@ -70,12 +70,12 @@ private:
 	float recoveryFrames;
 
 	//textures
-	sf::Texture duckingTexture;
-	sf::Texture walkingFTexture;
-	sf::Texture walkingBTexture;
-	sf::Texture jumpingTexture;
-	sf::Texture blockingTexture;
-	sf::Texture blockingDuckTexture;
+	sf::Texture* duckingTexture;
+	sf::Texture* walkingFTexture;
+	sf::Texture* walkingBTexture;
+	sf::Texture* jumpingTexture;
+	sf::Texture* blockingTexture;
+	sf::Texture* blockingDuckTexture;
 	sf::Texture* attackingTexture;
 
 	//pointer to animator instance

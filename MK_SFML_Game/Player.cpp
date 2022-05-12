@@ -91,7 +91,7 @@ void Player::jump() {
 		//change pos
 		this->position = Position::AIRBORNE;
 		//change texture
-		this->sprite.setTexture(this->duckingTexture, true);
+		this->sprite.setTexture(*this->duckingTexture, true);
 
 		//move up ??
 		//this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
@@ -124,7 +124,7 @@ void Player::duck() {
 		//change pos
 		this->position = Position::DUCKING;
 		//change texture
-		this->sprite.setTexture(this->duckingTexture, true);
+		this->sprite.setTexture(*this->duckingTexture, true);
 		// move down
 		this->setPosition(this->getPosition().x, this->getPosition().y + 125.f);
 	}
@@ -133,16 +133,16 @@ void Player::duck() {
 void Player::block() {
 	this->state = State::BLOCKING;
 	if (this->position == Position::STANDING) {
-		this->sprite.setTexture(this->blockingTexture, true);
+		this->sprite.setTexture(*this->blockingTexture, true);
 	} else {
-		this->sprite.setTexture(this->blockingDuckTexture);
+		this->sprite.setTexture(*this->blockingDuckTexture);
 	}
 }
 
 void Player::dropBlock(const bool continueDuckin) {
 	this->state = State::IDLE;
 	if (continueDuckin) {
-		this->sprite.setTexture(this->duckingTexture);
+		this->sprite.setTexture(*this->duckingTexture);
 	} else {
 		this->sprite.setTexture(*(this->texture));
 		this->initSprite(this->textureRect);
@@ -337,7 +337,7 @@ void Player::updateAnimation() {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
 				//continue animate walking forward
 			this->animator->update();
-			this->initSprite(this->walkingFTexture, this->textureRect);
+			this->initSprite(*this->walkingFTexture, this->textureRect);
 		}
 		else {
 			//start animating walking forward
@@ -350,7 +350,7 @@ void Player::updateAnimation() {
 			//continue animate jumping forward
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
 				this->animator->update();
-				this->initSprite(this->jumpingTexture, this->textureRect);
+				this->initSprite(*this->jumpingTexture, this->textureRect);
 		}
 		else {
 			//start animating jumping
