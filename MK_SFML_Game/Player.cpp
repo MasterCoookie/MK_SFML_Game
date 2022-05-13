@@ -9,13 +9,13 @@ Player::Player(std::string _charName) {
 	this->initVariables();
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
-	this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + _charName + "/walking_f_1.png");
-	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + _charName + "/walking_b_1.png");
+	//this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + _charName + "/walking_f_1.png");
+	//this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + _charName + "/walking_b_1.png");
 	//this->initTexture(this->duckingTexture, "./Characters/" + _charName + "/ducking_1.png");
 	// TODO - create actual jumping texture
-	this->initTexture(this->jumpingTexture, "./Characters/" + _charName + "/jumping_1.png");
-	this->initTexture(this->blockingTexture, "./Characters/" + _charName + "/blocking_1.png");
-	this->initTexture(this->blockingDuckTexture, "./Characters/" + _charName + "/ducking_block_1.png");
+	//this->initTexture(this->jumpingTexture, "./Characters/" + _charName + "/jumping_1.png");
+	//this->initTexture(this->blockingTexture, "./Characters/" + _charName + "/blocking_1.png");
+	//this->initTexture(this->blockingDuckTexture, "./Characters/" + _charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
 
 }
@@ -133,9 +133,9 @@ void Player::duck() {
 void Player::block() {
 	this->state = State::BLOCKING;
 	if (this->position == Position::STANDING) {
-		this->sprite.setTexture(*this->blockingTexture, true);
+		this->sprite.setTexture(*this->playerTextures.find("blocking")->second, true);
 	} else {
-		this->sprite.setTexture(*this->blockingDuckTexture);
+		this->sprite.setTexture(*this->playerTextures.find("ducking_block")->second);
 	}
 }
 
@@ -257,14 +257,25 @@ void Player::initVariables() {
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
 	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 
-	this->playerTextures = { { "ducking", nullptr } };
+	this->playerTextures = {
+		{ "ducking", nullptr },
+		{ "jumping", nullptr },
+		{ "jumping_f", nullptr },
+		{ "jumping_b", nullptr },
+		{ "walking_b", nullptr },
+		{ "walking_f", nullptr },
+		{ "blocking", nullptr },
+		{ "ducking_block", nullptr },
+	};
 	this->initTexturesMap();
 }
 
 void Player::initTexturesMap() {
-	for (auto& tex : playerTextures) {
-		this->initTexture(tex.second, "./Characters/" + this->charName + "/ducking_1.png");
+	auto names = std::views::keys(this->playerTextures);
+	for (auto& tex : this->playerTextures) {
+		this->initTexture(tex.second, ("./Characters/" + this->charName + "/" + tex.first + ".png"));
 	}
+	//ranges to check if some textures didnt load
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
@@ -286,7 +297,7 @@ void Player::updateMovement() {
 	this->yAxisMomentum += 4.5f;
 		
 	//check for landing
-	if (this->getPosition().y >= 425) {
+	if (this->getPosition().y > 425) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
@@ -346,7 +357,7 @@ void Player::updateAnimation() {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
 				//continue animate walking forward
 			this->animator->update();
-			this->initSprite(*this->walkingFTexture, this->textureRect);
+			this->initSprite(*this->playerTextures.find("walking_f")->second, this->textureRect);
 		}
 		else {
 			//start animating walking forward
@@ -359,7 +370,7 @@ void Player::updateAnimation() {
 			//continue animate jumping forward
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
 				this->animator->update();
-				this->initSprite(*this->jumpingTexture, this->textureRect);
+				this->initSprite(*this->playerTextures.find("jumping_f")->second, this->textureRect);
 		}
 		else {
 			//start animating jumping
