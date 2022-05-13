@@ -4,20 +4,20 @@ Player::Player() {
 	this->initVariables();
 }
 
-Player::Player(std::string charName) {
+Player::Player(std::string _charName) {
+	this->charName = _charName;
 	this->initVariables();
 	// init player baset on character name
-	this->GameObject::initTexture("./Characters/" + charName + "/standing_1.png");
-	this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + charName + "/walking_f_1.png");
-	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + charName + "/walking_b_1.png");
-	this->initTexture(this->duckingTexture, "./Characters/" + charName + "/ducking_1.png");
+	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
+	this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + _charName + "/walking_f_1.png");
+	this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + _charName + "/walking_b_1.png");
+	//this->initTexture(this->duckingTexture, "./Characters/" + _charName + "/ducking_1.png");
 	// TODO - create actual jumping texture
-	this->initTexture(this->jumpingTexture, "./Characters/" + charName + "/jumping_1.png");
-	this->initTexture(this->blockingTexture, "./Characters/" + charName + "/blocking_1.png");
-	this->initTexture(this->blockingDuckTexture, "./Characters/" + charName + "/ducking_block_1.png");
+	this->initTexture(this->jumpingTexture, "./Characters/" + _charName + "/jumping_1.png");
+	this->initTexture(this->blockingTexture, "./Characters/" + _charName + "/blocking_1.png");
+	this->initTexture(this->blockingDuckTexture, "./Characters/" + _charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
 
-	this->charName = charName;
 }
 
 Player::~Player() {
@@ -91,7 +91,7 @@ void Player::jump() {
 		//change pos
 		this->position = Position::AIRBORNE;
 		//change texture
-		this->sprite.setTexture(*this->duckingTexture, true);
+		this->sprite.setTexture(*this->playerTextures.find("ducking")->second, true);
 
 		//move up ??
 		//this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
@@ -124,7 +124,7 @@ void Player::duck() {
 		//change pos
 		this->position = Position::DUCKING;
 		//change texture
-		this->sprite.setTexture(*this->duckingTexture, true);
+		this->sprite.setTexture(*this->playerTextures.find("ducking")->second, true);
 		// move down
 		this->setPosition(this->getPosition().x, this->getPosition().y + 125.f);
 	}
@@ -142,7 +142,7 @@ void Player::block() {
 void Player::dropBlock(const bool continueDuckin) {
 	this->state = State::IDLE;
 	if (continueDuckin) {
-		this->sprite.setTexture(*this->duckingTexture);
+		this->sprite.setTexture(*this->playerTextures.find("ducking")->second);
 	} else {
 		this->sprite.setTexture(*(this->texture));
 		this->initSprite(this->textureRect);
