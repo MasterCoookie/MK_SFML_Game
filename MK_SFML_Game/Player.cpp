@@ -306,8 +306,8 @@ void Player::updateMovement() {
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
 			this->position = Position::STANDING;
-			this->sprite.setTexture(*(this->texture), true);
-			this->initSprite(this->textureRect);
+			/*this->sprite.setTexture(*(this->texture), true);
+			this->initSprite(this->textureRect);*/
 			this->setPosition(this->getPosition().x, 425);
 		}
 	}
@@ -374,19 +374,24 @@ void Player::updateAnimation() {
 			//continue animate jumping forward
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
 				this->animator->update();
-				this->initSprite(*this->playerTextures.find("jumping_f")->second, this->textureRect);
+				this->initSprite(*this->playerTextures.find(this->lockedAnimation)->second, this->textureRect);
 		}
 		else {
 			//start animating jumping
-			if (this->movementMatrix[0]) {
+			if (this->movementMatrix[0] || this->movementMatrix[1]) {
 				delete this->animator;
 				delete this->textureRect;
 				this->textureRect = new sf::IntRect(0, 0, 175, 175);
 				this->animator = new Animator(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
+				if (this->movementMatrix[0]) {
+					this->lockedAnimation = "jumping_f";
+				}
+				else {
+					this->lockedAnimation = "jumping_b";
+				}
 			}
-			
 		}
-	}
+	} 
 	else if (this->state == State::ATTACKING) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::ATTACKING) {
 			//continue animate attacking

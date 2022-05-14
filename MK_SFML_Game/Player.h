@@ -98,4 +98,5 @@ private:
 	bool wasAttackBlocked(const AttackMove& hitBy);
 	
 	std::string charName;
+	std::string lockedAnimation;
 };
