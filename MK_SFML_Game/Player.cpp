@@ -271,11 +271,15 @@ void Player::initVariables() {
 }
 
 void Player::initTexturesMap() {
-	auto names = std::views::keys(this->playerTextures);
+	//auto names = std::views::keys(this->playerTextures);
 	for (auto& tex : this->playerTextures) {
 		this->initTexture(tex.second, ("./Characters/" + this->charName + "/" + tex.first + ".png"));
 	}
 	//ranges to check if some textures didnt load
+	auto didLoad = [](const sf::Texture* pointer) { return pointer == nullptr; };
+	for (const auto& val : std::views::values(this->playerTextures) | std::views::filter(didLoad)) {
+		std::cout << "PLAYER::initTexturesMap() CRITCAL ERROR: nullptr in map!\n";
+	}
 }
 
 bool Player::wasAttackBlocked(const AttackMove& hitBy) {
