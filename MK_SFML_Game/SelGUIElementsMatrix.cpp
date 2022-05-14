@@ -38,6 +38,39 @@ int SelGUIElementsMatrix::getPlayerTwoChoice()
 	return this->playerTwoChoice;
 }
 
+void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
+{
+	int currChoice, otherCurrChoice, offset;
+	currChoice = player == PlayerNumber::ONE ? this -> playerOneChoice : this->playerTwoChoice;
+	otherCurrChoice = player == PlayerNumber::TWO ? this -> playerOneChoice : this->playerTwoChoice;
+	if (dir == Direction::UP) {
+		offset = -3;
+	}
+	else if (dir == Direction::DOWN) {
+		offset = 3;
+	}
+	else if (dir == Direction::LEFT) {
+		offset = -1;
+	}
+	else if (dir == Direction::RIGHT) {
+		offset = 1;
+	}
+	if ((currChoice + offset >= 0) && (currChoice + offset < this->charactersMatrix.size()) && (currChoice % (this->cols) + offset < this->cols)
+		&& (currChoice%(this->cols) + offset >=0 )) {
+		std::cout << "dupa\n";
+		if (player == PlayerNumber::ONE) {
+			this->playerOneChoice += offset;
+		}
+		else {
+			this->playerTwoChoice += offset;
+		}
+	}
+	else {
+		//do nothing
+		std::cout << "niedupa\n";
+	}
+}
+
 void SelGUIElementsMatrix::initTexture(std::string texName)
 {
 	this->charactersTexture = new sf::Texture;

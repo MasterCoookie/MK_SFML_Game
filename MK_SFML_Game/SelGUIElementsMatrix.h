@@ -1,5 +1,7 @@
 #pragma once
 #include "SelectableGUIElement.h"
+enum class PlayerNumber {ONE,TWO};
+enum class Direction {UP,DOWN,LEFT,RIGHT};
 class SelGUIElementsMatrix
 {
 public:
@@ -8,7 +10,7 @@ public:
 	void render(sf::RenderTarget* win);
 	int getPlayerOneChoice();
 	int getPlayerTwoChoice();
-
+	void update(PlayerNumber player, Direction dir);
 private:	
 	int rows, cols;
 	int elementWidth, elementHeight;

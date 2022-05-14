@@ -56,6 +56,8 @@ void SceneMenu::pollEvents()
 
 void SceneMenu::update()
 {
+	//test
+	//this->matrix->update(PlayerNumber::ONE, Direction::UP); // @ TODO IMPLEMENT
 }
 
 void SceneMenu::render()
