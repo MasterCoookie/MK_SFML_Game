@@ -53,15 +53,13 @@ void SceneMenu::pollEvents()
 		}
 	}
 }
-bool dupa = false;
 void SceneMenu::update()
 {
 	//test
 	
-	//if (!dupa) {
-	//	this->matrix->update(PlayerNumber::ONE, Direction::RIGHT); // @ TODO IMPLEMENT
-	//	dupa = true;
-	//}
+	
+		//this->matrix->update(PlayerNumber::ONE, Direction::RIGHT); // @ TODO IMPLEMENT
+	
 }
 
 void SceneMenu::render()
