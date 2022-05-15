@@ -153,12 +153,6 @@ void GameEngine::update() {
 
 	animation_th_p1.join();
 	animation_th_p2.join();
-	/*this->player1->updateAnimation();
-	this->player2->updateAnimation();*/
-	
-	//reset movementMatrixes
-	/*this->player1->resetMovementMatrix();
-	this->player2->resetMovementMatrix();*/
 }
 
 void GameEngine::updateInput() {
@@ -177,30 +171,18 @@ void GameEngine::updateInput() {
 	}
 
 	//check for attack codes, if none, potentially move player
-
-	//player1 starts
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::H)) {
-	//}
-	//else {
-		this->player1->setMovementMatrix(
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !this->player1->rightFacing()),
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !this->player1->rightFacing()),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)
-		);
-	//}
-	//player1 ends
-	//player2 starts
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-	//}
-	//else {
-		this->player2->setMovementMatrix(
-			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->player2->rightFacing()),
-			((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->player2->rightFacing()),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I),
-			sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K)
-		);
-	//}
+	this->player1->setMovementMatrix(
+		(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && !this->player1->rightFacing()),
+		(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) && this->player1->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) && !this->player1->rightFacing()),
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W),
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)
+	);
+	this->player2->setMovementMatrix(
+		((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L) && this->player2->rightFacing()),
+		((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L)) && !this->player2->rightFacing()) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::J) && this->player2->rightFacing()),
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I),
+		sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K)
+	);
 	//player2 ends
 }
 
