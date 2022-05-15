@@ -146,6 +146,7 @@ void GameEngine::update() {
 
 	auto animation_lambda = [](Player* p) {
 		p->updateAnimation();
+		p->resetMovementMatrix();
 	};
 	std::thread animation_th_p1(animation_lambda, this->player1);
 	std::thread animation_th_p2(animation_lambda, this->player2);
@@ -156,8 +157,8 @@ void GameEngine::update() {
 	this->player2->updateAnimation();*/
 	
 	//reset movementMatrixes
-	this->player1->resetMovementMatrix();
-	this->player2->resetMovementMatrix();
+	/*this->player1->resetMovementMatrix();
+	this->player2->resetMovementMatrix();*/
 }
 
 void GameEngine::updateInput() {
