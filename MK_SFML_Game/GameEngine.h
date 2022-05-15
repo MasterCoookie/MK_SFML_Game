@@ -8,7 +8,7 @@ public:
 	GameEngine(sf::RenderWindow* win);
 	~GameEngine();
 
-	
+	void updateInput();
 
 	void run() override;
 	std::vector<std::string> getResult() override;
@@ -31,7 +31,7 @@ private:
 
 	//updates
 	void update() override;
-	void updateInput();
+	
 	void updatePlayersCross();
 	void updatePlayersCollision();
 	void updateAttacksCollision();

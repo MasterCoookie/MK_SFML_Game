@@ -1,5 +1,30 @@
 #include "GameEngine.h"
 
+std::counting_semaphore<1> prepare(0);
+
+void async_read_input(GameEngine* g) {
+	g->updateInput();
+	prepare.release();
+}
+
+void async_move_players(Player* p1, Player* p2) {
+	bool can_p1_move = p1->canMove();
+	bool can_p2_move = p2->canMove();
+	prepare.acquire();
+
+	if (can_p1_move) {
+		p1->duck();
+		p1->move();
+		p1->jump();
+	}
+	if (can_p2_move) {
+		p2->duck();
+		p2->move();
+		p2->jump();
+	}
+	//prepare.release();
+}
+
 GameEngine::GameEngine() {
 	//not really used
 	this->initWindow();
@@ -99,11 +124,15 @@ void GameEngine::update() {
 
 	this->player1->updateStagger();
 	this->player2->updateStagger();
-	this->updateInput();
+	//this->updateInput();
 
+	std::thread read_movement(async_read_input, this);
+	std::thread async_movement(async_move_players, this->player1, this->player2);
 	
+	read_movement.join();
+	async_movement.join();
 	//move players
-	if (this->player1->canMove()) {
+	/*if (this->player1->canMove()) {
 		this->player1->duck();
 		this->player1->move();
 		this->player1->jump();
@@ -112,7 +141,7 @@ void GameEngine::update() {
 		this->player2->duck();
 		this->player2->move();
 		this->player2->jump();
-	}
+	}*/
 
 	if (this->player1->getState() != State::BLOCKING) {
 		this->player1->updateMovement();

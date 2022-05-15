@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <ranges>
 #include <thread>
+#include <semaphore>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
