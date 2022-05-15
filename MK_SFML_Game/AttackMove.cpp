@@ -8,8 +8,6 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->initVariables();
 
 	//USED ONLY IN DEBUG
-	/*this->shape.setFillColor(sf::Color::Red);;
-	this->shape.setSize(sf::Vector2f(xSize, ySize));*/
 
 	this->initTexture(this->atkTexture, "./Characters/" + charName + "/hand.png");
 	this->initTexture(this->playerAtkTexture, "./Characters/" + charName + "/atk_1.png");
