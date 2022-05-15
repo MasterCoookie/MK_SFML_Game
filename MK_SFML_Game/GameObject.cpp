@@ -20,12 +20,24 @@ void GameObject::move(const float x, const float y) {
 	this->sprite.move(x, y);
 }
 
+void GameObject::setIntRect(const sf::IntRect rec)
+{
+	*(this->textureRect) = rec;
+	this->initSprite(*(this->texture), this->textureRect);
+
+}
+
 const sf::Vector2f& GameObject::getPosition() const {
 	return this->sprite.getPosition();
 }
 
 const sf::FloatRect GameObject::getBounds() const {
 	return this->sprite.getGlobalBounds();
+}
+
+const sf::IntRect GameObject::getIntRect() const
+{
+	return *(this->textureRect);
 }
 
 void GameObject::initTexture(std::string texturePath) {
