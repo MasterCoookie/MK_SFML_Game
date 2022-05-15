@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="async_functions.ixx" />
     <ClCompile Include="AttackMove.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />

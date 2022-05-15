@@ -1,29 +1,6 @@
 #include "GameEngine.h"
 
-std::counting_semaphore<1> prepare(0);
-
-void async_read_input(GameEngine* g) {
-	g->updateInput();
-	prepare.release();
-}
-
-void async_move_players(Player* p1, Player* p2) {
-	bool can_p1_move = p1->canMove();
-	bool can_p2_move = p2->canMove();
-	prepare.acquire();
-
-	if (can_p1_move) {
-		p1->duck();
-		p1->move();
-		p1->jump();
-	}
-	if (can_p2_move) {
-		p2->duck();
-		p2->move();
-		p2->jump();
-	}
-	//prepare.release();
-}
+import async_functions;
 
 GameEngine::GameEngine() {
 	//not really used
@@ -164,12 +141,9 @@ void GameEngine::update() {
 		this->player2->updateAttack();
 	}
 
-	auto recovery_lambda = [](Player* p) {
-		p->updateRecovery();
-	};
 
-	std::thread recovery_th_p1(recovery_lambda, this->player1);
-	std::thread recovery_th_p2(recovery_lambda, this->player2);
+	std::thread recovery_th_p1(async_recovery, this->player1);
+	std::thread recovery_th_p2(async_recovery, this->player2);
 
 	recovery_th_p1.join();
 	recovery_th_p2.join();
@@ -183,12 +157,8 @@ void GameEngine::update() {
 
 	this->updateAttacksCollision();
 
-	auto animation_lambda = [](Player* p) {
-		p->updateAnimation();
-		p->resetMovementMatrix();
-	};
-	std::thread animation_th_p1(animation_lambda, this->player1);
-	std::thread animation_th_p2(animation_lambda, this->player2);
+	std::thread animation_th_p1(async_animation, this->player1);
+	std::thread animation_th_p2(async_animation, this->player2);
 
 	animation_th_p1.join();
 	animation_th_p2.join();
