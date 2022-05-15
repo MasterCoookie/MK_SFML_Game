@@ -21,7 +21,9 @@ Player::Player(std::string _charName) {
 }
 
 Player::~Player() {
-
+	for (const auto& val : std::views::values(this->playerTextures)) {
+		delete val;
+	}
 }
 
 void Player::setRightFacing(bool facing) {
