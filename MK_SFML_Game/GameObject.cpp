@@ -38,7 +38,6 @@ void GameObject::initTexture(std::string texturePath) {
 
 void GameObject::initTexture(sf::Texture& targetTexture, std::string texturePath) {
 	//load texture form file
-	//this->texture = new sf::Texture;
 	if (!targetTexture.loadFromFile(texturePath)) {
 		std::cout << "ERR: GAMEOBJECT::INITTEXTURE: Could not load texture file" << std::endl;
 	}
@@ -65,9 +64,6 @@ void GameObject::initSprite(int startingX, int startingY, int sizeX, int sizeY) 
 	this->textureRect = new sf::IntRect(startingX, startingY, sizeX, sizeY);
 	this->sprite.setTextureRect(*this->textureRect);
 	this->sprite.setTexture(*(this->texture));
-
-	//scale sprite
-	//this->sprite.scale(.5f, .5f);
 }
 
 void GameObject::initSprite(sf::IntRect* intRect) {
