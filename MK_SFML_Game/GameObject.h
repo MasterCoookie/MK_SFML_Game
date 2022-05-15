@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <ranges>
+#include <thread>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>

@@ -144,8 +144,16 @@ void GameEngine::update() {
 
 	this->updateAttacksCollision();
 
-	this->player1->updateAnimation();
-	this->player2->updateAnimation();
+	auto animation_lambda = [](Player* p) {
+		p->updateAnimation();
+	};
+	std::thread animation_th_p1(animation_lambda, this->player1);
+	std::thread animation_th_p2(animation_lambda, this->player2);
+
+	animation_th_p1.join();
+	animation_th_p2.join();
+	/*this->player1->updateAnimation();
+	this->player2->updateAnimation();*/
 	
 	//reset movementMatrixes
 	this->player1->resetMovementMatrix();
