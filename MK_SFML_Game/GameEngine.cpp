@@ -164,8 +164,18 @@ void GameEngine::update() {
 		this->player2->updateAttack();
 	}
 
-	this->player1->updateRecovery();
-	this->player2->updateRecovery();
+	auto recovery_lambda = [](Player* p) {
+		p->updateRecovery();
+	};
+
+	std::thread recovery_th_p1(recovery_lambda, this->player1);
+	std::thread recovery_th_p2(recovery_lambda, this->player2);
+
+	recovery_th_p1.join();
+	recovery_th_p2.join();
+
+	/*this->player1->updateRecovery();
+	this->player2->updateRecovery();*/
 
 	this->updatePlayersCross();
 	//this->printDebug();
