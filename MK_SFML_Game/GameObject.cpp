@@ -20,10 +20,11 @@ void GameObject::move(const float x, const float y) {
 	this->sprite.move(x, y);
 }
 
-void GameObject::setIntRect(const sf::IntRect rec)
+void GameObject::setIntRect(sf::Texture& tex, const sf::IntRect rec)
 {
-	*(this->textureRect) = rec;
-	this->initSprite(this->textureRect);
+	//delete this->textureRect;
+	this->textureRect = new sf::IntRect(rec);
+	this->initSprite(tex,this->textureRect);
 
 }
 

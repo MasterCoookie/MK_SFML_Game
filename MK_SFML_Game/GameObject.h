@@ -22,7 +22,7 @@ public:
 	void setPosition(const sf::Vector2f pos);
 	void setPosition(const float x, const float y);
 	void move(const float x, const float y);
-	void setIntRect(const sf::IntRect rec);
+	void setIntRect(sf::Texture& tex,const sf::IntRect rec);
 	//getters
 	const sf::Vector2f& getPosition() const;
 	const sf::FloatRect getBounds() const;

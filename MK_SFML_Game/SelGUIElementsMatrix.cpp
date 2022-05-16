@@ -66,12 +66,12 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 		std::cout << "dupa\n";
 		sf::IntRect recOfOld = this->charactersMatrix[currChoice - offset]->getIntRect();
 		recOfOld.left = 0;
-		this->charactersMatrix[currChoice - offset]->setIntRect(recOfOld);
+		this->charactersMatrix[currChoice - offset]->setIntRect(*(this->charactersTexture),recOfOld);
 		if (currChoice == otherCurrChoice) {
 			//set to both selected
 			sf::IntRect recOfNew = this->charactersMatrix[currChoice]->getIntRect();
 			recOfNew.left = 600;
-			this->charactersMatrix[currChoice]->setIntRect(recOfNew);
+			this->charactersMatrix[currChoice]->setIntRect(*(this->charactersTexture), recOfNew);
 			this->playerOneChoice = currChoice;
 			this->playerTwoChoice = currChoice;
 		}
@@ -80,12 +80,12 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 			//set first player
 			sf::IntRect recOfNew = this->charactersMatrix[currChoice]->getIntRect();
 			recOfNew.left = 200;
-			this->charactersMatrix[currChoice]->setIntRect(recOfNew);
+			this->charactersMatrix[currChoice]->setIntRect(*(this->charactersTexture), recOfNew);
 			this->playerOneChoice = currChoice;
 			//set second player
 			sf::IntRect recOfDifferent = this->charactersMatrix[this->playerTwoChoice]->getIntRect();
 			recOfDifferent.left = 400;
-			this->charactersMatrix[this->playerTwoChoice]->setIntRect(recOfDifferent);
+			this->charactersMatrix[this->playerTwoChoice]->setIntRect(*(this->charactersTexture),recOfDifferent);
 		}
 		else {
 			////set first player
