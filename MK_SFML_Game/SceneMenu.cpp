@@ -47,9 +47,22 @@ void SceneMenu::pollEvents()
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
 			}
-			if (e.Event::key.code == sf::Keyboard::Space) {			//Written to ommit the menu screen while developing the game
+			else if (e.Event::key.code == sf::Keyboard::Space) {			//Written to ommit the menu screen while developing the game
 				this->arePicked = true;					//
 			}
+			else if (e.Event::key.code == sf::Keyboard::W) {
+				this->matrix->update(PlayerNumber::ONE, Direction::UP);
+			}
+			else if (e.Event::key.code == sf::Keyboard::S) {
+				this->matrix->update(PlayerNumber::ONE, Direction::DOWN);
+			}
+			else if (e.Event::key.code == sf::Keyboard::A) {
+				this->matrix->update(PlayerNumber::ONE, Direction::LEFT);
+			}
+			else if (e.Event::key.code == sf::Keyboard::D) {
+				this->matrix->update(PlayerNumber::ONE, Direction::RIGHT);
+			}
+
 		}
 	}
 }
@@ -58,7 +71,6 @@ void SceneMenu::update()
 	//test
 	
 	
-		//this->matrix->update(PlayerNumber::ONE, Direction::RIGHT); // @ TODO IMPLEMENT
 	
 }
 
