@@ -20,13 +20,16 @@ private:
 	void initCharactersMatrix(std::string textureName);
 	void initBackground(std::string textureName);
 	void setAreCharactersPicked(bool val);
-	
+	void initVariables();
 private:
 	sf::RenderWindow* window;
 	sf::Texture menuScreenTexture;
 	sf::Sprite menuScreenSprite;
 	SelGUIElementsMatrix* matrix;
 	bool arePicked;
+	float sincePlayerOneSwitched;
+	float sincePlayerTwoSwitched;
+	float swtichingLimit;
 	
 
 };

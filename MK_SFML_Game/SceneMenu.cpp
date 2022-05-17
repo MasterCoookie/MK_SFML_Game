@@ -3,7 +3,6 @@
 SceneMenu::SceneMenu(sf::RenderWindow* win)
 {
 	this->window = win;
-	this->arePicked=false;
 	this->initBackground("menu.png");
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
 	
@@ -56,7 +55,10 @@ void SceneMenu::pollEvents()
 void SceneMenu::update()
 {
 	//test
-	
+	this->sincePlayerOneSwitched += 0.03f;
+	this->sincePlayerTwoSwitched += 0.03f;
+
+	if()
 	
 	
 }
@@ -86,4 +88,12 @@ void SceneMenu::initBackground(std::string textureName)
 void SceneMenu::setAreCharactersPicked(bool value)
 {
 	this->arePicked = value;
+}
+
+void SceneMenu::initVariables()
+{
+	this->arePicked = false;
+	this->swtichingLimit = 0.5f;
+	this->sincePlayerOneSwitched = 0.f;
+	this->sincePlayerTwoSwitched = 0.f;
 }
