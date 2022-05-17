@@ -5,7 +5,7 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->window = win;
 	this->initBackground("menu.png");
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
-	
+	this->initVariables();
 }
 
 void SceneMenu::run()
@@ -55,11 +55,41 @@ void SceneMenu::pollEvents()
 void SceneMenu::update()
 {
 	//test
-	this->sincePlayerOneSwitched += 0.03f;
-	this->sincePlayerTwoSwitched += 0.03f;
-
-	if()
-	
+	this->sincePlayerOneSwitched += 1;
+	this->sincePlayerTwoSwitched += 1;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		this->arePicked = true;
+	}
+	if (this->sincePlayerOneSwitched > this->switchingLimit) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			this->matrix->update(PlayerNumber::ONE, Direction::UP);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			this->matrix->update(PlayerNumber::ONE, Direction::DOWN);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+			this->matrix->update(PlayerNumber::ONE, Direction::LEFT);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			this->matrix->update(PlayerNumber::ONE, Direction::RIGHT);
+		}
+		this->sincePlayerOneSwitched = 0;
+	}
+	if (this->sincePlayerTwoSwitched > this->switchingLimit) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::I)) {
+			this->matrix->update(PlayerNumber::TWO, Direction::UP);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+			this->matrix->update(PlayerNumber::TWO, Direction::DOWN);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
+			this->matrix->update(PlayerNumber::TWO, Direction::LEFT);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {
+			this->matrix->update(PlayerNumber::TWO, Direction::RIGHT);
+		}
+		this->sincePlayerTwoSwitched = 0;
+	}
 	
 }
 
@@ -93,7 +123,7 @@ void SceneMenu::setAreCharactersPicked(bool value)
 void SceneMenu::initVariables()
 {
 	this->arePicked = false;
-	this->swtichingLimit = 0.5f;
-	this->sincePlayerOneSwitched = 0.f;
-	this->sincePlayerTwoSwitched = 0.f;
+	this->switchingLimit = 5;
+	this->sincePlayerOneSwitched = 0;
+	this->sincePlayerTwoSwitched = 0;
 }

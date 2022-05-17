@@ -27,9 +27,9 @@ private:
 	sf::Sprite menuScreenSprite;
 	SelGUIElementsMatrix* matrix;
 	bool arePicked;
-	float sincePlayerOneSwitched;
-	float sincePlayerTwoSwitched;
-	float swtichingLimit;
+	int sincePlayerOneSwitched;
+	int sincePlayerTwoSwitched;
+	int switchingLimit;
 	
 
 };

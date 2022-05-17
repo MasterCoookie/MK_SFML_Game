@@ -87,13 +87,17 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 			recOfDifferent.left = 400;
 			this->charactersMatrix[this->playerTwoChoice]->setIntRect(*(this->charactersTexture),recOfDifferent);
 		}
-		else {
-			////set first player
-			//this->charactersMatrix[this->playerOneChoice]->setPosition(200, (this->charactersMatrix[this->playerOneChoice]->getPosition()).y);
-			//sf::Vector2f vecOfNew = this->charactersMatrix[currChoice]->getPosition();
-			//this->charactersMatrix[currChoice]->setPosition(400, vecOfNew.y);
-			//this->playerTwoChoice = currChoice;
-			////set second player
+		else if (player == PlayerNumber::TWO) {
+			//set second player
+			sf::IntRect recOfNew = this->charactersMatrix[currChoice]->getIntRect();
+			recOfNew.left = 400;
+			this->charactersMatrix[currChoice]->setIntRect(*(this->charactersTexture), recOfNew);
+			this->playerTwoChoice = currChoice;
+			//set first player
+			sf::IntRect recOfDifferent = this->charactersMatrix[this->playerOneChoice]->getIntRect();
+			recOfDifferent.left = 200;
+			this->charactersMatrix[this->playerOneChoice]->setIntRect(*(this->charactersTexture), recOfDifferent);
+		
 		}
 	}
 	else {
