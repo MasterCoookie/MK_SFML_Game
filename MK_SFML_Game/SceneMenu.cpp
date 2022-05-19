@@ -4,8 +4,9 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 {
 	this->window = win;
 	this->initBackground("menu.png");
-	this->initCharactersMatrix("./SceneMenu/elem1.png");
 	this->initVariables();
+	this->initCharactersMatrix("./SceneMenu/elem1.png");
+	
 }
 
 void SceneMenu::run()

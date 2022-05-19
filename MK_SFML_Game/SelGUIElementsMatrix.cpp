@@ -4,7 +4,7 @@ SelGUIElementsMatrix::SelGUIElementsMatrix(std::string texName, int nrows, int  
 {
 	this->initTexture(texName);
 	this->initVariables(elementHeight, elementWidth);
-	this->initCharactersMatrix(nrows, ncols,230,200); //  @TODO argumenty maj¹ byæ z konstruktora
+	this->initCharactersMatrix(nrows, ncols, 230, 200); //  @TODO argumenty maj¹ byæ z konstruktora
 	this->playerOneChoice = 0;
 	this->playerTwoChoice = this->cols - 1;
 }
@@ -63,7 +63,7 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 	}
 	currChoice += offset;
 	if (currChoice >=0 && currChoice < this->charactersMatrix.size()) {
-		std::cout << "dupa\n";
+		
 		sf::IntRect recOfOld = this->charactersMatrix[currChoice - offset]->getIntRect();
 		recOfOld.left = 0;
 		this->charactersMatrix[currChoice - offset]->setIntRect(*(this->charactersTexture),recOfOld);
@@ -102,7 +102,7 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 	}
 	else {
 		//do nothing
-		std::cout << "niedupa\n";
+		
 	}
 }
 
