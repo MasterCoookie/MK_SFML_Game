@@ -9,7 +9,7 @@ public:
     ~SelectableGUIElement();
     void update();
     void render(sf::RenderTarget* target);
-    void switchSprite(int left);
+    void switchSprite(sf::Texture& tex,int left);
 private:
     void initVariables();
     bool isSelected; //TODO zmieniæ na enum - trzy stany, selected by player1, player2, nonselected

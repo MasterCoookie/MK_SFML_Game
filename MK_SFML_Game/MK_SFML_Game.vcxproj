@@ -166,7 +166,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneLoadingScreen.cpp" />
+    <ClCompile Include="SceneWelcomeScreen.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SelectableGUIElement.cpp" />
