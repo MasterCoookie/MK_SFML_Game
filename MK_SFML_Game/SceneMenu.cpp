@@ -22,9 +22,11 @@ void SceneMenu::run()
 std::vector<std::string> SceneMenu::getResult()
 {
 	//std::vector<std::string> vec = { "char" + std::to_string(this->matrix->getPlayerOneChoice()+1), "char" + std::to_string(this->matrix->getPlayerTwoChoice() + 1) }; //returns PATH to the files with chosen characters
-	std::string player1 = std::to_string(this->matrix->getPlayerOneChoice());
-	std::string player2 = std::to_string(this->matrix->getPlayerOneChoice());
-	
+	std::string player1 = std::to_string(this->matrix->getPlayerOneChoice()+1);
+	std::string player2 = std::to_string(this->matrix->getPlayerTwoChoice()+1);
+	std::cout << "Player One choice: " << player1 << std::endl;
+	std::cout << "Player Two choice: " << player2 << std::endl;
+
 	// DEBUG VERSION:
 	std::vector<std::string> vec = { "char1","char2" };
 	return vec;
@@ -127,7 +129,7 @@ void SceneMenu::setAreCharactersPicked(bool value)
 void SceneMenu::initVariables()
 {
 	this->arePicked = false;
-	this->switchingLimit = 5;
+	this->switchingLimit = 3;
 	this->sincePlayerOneSwitched = 0;
 	this->sincePlayerTwoSwitched = 0;
 }
