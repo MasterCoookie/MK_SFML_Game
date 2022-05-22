@@ -44,6 +44,7 @@ private:
 	//World
 	sf::Texture worldBcgTex;
 	sf::Sprite worldBcg;
+	sf::View* view;
 
 	//Players
 	Player* player1;
