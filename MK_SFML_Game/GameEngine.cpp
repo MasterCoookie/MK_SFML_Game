@@ -253,9 +253,14 @@ void GameEngine::updateAttacksCollision() {
 }
 
 void GameEngine::updateView() {
-	std::cout << this->view->getCenter().x << "\n";
+	std::cout << "view: " << this->view->getCenter().x << "\n";
+	std::cout << "player: " << this->player1->getPosition().x << "\n";
 
-
+	if ((this->player1->getPosition().x - (player1->getBounds().width / 3) < (this->view->getCenter().x - 640.f)) && this->view->getCenter().x > 640.f) {
+		//std::cout << "dupa\n";
+		this->view->move(-10.f, 0.f);
+		this->window->setView(*this->view);
+	}
 }
 
 void GameEngine::render() {
