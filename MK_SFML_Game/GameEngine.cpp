@@ -51,6 +51,8 @@ void GameEngine::initWorld(std::string textureName) {
 	}
 	//set bcg to loaded texture
 	this->worldBcg.setTexture(this->worldBcgTex);
+
+	
 }
 
 void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
@@ -59,10 +61,13 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	this->player2 = new Player(p2charName);
 
 	//place players in the right position
-	this->player1->setPosition(200.f, 800.f - this->player1->getBounds().height);
+	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
 	this->player1->setRightFacing(true);
-	this->player2->setPosition(1080.f - this->player2->getBounds().width, 800.f - this->player2->getBounds().height);
+	this->player2->setPosition(1720.f - this->player2->getBounds().width, 800.f - this->player2->getBounds().height);
 	this->player2->setRightFacing(false);
+
+	this->view->move(640.f, 0.f);
+	this->window->setView(*this->view);
 }
 
 void GameEngine::initWindow() {
@@ -110,6 +115,9 @@ void GameEngine::update() {
 	
 	read_movement.join();
 	async_movement.join();
+
+	this->updateView();
+
 	//move players
 	/*if (this->player1->canMove()) {
 		this->player1->duck();
@@ -242,6 +250,12 @@ void GameEngine::updateAttacksCollision() {
 	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getBounds().intersects(this->player1->getBounds())) {
 		this->player1->takeHit(this->player2->getCurrentAttack());
 	}
+}
+
+void GameEngine::updateView() {
+	std::cout << this->view->getCenter().x << "\n";
+
+
 }
 
 void GameEngine::render() {

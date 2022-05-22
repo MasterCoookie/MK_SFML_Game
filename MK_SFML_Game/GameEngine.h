@@ -35,6 +35,7 @@ private:
 	void updatePlayersCross();
 	void updatePlayersCollision();
 	void updateAttacksCollision();
+	void updateView();
 
 	// renders
 	void render() override;
