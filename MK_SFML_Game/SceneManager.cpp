@@ -19,7 +19,7 @@ void SceneManager::run()
 	
 		
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
-		std::for_each(this->scenesToExecute.begin(), this->scenesToExecute.end(), [this](Scene* s) {																		// for each <3 brachu 
+		std::ranges::for_each(scenesToExecute, [this](Scene* s) {																		// for each <3 brachu 
 			this->executeScene(s);									
 			});
 		if (this->interSceneData[0] != "rematch" && this->window->isOpen()) {
