@@ -11,6 +11,8 @@ GameEngine::GameEngine() {
 GameEngine::GameEngine(sf::RenderWindow* win) {
 	//all inits
 	this->window = win;
+	sf::View view(sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
+	this->window->setView(view);
 	this->initVariables();
 	this->initWorld("bcg.png");
 }
