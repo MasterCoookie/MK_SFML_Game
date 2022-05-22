@@ -1,7 +1,7 @@
 #pragma once
 #include <algorithm>
 #include "GameEngine.h"
-#include "SceneLoadingScreen.h"
+#include "SceneWelcomeScreen.h"
 #include "SceneMenu.h"
 
 class SceneManager

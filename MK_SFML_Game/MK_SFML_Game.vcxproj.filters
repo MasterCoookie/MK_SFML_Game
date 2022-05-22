@@ -68,7 +68,7 @@
     <ClInclude Include="Scene.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="SceneLoadingScreen.h">
+    <ClInclude Include="SceneWelcomeScreen.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">

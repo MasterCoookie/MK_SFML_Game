@@ -1,7 +1,7 @@
-#include "SceneLoadingScreen.h"
+#include "SceneWelcomeScreen.h"
 
-SceneLoadingScreen::SceneLoadingScreen() {}
-SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
+SceneWelcomeScreen::SceneWelcomeScreen() {}
+SceneWelcomeScreen::SceneWelcomeScreen(sf::RenderWindow* win)
 {
 	this->window = win;
 	this->setCurrentSeconds(0.f);
@@ -11,9 +11,9 @@ SceneLoadingScreen::SceneLoadingScreen(sf::RenderWindow* win)
 }
 ;
 
-SceneLoadingScreen::~SceneLoadingScreen() {};
+SceneWelcomeScreen::~SceneWelcomeScreen() {};
 
-void SceneLoadingScreen::run() {
+void SceneWelcomeScreen::run() {
 	//UNCOMMENT TO DISPLAY LOADING SCREEN!
 	while (!this->overTime && this->window->isOpen()) { 
 		this->pollEvents();
@@ -22,15 +22,15 @@ void SceneLoadingScreen::run() {
 	}
 };
 
-std::vector<std::string> SceneLoadingScreen::getResult() {
+std::vector<std::string> SceneWelcomeScreen::getResult() {
 	std::vector<std::string> vec; //returns nothing, no need to pass any parameters beetwen scene loading screen and rest of the programme
 	return vec; 
 }
-void SceneLoadingScreen::setInterSceneValues(std::vector<std::string>& vec)
+void SceneWelcomeScreen::setInterSceneValues(std::vector<std::string>& vec)
 {
 };
 
-void SceneLoadingScreen::pollEvents() {
+void SceneWelcomeScreen::pollEvents() {
 	sf::Event e;
 	while (this->window->pollEvent(e)) {
 		//red cross clicked
@@ -50,19 +50,19 @@ void SceneLoadingScreen::pollEvents() {
 	}
 };
 
-void SceneLoadingScreen::update() {
+void SceneWelcomeScreen::update() {
 	this->currentSeconds += 0.03;
 	if (this->currentSeconds > this->showForSeconds) {
 		this->setOverTime(true);
 	}
 };
 
-void SceneLoadingScreen::render() {
+void SceneWelcomeScreen::render() {
 	this->window->clear();
 	this->window->draw(this->loadingScreenSprite);
 	this->window->display();
 }
-void SceneLoadingScreen::initTexture(std::string textureName)
+void SceneWelcomeScreen::initTexture(std::string textureName)
 {
 	if (!this->loadingScreenTexture.loadFromFile("./Textures/" + textureName)) {
 		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load laod img" << std::endl;
@@ -70,17 +70,17 @@ void SceneLoadingScreen::initTexture(std::string textureName)
 	//set load to loaded texture
 	this->loadingScreenSprite.setTexture(this->loadingScreenTexture);
 }
-void SceneLoadingScreen::setCurrentSeconds(float num)
+void SceneWelcomeScreen::setCurrentSeconds(float num)
 {
 	this->currentSeconds = num;
 }
 
-void SceneLoadingScreen::setShowForSeconds(float num)
+void SceneWelcomeScreen::setShowForSeconds(float num)
 {
 	this->showForSeconds = num;
 }
 
-void SceneLoadingScreen::setOverTime(bool value)
+void SceneWelcomeScreen::setOverTime(bool value)
 {
 	this->overTime = value;
 }

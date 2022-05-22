@@ -182,7 +182,7 @@
     <ClInclude Include="GUIElement.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneLoadingScreen.h" />
+    <ClInclude Include="SceneWelcomeScreen.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SelectableGUIElement.h" />

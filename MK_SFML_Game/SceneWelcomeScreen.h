@@ -1,13 +1,13 @@
 #pragma once
 #include "Scene.h"
 
-class SceneLoadingScreen :
+class SceneWelcomeScreen :
     public Scene
 {
 public:
-    SceneLoadingScreen();
-    SceneLoadingScreen(sf::RenderWindow* win);
-    ~SceneLoadingScreen();
+    SceneWelcomeScreen();
+    SceneWelcomeScreen(sf::RenderWindow* win);
+    ~SceneWelcomeScreen();
 
     void run() override;
     std::vector<std::string> getResult() override;

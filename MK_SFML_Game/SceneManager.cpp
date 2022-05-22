@@ -46,7 +46,7 @@ void SceneManager::initWindow()
 
 void SceneManager::initScenesToExecute()
 {
-	this->scenesToExecute.push_back(new SceneLoadingScreen(this->window));
+	this->scenesToExecute.push_back(new SceneWelcomeScreen(this->window));
 	this->scenesToExecute.push_back(new SceneMenu(this->window));
 	this->scenesToExecute.push_back(new GameEngine(this->window));
 
