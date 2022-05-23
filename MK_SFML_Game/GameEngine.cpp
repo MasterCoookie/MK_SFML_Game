@@ -253,12 +253,24 @@ void GameEngine::updateAttacksCollision() {
 }
 
 void GameEngine::updateView() {
+	//tmp
 	std::cout << "view: " << this->view->getCenter().x << "\n";
-	std::cout << "player: " << this->player1->getPosition().x << "\n";
+	std::cout << "player: " << this->player2->getPosition().x << "\n";
 
-	if ((this->player1->getPosition().x - (player1->getBounds().width / 3) < (this->view->getCenter().x - 640.f)) && this->view->getCenter().x > 640.f) {
+	float dist_between_players = this->player2->getPosition().x - this->player2->getBounds().width - this->player1->getPosition().x;
+
+	//TODO - rewrite to function
+	if ((this->player1->getPosition().x - (player1->getBounds().width / 4) < (this->view->getCenter().x - 640.f))
+		&& this->view->getCenter().x > 640.f
+		&& dist_between_players < 1060.f) {
 		//std::cout << "dupa\n";
 		this->view->move(-10.f, 0.f);
+		this->window->setView(*this->view);
+	} else if ((this->player2->getPosition().x + (player1->getBounds().width / 4) > (this->view->getCenter().x + 640.f))
+		&& this->view->getCenter().x < 1920.f
+		&& dist_between_players < 1060.f) {
+		//std::cout << "dupa\n";
+		this->view->move(+10.f, 0.f);
 		this->window->setView(*this->view);
 	}
 }
