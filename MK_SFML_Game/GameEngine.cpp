@@ -116,6 +116,8 @@ void GameEngine::update() {
 	read_movement.join();
 	async_movement.join();
 
+	this->updatePlayersScreenCollision();
+
 	this->updateView();
 
 	//move players
@@ -239,6 +241,16 @@ void GameEngine::updatePlayersCollision() {
 				this->player2->GameObject::move(-posDiff, 0.f);
 			}
 		}
+	}
+}
+
+void GameEngine::updatePlayersScreenCollision() {
+	//TODO - async functions for both players
+	if (this->player1->getPosition().x < this->view->getCenter().x - 640.f) {
+		this->player1->setPosition(this->view->getCenter().x - 640.f, this->player1->getPosition().y);
+	}
+	if (this->player2->getPosition().x > this->view->getCenter().x + 640.f) {
+		this->player2->setPosition(this->view->getCenter().x + 640.f, this->player2->getPosition().y);
 	}
 }
 

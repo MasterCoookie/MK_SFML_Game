@@ -34,6 +34,7 @@ private:
 	
 	void updatePlayersCross();
 	void updatePlayersCollision();
+	void updatePlayersScreenCollision();
 	void updateAttacksCollision();
 	void updateView();
 
