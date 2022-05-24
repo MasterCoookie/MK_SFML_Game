@@ -266,8 +266,8 @@ void GameEngine::updateAttacksCollision() {
 
 void GameEngine::updateView() {
 	//tmp
-	std::cout << "view: " << this->view->getCenter().x << "\n";
-	std::cout << "player: " << this->player2->getPosition().x << "\n";
+	//std::cout << "view: " << this->view->getCenter().x << "\n";
+	//std::cout << "player: " << this->player2->getPosition().x << "\n";
 
 	float dist_between_players = this->player2->getPosition().x - this->player2->getBounds().width - this->player1->getPosition().x;
 
