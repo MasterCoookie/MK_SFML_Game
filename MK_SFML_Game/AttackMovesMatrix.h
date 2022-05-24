@@ -7,7 +7,8 @@ class AttackMovesMatrix
 public:
 	AttackMovesMatrix();
 	~AttackMovesMatrix();
-
+	void initMatrix(std::string characterName);
+	AttackMove& getAttackMove(bool matrix[7]);
 private:
 	 matrix attackMoveMatrix;
 };
