@@ -1,15 +1,20 @@
 #include <unordered_map>
+#include <filesystem>
+#include <fstream>
 #include "AttackMove.h"
 #pragma once
-using matrix = std::unordered_map<bool, std::unordered_map<bool, std::unordered_map<bool, std::unordered_map<bool, std::unordered_map <bool, std::unordered_map<bool, std::unordered_map <bool, AttackMove*>>>>>>>;
+
 class AttackMovesMatrix
 {
 public:
-	AttackMovesMatrix();
+	AttackMovesMatrix(std::string charName);
 	~AttackMovesMatrix();
 	void initMatrix(std::string characterName);
+	bool doesAttackMoveExist(bool matrix[7]);
 	AttackMove& getAttackMove(bool matrix[7]);
 private:
-	 matrix attackMoveMatrix;
+	std::unordered_map<std::string, AttackMove* > attackMoveMatrix;
+
+	std::string convertBoolToString(bool matrix[7]);
 };
 
