@@ -45,8 +45,8 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	this->startupTimeMax = 5;
 	this->lifespanMax = 4;
 	this->targetH = TargetHeight::HIGH;
-	this->onHitStagger = 8;
 
+	this->onHitStagger = 8;
 	this->onBlockStagger = 5;
 
 	this->onHitRecovery = 3;
@@ -57,7 +57,15 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	
 	this->knockup = -35;
 	//USED ONLY IN DEBUG ENDS
-	
+}
+
+AttackMove::AttackMove(float _xSize, float _ySize, std::string _charName, int _knockback, int _knockup, float _yOffset, float _xOffset, int _startupTimeMax, int _lifespanMax,
+	TargetHeight _targetH, int _dmg, int _onHitStagger, int _onBlockStagger, int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery) :
+	knockback(_knockback), knockup(_knockup), xOffset(_xOffset), yOffset(_yOffset), startupTimeMax(_startupTimeMax), lifespanMax(_lifespanMax), targetH(_targetH), dmg(_dmg),
+	onHitStagger(_onHitStagger), onBlockStagger(_onBlockStagger), onHitRecovery(_onHitRecovery), onBlockRecovery(_onBlockRecovery), onMissRecovery(_onMissRecovery) {
+	this->initVariables();
+
+
 }
 
 AttackMove::~AttackMove() {
@@ -165,7 +173,7 @@ void AttackMove::update() {
 
 void AttackMove::render(sf::RenderTarget* target) {
 	if (this->isActive) {
-		this->sprite.setTexture(this->atkTexture);
+		this->sprite.setTexture(*this->atkTexture);
 		target->draw(this->sprite);
 	}
 	

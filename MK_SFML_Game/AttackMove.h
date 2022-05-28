@@ -7,6 +7,15 @@ class AttackMove : public GameObject {
 public:
 	AttackMove();
 	AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing, std::string charName);
+	//file reading constructor
+	AttackMove(float _xSize, float _ySize,
+		std::string _charName,
+		int _knockback, int _knockup,
+		float _yOffset, float _xOffset,
+		int _startupTimeMax, int _lifespanMax,
+		TargetHeight _targetH, int _dmg,
+		int _onHitStagger, int _onBlockStagger, 
+		int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery);
 	~AttackMove();
 
 	//accessors
@@ -99,7 +108,7 @@ private:
 
 	void initVariables();
 
-	sf::Texture atkTexture;
+	sf::Texture* atkTexture;
 	sf::Texture* playerAtkTexture;
 
 };
