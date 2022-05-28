@@ -6,6 +6,8 @@ int main() {
 	
 	SceneManager kumbat;
 	kumbat.run();
-	
-	return 0;
+	//AttackMovesMatrix m("char1");
+	//bool ma[7] = { 1,0,0,0,0,0,1 };
+	//std::cout << m.doesAttackMoveExist(ma);
+	//return 0;
 }
