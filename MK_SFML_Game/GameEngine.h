@@ -37,6 +37,7 @@ private:
 	void updatePlayersScreenCollision();
 	void updateAttacksCollision();
 	void updateView();
+	void updateTimer();
 
 	// renders
 	void render() override;
@@ -47,6 +48,7 @@ private:
 	sf::Texture worldBcgTex;
 	sf::Sprite worldBcg;
 	sf::View* view;
+	sf::Time roundTimer;
 
 	//Players
 	Player* player1;

@@ -41,7 +41,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-
+	this->roundTimer = sf::seconds(40.f);
 }
 
 void GameEngine::initWorld(std::string textureName) {
@@ -105,6 +105,7 @@ void GameEngine::printDebug(){
 }
 
 void GameEngine::update() {
+	this->updateTimer();
 
 	this->player1->updateStagger();
 	this->player2->updateStagger();
@@ -285,6 +286,13 @@ void GameEngine::updateView() {
 		this->view->move(+10.f, 0.f);
 		this->window->setView(*this->view);
 	}
+}
+
+void GameEngine::updateTimer() {
+	this->roundTimer -= sf::seconds(1.f / 30.f);
+	//if (floor(this->roundTimer.asSeconds()) {
+	std::cout << "Round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
+	//}
 }
 
 void GameEngine::render() {
