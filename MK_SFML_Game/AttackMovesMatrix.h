@@ -15,6 +15,6 @@ public:
 private:
 	std::unordered_map<std::string, AttackMove* > attackMoveMatrix;
 
-	std::string convertBoolToString(bool matrix[7]);
+	
 };
 
