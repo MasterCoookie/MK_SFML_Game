@@ -163,9 +163,15 @@ void Player::recover(const float frames) {
 bool Player::selectAttack() {
 	//TMP
 	//TODO - actually select an attack
-	if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
-		this->state = State::ATTACKING;
-		this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing, this->charName);
+	//if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
+	//	this->state = State::ATTACKING;
+	//	//this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing, this->charName);
+	//	return true;
+	//}
+	//return false;
+	AttackMovesMatrix matrix(this->charName);
+	if (matrix.doesAttackMoveExist(this->movementMatrix)) {
+		this->currentAttack = AttackMove(matrix.getAttackMove(this->movementMatrix), this->getPosition(), this->isRightFacing);
 		return true;
 	}
 	return false;

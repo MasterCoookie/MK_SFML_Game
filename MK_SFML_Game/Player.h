@@ -2,6 +2,7 @@
 
 #include "AttackMove.h"
 #include "Animator.h"
+#include "AttackMovesMatrix.h"
 
 enum class Position { STANDING, DUCKING, AIRBORNE };
 
