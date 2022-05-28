@@ -169,7 +169,7 @@ bool Player::selectAttack() {
 	//	return true;
 	//}
 	//return false;
-	if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
+	if (this->state != State::ATTACKING && (this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
 
 		AttackMovesMatrix matrix(this->charName);
 		if (matrix.doesAttackMoveExist(this->movementMatrix)) {

@@ -59,29 +59,34 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 	//USED ONLY IN DEBUG ENDS
 }
 
-AttackMove::AttackMove(float _xSize, float _ySize, sf::Texture* _atkTexture, sf::Texture* _playerAtkTexture, int _knockback, int _knockup, float _yOffset, float _xOffset, int _startupTimeMax, int _lifespanMax,
+AttackMove::AttackMove(float _xSize, float _ySize, sf::Texture* _atkTexture, sf::Texture* _playerAtkTexture, int _knockback, int _knockup, float _xOffset, float _yOffset, int _startupTimeMax, int _lifespanMax,
 	TargetHeight _targetH, int _dmg, int _onHitStagger, int _onBlockStagger, int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery) :
 	atkTexture(_atkTexture), playerAtkTexture(_playerAtkTexture), knockback(_knockback), knockup(_knockup), xOffset(_xOffset), yOffset(_yOffset), startupTimeMax(_startupTimeMax), lifespanMax(_lifespanMax), targetH(_targetH), dmg(_dmg),
 	onHitStagger(_onHitStagger), onBlockStagger(_onBlockStagger), onHitRecovery(_onHitRecovery), onBlockRecovery(_onBlockRecovery), onMissRecovery(_onMissRecovery) {
-
+	this->initVariables();
 }
 
 AttackMove::AttackMove(const AttackMove& move, const sf::Vector2f _pos, bool _isRightFacing) :
-	atkTexture(move.atkTexture), playerAtkTexture(move.playerAtkTexture), knockback(move.knockback), knockup(move.knockup), xOffset(move.xOffset), yOffset(move.yOffset), startupTimeMax(move.startupTime),
+	atkTexture(move.atkTexture), playerAtkTexture(move.playerAtkTexture), knockback(move.knockback), knockup(move.knockup), xOffset(move.xOffset), yOffset(move.yOffset), startupTimeMax(move.startupTimeMax),
 	lifespanMax(move.lifespanMax), targetH(move.targetH), dmg(move.dmg),
 	onHitStagger(move.onHitStagger), onBlockStagger(move.onBlockStagger), onHitRecovery(move.onHitRecovery), onBlockRecovery(move.onBlockRecovery), onMissRecovery(move.onMissRecovery) {
 	this->initVariables();
+
+	if (!_isRightFacing) {
+		this->xOffset = -this->xOffset;
+	}
 
 	this->shape.setPosition(_pos.x + this->xOffset, _pos.y + this->yOffset);
 
 	this->sprite.setPosition(_pos.x + this->xOffset, _pos.y + this->yOffset);
 
-	if (_isRightFacing) {
+	if (!_isRightFacing) {
 		this->shape.scale(-1.f, 1.f);
 		this->sprite.scale(-1.f, 1.f);
 		this->knockback = -this->knockback;
-		this->xOffset = -130.f;
 	}
+
+	
 }
 
 AttackMove::~AttackMove() {

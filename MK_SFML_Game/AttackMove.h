@@ -11,7 +11,7 @@ public:
 	AttackMove(float _xSize, float _ySize,
 		sf::Texture* _atkTexture, sf::Texture* _playerAtkTexture,
 		int _knockback, int _knockup,
-		float _yOffset, float _xOffset,
+		float _xOffset, float _yOffset,
 		int _startupTimeMax, int _lifespanMax,
 		TargetHeight _targetH, int _dmg,
 		int _onHitStagger, int _onBlockStagger, 
