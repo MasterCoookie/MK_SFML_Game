@@ -51,6 +51,7 @@ private:
 	sf::Sprite worldBcg;
 	sf::View* view;
 	sf::Time roundTimer;
+	sf::Time roundTimerMax;
 
 	//Players
 	Player* player1;

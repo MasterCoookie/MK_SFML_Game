@@ -41,7 +41,8 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->roundTimer = sf::seconds(40.f);
+	this->roundTimerMax = sf::seconds(10.f);
+	this->roundTimer = this->roundTimerMax;
 }
 
 void GameEngine::initWorld(std::string textureName) {
@@ -300,13 +301,27 @@ void GameEngine::updateView() {
 
 void GameEngine::updateTimer() {
 	this->roundTimer -= sf::seconds(1.f / 30.f);
-	//std::cout << "Round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
+	std::cout << "round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
+
 	if (this->roundTimer.asSeconds() <= 0) {
-		//TODO - end round
+		this->endRound();
+		const int p1_hp = this->player1->getHp();
+		const int p2_hp = this->player2->getHp();
+		if (p1_hp > p2_hp) {
+			this->player1->winRound();
+			this->player2->looseRound();
+		} else if (p1_hp < p2_hp) {
+			this->player2->winRound();
+			this->player1->looseRound();
+		} else {
+			this->player1->winRound();
+			this->player2->winRound();
+		}
 	}
 }
 
 void GameEngine::endRound() {
+	this->roundTimer = this->roundTimerMax;
 	std::cout << "Round ended!\n";
 	if (this->player1->getRoundsWon() >= 2) {
 		std::cout << "Player1 won!\n";
