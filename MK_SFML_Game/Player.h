@@ -88,6 +88,8 @@ private:
 
 	bool movementMatrix[7] = { 0 };
 
+	AttackMovesMatrix* movesMatrix;
+
 	//copy of an attack
 	AttackMove currentAttack;
 

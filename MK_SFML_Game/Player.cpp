@@ -18,6 +18,8 @@ Player::Player(std::string _charName) {
 	//this->initTexture(this->blockingDuckTexture, "./Characters/" + _charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
 
+	this->movesMatrix = new AttackMovesMatrix(_charName);
+
 }
 
 Player::~Player() {
@@ -171,9 +173,8 @@ bool Player::selectAttack() {
 	//return false;
 	if (this->state != State::ATTACKING && (this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
 
-		AttackMovesMatrix matrix(this->charName);
-		if (matrix.doesAttackMoveExist(this->movementMatrix)) {
-			this->currentAttack = AttackMove(matrix.getAttackMove(this->movementMatrix), this->getPosition(), this->isRightFacing);
+		if (this->movesMatrix->doesAttackMoveExist(this->movementMatrix)) {
+			this->currentAttack = AttackMove(this->movesMatrix->getAttackMove(this->movementMatrix), this->getPosition(), this->isRightFacing);
 			this->state = State::ATTACKING;
 			return true;
 		}
