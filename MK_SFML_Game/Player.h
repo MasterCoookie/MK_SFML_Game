@@ -21,6 +21,8 @@ public:
 	void setMovementMatrix(bool forward, bool back, bool up, bool down, bool lHand, bool rHand, bool kick);
 	void resetMovementMatrix();
 	void setState(const State& state);
+	void winRound();
+	void looseRound();
 	
 
 	//getters
@@ -29,6 +31,8 @@ public:
 	const Position getBodyPosition();
 	const State getState();
 	AttackMove& getCurrentAttack();
+	const int getRoundsWon();
+	const int getHp();
 	
 	//overrides
 	void update() override;
@@ -67,6 +71,8 @@ private:
 
 	float hpMax;
 	float hp;
+
+	int roundsWon;
 
 	float staggerFrames;
 	float recoveryFrames;

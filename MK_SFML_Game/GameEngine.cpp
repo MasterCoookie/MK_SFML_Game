@@ -258,10 +258,20 @@ void GameEngine::updatePlayersScreenCollision() {
 void GameEngine::updateAttacksCollision() {
 	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getBounds().intersects(this->player2->getBounds())) {
 		this->player2->takeHit(this->player1->getCurrentAttack());
+		if (this->player2->getHp() <= 0) {
+			this->player1->winRound();
+			this->player2->looseRound();
+			this->endRound();
+		}
 	}
 
 	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getBounds().intersects(this->player1->getBounds())) {
 		this->player1->takeHit(this->player2->getCurrentAttack());
+		if (this->player1->getHp() <= 0) {
+			this->player2->winRound();
+			this->player1->looseRound();
+			this->endRound();
+		}
 	}
 }
 
@@ -290,9 +300,19 @@ void GameEngine::updateView() {
 
 void GameEngine::updateTimer() {
 	this->roundTimer -= sf::seconds(1.f / 30.f);
-	//if (floor(this->roundTimer.asSeconds()) {
-	std::cout << "Round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
-	//}
+	//std::cout << "Round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
+	if (this->roundTimer.asSeconds() <= 0) {
+		//TODO - end round
+	}
+}
+
+void GameEngine::endRound() {
+	std::cout << "Round ended!\n";
+	if (this->player1->getRoundsWon() >= 2) {
+		std::cout << "Player1 won!\n";
+	} else if (this->player2->getRoundsWon() >= 2) {
+		std::cout << "Player2 won!\n";
+	}
 }
 
 void GameEngine::render() {

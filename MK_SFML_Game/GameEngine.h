@@ -27,6 +27,7 @@ private:
 
 	//otehers
 	void printDebug();
+	void endRound();
 
 
 	//updates
@@ -38,6 +39,7 @@ private:
 	void updateAttacksCollision();
 	void updateView();
 	void updateTimer();
+	
 
 	// renders
 	void render() override;

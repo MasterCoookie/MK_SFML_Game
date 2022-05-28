@@ -75,6 +75,15 @@ void Player::setState(const State& state) {
 	this->state = state;
 }
 
+void Player::winRound() {
+	this->hp = hpMax;
+	++this->roundsWon;
+}
+
+void Player::looseRound() {
+	this->hp = hpMax;
+}
+
 void Player::move() {
 	const int movementSpeed = 14;
 	//move the player, dependent on direction its facing
@@ -240,6 +249,14 @@ AttackMove& Player::getCurrentAttack() {
 	return this->currentAttack;
 }
 
+const int Player::getRoundsWon() {
+	return this->roundsWon;
+}
+
+const int Player::getHp() {
+	return this->hp;
+}
+
 void Player::update() {
 	std::cout << this->getPosition().y << "\n";
 }
@@ -270,6 +287,7 @@ void Player::initVariables() {
 	this->recoveryFrames = 0.f;
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
 	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+	this->roundsWon = 0;
 
 	this->playerTextures = {
 		{ "ducking", nullptr },
