@@ -169,10 +169,15 @@ bool Player::selectAttack() {
 	//	return true;
 	//}
 	//return false;
-	AttackMovesMatrix matrix(this->charName);
-	if (matrix.doesAttackMoveExist(this->movementMatrix)) {
-		this->currentAttack = AttackMove(matrix.getAttackMove(this->movementMatrix), this->getPosition(), this->isRightFacing);
-		return true;
+	if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
+
+		AttackMovesMatrix matrix(this->charName);
+		if (matrix.doesAttackMoveExist(this->movementMatrix)) {
+			this->currentAttack = AttackMove(matrix.getAttackMove(this->movementMatrix), this->getPosition(), this->isRightFacing);
+			this->state = State::ATTACKING;
+			return true;
+		}
+		
 	}
 	return false;
 }
