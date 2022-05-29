@@ -58,8 +58,15 @@ void GameEngine::initWorld(std::string textureName) {
 
 void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	//create players, based on character names
-	this->player1 = new Player(p1charName);
-	this->player2 = new Player(p2charName);
+	//this->player1 = new Player(p1charName); 	  deprecated
+	//this->player2 = new Player(p2charName);	  deprecated
+	// 
+	//load characters asynchronously
+	LoadingScreen ldscreen(this->window, p1charName, p2charName);
+	ldscreen.loadPlayers();
+	this->player1 = ldscreen.getPlayerOne();
+	this->player2 = ldscreen.getPlayerTwo();
+
 
 	//place players in the right position
 	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);

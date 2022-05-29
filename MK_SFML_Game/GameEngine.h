@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "Scene.h"
+#include "LoadingScreen.h"
 class GameEngine : public Scene{
 public:
 	GameEngine();
