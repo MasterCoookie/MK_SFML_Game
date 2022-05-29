@@ -10,8 +10,13 @@ public:
 	void update(int loadingPercent);
 	void render();
 private:
+	void initText();
+	void initTexture();
 	sf::RenderWindow* win;
 	sf::Text text;
+	sf::Font font;
+	sf::Texture* tex;
+	sf::Sprite sprite;
 	std::string playerOneName;
 	std::string playerTwoName;
 	Player* playerOne;

@@ -28,4 +28,5 @@ void DisplayLoadingStatus(LoadingScreen* load)
 		load->update(loadingPercent);
 		load->render();
 	}
+
 }

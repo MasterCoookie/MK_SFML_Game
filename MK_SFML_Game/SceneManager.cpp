@@ -16,8 +16,6 @@ SceneManager::~SceneManager()
 
 void SceneManager::run()
 {
-	
-		
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
 		std::ranges::for_each(scenesToExecute, [this](Scene* s) {																		// for each <3 brachu 
 			this->executeScene(s);									

@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include "LoadingScreen.h"
 #include "GameEngine.h"
 #include "SceneWelcomeScreen.h"
 #include "SceneMenu.h"
@@ -9,7 +10,6 @@ class SceneManager
 public:
 	SceneManager();
 	~SceneManager();
-
 	void run();
 private:
 
