@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="AsyncLoading.ixx" />
     <ClCompile Include="async_functions.ixx" />
     <ClCompile Include="AttackMove.cpp" />
     <ClCompile Include="AttackMovesMatrix.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GUIElement.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -181,6 +183,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GUIElement.h" />
+    <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneWelcomeScreen.h" />
