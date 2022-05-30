@@ -81,11 +81,6 @@ private:
 
 	//textures
 	sf::Texture* duckingTexture;
-	//sf::Texture* walkingFTexture;
-	//sf::Texture* walkingBTexture;
-	//sf::Texture* jumpingTexture;
-	//sf::Texture* blockingTexture;
-	//sf::Texture* blockingDuckTexture;
 	sf::Texture* attackingTexture;
 
 	//To map

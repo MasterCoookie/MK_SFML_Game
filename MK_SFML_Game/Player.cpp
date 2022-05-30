@@ -9,17 +9,9 @@ Player::Player(std::string _charName) {
 	this->initVariables();
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
-	//this->GameObject::initTexture(this->walkingFTexture, "./Characters/" + _charName + "/walking_f_1.png");
-	//this->GameObject::initTexture(this->walkingBTexture, "./Characters/" + _charName + "/walking_b_1.png");
-	//this->initTexture(this->duckingTexture, "./Characters/" + _charName + "/ducking_1.png");
-	// TODO - create actual jumping texture
-	//this->initTexture(this->jumpingTexture, "./Characters/" + _charName + "/jumping_1.png");
-	//this->initTexture(this->blockingTexture, "./Characters/" + _charName + "/blocking_1.png");
-	//this->initTexture(this->blockingDuckTexture, "./Characters/" + _charName + "/ducking_block_1.png");
 	this->initSprite(this->textureRect);
 
 	this->movesMatrix = new AttackMovesMatrix(_charName);
-
 }
 
 Player::~Player() {
@@ -355,8 +347,6 @@ void Player::updateMovement() {
 			}
 			else {
 				this->position = Position::STANDING;
-				/*this->sprite.setTexture(*(this->texture), true);
-				this->initSprite(this->textureRect);*/
 				this->setPosition(this->getPosition().x, 425);
 			}
 			
@@ -430,7 +420,7 @@ void Player::updateRecovery() {
 void Player::updateAnimation() {
 	if (this->state == State::IDLE && this->position == Position::STANDING && this->movementMatrix[0]) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_F) {
-				//continue animate walking forward
+			//continue animate walking forward
 			this->animator->update();
 			this->initSprite(*this->playerTextures.find("walking_f")->second, this->textureRect);
 		}
