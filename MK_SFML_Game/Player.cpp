@@ -193,28 +193,31 @@ void Player::attack() {
 
 void Player::takeHit(AttackMove& hitBy) {
 	if (!hitBy.getWasHitRegistered() && !hitBy.getWasBlockRegistered()) {
-		if (this->wasAttackBlocked(hitBy)) {
-			std::cout << "Blocked\n";
-			hitBy.registerBlock();
-			this->hp -= hitBy.getDmg()/10.f;
-			//TMP
-			std::cout << this->hp << "\n";
+		if (this->state != State::GETTING_UP || this->position != Position::LYING) {
+			if (this->wasAttackBlocked(hitBy)) {
+				std::cout << "Blocked\n";
+				hitBy.registerBlock();
+				this->hp -= hitBy.getDmg() / 10.f;
+				//TMP
+				std::cout << this->hp << "\n";
 
-			this->stagger(State::BLOCK_STAGGERED, hitBy.getOnBlockStagger());
-		} else {
-			this->hp -= hitBy.getDmg();
-			//TMP
-			std::cout << this->hp << "\n";
-			this->xAxisMomentum = hitBy.getKnockback();
-			if (hitBy.getKnockup()) {
-				this->position = Position::AIRBORNE;
-				this->yAxisMomentum = hitBy.getKnockup();
-				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+				this->stagger(State::BLOCK_STAGGERED, hitBy.getOnBlockStagger());
 			}
 			else {
-				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+				this->hp -= hitBy.getDmg();
+				//TMP
+				std::cout << this->hp << "\n";
+				this->xAxisMomentum = hitBy.getKnockback();
+				if (hitBy.getKnockup()) {
+					this->position = Position::AIRBORNE;
+					this->yAxisMomentum = hitBy.getKnockup();
+					this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+				}
+				else {
+					this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+				}
+				hitBy.registerHit();
 			}
-			hitBy.registerHit();
 		}
 	}
 	
