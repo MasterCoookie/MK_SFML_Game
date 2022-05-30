@@ -1,7 +1,7 @@
 #include "AttackMove.h"
 
 AttackMove::AttackMove() {
-
+	this->initVariables();
 }
 
 AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing, std::string charName) {
