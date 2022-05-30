@@ -11,9 +11,6 @@ public:
     void render(sf::RenderTarget* target);
     void switchSprite(sf::Texture& tex,int left);
 private:
-    void initVariables();
-    bool isSelected; //TODO zmieniæ na enum - trzy stany, selected by player1, player2, nonselected
-private:
-    void switchState();
+    void initVariables() override;
 };
 

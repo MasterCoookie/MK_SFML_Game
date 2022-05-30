@@ -3,16 +3,14 @@
 SelectableGUIElement::SelectableGUIElement(std::string fileName, int left, int top, int width, int height)
 {
 	this->initTexture(*(this->texture), fileName);
-	this->isSelected = false;
 	this->initSprite(left,top,width,height);
 }
 
 SelectableGUIElement::SelectableGUIElement(sf::Texture* tex, int left, int top, int width, int height, unsigned int xOnScreen, unsigned int yOnScreen)
 {
 	this->textureRect = new sf::IntRect(left, top, width, height);
-	this->isSelected = false;
-	this->initSprite(*tex,this->textureRect); //mo¿e siê dupiæ
-	this->setPosition(static_cast<float>(xOnScreen), static_cast<float>(yOnScreen)); //to do konwersja
+	this->initSprite(*tex,this->textureRect); 
+	this->setPosition(static_cast<float>(xOnScreen), static_cast<float>(yOnScreen)); 
 }
 
 SelectableGUIElement::~SelectableGUIElement()
@@ -22,12 +20,6 @@ SelectableGUIElement::~SelectableGUIElement()
 
 void SelectableGUIElement::update()
 {
-	if (this->isSelected) {
-
-	}
-	else {
-
-	}
 }
 
 void SelectableGUIElement::render(sf::RenderTarget* target)
@@ -42,14 +34,8 @@ void SelectableGUIElement::switchSprite(sf::Texture& tex, int left)
 	this->setIntRect(tex, recOfNew);
 }
 
-
 void SelectableGUIElement::initVariables()
 {
-
 }
 
-void SelectableGUIElement::switchState()
-{
-	this->isSelected = this->isSelected ? false : true;
-	this->update();
-}
+
