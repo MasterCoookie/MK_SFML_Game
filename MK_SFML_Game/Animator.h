@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-enum class AnimationType { STANDING, WALKING_F, WALKING_B, JUMPING, ATTACKING, GETTING_UP };
+enum class AnimationType { STANDING, WALKING_F, WALKING_B, JUMPING, ATTACKING, GETTING_UP, FALLING };
 
 class Animator {
 public:

@@ -302,6 +302,7 @@ void Player::initVariables() {
 		{ "ducking_block", nullptr },
 		{ "lying", nullptr },
 		{ "getting_up", nullptr },
+		{ "falling", nullptr },
 	};
 	this->initTexturesMap();
 }
@@ -335,9 +336,11 @@ void Player::updateMovement() {
 	GameObject::move(xAxisMomentum, yAxisMomentum);
 	// gravity
 	this->yAxisMomentum += 4.5f;
-		
+	
+	const unsigned int landing_border = (this->state != State::HIT_STAGGERED) ? 425 : 655;
+
 	//check for landing
-	if (this->getPosition().y > 425) {
+	if (this->getPosition().y > landing_border) {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
@@ -437,6 +440,8 @@ void Player::updateAnimation() {
 			this->textureRect = new sf::IntRect(0, 0, 150, 375);
 			delete this->animator;
 			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
+			this->initSprite(this->textureRect);
+			this->setPosition(this->getPosition().x, 425.f);
 		}
 	} else if(this->state == State::IDLE && this->position == Position::AIRBORNE) {
 			//continue animate jumping forward
@@ -477,7 +482,7 @@ void Player::updateAnimation() {
 		}
 	} else if (this->state == State::GETTING_UP) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::GETTING_UP) {
-			//continue animate attacking
+			//continue animate getting up
 			this->animator->update();
 			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
 		}
@@ -489,6 +494,21 @@ void Player::updateAnimation() {
 			delete this->animator;
 			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
 			this->animator = new Animator(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
+		}
+	}	else if (this->state == State::HIT_STAGGERED && this->position == Position::AIRBORNE) {
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::FALLING) {
+			//continue animate falling
+			this->animator->update();
+			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
+		}
+		else {
+			//start getup falling
+			//this->sprite.move(0.f, -50.f);
+			delete this->textureRect;
+			this->textureRect = new sf::IntRect(0, 0, 300, 150);
+			delete this->animator;
+			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
+			this->animator = new Animator(this->textureRect, 3000, 150, AnimationType::FALLING, true, false, 300);
 		}
 	}
 	else {
