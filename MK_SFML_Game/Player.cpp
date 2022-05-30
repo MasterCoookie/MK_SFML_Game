@@ -329,7 +329,7 @@ void Player::updateMovement() {
 	// gravity
 	this->yAxisMomentum += 4.5f;
 	
-	const unsigned int landing_border = (this->state != State::HIT_STAGGERED) ? 425 : 655;
+	const unsigned int landing_border = (this->state != State::HIT_STAGGERED) ? 425 : 655;//655
 
 	//check for landing
 	if (this->getPosition().y > landing_border) {
