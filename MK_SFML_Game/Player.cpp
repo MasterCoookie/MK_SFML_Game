@@ -219,6 +219,7 @@ void Player::takeHit(AttackMove& hitBy) {
 			if (hitBy.getKnockup()) {
 				this->position = Position::AIRBORNE;
 				this->yAxisMomentum = hitBy.getKnockup();
+				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
 			}
 			else {
 				this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
@@ -298,6 +299,7 @@ void Player::initVariables() {
 		{ "walking_f", nullptr },
 		{ "blocking", nullptr },
 		{ "ducking_block", nullptr },
+		{ "lying", nullptr },
 	};
 	this->initTexturesMap();
 }
@@ -337,10 +339,22 @@ void Player::updateMovement() {
 		this->yAxisMomentum = 0;
 		this->xAxisMomentum = 0;
 		if (this->position == Position::AIRBORNE) {
-			this->position = Position::STANDING;
-			/*this->sprite.setTexture(*(this->texture), true);
-			this->initSprite(this->textureRect);*/
-			this->setPosition(this->getPosition().x, 425);
+			if (this->state == State::HIT_STAGGERED) {
+				this->position = Position::LYING;
+
+				delete this->textureRect;
+				this->textureRect = new sf::IntRect(0, 0, 300, 150);
+				this->initSprite(*(this->playerTextures.find("lying")->second), this->textureRect);
+
+				this->setPosition(this->getPosition().x, 650);
+			}
+			else {
+				this->position = Position::STANDING;
+				/*this->sprite.setTexture(*(this->texture), true);
+				this->initSprite(this->textureRect);*/
+				this->setPosition(this->getPosition().x, 425);
+			}
+			
 		}
 	}
 
@@ -364,17 +378,22 @@ void Player::updateAttack() {
 }
 
 void Player::updateStagger() {
-	if (this->staggerFrames > 0.f) {
-		//tmp
-		//std::cout << this->staggerFrames << "\n";
-		--this->staggerFrames;
-	} else {
-		if(this->state == State::HIT_STAGGERED) {
-			this->state = State::IDLE;
-		} else if(this->state == State::BLOCK_STAGGERED) {
-			this->dropBlock(this->movementMatrix[3]);
+	if (!(this->position == Position::AIRBORNE)) {
+		if (this->staggerFrames > 0.f) {
+			//tmp
+			//std::cout << this->staggerFrames << "\n";
+			--this->staggerFrames;
+		}
+		else {
+			if (this->state == State::HIT_STAGGERED) {
+				this->state = State::IDLE;
+			}
+			else if (this->state == State::BLOCK_STAGGERED) {
+				this->dropBlock(this->movementMatrix[3]);
+			}
 		}
 	}
+	
 }
 
 void Player::updateRecovery() {

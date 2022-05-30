@@ -4,7 +4,7 @@
 #include "Animator.h"
 #include "AttackMovesMatrix.h"
 
-enum class Position { STANDING, DUCKING, AIRBORNE };
+enum class Position { STANDING, DUCKING, AIRBORNE, LYING };
 
 enum class State { IDLE, BLOCKING, ATTACKING, HIT_STAGGERED, BLOCK_STAGGERED };
 
