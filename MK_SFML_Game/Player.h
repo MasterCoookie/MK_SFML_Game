@@ -6,7 +6,7 @@
 
 enum class Position { STANDING, DUCKING, AIRBORNE, LYING };
 
-enum class State { IDLE, BLOCKING, ATTACKING, HIT_STAGGERED, BLOCK_STAGGERED };
+enum class State { IDLE, BLOCKING, ATTACKING, HIT_STAGGERED, BLOCK_STAGGERED, GETTING_UP };
 
 class Player : public GameObject {
 public:
@@ -57,6 +57,7 @@ public:
 	void updateMovement();
 	void updateAttack();
 	void updateStagger();
+	void updateGetUp();
 	void updateRecovery();
 	void updateAnimation();
 
@@ -75,6 +76,7 @@ private:
 	int roundsWon;
 
 	float staggerFrames;
+	float getUpFrames;
 	float recoveryFrames;
 
 	//textures

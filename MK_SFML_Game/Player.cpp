@@ -289,6 +289,7 @@ void Player::initVariables() {
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
 	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->roundsWon = 0;
+	this->getUpFrames = 10;
 
 	this->playerTextures = {
 		{ "ducking", nullptr },
@@ -300,6 +301,7 @@ void Player::initVariables() {
 		{ "blocking", nullptr },
 		{ "ducking_block", nullptr },
 		{ "lying", nullptr },
+		{ "getting_up", nullptr },
 	};
 	this->initTexturesMap();
 }
@@ -386,14 +388,29 @@ void Player::updateStagger() {
 		}
 		else {
 			if (this->state == State::HIT_STAGGERED) {
-				this->state = State::IDLE;
+				if (this->position == Position::LYING) {
+					this->state = State::GETTING_UP;
+				} else {
+					this->state = State::IDLE;
+				}
+				
 			}
 			else if (this->state == State::BLOCK_STAGGERED) {
 				this->dropBlock(this->movementMatrix[3]);
 			}
 		}
+		this->updateGetUp();
 	}
-	
+}
+
+void Player::updateGetUp() {
+	if (this->state == State::GETTING_UP) {
+		if (--this->getUpFrames < 0) {
+			this->state = State::IDLE;
+			this->position = Position::DUCKING;
+			this->getUpFrames = 10;
+		}
+	}
 }
 
 void Player::updateRecovery() {
@@ -458,7 +475,22 @@ void Player::updateAnimation() {
 			int maxW = 150 * this->currentAttack.getAnimationLen();
 			this->animator = new Animator(this->textureRect, maxW, 375, AnimationType::ATTACKING, false, false);
 		}
-	} 
+	} else if (this->state == State::GETTING_UP) {
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::GETTING_UP) {
+			//continue animate attacking
+			this->animator->update();
+			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
+		}
+		else {
+			//start getup animation
+			this->sprite.move(0.f, -50.f);
+			delete this->textureRect;
+			this->textureRect = new sf::IntRect(0, 0, 275, 200);
+			delete this->animator;
+			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
+			this->animator = new Animator(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
+		}
+	}
 	else {
 		if (this->state == State::IDLE && this->position == Position::STANDING) {
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::STANDING) {
@@ -468,10 +500,12 @@ void Player::updateAnimation() {
 			}
 			else {
 				//start animating standing
+				this->setPosition(this->getPosition().x, 425.f);
 				delete this->textureRect;
 				this->textureRect = new sf::IntRect(0, 0, 150, 375);
 				delete this->animator;
 				this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+				this->initSprite(this->textureRect);
 			}
 		}
 	}
