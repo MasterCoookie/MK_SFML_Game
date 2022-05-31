@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Scene.h"
 #include "LoadingScreen.h"
+#include "HealthBar.h"
 class GameEngine : public Scene{
 public:
 	GameEngine();
@@ -22,6 +23,7 @@ private:
 	void initVariables();
 	void initWorld(std::string textureName);
 	void initPlayers(std::string p1charName, std::string p2charName);
+	void initHealthBars();
 
 
 	void pollEvents() override;
@@ -57,5 +59,8 @@ private:
 	//Players
 	Player* player1;
 	Player* player2;
-
+	
+	//GUI
+	HealthBar* hbplayer1;
+	HealthBar* hbplayer2;
 };

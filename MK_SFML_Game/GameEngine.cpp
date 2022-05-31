@@ -15,6 +15,7 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 	this->window->setView(*this->view);
 	this->initVariables();
 	this->initWorld("bcg.png");
+	this->initHealthBars();
 }
 
 GameEngine::~GameEngine() { 
@@ -76,6 +77,12 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 
 	this->view->move(640.f, 0.f);
 	this->window->setView(*this->view);
+}
+
+void GameEngine::initHealthBars()
+{
+	this->hbplayer1 = new HealthBar(true);
+	this->hbplayer2 = new HealthBar(false);
 }
 
 void GameEngine::initWindow() {
@@ -180,9 +187,12 @@ void GameEngine::update() {
 
 	std::thread animation_th_p1(async_animation, this->player1);
 	std::thread animation_th_p2(async_animation, this->player2);
-
+	
 	animation_th_p1.join();
 	animation_th_p2.join();
+	this->hbplayer1->update(this->player1->getHp());
+	this->hbplayer2->update(this->player2->getHp());
+
 }
 
 void GameEngine::updateInput() {
@@ -350,6 +360,8 @@ void GameEngine::render() {
 	this->player1->render(this->window);
 	this->player2->render(this->window);
 
+	this->hbplayer1->render(this->window);
+	this->hbplayer2->render(this->window);
 
 	//display stuff
 	this->window->display();
