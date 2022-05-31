@@ -31,3 +31,10 @@ void HealthBar::update(float currentHealth)
 		this->healthShape->setPosition(newVec);
 	}
 }
+
+void HealthBar::move(float offsetX, float offsetY)
+{
+	this->healthShape->move(offsetX, offsetY);
+	this->originalPos.x += offsetX;
+	this->originalPos.y += offsetY;
+}

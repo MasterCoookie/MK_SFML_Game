@@ -43,6 +43,7 @@ private:
 	void updateView();
 	void updateTimer();
 	
+	void moveGUIElements(float offsetX, float offsetY);
 
 	// renders
 	void render() override;

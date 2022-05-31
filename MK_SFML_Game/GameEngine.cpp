@@ -42,7 +42,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->roundTimerMax = sf::seconds(10.f);
+	this->roundTimerMax = sf::seconds(20.f);
 	this->roundTimer = this->roundTimerMax;
 }
 
@@ -309,12 +309,14 @@ void GameEngine::updateView() {
 		&& dist_between_players < 1060.f) {
 		//std::cout << "dupa\n";
 		this->view->move(-10.f, 0.f);
+		this->moveGUIElements(-10.f, 0.f);
 		this->window->setView(*this->view);
 	} else if ((this->player2->getPosition().x + (player1->getBounds().width / 4) > (this->view->getCenter().x + 640.f))
 		&& this->view->getCenter().x < 1920.f
 		&& dist_between_players < 1060.f) {
 		//std::cout << "dupa\n";
 		this->view->move(+10.f, 0.f);
+		this->moveGUIElements(+10.f, 0.f);
 		this->window->setView(*this->view);
 	}
 }
@@ -338,6 +340,13 @@ void GameEngine::updateTimer() {
 			this->player2->winRound();
 		}
 	}
+}
+
+void GameEngine::moveGUIElements(float offsetX, float offsetY)
+{
+	this->hbplayer1->move(offsetX, offsetY);
+	this->hbplayer2->move(offsetX, offsetY);
+
 }
 
 void GameEngine::endRound() {

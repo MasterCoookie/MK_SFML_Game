@@ -12,6 +12,7 @@ public:
 	HealthBar(bool isLeft);
 	void render(sf::RenderWindow* win);
 	void update(float currentHealth);
+	void move(float offsetX, float offsetY);
 private:
 	bool isLeft;
 	sf::RectangleShape* healthShape;
