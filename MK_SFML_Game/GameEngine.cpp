@@ -44,7 +44,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->roundTimerMax = sf::seconds(70.f);
+	this->roundTimerMax = sf::seconds(90.f);
 	this->roundTimer = this->roundTimerMax;
 }
 

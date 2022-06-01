@@ -9,10 +9,7 @@ void Timer::update(sf::Time time)
 {
 	int num = time.asSeconds();
 	std::stringstream toset;
-	toset << std::setfill('0') << std::setw(2);
-	toset << std::to_string((num / 60));
-	toset << ":";
-	toset << std::setw(2)<<  std::to_string(num % 60);
+	toset << std::setfill('0') << std::setw(2) << num;
 	std::string read;
 	toset >> read;
 	this->text.setString(read);
@@ -36,8 +33,8 @@ void Timer::initText()
 	}
 	this->text.setFont(*this->font);
 	this->text.setString("00:00");
-	this->text.setCharacterSize(35);
+	this->text.setCharacterSize(40);
 	this->text.setFillColor(sf::Color::Black);
 	this->text.setStyle(sf::Text::Bold);
-	this->text.setPosition(1240, 50);
+	this->text.setPosition(1260, 50);
 }
