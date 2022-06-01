@@ -17,6 +17,7 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 	this->initWorld("bcg.png");
 	this->initHealthBars();
 	this->initTimer();
+	this->initWinCircles();
 }
 
 GameEngine::~GameEngine() { 
@@ -89,6 +90,13 @@ void GameEngine::initHealthBars()
 void GameEngine::initTimer()
 {
 	this->timerGUI = new Timer;
+}
+
+void GameEngine::initWinCircles()
+{
+	this->wcplayer1 = new WinCircle(true);
+	this->wcplayer2 = new WinCircle(false);
+
 }
 
 void GameEngine::initWindow() {
@@ -288,6 +296,7 @@ void GameEngine::updateAttacksCollision() {
 		if (this->player2->getHp() <= 0) {
 			this->player1->winRound();
 			this->player2->looseRound();
+			this->wcplayer1->update();
 			this->endRound();
 		}
 	}
@@ -297,6 +306,7 @@ void GameEngine::updateAttacksCollision() {
 		if (this->player1->getHp() <= 0) {
 			this->player2->winRound();
 			this->player1->looseRound();
+			this->wcplayer2->update();
 			this->endRound();
 		}
 	}
@@ -338,9 +348,11 @@ void GameEngine::updateTimer() {
 		if (p1_hp > p2_hp) {
 			this->player1->winRound();
 			this->player2->looseRound();
+			this->wcplayer1->update();
 		} else if (p1_hp < p2_hp) {
 			this->player2->winRound();
 			this->player1->looseRound();
+			this->wcplayer2->update();
 		} else {
 			this->player1->winRound();
 			this->player2->winRound();
@@ -354,6 +366,8 @@ void GameEngine::moveGUIElements(float offsetX, float offsetY)
 	this->hbplayer1->move(offsetX, offsetY);
 	this->hbplayer2->move(offsetX, offsetY);
 	this->timerGUI->move(offsetX, offsetY);
+	this->wcplayer1->move(offsetX, offsetY);
+	this->wcplayer2->move(offsetX, offsetY);
 
 }
 
@@ -380,6 +394,9 @@ void GameEngine::render() {
 	this->hbplayer1->render(this->window);
 	this->hbplayer2->render(this->window);
 	this->timerGUI->render(this->window);
+	this->wcplayer1->render(this->window);
+	this->wcplayer2->render(this->window);
+
 	//display stuff
 	this->window->display();
 }

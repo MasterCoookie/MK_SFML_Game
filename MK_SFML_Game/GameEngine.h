@@ -5,6 +5,7 @@
 #include "LoadingScreen.h"
 #include "HealthBar.h"
 #include "Timer.h"
+#include "WinCircle.h"
 class GameEngine : public Scene{
 public:
 	GameEngine();
@@ -26,7 +27,7 @@ private:
 	void initPlayers(std::string p1charName, std::string p2charName);
 	void initHealthBars();
 	void initTimer();
-
+	void initWinCircles();
 	void pollEvents() override;
 
 	//otehers
@@ -66,4 +67,6 @@ private:
 	HealthBar* hbplayer1;
 	HealthBar* hbplayer2;
 	Timer* timerGUI;
+	WinCircle* wcplayer1;
+	WinCircle* wcplayer2;
 };
