@@ -10,7 +10,8 @@ PickedCharacterDisplay::PickedCharacterDisplay(int width, int height, bool isLef
 		this->setPosition({ 50,200 });
 	}
 	else {
-		this->setPosition({ 1280 - 210,200 });
+		this->setPosition({ 1280 - 50,200 });
+		this->sprite.scale({ -1, 1 });
 	}
 	
 }
