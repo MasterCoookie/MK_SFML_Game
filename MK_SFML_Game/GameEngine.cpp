@@ -16,6 +16,7 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 	this->initVariables();
 	this->initWorld("bcg.png");
 	this->initHealthBars();
+	this->initTimer();
 }
 
 GameEngine::~GameEngine() { 
@@ -42,7 +43,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->roundTimerMax = sf::seconds(20.f);
+	this->roundTimerMax = sf::seconds(70.f);
 	this->roundTimer = this->roundTimerMax;
 }
 
@@ -83,6 +84,11 @@ void GameEngine::initHealthBars()
 {
 	this->hbplayer1 = new HealthBar(true);
 	this->hbplayer2 = new HealthBar(false);
+}
+
+void GameEngine::initTimer()
+{
+	this->timerGUI = new Timer;
 }
 
 void GameEngine::initWindow() {
@@ -340,12 +346,14 @@ void GameEngine::updateTimer() {
 			this->player2->winRound();
 		}
 	}
+	this->timerGUI->update(this->roundTimer);
 }
 
 void GameEngine::moveGUIElements(float offsetX, float offsetY)
 {
 	this->hbplayer1->move(offsetX, offsetY);
 	this->hbplayer2->move(offsetX, offsetY);
+	this->timerGUI->move(offsetX, offsetY);
 
 }
 
@@ -371,7 +379,7 @@ void GameEngine::render() {
 
 	this->hbplayer1->render(this->window);
 	this->hbplayer2->render(this->window);
-
+	this->timerGUI->render(this->window);
 	//display stuff
 	this->window->display();
 }

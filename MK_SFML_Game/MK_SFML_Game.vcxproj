@@ -175,6 +175,7 @@
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SelectableGUIElement.cpp" />
     <ClCompile Include="SelGUIElementsMatrix.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animator.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SelectableGUIElement.h" />
     <ClInclude Include="SelGUIElementsMatrix.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

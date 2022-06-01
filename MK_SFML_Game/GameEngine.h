@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "LoadingScreen.h"
 #include "HealthBar.h"
+#include "Timer.h"
 class GameEngine : public Scene{
 public:
 	GameEngine();
@@ -24,7 +25,7 @@ private:
 	void initWorld(std::string textureName);
 	void initPlayers(std::string p1charName, std::string p2charName);
 	void initHealthBars();
-
+	void initTimer();
 
 	void pollEvents() override;
 
@@ -64,4 +65,5 @@ private:
 	//GUI
 	HealthBar* hbplayer1;
 	HealthBar* hbplayer2;
+	Timer* timerGUI;
 };
