@@ -8,6 +8,8 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
 	this->playerOneChoice = this->matrix->getPlayerOneChoice();
 	this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
+	this->playerOneDisplay = new PickedCharacterDisplay(150, 375, true);
+	this->playerTwoDisplay = new PickedCharacterDisplay(150, 375, false);
 
 }
 
@@ -98,6 +100,20 @@ void SceneMenu::update()
 		}
 		this->sincePlayerTwoSwitched = 0;
 	}
+	if (this->playerOneChoice == this->matrix->getPlayerOneChoice()) {
+		this->playerOneDisplay->update();
+	}
+	else {
+		this->playerOneChoice = this->matrix->getPlayerOneChoice();
+		this->playerOneDisplay->update(this->playerOneChoice);
+	}
+	if (this->playerTwoChoice == this->matrix->getPlayerTwoChoice()) {
+		this->playerTwoDisplay->update();
+	}
+	else {
+		this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
+		this->playerTwoDisplay->update(this->playerTwoChoice);
+	}
 	
 }
 
@@ -106,6 +122,8 @@ void SceneMenu::render()
 	this->window->clear();
 	this->window->draw(this->menuScreenSprite);
 	this->matrix->render(this->window);
+	this->playerOneDisplay->render(this->window);
+	this->playerTwoDisplay->render(this->window);
 	this->window->display();
 }
 

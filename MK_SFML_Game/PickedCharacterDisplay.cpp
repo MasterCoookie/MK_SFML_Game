@@ -5,18 +5,22 @@ PickedCharacterDisplay::PickedCharacterDisplay(int width, int height, bool isLef
 	this->texture = new sf::Texture;
 	if (!this->texture->loadFromFile("./SceneMenu/players.png")) std::cout << "PLAYERS.PNG NOT FOUND";
 	this->initSprite(*(this->texture), this->textureRect);
-	this->animator = new Animator(this->textureRect, width * 11, height * 9, AnimationType::STANDING, true, false);
+	this->animator = new Animator(this->textureRect, width * 11, height * 9, AnimationType::STANDING, true, true);
 	if (isLeft) {
-		this->setPosition({ 10,100 });
+		this->setPosition({ 50,200 });
 	}
 	else {
-
+		this->setPosition({ 1280 - 210,200 });
 	}
 	
 }
-void PickedCharacterDisplay::switchSprite(sf::Texture& tex, int top)
+void PickedCharacterDisplay::update(int i)
 {
-	sf::IntRect recOfNew = this->getIntRect();
-	recOfNew.top = top;
-	this->setIntRect(tex, recOfNew);
+	if (i != -1) {
+		sf::IntRect recOfNew = this->getIntRect();
+		recOfNew.top = i * recOfNew.height;
+		this->setIntRect(*(this->texture), recOfNew);
+	}
+	this->animator->update();
+	this->initSprite(*(this->texture), this->textureRect);
 }

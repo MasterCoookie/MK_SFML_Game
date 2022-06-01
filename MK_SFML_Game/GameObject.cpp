@@ -23,7 +23,7 @@ void GameObject::move(const float x, const float y) {
 void GameObject::setIntRect(sf::Texture& tex, const sf::IntRect rec)
 {
 	//delete this->textureRect;
-	this->textureRect = new sf::IntRect(rec);
+	*(this->textureRect) = rec;
 	this->initSprite(tex,this->textureRect);
 
 }

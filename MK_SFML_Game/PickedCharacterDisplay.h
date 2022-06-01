@@ -4,8 +4,9 @@
 class PickedCharacterDisplay :
     public SimpleGUIElement
 {
+public:
     PickedCharacterDisplay(int width, int height, bool isLeft);
-    void switchSprite(sf::Texture& tex, int top);
+    void update(int i=-1);
 private:
     Animator* animator;
 };
