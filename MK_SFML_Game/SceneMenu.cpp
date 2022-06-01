@@ -10,6 +10,8 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
 	this->playerOneDisplay = new PickedCharacterDisplay(150, 375, true);
 	this->playerTwoDisplay = new PickedCharacterDisplay(150, 375, false);
+	this->playerOneDisplay->update(this->playerOneChoice);
+	this->playerTwoDisplay->update(this->playerTwoChoice);
 
 }
 
