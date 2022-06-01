@@ -4,20 +4,28 @@ HealthBar::HealthBar(bool isLeft)
 {
 	this->isLeft = isLeft;
 	this->healthShape = new sf::RectangleShape;
-	this->healthShape->setFillColor(sf::Color(255, 0, 0));
+	this->healthShape->setFillColor(sf::Color(0, 255, 0));
 	this->healthShape->setSize({ 450.f, 50.f });
+	this->backgroundShape = new sf::RectangleShape;
+	this->backgroundShape->setFillColor(sf::Color(255,0, 0));
+	this->backgroundShape->setSize({ 450.f, 50.f });
 	if (this->isLeft) {
 		this->healthShape->setPosition({ 730.f,50.f });
+		this->backgroundShape->setPosition({ 730.f,50.f });
+
 		this->originalPos = sf::Vector2f(730.f, 50.f);
 	}
 	else {
 		this->healthShape->setPosition({ 1380.f,50.f });
+		this->backgroundShape->setPosition({ 1380.f,50.f });
+
 		this->originalPos = sf::Vector2f(1380.f, 50.f);
 	}
 }
 
 void HealthBar::render(sf::RenderWindow* win)
 {
+	win->draw(*(this->backgroundShape));
 	win->draw(*(this->healthShape));
 }
 
@@ -37,4 +45,5 @@ void HealthBar::move(float offsetX, float offsetY)
 	this->healthShape->move(offsetX, offsetY);
 	this->originalPos.x += offsetX;
 	this->originalPos.y += offsetY;
+	this->backgroundShape->move(offsetX, offsetY);
 }

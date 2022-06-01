@@ -16,6 +16,7 @@ public:
 private:
 	bool isLeft;
 	sf::RectangleShape* healthShape;
+	sf::RectangleShape* backgroundShape;
 	sf::Vector2f originalPos;
 };
 
