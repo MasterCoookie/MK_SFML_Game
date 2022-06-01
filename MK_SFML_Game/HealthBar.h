@@ -1,18 +1,13 @@
 
 #pragma once
-
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-class HealthBar
+#include "GameGUIElement.h"
+class HealthBar : public GameGUIElement
 {
 public:
 	HealthBar(bool isLeft);
-	void render(sf::RenderWindow* win);
+	void render(sf::RenderWindow* win) override;
 	void update(float currentHealth);
-	void move(float offsetX, float offsetY);
+	void move(float offsetX, float offsetY) override;
 private:
 	bool isLeft;
 	sf::RectangleShape* healthShape;

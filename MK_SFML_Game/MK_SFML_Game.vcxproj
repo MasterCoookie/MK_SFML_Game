@@ -163,6 +163,7 @@
     <ClCompile Include="AttackMovesMatrix.cpp" />
     <ClCompile Include="FilesAndConvertions.ixx" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameGUIElement.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="AttackMove.h" />
     <ClInclude Include="AttackMovesMatrix.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameGUIElement.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="LoadingScreen.h" />

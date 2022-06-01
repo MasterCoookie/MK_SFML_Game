@@ -2,18 +2,14 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream> 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-class Timer
+#include "GameGUIElement.h"
+class Timer : public GameGUIElement	
 {
 public:
 	Timer();
-	void update(sf::Time time);
-	void render(sf::RenderWindow* win);
-	void move(float offsetX, float offsetY);
+	void update(sf::Time time) ;
+	void render(sf::RenderWindow* win)override;
+	void move(float offsetX, float offsetY) override;
 private:
 	void initText();
 	sf::Font* font;
