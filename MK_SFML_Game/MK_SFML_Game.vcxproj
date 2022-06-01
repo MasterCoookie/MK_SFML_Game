@@ -164,10 +164,10 @@
     <ClCompile Include="FilesAndConvertions.ixx" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GUIElement.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PickedCharacterDisplay.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneWelcomeScreen.cpp" />
@@ -184,9 +184,9 @@
     <ClInclude Include="AttackMovesMatrix.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GUIElement.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="PickedCharacterDisplay.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneWelcomeScreen.h" />

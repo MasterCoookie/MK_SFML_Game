@@ -15,7 +15,7 @@ private:
 	int rows, cols;
 	int elementWidth, elementHeight;
 	sf::Texture* charactersTexture;
-	std::vector<SelectableGUIElement*> charactersMatrix;
+	std::vector<SimpleGUIElement*> charactersMatrix;
 	int playerOneChoice;
 	int playerTwoChoice;
 private:

@@ -6,7 +6,9 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->initBackground("menu.png");
 	this->initVariables();
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
-	
+	this->playerOneChoice = this->matrix->getPlayerOneChoice();
+	this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
+
 }
 
 void SceneMenu::run()

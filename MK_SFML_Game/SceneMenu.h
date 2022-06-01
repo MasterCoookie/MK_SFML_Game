@@ -1,8 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "SelGUIElementsMatrix.h"
-
-
+#include "PickedCharacterDisplay.h"
 class SceneMenu :
     public Scene
 {
@@ -26,10 +25,14 @@ private:
 	sf::Texture menuScreenTexture;
 	sf::Sprite menuScreenSprite;
 	SelGUIElementsMatrix* matrix;
+	PickedCharacterDisplay* playerOneDisplay;
+	PickedCharacterDisplay* playerTwoDisplay;
 	bool arePicked;
 	int sincePlayerOneSwitched;
 	int sincePlayerTwoSwitched;
 	int switchingLimit;
+	int playerOneChoice;
+	int playerTwoChoice;
 	
 
 };
