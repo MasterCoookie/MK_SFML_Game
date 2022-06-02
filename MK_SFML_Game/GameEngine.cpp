@@ -343,8 +343,8 @@ void GameEngine::updateTimer() {
 
 	if (this->roundTimer.asSeconds() <= 0) {
 		this->endRound();
-		const int p1_hp = this->player1->getHp();
-		const int p2_hp = this->player2->getHp();
+		const float p1_hp = this->player1->getHp();
+		const float p2_hp = this->player2->getHp();
 		if (p1_hp > p2_hp) {
 			this->player1->winRound();
 			this->player2->looseRound();

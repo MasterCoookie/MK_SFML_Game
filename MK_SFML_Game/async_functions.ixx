@@ -12,6 +12,7 @@ export void init_gameobject_variables(GameObject* gameObject);
 
 module :private;
 
+
 std::counting_semaphore<1> prepare(0);
 
 void async_read_input(GameEngine* g) {

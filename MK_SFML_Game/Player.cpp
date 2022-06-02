@@ -81,11 +81,11 @@ void Player::move() {
 	const int movementSpeed = 14;
 	//move the player, dependent on direction its facing
 	if (this->isRightFacing) {
-		this->sprite.move(this->movementMatrix[0] * movementSpeed, 0);
-		this->sprite.move(-this->movementMatrix[1] * movementSpeed, 0);
+		this->sprite.move(static_cast<float>(this->movementMatrix[0] * movementSpeed), 0);
+		this->sprite.move(static_cast<float>(-(this->movementMatrix[1] * movementSpeed)), 0);
 	} else {
-		this->sprite.move(-this->movementMatrix[0] * movementSpeed, 0);
-		this->sprite.move(this->movementMatrix[1] * movementSpeed, 0);
+		this->sprite.move(static_cast<float>(-(this->movementMatrix[0] * movementSpeed)), 0);
+		this->sprite.move(static_cast<float>(this->movementMatrix[1] * movementSpeed), 0);
 	}
 }
 
@@ -204,20 +204,20 @@ void Player::takeHit(AttackMove& hitBy) {
 				//TMP
 				std::cout << this->hp << "\n";
 
-				this->stagger(State::BLOCK_STAGGERED, hitBy.getOnBlockStagger());
+				this->stagger(State::BLOCK_STAGGERED, static_cast<float>(hitBy.getOnBlockStagger()));
 			}
 			else {
 				this->hp -= hitBy.getDmg();
 				//TMP
 				std::cout << this->hp << "\n";
-				this->xAxisMomentum = hitBy.getKnockback();
+				this->xAxisMomentum = static_cast<float>(hitBy.getKnockback());
 				if (hitBy.getKnockup()) {
 					this->position = Position::AIRBORNE;
-					this->yAxisMomentum = hitBy.getKnockup();
-					this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+					this->yAxisMomentum = static_cast<float>(hitBy.getKnockup());
+					this->stagger(State::HIT_STAGGERED, static_cast<float>(hitBy.getOnHitStagger()));
 				}
 				else {
-					this->stagger(State::HIT_STAGGERED, hitBy.getOnHitStagger());
+					this->stagger(State::HIT_STAGGERED, static_cast<float>(hitBy.getOnHitStagger()));
 				}
 				hitBy.registerHit();
 			}
@@ -250,7 +250,7 @@ const int Player::getRoundsWon() {
 	return this->roundsWon;
 }
 
-const int Player::getHp() {
+const float Player::getHp() {
 	return this->hp;
 }
 

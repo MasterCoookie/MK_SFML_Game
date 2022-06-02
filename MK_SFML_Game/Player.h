@@ -32,7 +32,7 @@ public:
 	const State getState();
 	AttackMove& getCurrentAttack();
 	const int getRoundsWon();
-	const int getHp();
+	const float getHp();
 	
 	//overrides
 	void update() override;

@@ -105,7 +105,7 @@ const int AttackMove::getOnBlockStagger() const {
 
 const float AttackMove::getRecovery() const {
 	if (this->wasBlockRegistered) {
-		return this->onBlockRecovery;
+		return static_cast<float>(this->onBlockRecovery);
 	} else if (this->wasHitRegistered) {
 		return this->onHitRecovery;
 	}
