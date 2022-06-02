@@ -1,5 +1,7 @@
 #include "AttackMove.h"
 
+import async_functions;
+
 AttackMove::AttackMove() {
 	this->initVariables();
 }
@@ -63,14 +65,14 @@ AttackMove::AttackMove(float _xSize, float _ySize, sf::Texture* _atkTexture, sf:
 	TargetHeight _targetH, int _dmg, int _onHitStagger, int _onBlockStagger, int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery) :
 	atkTexture(_atkTexture), playerAtkTexture(_playerAtkTexture), knockback(_knockback), knockup(_knockup), xOffset(_xOffset), yOffset(_yOffset), startupTimeMax(_startupTimeMax), lifespanMax(_lifespanMax), targetH(_targetH), dmg(_dmg),
 	onHitStagger(_onHitStagger), onBlockStagger(_onBlockStagger), onHitRecovery(_onHitRecovery), onBlockRecovery(_onBlockRecovery), onMissRecovery(_onMissRecovery) {
-	this->initVariables();
+	init_gameobject_variables(*this);
 }
 
 AttackMove::AttackMove(const AttackMove& move, const sf::Vector2f _pos, bool _isRightFacing) :
 	atkTexture(move.atkTexture), playerAtkTexture(move.playerAtkTexture), knockback(move.knockback), knockup(move.knockup), xOffset(move.xOffset), yOffset(move.yOffset), startupTimeMax(move.startupTimeMax),
 	lifespanMax(move.lifespanMax), targetH(move.targetH), dmg(move.dmg),
 	onHitStagger(move.onHitStagger), onBlockStagger(move.onBlockStagger), onHitRecovery(move.onHitRecovery), onBlockRecovery(move.onBlockRecovery), onMissRecovery(move.onMissRecovery) {
-	this->initVariables();
+	init_gameobject_variables(*this);
 
 	if (!_isRightFacing) {
 		this->xOffset = -this->xOffset;

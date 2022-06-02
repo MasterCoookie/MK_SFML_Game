@@ -32,6 +32,7 @@ public:
 	virtual void render(sf::RenderTarget* target) = 0;
 
 	void initTexture(std::string texturePath);
+	virtual void initVariables() = 0;
 protected:
 	//inits
 	
@@ -41,7 +42,7 @@ protected:
 	void initSprite(int startingX, int startingY, int sizeX, int sizeY);
 	void initSprite(sf::IntRect* intRect);
 	void initSprite(sf::Texture &tex, sf::IntRect* intRect);
-	virtual void initVariables() = 0;
+	
 
 	sf::Texture* texture;
 	sf::IntRect* textureRect;

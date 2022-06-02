@@ -54,6 +54,7 @@ public:
 
 	void render(sf::RenderTarget* target) override;
 
+	void initVariables() override;
 private:
 	//properties
 	// life properties
@@ -109,7 +110,7 @@ private:
 
 	sf::RectangleShape shape;
 
-	void initVariables();
+	
 
 	sf::Texture* atkTexture;
 	sf::Texture* playerAtkTexture;

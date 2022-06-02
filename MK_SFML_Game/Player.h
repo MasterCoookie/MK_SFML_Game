@@ -61,6 +61,8 @@ public:
 	void updateRecovery();
 	void updateAnimation();
 
+	void initVariables() override;
+
 private:
 	//properties
 	//positions and state
@@ -97,7 +99,7 @@ private:
 	AttackMove currentAttack;
 
 	//inits
-	void initVariables() override;
+	
 	void initTexturesMap();
 
 	//private methods

@@ -1,12 +1,14 @@
 #include "Player.h"
 
+import async_functions;
+
 Player::Player() {
 	this->initVariables();
 }
 
 Player::Player(std::string _charName) {
 	this->charName = _charName;
-	this->initVariables();
+	init_gameobject_variables(*this);
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
 	this->initSprite(this->textureRect);
