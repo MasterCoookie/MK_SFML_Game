@@ -22,6 +22,8 @@ private:
 	int msgFrames;
 	int msgFramesMax;
 
+	short int roundCounter;
+
 	std::string msg;
 
 	sf::Time roundTimer;

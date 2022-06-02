@@ -138,51 +138,42 @@ void GameEngine::update() {
 	this->player1->updateStagger();
 	this->player2->updateStagger();
 	//this->updateInput();
+	if (!this->matchManager->getAreInputsBlocked()) {
 
-	std::thread read_movement(async_read_input, this);
-	std::thread async_movement(async_move_players, this->player1, this->player2);
-	
-	read_movement.join();
-	async_movement.join();
 
-	this->updatePlayersScreenCollision();
+		std::thread read_movement(async_read_input, this);
+		std::thread async_movement(async_move_players, this->player1, this->player2);
 
-	this->updateView();
+		read_movement.join();
+		async_movement.join();
 
-	//move players
-	/*if (this->player1->canMove()) {
-		this->player1->duck();
-		this->player1->move();
-		this->player1->jump();
+		this->updatePlayersScreenCollision();
+
+		this->updateView();
+
+		if (this->player1->getState() != State::BLOCKING) {
+			this->player1->updateMovement();
+		}
+
+		if (this->player2->getState() != State::BLOCKING) {
+			this->player2->updateMovement();
+		}
+
+		if (this->player1->canAttack() && this->player1->selectAttack()) {
+			this->player1->attack();
+		}
+		else {
+			this->player1->updateAttack();
+		}
+
+		if (this->player2->canAttack() && this->player2->selectAttack()) {
+			this->player2->attack();
+		}
+		else {
+			this->player2->updateAttack();
+		}
+
 	}
-	if (this->player2->canMove()) {
-		this->player2->duck();
-		this->player2->move();
-		this->player2->jump();
-	}*/
-
-	if (this->player1->getState() != State::BLOCKING) {
-		this->player1->updateMovement();
-	}
-	
-	if (this->player2->getState() != State::BLOCKING) {
-		this->player2->updateMovement();
-	}
-
-	if (this->player1->canAttack() && this->player1->selectAttack()) {
-		this->player1->attack();
-	} else {
-		this->player1->updateAttack();
-	}
-
-	if (this->player2->canAttack() && this->player2->selectAttack()) {
-		this->player2->attack();
-	}
-	else {
-		this->player2->updateAttack();
-	}
-
-
 	std::thread recovery_th_p1(async_recovery, this->player1);
 	std::thread recovery_th_p2(async_recovery, this->player2);
 

@@ -137,10 +137,13 @@ void Player::duck() {
 }
 
 void Player::block() {
-	this->state = State::BLOCKING;
+	
 	if (this->position == Position::STANDING) {
+		this->state = State::BLOCKING;
+		this->setPosition(this->getPosition().x, 425.f);
 		this->sprite.setTexture(*this->playerTextures.find("blocking")->second, true);
-	} else {
+	} else if (this->position == Position::DUCKING) {
+		this->state = State::BLOCKING;
 		this->sprite.setTexture(*this->playerTextures.find("ducking_block")->second);
 	}
 }

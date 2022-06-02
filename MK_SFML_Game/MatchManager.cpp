@@ -43,6 +43,8 @@ void MatchManager::initVariables() {
 	this->msgFrames = 0;
 	this->msgFramesMax = 90;
 
+	this->roundCounter = 1;
+
 	this->msg = "Runda 1";
 
 	this->roundTimerMax = sf::seconds(90.f);
