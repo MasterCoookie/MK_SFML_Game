@@ -8,7 +8,7 @@ export void async_read_input(GameEngine* g);
 export void async_move_players(Player* p1, Player* p2);
 export void async_recovery(Player* p);
 export void async_animation(Player* p);
-export void init_gameobject_variables(GameObject& gameObject);
+export void init_gameobject_variables(GameObject* gameObject);
 
 module :private;
 
@@ -45,6 +45,6 @@ void async_animation(Player* p) {
 	p->resetMovementMatrix();
 }
 
-void init_gameobject_variables(GameObject& gameObject) {
-	gameObject.initVariables();
+void init_gameobject_variables(GameObject* gameObject) {
+	gameObject->initVariables();
 }

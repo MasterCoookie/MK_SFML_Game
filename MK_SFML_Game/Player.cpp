@@ -8,12 +8,13 @@ Player::Player() {
 
 Player::Player(std::string _charName) {
 	this->charName = _charName;
-	init_gameobject_variables(*this);
+	std::thread async_init_variables(init_gameobject_variables, this);
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
 	this->initSprite(this->textureRect);
-
+	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->movesMatrix = new AttackMovesMatrix(_charName);
+	async_init_variables.join();
 }
 
 Player::~Player() {
@@ -282,7 +283,6 @@ void Player::initVariables() {
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->textureRect = new sf::IntRect(0, 0, 150, 375);
-	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->roundsWon = 0;
 	this->getUpFrames = 10;
 
