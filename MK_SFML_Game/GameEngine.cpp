@@ -45,6 +45,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 void GameEngine::initVariables() {
 	this->matchManager = new MatchManager();
 	this->initTimer();
+	this->initGUIMsg();
 }
 
 void GameEngine::initWorld(std::string textureName) {
@@ -96,6 +97,11 @@ void GameEngine::initWinCircles()
 	this->wcplayer1 = new WinCircle(true);
 	this->wcplayer2 = new WinCircle(false);
 
+}
+
+void GameEngine::initGUIMsg()
+{
+	this->msg = new GUIMessage;
 }
 
 void GameEngine::initWindow() {
@@ -196,6 +202,7 @@ void GameEngine::update() {
 	animation_th_p2.join();
 	this->hbplayer1->update(this->player1->getHp());
 	this->hbplayer2->update(this->player2->getHp());
+	this->msg->updateMessage(this->matchManager->getMsg());
 
 }
 
@@ -386,7 +393,7 @@ void GameEngine::render() {
 	this->timerGUI->render(this->window);
 	this->wcplayer1->render(this->window);
 	this->wcplayer2->render(this->window);
-
+	this->msg->render(this->window);
 	//display stuff
 	this->window->display();
 }

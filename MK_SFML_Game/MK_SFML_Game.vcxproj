@@ -165,6 +165,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameGUIElement.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUIMessage.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameGUIElement.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GUIMessage.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MatchManager.h" />

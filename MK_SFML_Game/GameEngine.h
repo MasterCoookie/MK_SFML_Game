@@ -6,6 +6,8 @@
 #include "HealthBar.h"
 #include "Timer.h"
 #include "WinCircle.h"
+#include "GUIMessage.h"
+
 #include "MatchManager.h"
 
 class GameEngine : public Scene{
@@ -30,6 +32,7 @@ private:
 	void initHealthBars(std::string name1, std::string name2);
 	void initTimer();
 	void initWinCircles();
+	void initGUIMsg();
 	void pollEvents() override;
 
 	//otehers
@@ -72,4 +75,5 @@ private:
 	Timer* timerGUI;
 	WinCircle* wcplayer1;
 	WinCircle* wcplayer2;
+	GUIMessage* msg;
 };
