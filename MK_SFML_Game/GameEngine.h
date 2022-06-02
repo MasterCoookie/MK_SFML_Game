@@ -6,6 +6,8 @@
 #include "HealthBar.h"
 #include "Timer.h"
 #include "WinCircle.h"
+#include "MatchManager.h"
+
 class GameEngine : public Scene{
 public:
 	GameEngine();

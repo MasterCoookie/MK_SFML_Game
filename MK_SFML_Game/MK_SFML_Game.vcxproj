@@ -168,6 +168,7 @@
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatchManager.cpp" />
     <ClCompile Include="PickedCharacterDisplay.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HealthBar.h" />
     <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="MatchManager.h" />
     <ClInclude Include="PickedCharacterDisplay.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
