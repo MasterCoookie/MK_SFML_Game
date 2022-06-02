@@ -339,7 +339,7 @@ void GameEngine::updateView() {
 
 void GameEngine::updateTimer() {
 	this->roundTimer -= sf::seconds(1.f / 30.f);
-	std::cout << "round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
+	//std::cout << "round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
 
 	if (this->roundTimer.asSeconds() <= 0) {
 		this->endRound();
