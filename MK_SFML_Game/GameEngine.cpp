@@ -15,7 +15,7 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 	this->window->setView(*this->view);
 	this->initVariables();
 	this->initWorld("bcg.png");
-	this->initHealthBars();
+	//this->initHealthBars();
 	this->initTimer();
 	this->initWinCircles();
 }
@@ -69,7 +69,7 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	ldscreen.loadPlayers();
 	this->player1 = ldscreen.getPlayerOne();
 	this->player2 = ldscreen.getPlayerTwo();
-
+	this->initHealthBars(p1charName, p2charName);
 
 	//place players in the right position
 	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
@@ -81,10 +81,10 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	this->window->setView(*this->view);
 }
 
-void GameEngine::initHealthBars()
+void GameEngine::initHealthBars(std::string name1, std::string name2)
 {
-	this->hbplayer1 = new HealthBar(true);
-	this->hbplayer2 = new HealthBar(false);
+	this->hbplayer1 = new HealthBar(true, name1);
+	this->hbplayer2 = new HealthBar(false, name2);
 }
 
 void GameEngine::initTimer()

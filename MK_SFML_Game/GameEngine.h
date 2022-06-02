@@ -25,7 +25,7 @@ private:
 	void initVariables();
 	void initWorld(std::string textureName);
 	void initPlayers(std::string p1charName, std::string p2charName);
-	void initHealthBars();
+	void initHealthBars(std::string name1, std::string name2);
 	void initTimer();
 	void initWinCircles();
 	void pollEvents() override;
