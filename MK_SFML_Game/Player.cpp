@@ -144,7 +144,8 @@ void Player::block() {
 		this->sprite.setTexture(*this->playerTextures.find("blocking")->second, true);
 	} else if (this->position == Position::DUCKING) {
 		this->state = State::BLOCKING;
-		this->sprite.setTexture(*this->playerTextures.find("ducking_block")->second);
+		this->setPosition(this->getPosition().x, 550.f);
+		this->sprite.setTexture(*this->playerTextures.find("ducking_block")->second, true);
 	}
 }
 
