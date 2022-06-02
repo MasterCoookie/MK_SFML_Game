@@ -53,13 +53,14 @@ private:
 	void render() override;
 	void renderWorld();
 
+	MatchManager* matchManager;
+
 
 	//World
 	sf::Texture worldBcgTex;
 	sf::Sprite worldBcg;
 	sf::View* view;
-	sf::Time roundTimer;
-	sf::Time roundTimerMax;
+	
 
 	//Players
 	Player* player1;

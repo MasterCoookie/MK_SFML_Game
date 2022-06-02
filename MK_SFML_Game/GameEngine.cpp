@@ -16,7 +16,6 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 	this->initVariables();
 	this->initWorld("bcg.png");
 	//this->initHealthBars();
-	this->initTimer();
 	this->initWinCircles();
 }
 
@@ -44,8 +43,8 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->roundTimerMax = sf::seconds(90.f);
-	this->roundTimer = this->roundTimerMax;
+	this->matchManager = new MatchManager();
+	this->initTimer();
 }
 
 void GameEngine::initWorld(std::string textureName) {
@@ -338,10 +337,10 @@ void GameEngine::updateView() {
 }
 
 void GameEngine::updateTimer() {
-	this->roundTimer -= sf::seconds(1.f / 30.f);
+	this->matchManager->update();
 	//std::cout << "round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
 
-	if (this->roundTimer.asSeconds() <= 0) {
+	if (this->matchManager->getRoundTimer().asSeconds() <= 0) {
 		this->endRound();
 		const float p1_hp = this->player1->getHp();
 		const float p2_hp = this->player2->getHp();
@@ -358,7 +357,7 @@ void GameEngine::updateTimer() {
 			this->player2->winRound();
 		}
 	}
-	this->timerGUI->update(this->roundTimer);
+	this->timerGUI->update(this->matchManager->getRoundTimer());
 }
 
 void GameEngine::moveGUIElements(float offsetX, float offsetY)
@@ -372,7 +371,7 @@ void GameEngine::moveGUIElements(float offsetX, float offsetY)
 }
 
 void GameEngine::endRound() {
-	this->roundTimer = this->roundTimerMax;
+	this->matchManager->resetRoundTimer();
 	std::cout << "Round ended!\n";
 	if (this->player1->getRoundsWon() >= 2) {
 		std::cout << "Player1 won!\n";
