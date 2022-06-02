@@ -132,7 +132,7 @@ void Player::duck() {
 		//change texture
 		this->sprite.setTexture(*this->playerTextures.find("ducking")->second, true);
 		// move down
-		this->setPosition(this->getPosition().x, this->getPosition().y + 125.f);
+		this->setPosition(this->getPosition().x, 550.f);
 	}
 }
 
