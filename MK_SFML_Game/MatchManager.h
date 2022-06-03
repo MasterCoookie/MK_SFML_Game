@@ -16,6 +16,7 @@ public:
 private:
 	void initVariables();
 	void updateTimer();
+	void updateMsgQueue();
 	int inputsBlockedFrames;
 	int inputsBlockedFramesMax;
 
@@ -25,6 +26,7 @@ private:
 	short int roundCounter;
 
 	std::string msg;
+	std::vector<std::string> msgQueue;
 
 	sf::Time roundTimer;
 	sf::Time roundTimerMax;

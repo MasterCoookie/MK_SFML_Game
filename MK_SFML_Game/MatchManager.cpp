@@ -21,6 +21,7 @@ std::string MatchManager::getMsg() {
 		this->msgFrames++;
 		return this->msg;
 	}
+	updateMsgQueue();
 	return "";
 }
 
@@ -38,14 +39,14 @@ void MatchManager::resetRoundTimer() {
 
 void MatchManager::initVariables() {
 	this->inputsBlockedFrames = 0;
-	this->inputsBlockedFramesMax = 90;
+	this->inputsBlockedFramesMax = 75;
 
 	this->msgFrames = 0;
-	this->msgFramesMax = 90;
+	this->msgFramesMax = 75;
 
 	this->roundCounter = 1;
 
-	this->msg = "Runda 1";
+	this->msgQueue = { "Round 1", "Fight!" };
 
 	this->roundTimerMax = sf::seconds(90.f);
 	this->roundTimer = this->roundTimerMax;
@@ -53,5 +54,14 @@ void MatchManager::initVariables() {
 
 void MatchManager::updateTimer() {
 	this->roundTimer -= sf::seconds(1.f / 30.f);
+}
+
+void MatchManager::updateMsgQueue() {
+	if (this->msgQueue.size() > 0) {
+		this->msg = *msgQueue.begin();
+		msgQueue.erase(msgQueue.begin());
+		this->msgFrames = 0;
+		this->inputsBlockedFrames = 0;
+	}
 }
 
