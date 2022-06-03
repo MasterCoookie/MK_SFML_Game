@@ -55,8 +55,7 @@ const bool update_view(GameEngine* g, Player* p1, Player* p2, sf::View* view, co
 		view->move(-10.f, 0.f);
 		g->moveGUIElements(-10.f, 0.f);
 		return true;
-	}
-	else if ((p2->getPosition().x + (p2->getBounds().width / 3) > (view->getCenter().x + 640.f))
+	} else if ((p2->getPosition().x + (p2->getBounds().width / 3) > (view->getCenter().x + 640.f))
 		&& view->getCenter().x < 1920.f
 		&& dist_between_players < 1020.f) {
 		view->move(+10.f, 0.f);

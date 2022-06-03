@@ -317,10 +317,6 @@ void GameEngine::updateAttacksCollision() {
 }
 
 void GameEngine::updateView() {
-	//tmp
-	//std::cout << "view: " << this->view->getCenter().x << "\n";
-	//std::cout << "player: " << this->player2->getPosition().x << "\n";
-
 	float dist_between_players;
 	if (this->player1->rightFacing()) {
 		dist_between_players = this->player2->getPosition().x - this->player2->getBounds().width - this->player1->getPosition().x;
@@ -331,30 +327,11 @@ void GameEngine::updateView() {
 	if (!update_view(this, this->player1, this->player2, this->view, dist_between_players)) {
 		update_view(this, this->player2, this->player1, this->view, dist_between_players);
 	}
-	
-
-	//TODO - rewrite to function
-	//if ((this->player1->getPosition().x - (player1->getBounds().width / 4) < (this->view->getCenter().x - 640.f))
-	//	&& this->view->getCenter().x > 640.f
-	//	&& dist_between_players < 1060.f) {
-	//	//std::cout << "dupa\n";
-	//	this->view->move(-10.f, 0.f);
-	//	this->moveGUIElements(-10.f, 0.f);
-	//	this->window->setView(*this->view);
-	//} else if ((this->player2->getPosition().x + (player1->getBounds().width / 4) > (this->view->getCenter().x + 640.f))
-	//	&& this->view->getCenter().x < 1920.f
-	//	&& dist_between_players < 1060.f) {
-	//	//std::cout << "dupa\n";
-	//	this->view->move(+10.f, 0.f);
-	//	this->moveGUIElements(+10.f, 0.f);
-	//	this->window->setView(*this->view);
-	//}
 	this->window->setView(*this->view);
 }
 
 void GameEngine::updateTimer() {
 	this->matchManager->update();
-	//std::cout << "round timer: " << floor(this->roundTimer.asSeconds()) << '\n';
 
 	if (this->matchManager->getRoundTimer().asSeconds() <= 0) {
 		this->endRound();
