@@ -22,11 +22,11 @@ private:
 	void initVariables();
 private:
 	sf::RenderWindow* window;
-	sf::Texture menuScreenTexture;
+	std::unique_ptr<sf::Texture> menuScreenTexture;
 	sf::Sprite menuScreenSprite;
-	SelGUIElementsMatrix* matrix;
-	PickedCharacterDisplay* playerOneDisplay;
-	PickedCharacterDisplay* playerTwoDisplay;
+	std::unique_ptr<SelGUIElementsMatrix> matrix;
+	std::unique_ptr < PickedCharacterDisplay > playerOneDisplay;
+	std::unique_ptr < PickedCharacterDisplay > playerTwoDisplay;
 	bool arePicked;
 	int sincePlayerOneSwitched;
 	int sincePlayerTwoSwitched;

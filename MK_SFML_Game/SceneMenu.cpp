@@ -8,8 +8,8 @@ SceneMenu::SceneMenu(sf::RenderWindow* win)
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
 	this->playerOneChoice = this->matrix->getPlayerOneChoice();
 	this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
-	this->playerOneDisplay = new PickedCharacterDisplay(150, 375, true);
-	this->playerTwoDisplay = new PickedCharacterDisplay(150, 375, false);
+	this->playerOneDisplay = std::make_unique<PickedCharacterDisplay>(150, 375, true);
+	this->playerTwoDisplay = std::make_unique<PickedCharacterDisplay>(150, 375, false);
 	this->playerOneDisplay->update(this->playerOneChoice);
 	this->playerTwoDisplay->update(this->playerTwoChoice);
 
@@ -131,16 +131,17 @@ void SceneMenu::render()
 
 void SceneMenu::initCharactersMatrix(std::string textureName)
 {
-	this->matrix = new SelGUIElementsMatrix(textureName, 3, 3, 200, 200);
+	this->matrix = std::make_unique<SelGUIElementsMatrix>(textureName, 3, 3, 200, 200);
 }
 
 void SceneMenu::initBackground(std::string textureName)
 {
-	if (!this->menuScreenTexture.loadFromFile("./Textures/" + textureName)) {
+	this->menuScreenTexture = std::make_unique<sf::Texture>();
+	if (!this->menuScreenTexture->loadFromFile("./Textures/" + textureName)) {
 		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load menu img" << std::endl;
 	}
 	//set load to loaded texture
-	this->menuScreenSprite.setTexture(this->menuScreenTexture);
+	this->menuScreenSprite.setTexture(*(this->menuScreenTexture));
 }
 
 void SceneMenu::setAreCharactersPicked(bool value)
