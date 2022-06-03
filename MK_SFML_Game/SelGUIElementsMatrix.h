@@ -1,5 +1,7 @@
 #pragma once
+#include <memory>
 #include "SelectableGUIElement.h"
+
 enum class PlayerNumber {ONE,TWO};
 enum class Direction {UP,DOWN,LEFT,RIGHT};
 class SelGUIElementsMatrix
@@ -15,7 +17,7 @@ private:
 	int rows, cols;
 	int elementWidth, elementHeight;
 	sf::Texture* charactersTexture;
-	std::vector<SimpleGUIElement*> charactersMatrix;
+	std::vector<std::unique_ptr<SimpleGUIElement>> charactersMatrix;
 	int playerOneChoice;
 	int playerTwoChoice;
 private:

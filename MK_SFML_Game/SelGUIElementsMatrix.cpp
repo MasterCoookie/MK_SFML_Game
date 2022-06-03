@@ -14,12 +14,7 @@ SelGUIElementsMatrix::SelGUIElementsMatrix(std::string texName, int nrows, int  
 
 SelGUIElementsMatrix::~SelGUIElementsMatrix()
 {
-	delete this->charactersTexture;
-	for (int i = 0; i < this->rows; i++) {
-		for (int j = 0; j < this->cols; j++) {
-			delete this->charactersMatrix[i * this->cols + j];
-		}
-	}
+	
 }
 
 void SelGUIElementsMatrix::render(sf::RenderTarget* win)
@@ -117,7 +112,7 @@ void SelGUIElementsMatrix::initCharactersMatrix(int nrows, int ncols, int offset
 	int top=0, left=0;
 	for (int i = 0; i < this->rows; i++) {
 		for (int j = 0; j < this->cols; j++) {
-			charactersMatrix[i * (this->cols) + j] = new SimpleGUIElement(this->charactersTexture, 0, positionOnTexture, this->elementWidth,this->elementHeight, vecOnScreen.x, vecOnScreen.y ); //przepisac konstruktor
+			charactersMatrix[i * (this->cols) + j] = std::make_unique<SimpleGUIElement>(this->charactersTexture, 0, positionOnTexture, this->elementWidth,this->elementHeight, vecOnScreen.x, vecOnScreen.y ); //przepisac konstruktor
 			vecOnScreen.x += offsetOnScreen;
 			positionOnTexture += offsetOnTexture;
 		}
