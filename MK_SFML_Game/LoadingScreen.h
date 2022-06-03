@@ -4,8 +4,8 @@ class LoadingScreen
 {
 public:
 	LoadingScreen(std::shared_ptr<sf::RenderWindow> win, std::string playerOne, std::string playerTwo);
-	Player* getPlayerOne();
-	Player* getPlayerTwo();
+	std::shared_ptr<Player> getPlayerOne();
+	std::shared_ptr<Player> getPlayerTwo();
 	void loadPlayers();
 	void update(int loadingPercent);
 	void render();
@@ -19,7 +19,7 @@ private:
 	sf::Sprite sprite;
 	std::string playerOneName;
 	std::string playerTwoName;
-	Player* playerOne;
-	Player* playerTwo;
+	std::shared_ptr<Player> playerOne;
+	std::shared_ptr<Player> playerTwo;
 };
 

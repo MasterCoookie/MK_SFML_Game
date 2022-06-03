@@ -14,22 +14,22 @@ LoadingScreen::LoadingScreen(std::shared_ptr<sf::RenderWindow> win, std::string 
 	
 }
 
-Player* LoadingScreen::getPlayerOne()
+std::shared_ptr<Player> LoadingScreen::getPlayerOne()
 {
 	return this->playerOne;
 }
 
-Player* LoadingScreen::getPlayerTwo()
+std::shared_ptr<Player> LoadingScreen::getPlayerTwo()
 {
 	return this->playerTwo;
 }
 
 void LoadingScreen::loadPlayers()
 {
-	std::promise<Player*> promPlayerOne;
-	std::future<Player*> loadedPlayerOne = promPlayerOne.get_future();
-	std::promise<Player*> promPlayerTwo;
-	std::future<Player*> loadedPlayerTwo = promPlayerTwo.get_future();
+	std::promise<std::shared_ptr<Player>> promPlayerOne;
+	std::future<std::shared_ptr<Player>> loadedPlayerOne = promPlayerOne.get_future();
+	std::promise<std::shared_ptr<Player>> promPlayerTwo;
+	std::future<std::shared_ptr<Player>> loadedPlayerTwo = promPlayerTwo.get_future();
 	std::thread th1(&LoadPlayer, std::ref(promPlayerOne), this->playerOneName);
 	std::thread th2(&LoadPlayer, std::ref(promPlayerTwo), this->playerTwoName);
 	DisplayLoadingStatus(this);

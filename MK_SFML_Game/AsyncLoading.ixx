@@ -4,11 +4,11 @@
 export module AsyncLoading;
 
 std::counting_semaphore<2> toLoad{ 0 };
-export void LoadPlayer(std::promise<Player*> & prom, std::string charName);
+export void LoadPlayer(std::promise<std::shared_ptr<Player>> & prom, std::string charName);
 export void DisplayLoadingStatus(LoadingScreen* load);
-void LoadPlayer(std::promise<Player*>& prom, std::string charName)
+void LoadPlayer(std::promise<std::shared_ptr<Player>>& prom, std::string charName)
 {
-	Player* newPlayer = new Player(charName);
+	std::shared_ptr<Player> newPlayer = std::make_shared<Player>(charName);
 	prom.set_value(newPlayer);
 	toLoad.release();
 	return;

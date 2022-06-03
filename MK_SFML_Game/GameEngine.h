@@ -68,8 +68,8 @@ private:
 	
 
 	//Players
-	Player* player1;
-	Player* player2;
+	std::shared_ptr<Player> player1;
+	std::shared_ptr<Player> player2;
 	
 	//GUI
 	HealthBar* hbplayer1;
