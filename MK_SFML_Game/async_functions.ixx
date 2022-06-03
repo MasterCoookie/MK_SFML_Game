@@ -8,6 +8,7 @@ export void async_read_input(GameEngine* g);
 export void async_move_players(Player* p1, Player* p2);
 export void async_recovery(Player* p);
 export void async_animation(Player* p);
+export const bool update_view(GameEngine* g, Player* p1, Player* p2, sf::View* view, const float& dist_between_players);
 export void init_gameobject_variables(GameObject* gameObject);
 
 module :private;
@@ -45,6 +46,26 @@ void async_animation(Player* p) {
 	p->updateAnimation();
 	p->resetMovementMatrix();
 }
+
+//returns true if screen was moved
+const bool update_view(GameEngine* g, Player* p1, Player* p2, sf::View* view, const float& dist_between_players) {
+	if ((p1->getPosition().x - (p1->getBounds().width / 3) < (view->getCenter().x - 640.f))
+		&& view->getCenter().x > 640.f
+		&& dist_between_players < 1020.f) {
+		view->move(-10.f, 0.f);
+		g->moveGUIElements(-10.f, 0.f);
+		return true;
+	}
+	else if ((p2->getPosition().x + (p2->getBounds().width / 3) > (view->getCenter().x + 640.f))
+		&& view->getCenter().x < 1920.f
+		&& dist_between_players < 1020.f) {
+		view->move(+10.f, 0.f);
+		g->moveGUIElements(+10.f, 0.f);
+		return true;
+	}
+	return false;
+}
+
 
 void init_gameobject_variables(GameObject* gameObject) {
 	gameObject->initVariables();

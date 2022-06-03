@@ -17,6 +17,7 @@ public:
 	~GameEngine();
 
 	void updateInput();
+	void moveGUIElements(float offsetX, float offsetY);
 
 	void run() override;
 	std::vector<std::string> getResult() override;
@@ -50,7 +51,7 @@ private:
 	void updateView();
 	void updateTimer();
 	
-	void moveGUIElements(float offsetX, float offsetY);
+	
 
 	// renders
 	void render() override;

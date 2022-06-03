@@ -421,7 +421,6 @@ void Player::updateRecovery() {
 			}
 		}
 	}
-	
 }
 
 void Player::updateAnimation() {
