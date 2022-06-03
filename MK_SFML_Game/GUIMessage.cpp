@@ -24,10 +24,12 @@ void GUIMessage::render(sf::RenderWindow* win)
 	win->draw(this->text);
 }
 
-void GUIMessage::updateMessage(std::string msg)
+void GUIMessage::updateMessage(std::string msg, sf::View* view)
 {
 	this->text.setString(msg);
-	this->text.setPosition(1280 - this->text.getLocalBounds().width / 2, 480 - this->text.getLocalBounds().height / 2);
+	sf::Vector2f vec = view->getCenter();
+	
+	this->text.setPosition(vec.x - this->text.getLocalBounds().width / 2, vec.y - this->text.getLocalBounds().height / 2);
 
 	//sf::FloatRect vec = this->text.getLocalBounds();
 

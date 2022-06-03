@@ -199,7 +199,7 @@ void GameEngine::update() {
 	animation_th_p2.join();
 	this->hbplayer1->update(this->player1->getHp());
 	this->hbplayer2->update(this->player2->getHp());
-	this->msg->updateMessage(this->matchManager->getMsg());
+	this->msg->updateMessage(this->matchManager->getMsg(),this->view);
 
 }
 
@@ -361,7 +361,7 @@ void GameEngine::moveGUIElements(float offsetX, float offsetY)
 	this->timerGUI->move(offsetX, offsetY);
 	this->wcplayer1->move(offsetX, offsetY);
 	this->wcplayer2->move(offsetX, offsetY);
-
+	this->msg->move(offsetX, offsetY);
 }
 
 void GameEngine::endRound() {

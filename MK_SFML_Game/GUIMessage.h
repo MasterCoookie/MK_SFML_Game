@@ -7,7 +7,7 @@ public:
     GUIMessage();
     void move(float offsetX, float offsetY);
     void render(sf::RenderWindow* win);
-    void updateMessage(std::string msg);
+    void updateMessage(std::string msg, sf::View* view);
 private:
     std::unique_ptr<sf::Font> font;
     sf::Text text;
