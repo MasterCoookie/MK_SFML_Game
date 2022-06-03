@@ -8,6 +8,8 @@ public:
 	~MatchManager();
 
 	const bool getAreInputsBlocked();
+	const bool isRoundResetPlanned();
+	const bool resetNow();
 	std::string getMsg();
 	sf::Time getRoundTimer();
 
@@ -23,10 +25,12 @@ private:
 	int inputsBlockedFrames;
 	int inputsBlockedFramesMax;
 
-	int msgFrames;
-	int msgFramesMax;
+
+	int resetFrames;
+	int resetFramesMax;
 
 	short int roundCounter;
+	bool roundResetPlanned;
 
 	std::string msg;
 	std::vector<std::string> msgQueue;

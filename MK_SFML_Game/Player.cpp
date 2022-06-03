@@ -69,12 +69,12 @@ void Player::setState(const State& state) {
 }
 
 void Player::winRound() {
-	this->hp = hpMax;
+	//this->reset();
 	++this->roundsWon;
 }
 
 void Player::looseRound() {
-	this->hp = hpMax;
+	//this->reset();
 }
 
 void Player::move() {
@@ -228,6 +228,22 @@ void Player::takeHit(AttackMove& hitBy) {
 		}
 	}
 	
+}
+
+void Player::reset() {
+	this->hp = hpMax;
+	this->position = Position::STANDING;
+	this->state = State::IDLE;
+	this->xAxisMomentum = 0;
+	this->yAxisMomentum = 0;
+	//delete this->animator;
+	this->staggerFrames = 0.f;
+	this->recoveryFrames = 0.f;
+	this->recoveryFrames = 10.f;
+	this->textureRect = new sf::IntRect(0, 0, 150, 375);
+	delete this->animator;
+	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+	this->initSprite(this->textureRect);
 }
 
 const bool Player::rightFacing() {

@@ -72,10 +72,7 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	this->initHealthBars(p1charName, p2charName);
 
 	//place players in the right position
-	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
-	this->player1->setRightFacing(true);
-	this->player2->setPosition(1720.f - this->player2->getBounds().width, 800.f - this->player2->getBounds().height);
-	this->player2->setRightFacing(false);
+	this->initPlayersPos();
 
 	this->view->move(640.f, 0.f);
 	this->window->setView(*this->view);
@@ -102,6 +99,13 @@ void GameEngine::initWinCircles()
 void GameEngine::initGUIMsg()
 {
 	this->msg = new GUIMessage;
+}
+
+void GameEngine::initPlayersPos() {
+	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
+	this->player1->setRightFacing(true);
+	this->player2->setPosition(1570.f, 800.f - this->player2->getBounds().height);
+	this->player2->setRightFacing(false);
 }
 
 void GameEngine::initWindow() {
@@ -298,7 +302,6 @@ void GameEngine::updateAttacksCollision() {
 			this->player1->winRound();
 			this->player2->looseRound();
 			this->wcplayer1->update();
-			this->endRound();
 			this->matchManager->endRound(this->player1->getCharName());
 		}
 	}
@@ -309,7 +312,6 @@ void GameEngine::updateAttacksCollision() {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
-			this->endRound();
 			this->matchManager->endRound(this->player2->getCharName());
 		}
 	}
@@ -330,10 +332,18 @@ void GameEngine::updateView() {
 }
 
 void GameEngine::updateTimer() {
+	if (this->matchManager->getAreInputsBlocked()) {
+		if (this->matchManager->isRoundResetPlanned()) {
+			if (this->matchManager->resetNow()) {
+				this->resetRound();
+				this->matchManager->beginRound();
+			}
+		}
+	}
 	this->matchManager->update();
 
 	if (this->matchManager->getRoundTimer().asSeconds() <= 0) {
-		this->endRound();
+		//this->resetRound();
 		const float p1_hp = this->player1->getHp();
 		const float p2_hp = this->player2->getHp();
 		if (p1_hp > p2_hp) {
@@ -364,7 +374,16 @@ void GameEngine::moveGUIElements(float offsetX, float offsetY)
 	this->msg->move(offsetX, offsetY);
 }
 
-void GameEngine::endRound() {
+void GameEngine::resetRound() {
+	this->player1->reset();
+	this->player2->reset();
+	this->initPlayersPos();
+	this->player1->setPosition(840.f, 425.f);
+	this->player2->setPosition(1720.f, 425.f);
+	this->view->setCenter(1280.f, this->view->getCenter().y);
+	this->window->setView(*this->view);
+	
+	
 	this->matchManager->resetRoundTimer();
 	std::cout << "Round ended!\n";
 	if (this->player1->getRoundsWon() >= 2) {

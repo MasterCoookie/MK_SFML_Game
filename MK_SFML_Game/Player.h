@@ -53,6 +53,7 @@ public:
 	bool selectAttack();
 	void attack();
 	void takeHit(AttackMove& hitBy);
+	void reset();
 
 	//updates
 	void updateMovement();

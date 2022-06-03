@@ -34,11 +34,12 @@ private:
 	void initTimer();
 	void initWinCircles();
 	void initGUIMsg();
+	void initPlayersPos();
 	void pollEvents() override;
 
 	//otehers
 	void printDebug();
-	void endRound();
+	void resetRound();
 
 
 	//updates
