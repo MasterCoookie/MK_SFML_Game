@@ -9,7 +9,7 @@ public:
 	AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool isRightFacing, std::string charName);
 	//file reading constructor
 	AttackMove(float _xSize, float _ySize,
-		sf::Texture* _atkTexture, sf::Texture* _playerAtkTexture,
+		std::shared_ptr<sf::Texture> _atkTexture, std::shared_ptr<sf::Texture> _playerAtkTexture,
 		int _knockback, int _knockup,
 		float _xOffset, float _yOffset,
 		int _startupTimeMax, int _lifespanMax,
@@ -35,8 +35,8 @@ public:
 	const bool getIsActive() const;
 	bool getHasEnded();
 	const sf::RectangleShape& getShape() const;
-	sf::Texture* getPlayerTexture();
-	sf::Texture* getAtkTexture();
+	std::shared_ptr<sf::Texture> getPlayerTexture();
+	std::shared_ptr<sf::Texture> getAtkTexture();
 
 	//modifiers
 	
@@ -112,7 +112,7 @@ private:
 
 	
 
-	sf::Texture* atkTexture;
-	sf::Texture* playerAtkTexture;
+	std::shared_ptr<sf::Texture> atkTexture;
+	std::shared_ptr<sf::Texture> playerAtkTexture;
 
 };

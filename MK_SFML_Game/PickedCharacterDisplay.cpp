@@ -1,8 +1,8 @@
 #include "PickedCharacterDisplay.h"
 
 PickedCharacterDisplay::PickedCharacterDisplay(int width, int height, bool isLeft) : SimpleGUIElement() {
-	this->textureRect = new sf::IntRect(0, 0, width, height);
-	this->texture = new sf::Texture;
+	this->textureRect = std::make_shared<sf::IntRect>(0, 0, width, height);
+	this->texture = std::make_shared<sf::Texture>();
 	if (!this->texture->loadFromFile("./SceneMenu/players.png")) std::cout << "PLAYERS.PNG NOT FOUND";
 	this->initSprite(*(this->texture), this->textureRect);
 	this->animator = std::make_unique<Animator>(this->textureRect, width * 11, height * 9, AnimationType::STANDING, true, true);

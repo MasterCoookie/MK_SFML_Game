@@ -10,9 +10,9 @@ SimpleGUIElement::SimpleGUIElement(std::string fileName, int left, int top, int 
 	this->initSprite(left,top,width,height);
 }
 
-SimpleGUIElement::SimpleGUIElement(sf::Texture* tex, int left, int top, int width, int height, unsigned int xOnScreen, unsigned int yOnScreen)
+SimpleGUIElement::SimpleGUIElement(std::shared_ptr<sf::Texture> tex, int left, int top, int width, int height, unsigned int xOnScreen, unsigned int yOnScreen)
 {
-	this->textureRect = new sf::IntRect(left, top, width, height);
+	this->textureRect = std::make_shared<sf::IntRect>(left, top, width, height);
 	this->initSprite(*tex,this->textureRect); 
 	this->setPosition(static_cast<float>(xOnScreen), static_cast<float>(yOnScreen)); 
 }

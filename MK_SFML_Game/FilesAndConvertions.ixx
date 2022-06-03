@@ -47,11 +47,11 @@ AttackMove* ReadAttackMoveFromFile(std::istream& os, std::string charName)
 		>> playerAtkTexName;
 	std::string path1 = "Characters/" + charName + "/" + atkTexName;
 	std::string path2 = "Characters/" + charName + "/" + playerAtkTexName;
-	sf::Texture* atkTexture = new sf::Texture;
+	std::shared_ptr<sf::Texture> atkTexture = std::make_shared<sf::Texture>();
 	if (!atkTexture->loadFromFile(path1)) {
 		std::cout << "ERR: ATTACKMOVE::ATKTEXTURE: Could not load texture file" << std::endl;
 	}
-	sf::Texture* playerAtkTexture = new sf::Texture;
+	std::shared_ptr<sf::Texture> playerAtkTexture = std::make_shared<sf::Texture>();
 
 	if (!playerAtkTexture->loadFromFile(path2)) {
 		std::cout << "ERR: ATTACKMOVE::PLAYERATKTEXTURE: Could not load texture file" << std::endl;

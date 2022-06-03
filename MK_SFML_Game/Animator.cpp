@@ -2,13 +2,13 @@
 
 
 
-Animator::Animator(sf::IntRect* _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing) :
+Animator::Animator(std::shared_ptr<sf::IntRect> _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing) :
 	textureRectPtr(_textureRectPtr), xMax(_xMax), yMax(_yMax), currAnimation(aType), looping(_looping), bouncing(_bouncing) {
 	this->xInterval = 150;
 	this->initVariables();
 }
 
-Animator::Animator(sf::IntRect* _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval) :
+Animator::Animator(std::shared_ptr<sf::IntRect> _textureRectPtr, int _xMax, int _yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval) :
 	textureRectPtr(_textureRectPtr), xMax(_xMax), yMax(_yMax), currAnimation(aType), looping(_looping), bouncing(_bouncing), xInterval(_xInterval) {
 	this->initVariables();
 }

@@ -5,8 +5,8 @@ enum class AnimationType { STANDING, WALKING_F, WALKING_B, JUMPING, ATTACKING, G
 
 class Animator {
 public:
-	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing);
-	Animator(sf::IntRect* textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval);
+	Animator(std::shared_ptr<sf::IntRect> textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing);
+	Animator(std::shared_ptr<sf::IntRect> textureRectRef, int xMax, int yMax, AnimationType aType, bool _looping, bool _bouncing, int _xInterval);
 	~Animator();
 
 	//getters
@@ -15,7 +15,7 @@ public:
 	void update();
 private:
 	AnimationType currAnimation;
-	sf::IntRect* textureRectPtr;
+	std::shared_ptr<sf::IntRect> textureRectPtr;
 
 	//private fields
 	int xInterval;

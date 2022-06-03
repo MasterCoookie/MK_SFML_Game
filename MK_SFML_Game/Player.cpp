@@ -18,9 +18,7 @@ Player::Player(std::string _charName) {
 }
 
 Player::~Player() {
-	for (const auto& val : std::views::values(this->playerTextures)) {
-		delete val;
-	}
+	
 }
 
 void Player::setRightFacing(bool facing) {
@@ -240,7 +238,7 @@ void Player::reset() {
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->recoveryFrames = 10.f;
-	this->textureRect = new sf::IntRect(0, 0, 150, 375);
+	this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 	delete this->animator;
 	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->initSprite(this->textureRect);
@@ -306,7 +304,7 @@ void Player::initVariables() {
 	this->hp = hpMax;
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
-	this->textureRect = new sf::IntRect(0, 0, 150, 375);
+	this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 	this->roundsWon = 0;
 	this->getUpFrames = 10;
 
@@ -332,7 +330,7 @@ void Player::initTexturesMap() {
 		this->initTexture(tex.second, ("./Characters/" + this->charName + "/" + tex.first + ".png"));
 	}
 	//ranges to check if some textures didnt load
-	auto didLoad = [](const sf::Texture* pointer) { return pointer == nullptr; };
+	auto didLoad = [](const std::shared_ptr<sf::Texture> pointer) { return pointer == nullptr; };
 	for (const auto& val : std::views::values(this->playerTextures) | std::views::filter(didLoad)) {
 		std::cout << "PLAYER::initTexturesMap() CRITCAL ERROR: nullptr in map!\n";
 	}
@@ -366,8 +364,8 @@ void Player::updateMovement() {
 			if (this->state == State::HIT_STAGGERED) {
 				this->position = Position::LYING;
 
-				delete this->textureRect;
-				this->textureRect = new sf::IntRect(0, 0, 300, 150);
+				
+				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
 				this->initSprite(*(this->playerTextures.find("lying")->second), this->textureRect);
 
 				this->setPosition(this->getPosition().x, 650);
@@ -452,8 +450,8 @@ void Player::updateAnimation() {
 		}
 		else {
 			//start animating walking forward
-			delete this->textureRect;
-			this->textureRect = new sf::IntRect(0, 0, 150, 375);
+			
+			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 			delete this->animator;
 			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
 			this->initSprite(this->textureRect);
@@ -469,8 +467,8 @@ void Player::updateAnimation() {
 			//start animating jumping
 			if (this->movementMatrix[0] || this->movementMatrix[1]) {
 				delete this->animator;
-				delete this->textureRect;
-				this->textureRect = new sf::IntRect(0, 0, 175, 175);
+				
+				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 175, 175);
 				this->animator = new Animator(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
 				if (this->movementMatrix[0]) {
 					this->lockedAnimation = "jumping_f";
@@ -488,8 +486,8 @@ void Player::updateAnimation() {
 			this->initSprite(*this->attackingTexture, this->textureRect);
 		}
 		else {
-			delete this->textureRect;
-			this->textureRect = new sf::IntRect(0, 0, 150, 375);
+			
+			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 			delete this->animator;
 			this->attackingTexture = this->currentAttack.getPlayerTexture();
 			this->initSprite(*this->attackingTexture, this->textureRect);
@@ -505,8 +503,8 @@ void Player::updateAnimation() {
 		else {
 			//start getup animation
 			this->sprite.move(0.f, -50.f);
-			delete this->textureRect;
-			this->textureRect = new sf::IntRect(0, 0, 275, 200);
+			
+			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 275, 200);
 			delete this->animator;
 			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
 			this->animator = new Animator(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
@@ -520,8 +518,8 @@ void Player::updateAnimation() {
 		else {
 			//start getup falling
 			//this->sprite.move(0.f, -50.f);
-			delete this->textureRect;
-			this->textureRect = new sf::IntRect(0, 0, 300, 150);
+			
+			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
 			delete this->animator;
 			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
 			this->animator = new Animator(this->textureRect, 3000, 150, AnimationType::FALLING, true, false, 300);
@@ -537,8 +535,8 @@ void Player::updateAnimation() {
 			else {
 				//start animating standing
 				this->setPosition(this->getPosition().x, 425.f);
-				delete this->textureRect;
-				this->textureRect = new sf::IntRect(0, 0, 150, 375);
+				
+				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 				delete this->animator;
 				this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 				this->initSprite(this->textureRect);

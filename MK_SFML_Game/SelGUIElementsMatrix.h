@@ -16,7 +16,7 @@ public:
 private:	
 	int rows, cols;
 	int elementWidth, elementHeight;
-	sf::Texture* charactersTexture;
+	std::shared_ptr<sf::Texture> charactersTexture;
 	std::vector<std::unique_ptr<SimpleGUIElement>> charactersMatrix;
 	int playerOneChoice;
 	int playerTwoChoice;

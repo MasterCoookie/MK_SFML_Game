@@ -43,7 +43,7 @@ const sf::IntRect GameObject::getIntRect() const
 
 void GameObject::initTexture(std::string texturePath) {
 	//load texture form file
-	this->texture = new sf::Texture;
+	this->texture = std::make_shared<sf::Texture>();
 	if (!this->texture->loadFromFile(texturePath)) {
 		std::cout << "ERR: GAMEOBJECT::INITTEXTURE: Could not load texture file" << std::endl;
 	}
@@ -56,9 +56,9 @@ void GameObject::initTexture(sf::Texture& targetTexture, std::string texturePath
 	}
 }
 
-void GameObject::initTexture(sf::Texture*& targetTexture, std::string texturePath) {
+void GameObject::initTexture(std::shared_ptr<sf::Texture>& targetTexture, std::string texturePath) {
 	//load texture form file
-	targetTexture = new sf::Texture;
+	targetTexture = std::make_shared<sf::Texture>();
 	if (!targetTexture->loadFromFile(texturePath)) {
 		std::cout << "ERR: GAMEOBJECT::INITTEXTURE: Could not load texture file" << std::endl;
 	}
@@ -74,19 +74,19 @@ void GameObject::initSprite() {
 
 void GameObject::initSprite(int startingX, int startingY, int sizeX, int sizeY) {
 	//set sprite texture
-	this->textureRect = new sf::IntRect(startingX, startingY, sizeX, sizeY);
+	this->textureRect = std::make_shared<sf::IntRect>(startingX, startingY, sizeX, sizeY);
 	this->sprite.setTextureRect(*this->textureRect);
 	this->sprite.setTexture(*(this->texture));
 }
 
-void GameObject::initSprite(sf::IntRect* intRect) {
+void GameObject::initSprite(std::shared_ptr<sf::IntRect> intRect) {
 	//set sprite texture
 	this->textureRect = intRect;
 	this->sprite.setTextureRect(*this->textureRect);
 	this->sprite.setTexture(*(this->texture));
 }
 
-void GameObject::initSprite(sf::Texture &tex, sf::IntRect* intRect) {
+void GameObject::initSprite(sf::Texture &tex, std::shared_ptr<sf::IntRect> intRect) {
 	//set sprite texture
 	this->textureRect = intRect;
 	this->sprite.setTextureRect(*this->textureRect);

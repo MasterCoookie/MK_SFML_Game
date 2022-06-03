@@ -84,11 +84,11 @@ private:
 	float recoveryFrames;
 
 	//textures
-	sf::Texture* duckingTexture;
-	sf::Texture* attackingTexture;
+	std::shared_ptr<sf::Texture> duckingTexture;
+	std::shared_ptr<sf::Texture> attackingTexture;
 
 	//To map
-	std::unordered_map<std::string, sf::Texture*> playerTextures;
+	std::unordered_map<std::string, std::shared_ptr<sf::Texture>> playerTextures;
 
 	//pointer to animator instance
 	Animator* animator;

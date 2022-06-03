@@ -88,7 +88,7 @@ void SelGUIElementsMatrix::update(PlayerNumber player, Direction dir)
 
 void SelGUIElementsMatrix::initTexture(std::string texName)
 {
-	this->charactersTexture = new sf::Texture;
+	this->charactersTexture = std::make_shared<sf::Texture>();
 	if (!this->charactersTexture->loadFromFile(texName)) {
 		std::cout << " ! ERR: SelGUIElementsMatrix::constructor: could not load tex img" << std::endl;
 	};
