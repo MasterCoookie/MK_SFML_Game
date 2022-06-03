@@ -143,12 +143,13 @@ void GameEngine::printDebug(){
 }
 
 void GameEngine::update() {
-	this->updateTimer();
+	this->updateMatchManager();
 
 	this->player1->updateStagger();
 	this->player2->updateStagger();
 	//this->updateInput();
 	if (!this->matchManager->getAreInputsBlocked()) {
+		this->matchManager->update();
 
 
 		std::thread read_movement(async_read_input, this);
@@ -331,7 +332,7 @@ void GameEngine::updateView() {
 	this->window->setView(*this->view);
 }
 
-void GameEngine::updateTimer() {
+void GameEngine::updateMatchManager() {
 	if (this->matchManager->getAreInputsBlocked()) {
 		if (this->matchManager->isRoundResetPlanned()) {
 			if (this->matchManager->resetNow()) {
@@ -340,7 +341,6 @@ void GameEngine::updateTimer() {
 			}
 		}
 	}
-	this->matchManager->update();
 
 	if (this->matchManager->getRoundTimer().asSeconds() <= 0) {
 		//this->resetRound();

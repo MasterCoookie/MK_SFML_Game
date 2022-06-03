@@ -50,7 +50,7 @@ private:
 	void updatePlayersScreenCollision();
 	void updateAttacksCollision();
 	void updateView();
-	void updateTimer();
+	void updateMatchManager();
 	
 	
 
