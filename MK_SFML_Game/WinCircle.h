@@ -9,7 +9,7 @@ public:
     void render(sf::RenderWindow* win) override;
     void move(float offsetX, float offsetY) override;
 private:
-    sf::CircleShape* circle;
+    std::unique_ptr<sf::CircleShape> circle;
     bool isVisble;
     bool isLeft;
 };

@@ -3,7 +3,7 @@
 HealthBar::HealthBar(bool isLeft, std::string name)
 {
 	this->isLeft = isLeft;
-	this->font = new sf::Font;
+	this->font = std::make_unique<sf::Font>();
 	if (!this->font->loadFromFile("./Textures/arial.ttf")) {
 		std::cout << "Czcionka nie wczytana";
 	}
@@ -12,10 +12,10 @@ HealthBar::HealthBar(bool isLeft, std::string name)
 	this->text.setCharacterSize(40);
 	this->text.setFillColor(sf::Color::Blue);
 	this->text.setStyle(sf::Text::Bold);
-	this->healthShape = new sf::RectangleShape;
+	this->healthShape = std::make_unique < sf::RectangleShape>();
 	this->healthShape->setFillColor(sf::Color(0, 255, 0));
 	this->healthShape->setSize({ 450.f, 50.f });
-	this->backgroundShape = new sf::RectangleShape;
+	this->backgroundShape = std::make_unique < sf::RectangleShape>();
 	this->backgroundShape->setFillColor(sf::Color(255,0, 0));
 	this->backgroundShape->setSize({ 450.f, 50.f });
 	if (this->isLeft) {

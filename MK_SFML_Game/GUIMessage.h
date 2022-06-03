@@ -9,7 +9,7 @@ public:
     void render(sf::RenderWindow* win);
     void updateMessage(std::string msg);
 private:
-    sf::Font* font;
+    std::unique_ptr<sf::Font> font;
     sf::Text text;
 };
 

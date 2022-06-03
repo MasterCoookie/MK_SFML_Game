@@ -2,7 +2,7 @@
 
 GUIMessage::GUIMessage()
 {
-	this->font = new sf::Font;
+	this->font = std::make_unique<sf::Font>();
 	if (!this->font->loadFromFile("./Textures/arial.ttf")) {
 		std::cout << "Czcionka nie wczytana";
 	}

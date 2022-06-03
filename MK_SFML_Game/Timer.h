@@ -12,7 +12,7 @@ public:
 	void move(float offsetX, float offsetY) override;
 private:
 	void initText();
-	sf::Font* font;
+	std::unique_ptr<sf::Font> font;
 	sf::Text text;
 };
 

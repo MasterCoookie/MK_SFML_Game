@@ -11,10 +11,10 @@ public:
 	void move(float offsetX, float offsetY) override;
 private:
 	bool isLeft;
-	sf::RectangleShape* healthShape;
-	sf::RectangleShape* backgroundShape;
+	std::unique_ptr < sf::RectangleShape> healthShape;
+	std::unique_ptr < sf::RectangleShape> backgroundShape;
 	sf::Vector2f originalPos;
-	sf::Font* font;
+	std::unique_ptr<sf::Font> font;
 	sf::Text text;
 };
 

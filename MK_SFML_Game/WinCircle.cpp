@@ -3,7 +3,7 @@
 WinCircle::WinCircle(bool isLeft)
 {
 	this->isLeft = isLeft;
-	this->circle = new sf::CircleShape;
+	this->circle = std::make_unique<sf::CircleShape>();
 	this->circle->setRadius(20.f);
 	this->circle->setFillColor(sf::Color(255, 255, 0));
 	this->isVisble = false;
