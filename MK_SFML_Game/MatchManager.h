@@ -13,6 +13,9 @@ public:
 
 	void update();
 	void resetRoundTimer();
+
+	void beginRound();
+	void endRound(std::string winnerName);
 private:
 	void initVariables();
 	void updateTimer();

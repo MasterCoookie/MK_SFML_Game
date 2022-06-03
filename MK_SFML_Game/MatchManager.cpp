@@ -21,7 +21,7 @@ std::string MatchManager::getMsg() {
 		this->msgFrames++;
 		return this->msg;
 	}
-	updateMsgQueue();
+	this->updateMsgQueue();
 	return "";
 }
 
@@ -35,6 +35,17 @@ void MatchManager::update() {
 
 void MatchManager::resetRoundTimer() {
 	this->roundTimer = this->roundTimerMax;
+}
+
+void MatchManager::beginRound() {
+	this->msgQueue.push_back("Round " + std::to_string(++this->roundCounter));
+	this->msgQueue.push_back("Fight!");
+	this->updateMsgQueue();
+}
+
+void MatchManager::endRound(std::string winnerNum) {
+	this->msgQueue = { (winnerNum + " wins!"), };
+	this->updateMsgQueue();
 }
 
 void MatchManager::initVariables() {

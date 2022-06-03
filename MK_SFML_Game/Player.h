@@ -33,6 +33,7 @@ public:
 	AttackMove& getCurrentAttack();
 	const int getRoundsWon();
 	const float getHp();
+	const std::string getCharName();
 	
 	//overrides
 	void update() override;

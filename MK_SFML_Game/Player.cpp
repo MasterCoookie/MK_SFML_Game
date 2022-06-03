@@ -258,6 +258,10 @@ const float Player::getHp() {
 	return this->hp;
 }
 
+const std::string Player::getCharName() {
+	return this->charName;
+}
+
 void Player::update() {
 	std::cout << this->getPosition().y << "\n";
 }

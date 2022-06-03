@@ -186,9 +186,6 @@ void GameEngine::update() {
 	recovery_th_p1.join();
 	recovery_th_p2.join();
 
-	/*this->player1->updateRecovery();
-	this->player2->updateRecovery();*/
-
 	this->updatePlayersCross();
 	//this->printDebug();
 	this->updatePlayersCollision();
@@ -302,6 +299,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player2->looseRound();
 			this->wcplayer1->update();
 			this->endRound();
+			this->matchManager->endRound(this->player1->getCharName());
 		}
 	}
 
@@ -312,6 +310,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player1->looseRound();
 			this->wcplayer2->update();
 			this->endRound();
+			this->matchManager->endRound(this->player2->getCharName());
 		}
 	}
 }
@@ -341,10 +340,12 @@ void GameEngine::updateTimer() {
 			this->player1->winRound();
 			this->player2->looseRound();
 			this->wcplayer1->update();
+			this->matchManager->endRound(this->player1->getCharName());
 		} else if (p1_hp < p2_hp) {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
+			this->matchManager->endRound(this->player2->getCharName());
 		} else {
 			this->player1->winRound();
 			this->player2->winRound();
