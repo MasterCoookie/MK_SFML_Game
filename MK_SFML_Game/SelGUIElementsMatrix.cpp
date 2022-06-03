@@ -17,7 +17,7 @@ SelGUIElementsMatrix::~SelGUIElementsMatrix()
 	
 }
 
-void SelGUIElementsMatrix::render(sf::RenderTarget* win)
+void SelGUIElementsMatrix::render(std::shared_ptr<sf::RenderTarget> win)
 {
 	for (int i = 0; i < this->rows; i++) {
 		for (int j = 0; j < this->cols; j++) {

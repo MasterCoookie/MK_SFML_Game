@@ -37,7 +37,7 @@ void SceneManager::executeScene(Scene* s)
 void SceneManager::initWindow()
 {
 	//initializes window with set params
-	this->window = new sf::RenderWindow(sf::VideoMode(1280, 960), "Patykovy Mordulec", sf::Style::Titlebar | sf::Style::Close);
+	this->window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1280, 960), "Patykovy Mordulec", sf::Style::Titlebar | sf::Style::Close);
 	this->window->setFramerateLimit(30);
 	this->window->setVerticalSyncEnabled(false);
 }

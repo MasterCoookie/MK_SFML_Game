@@ -32,7 +32,7 @@ HealthBar::HealthBar(bool isLeft, std::string name)
 	}
 }
 
-void HealthBar::render(sf::RenderWindow* win)
+void HealthBar::render(std::shared_ptr<sf::RenderTarget> win)
 {
 	win->draw(*(this->backgroundShape));
 	win->draw(*(this->healthShape));

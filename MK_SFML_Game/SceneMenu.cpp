@@ -1,6 +1,6 @@
 #include "SceneMenu.h"
 
-SceneMenu::SceneMenu(sf::RenderWindow* win)
+SceneMenu::SceneMenu(std::shared_ptr<sf::RenderWindow> win)
 {
 	this->window = win;
 	this->initBackground("menu.png");

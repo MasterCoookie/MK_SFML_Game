@@ -19,7 +19,7 @@ void GUIMessage::move(float offsetX, float offsetY)
 	this->text.move(offsetX, offsetY);
 }
 
-void GUIMessage::render(sf::RenderWindow* win)
+void GUIMessage::render(std::shared_ptr<sf::RenderTarget> win)
 {
 	win->draw(this->text);
 }

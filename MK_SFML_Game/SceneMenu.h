@@ -6,7 +6,7 @@ class SceneMenu :
     public Scene
 {
 public:
-	SceneMenu(sf::RenderWindow* win);
+	SceneMenu(std::shared_ptr<sf::RenderWindow> win);
 
 	void run() override;
 
@@ -21,7 +21,7 @@ private:
 	void setAreCharactersPicked(bool val);
 	void initVariables();
 private:
-	sf::RenderWindow* window;
+	
 	std::unique_ptr<sf::Texture> menuScreenTexture;
 	sf::Sprite menuScreenSprite;
 	std::unique_ptr<SelGUIElementsMatrix> matrix;

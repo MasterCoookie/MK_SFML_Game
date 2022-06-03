@@ -6,7 +6,7 @@ class SceneWelcomeScreen :
 {
 public:
     SceneWelcomeScreen();
-    SceneWelcomeScreen(sf::RenderWindow* win);
+    SceneWelcomeScreen(std::shared_ptr<sf::RenderWindow> win);
     ~SceneWelcomeScreen();
 
     void run() override;
@@ -22,7 +22,6 @@ private:
     void setShowForSeconds(float num);
     void setOverTime(bool value);
 private:
-    sf::RenderWindow* window;
     std::unique_ptr<sf::Texture> loadingScreenTexture;  
     sf::Sprite loadingScreenSprite;
     float showForSeconds;

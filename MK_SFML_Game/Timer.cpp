@@ -15,7 +15,7 @@ void Timer::update(sf::Time time)
 	this->text.setString(read);
 }
 
-void Timer::render(sf::RenderWindow* win)
+void Timer::render(std::shared_ptr<sf::RenderTarget> win)
 {
 	win->draw(this->text);
 }

@@ -5,6 +5,7 @@
 #include <ranges>
 #include <thread>
 #include <semaphore>
+#include <memory>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -29,7 +30,7 @@ public:
 	const sf::IntRect getIntRect() const;
 	//virtual methods
 	virtual void update() = 0;
-	virtual void render(sf::RenderTarget* target) = 0;
+	virtual void render(std::shared_ptr<sf::RenderTarget> target) = 0;
 
 	void initTexture(std::string texturePath);
 	virtual void initVariables() = 0;

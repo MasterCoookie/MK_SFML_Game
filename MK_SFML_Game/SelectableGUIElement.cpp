@@ -26,9 +26,9 @@ void SimpleGUIElement::update()
 {
 }
 
-void SimpleGUIElement::render(sf::RenderTarget* target)
+void SimpleGUIElement::render(std::shared_ptr<sf::RenderTarget> win)
 {
-	target->draw(sprite);
+	win->draw(sprite);
 }
 
 void SimpleGUIElement::switchSprite(sf::Texture& tex, int left)

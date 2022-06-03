@@ -8,7 +8,7 @@ class Timer : public GameGUIElement
 public:
 	Timer();
 	void update(sf::Time time) ;
-	void render(sf::RenderWindow* win)override;
+	void render(std::shared_ptr<sf::RenderTarget> win)override;
 	void move(float offsetX, float offsetY) override;
 private:
 	void initText();

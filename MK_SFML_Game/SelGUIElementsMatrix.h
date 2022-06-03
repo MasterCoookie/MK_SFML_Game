@@ -9,7 +9,7 @@ class SelGUIElementsMatrix
 public:
 	SelGUIElementsMatrix(std::string texName, int nrows, int  ncols, int elementWidth,int elementHeight);
 	~SelGUIElementsMatrix();
-	void render(sf::RenderTarget* win);
+	void render(std::shared_ptr<sf::RenderTarget> win);
 	int getPlayerOneChoice();
 	int getPlayerTwoChoice();
 	void update(PlayerNumber player, Direction dir);

@@ -3,14 +3,14 @@
 #include "LoadingScreen.h"
 import AsyncLoading;
 
-LoadingScreen::LoadingScreen(sf::RenderWindow* arg, std::string playerOne, std::string playerTwo)
+LoadingScreen::LoadingScreen(std::shared_ptr<sf::RenderWindow> win, std::string playerOne, std::string playerTwo)
 {
-	this->win = arg;
+	this->window = win;
 	this->playerOneName = playerOne;
 	this->playerTwoName = playerTwo;
 	this->initTexture();
 	this->initText();
-	this->sprite.setTexture(*(this->tex));
+	this->sprite.setTexture(*(this->texture));
 	
 }
 
@@ -47,10 +47,10 @@ void LoadingScreen::update(int loadingPercent)
 
 void LoadingScreen::render()
 {
-	this->win->clear();
-	this->win->draw(this->sprite);
-	this->win->draw(this->text);
-	this->win->display();
+	this->window->clear();
+	this->window->draw(this->sprite);
+	this->window->draw(this->text);
+	this->window->display();
 }
 
 void LoadingScreen::initText()
@@ -69,8 +69,8 @@ void LoadingScreen::initText()
 
 void LoadingScreen::initTexture()
 {
-	this->tex = new sf::Texture;
-	if (!this->tex->loadFromFile("./Textures/menu.png")) {
+	this->texture = std::make_unique<sf::Texture>();
+	if (!this->texture->loadFromFile("./Textures/menu.png")) {
 		std::cout << " ! LOADINGSCREEN: could not load menu img" << std::endl;
 	}
 }

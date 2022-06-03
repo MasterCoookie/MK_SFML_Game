@@ -8,7 +8,7 @@ GameEngine::GameEngine() {
 	this->initVariables();
 }
 
-GameEngine::GameEngine(sf::RenderWindow* win) {
+GameEngine::GameEngine(std::shared_ptr<sf::RenderWindow> win) {
 	//all inits
 	this->window = win;
 	this->view = new sf::View(sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
@@ -20,7 +20,7 @@ GameEngine::GameEngine(sf::RenderWindow* win) {
 }
 
 GameEngine::~GameEngine() { 
-	delete this->window;
+	
 }
 
 void GameEngine::run() {
@@ -110,7 +110,7 @@ void GameEngine::initPlayersPos() {
 
 void GameEngine::initWindow() {
 	//initializes window with set params
-	this->window = new sf::RenderWindow(sf::VideoMode(1280, 960), "Mortul Kombet", sf::Style::Titlebar | sf::Style::Close);
+	this->window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1280, 960), "Mortul Kombet", sf::Style::Titlebar | sf::Style::Close);
 	this->window->setFramerateLimit(30);
 	this->window->setVerticalSyncEnabled(false);
 }

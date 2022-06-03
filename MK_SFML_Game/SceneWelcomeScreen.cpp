@@ -1,7 +1,7 @@
 #include "SceneWelcomeScreen.h"
 
 SceneWelcomeScreen::SceneWelcomeScreen() {}
-SceneWelcomeScreen::SceneWelcomeScreen(sf::RenderWindow* win)
+SceneWelcomeScreen::SceneWelcomeScreen(std::shared_ptr<sf::RenderWindow> win)
 {
 	this->window = win;
 	this->setCurrentSeconds(0.f);

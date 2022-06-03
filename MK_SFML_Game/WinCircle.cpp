@@ -20,7 +20,7 @@ void WinCircle::update()
 	this->isVisble = true;
 }
 
-void WinCircle::render(sf::RenderWindow* win)
+void WinCircle::render(std::shared_ptr<sf::RenderTarget> win)
 {
 	if (isVisble) {
 		win->draw(*(this->circle));

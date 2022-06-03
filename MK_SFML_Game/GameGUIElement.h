@@ -9,7 +9,7 @@
 class GameGUIElement
 {
 public:
-	virtual void render(sf::RenderWindow* win) = 0;
+	virtual void render(std::shared_ptr<sf::RenderTarget> win) = 0;
 	virtual void move(float offsetX, float offsetY) = 0;
 };
 

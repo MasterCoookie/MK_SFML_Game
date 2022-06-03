@@ -198,10 +198,10 @@ void AttackMove::update() {
 	}
 }
 
-void AttackMove::render(sf::RenderTarget* target) {
+void AttackMove::render(std::shared_ptr<sf::RenderTarget> win) {
 	if (this->isActive) {
 		this->sprite.setTexture(*this->atkTexture);
-		target->draw(this->sprite);
+		win->draw(this->sprite);
 	}
 	
 }

@@ -9,7 +9,7 @@ public:
     SimpleGUIElement(sf::Texture*, int left, int top, int width, int height,unsigned int xOnScreen, unsigned int yOnScreen);
     ~SimpleGUIElement();
     void update();
-    void render(sf::RenderTarget* target);
+    void render(std::shared_ptr<sf::RenderTarget> win);
     void switchSprite(sf::Texture& tex,int left);
 private:
     void initVariables() override;

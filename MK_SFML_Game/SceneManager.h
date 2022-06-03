@@ -13,7 +13,7 @@ public:
 	void run();
 private:
 
-	sf::RenderWindow* window;
+	std::shared_ptr<sf::RenderWindow> window;
 	void executeScene(Scene* s);
 	void initWindow();
 	void initScenesToExecute();

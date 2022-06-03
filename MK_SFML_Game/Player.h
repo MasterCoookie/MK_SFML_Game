@@ -37,7 +37,7 @@ public:
 	
 	//overrides
 	void update() override;
-	void render(sf::RenderTarget* target) override;
+	void render(std::shared_ptr<sf::RenderTarget> win) override;
 	
 	//methods
 	bool canMove();

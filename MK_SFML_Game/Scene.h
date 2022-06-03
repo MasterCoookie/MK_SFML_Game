@@ -30,7 +30,7 @@ public:
 	// renders
 	virtual void render() = 0;
 
-private:
-
+protected:
+	std::shared_ptr<sf::RenderWindow> window;
 };
 

@@ -3,7 +3,7 @@
 class LoadingScreen
 {
 public:
-	LoadingScreen(sf::RenderWindow* arg, std::string playerOne, std::string playerTwo);
+	LoadingScreen(std::shared_ptr<sf::RenderWindow> win, std::string playerOne, std::string playerTwo);
 	Player* getPlayerOne();
 	Player* getPlayerTwo();
 	void loadPlayers();
@@ -12,10 +12,10 @@ public:
 private:
 	void initText();
 	void initTexture();
-	sf::RenderWindow* win;
+	std::shared_ptr<sf::RenderWindow> window;
 	sf::Text text;
 	sf::Font font;
-	sf::Texture* tex;
+	std::unique_ptr<sf::Texture> texture;
 	sf::Sprite sprite;
 	std::string playerOneName;
 	std::string playerTwoName;

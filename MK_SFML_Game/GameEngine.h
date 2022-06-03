@@ -13,7 +13,7 @@
 class GameEngine : public Scene{
 public:
 	GameEngine();
-	GameEngine(sf::RenderWindow* win);
+	GameEngine(std::shared_ptr<sf::RenderWindow> win);
 	~GameEngine();
 
 	void updateInput();
@@ -23,7 +23,7 @@ public:
 	std::vector<std::string> getResult() override;
 	void setInterSceneValues(std::vector<std::string>& vec) override;
 private:
-	sf::RenderWindow* window;
+	
 
 	//inits
 	void initWindow();

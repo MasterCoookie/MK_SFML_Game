@@ -282,10 +282,10 @@ void Player::update() {
 	std::cout << this->getPosition().y << "\n";
 }
 
-void Player::render(sf::RenderTarget* target) {
-	target->draw(this->sprite);
+void Player::render(std::shared_ptr<sf::RenderTarget> win) {
+	win->draw(this->sprite);
 	if (this->state == State::ATTACKING) {
-		this->currentAttack.render(target);
+		this->currentAttack.render(win);
 	}
 }
 
