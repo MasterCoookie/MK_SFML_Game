@@ -23,6 +23,7 @@ public:
 	void setState(const State& state);
 	void winRound();
 	void looseRound();
+	void blockGetup();
 	
 
 	//getters
@@ -70,9 +71,13 @@ private:
 	//positions and state
 	enum Position position;
 	enum State state;
+
 	bool isRightFacing;
+
 	float xAxisMomentum;
 	float yAxisMomentum;
+
+	bool getupBlocked;
 
 	float hpMax;
 	float hp;

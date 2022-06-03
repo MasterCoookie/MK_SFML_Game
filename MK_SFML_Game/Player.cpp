@@ -75,6 +75,10 @@ void Player::looseRound() {
 	//this->reset();
 }
 
+void Player::blockGetup() {
+	this->getupBlocked = true;
+}
+
 void Player::move() {
 	const int movementSpeed = 14;
 	//move the player, dependent on direction its facing
@@ -234,7 +238,7 @@ void Player::reset() {
 	this->state = State::IDLE;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
-	// 
+	this->getupBlocked = false;
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->recoveryFrames = 10.f;
@@ -307,6 +311,7 @@ void Player::initVariables() {
 	this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 	this->roundsWon = 0;
 	this->getUpFrames = 10;
+	this->getupBlocked = false;
 
 	this->playerTextures = {
 		{ "ducking", nullptr },
@@ -422,7 +427,7 @@ void Player::updateStagger() {
 }
 
 void Player::updateGetUp() {
-	if (this->state == State::GETTING_UP) {
+	if (!this->getupBlocked && this->state == State::GETTING_UP) {
 		if (--this->getUpFrames < 0) {
 			this->state = State::IDLE;
 			this->position = Position::DUCKING;
@@ -502,12 +507,15 @@ void Player::updateAnimation() {
 		}
 		else {
 			//start getup animation
-			this->sprite.move(0.f, -50.f);
+			if (!this->getupBlocked) {
+				this->sprite.move(0.f, -50.f);
+
+				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 275, 200);
+
+				this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
+				this->animator = std::make_shared<Animator>(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
+			}
 			
-			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 275, 200);
-			 
-			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
-			this->animator = std::make_shared<Animator>(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
 		}
 	}	else if (this->state == State::HIT_STAGGERED && this->position == Position::AIRBORNE) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::FALLING) {

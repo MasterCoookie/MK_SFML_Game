@@ -61,8 +61,8 @@ void GameEngine::initWorld(std::string textureName) {
 
 void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	//create players, based on character names
-	//this->player1 = new Player(p1charName); 	  deprecated
-	//this->player2 = new Player(p2charName);	  deprecated
+	//this->player1 = new Player(p1charName); 	 depraciated
+	//this->player2 = new Player(p2charName);	 depraciated
 	// 
 	//load characters asynchronously
 	LoadingScreen ldscreen(this->window, p1charName, p2charName);
@@ -183,8 +183,15 @@ void GameEngine::update() {
 		else {
 			this->player2->updateAttack();
 		}
-
 	}
+	else {
+		this->player1->updateRecovery();
+		this->player2->updateRecovery();
+
+		this->player1->updateMovement();
+		this->player2->updateMovement();
+	}
+	
 	std::thread recovery_th_p1(async_recovery, this->player1);
 	std::thread recovery_th_p2(async_recovery, this->player2);
 
@@ -304,6 +311,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player2->looseRound();
 			this->wcplayer1->update();
 			this->matchManager->endRound(this->player1->getCharName());
+			this->player2->blockGetup();
 		}
 	}
 
@@ -314,6 +322,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player1->looseRound();
 			this->wcplayer2->update();
 			this->matchManager->endRound(this->player2->getCharName());
+			this->player1->blockGetup();
 		}
 	}
 }

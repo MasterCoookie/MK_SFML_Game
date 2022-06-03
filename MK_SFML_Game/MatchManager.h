@@ -9,6 +9,7 @@ public:
 
 	const bool getAreInputsBlocked();
 	const bool isRoundResetPlanned();
+	const bool hasMatchEnded();
 	const bool resetNow();
 	std::string getMsg();
 	sf::Time getRoundTimer();
@@ -31,6 +32,7 @@ private:
 
 	short int roundCounter;
 	bool roundResetPlanned;
+	bool matchEnded;
 
 	std::string msg;
 	std::vector<std::string> msgQueue;

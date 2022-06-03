@@ -9,8 +9,7 @@ MatchManager::~MatchManager() {
 }
 
 const bool MatchManager::getAreInputsBlocked() {
-	if (this->inputsBlockedFrames <= this->inputsBlockedFramesMax) {
-		this->inputsBlockedFrames++;
+	if (this->inputsBlockedFrames <= this->inputsBlockedFramesMax+1) {
 		return true;
 	}
 	return false;
@@ -20,12 +19,17 @@ const bool MatchManager::isRoundResetPlanned() {
 	return this->roundResetPlanned;
 }
 
+const bool MatchManager::hasMatchEnded() {
+	return this->matchEnded;
+}
+
 const bool MatchManager::resetNow() {
-	return (++this->resetFrames > this->resetFramesMax);
+	return (++this->resetFrames >= this->resetFramesMax);
 }
 
 std::string MatchManager::getMsg() {
 	if (this->inputsBlockedFrames <= this->inputsBlockedFramesMax) {
+		this->inputsBlockedFrames++;
 		return this->msg;
 	}
 	this->updateMsgQueue();
@@ -57,6 +61,8 @@ void MatchManager::endRound(std::string winnerNum) {
 	this->updateMsgQueue();
 	if (this->roundCounter < 3) {
 		this->roundResetPlanned = true;
+	} else {
+		this->matchEnded = true;
 	}
 }
 
@@ -67,11 +73,13 @@ void MatchManager::initVariables() {
 	this->roundCounter = 1;
 
 	this->msgQueue = { "Round 1", "Fight!" };
+	this->updateMsgQueue();
 
 	this->roundTimerMax = sf::seconds(90.f);
 	this->roundTimer = this->roundTimerMax;
 
 	this->roundResetPlanned = false;
+	this->matchEnded = false;
 
 	this->resetFrames = 0;
 	this->resetFramesMax = 75;
@@ -86,6 +94,8 @@ void MatchManager::updateMsgQueue() {
 		this->msg = *msgQueue.begin();
 		msgQueue.erase(msgQueue.begin());
 		this->inputsBlockedFrames = 0;
+	} else {
+		++this->inputsBlockedFrames;
 	}
 }
 
