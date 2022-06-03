@@ -102,10 +102,10 @@ void GameEngine::initGUIMsg()
 }
 
 void GameEngine::initPlayersPos() {
-	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
 	this->player1->setRightFacing(true);
-	this->player2->setPosition(1570.f, 800.f - this->player2->getBounds().height);
+	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
 	this->player2->setRightFacing(false);
+	this->player2->setPosition(1720.f, 800.f - this->player2->getBounds().height);
 }
 
 void GameEngine::initWindow() {
@@ -378,8 +378,8 @@ void GameEngine::resetRound() {
 	this->player1->reset();
 	this->player2->reset();
 	this->initPlayersPos();
-	this->player1->setPosition(840.f, 425.f);
-	this->player2->setPosition(1720.f, 425.f);
+	/*this->player1->setPosition(840.f, 425.f);
+	this->player2->setPosition(1720.f, 425.f);*/
 	this->view->setCenter(1280.f, this->view->getCenter().y);
 	this->window->setView(*this->view);
 	
