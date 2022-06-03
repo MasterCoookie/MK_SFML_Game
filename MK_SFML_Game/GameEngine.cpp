@@ -11,7 +11,7 @@ GameEngine::GameEngine() {
 GameEngine::GameEngine(std::shared_ptr<sf::RenderWindow> win) {
 	//all inits
 	this->window = win;
-	this->view = new sf::View(sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
+	this->view = std::make_shared <sf::View> (sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
 	this->window->setView(*this->view);
 	this->initVariables();
 	this->initWorld("bcg.png");
@@ -43,7 +43,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
-	this->matchManager = new MatchManager();
+	this->matchManager = std::make_unique < MatchManager >();
 	this->initTimer();
 	this->initGUIMsg();
 }
@@ -80,25 +80,25 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 
 void GameEngine::initHealthBars(std::string name1, std::string name2)
 {
-	this->hbplayer1 = new HealthBar(true, name1);
-	this->hbplayer2 = new HealthBar(false, name2);
+	this->hbplayer1 = std::make_unique<HealthBar>(true, name1);
+	this->hbplayer2 = std::make_unique<HealthBar>(false, name2);
 }
 
 void GameEngine::initTimer()
 {
-	this->timerGUI = new Timer;
+	this->timerGUI = std::make_unique < Timer>();
 }
 
 void GameEngine::initWinCircles()
 {
-	this->wcplayer1 = new WinCircle(true);
-	this->wcplayer2 = new WinCircle(false);
+	this->wcplayer1 = std::make_unique < WinCircle>(true);
+	this->wcplayer2 = std::make_unique < WinCircle>(false);
 
 }
 
 void GameEngine::initGUIMsg()
 {
-	this->msg = new GUIMessage;
+	this->msg = std::make_unique < GUIMessage> ();
 }
 
 void GameEngine::initPlayersPos() {

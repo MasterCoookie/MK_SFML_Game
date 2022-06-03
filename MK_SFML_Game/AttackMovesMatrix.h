@@ -13,7 +13,7 @@ public:
 	bool doesAttackMoveExist(bool matrix[7]);
 	AttackMove& getAttackMove(bool matrix[7]);
 private:
-	std::unordered_map<std::string, AttackMove* > attackMoveMatrix;
+	std::unordered_map<std::string, std::shared_ptr<AttackMove> > attackMoveMatrix;
 
 	
 };

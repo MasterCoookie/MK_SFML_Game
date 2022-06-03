@@ -91,11 +91,11 @@ private:
 	std::unordered_map<std::string, std::shared_ptr<sf::Texture>> playerTextures;
 
 	//pointer to animator instance
-	Animator* animator;
+	std::shared_ptr<Animator> animator;
 
 	bool movementMatrix[7] = { 0 };
 
-	AttackMovesMatrix* movesMatrix;
+	std::shared_ptr<AttackMovesMatrix> movesMatrix;
 
 	//copy of an attack
 	AttackMove currentAttack;

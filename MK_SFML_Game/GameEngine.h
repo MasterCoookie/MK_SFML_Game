@@ -58,13 +58,13 @@ private:
 	void render() override;
 	void renderWorld();
 
-	MatchManager* matchManager;
+	std::unique_ptr<MatchManager> matchManager;
 
 
 	//World
 	sf::Texture worldBcgTex;
 	sf::Sprite worldBcg;
-	sf::View* view;
+	std::shared_ptr<sf::View> view;
 	
 
 	//Players
@@ -72,10 +72,10 @@ private:
 	std::shared_ptr<Player> player2;
 	
 	//GUI
-	HealthBar* hbplayer1;
-	HealthBar* hbplayer2;
-	Timer* timerGUI;
-	WinCircle* wcplayer1;
-	WinCircle* wcplayer2;
-	GUIMessage* msg;
+	std::unique_ptr<HealthBar> hbplayer1;
+	std::unique_ptr<HealthBar> hbplayer2;
+	std::unique_ptr<Timer> timerGUI;
+	std::unique_ptr<WinCircle> wcplayer1;
+	std::unique_ptr<WinCircle> wcplayer2;
+	std::unique_ptr<GUIMessage> msg;
 };

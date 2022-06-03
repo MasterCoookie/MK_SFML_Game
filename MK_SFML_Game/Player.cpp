@@ -12,8 +12,8 @@ Player::Player(std::string _charName) {
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
 	this->initSprite(this->textureRect);
-	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
-	this->movesMatrix = new AttackMovesMatrix(_charName);
+	this->animator = std::make_shared<Animator>(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+	this->movesMatrix = std::make_shared <AttackMovesMatrix>(_charName);
 	async_init_variables.join();
 }
 
@@ -234,13 +234,13 @@ void Player::reset() {
 	this->state = State::IDLE;
 	this->xAxisMomentum = 0;
 	this->yAxisMomentum = 0;
-	//delete this->animator;
+	// 
 	this->staggerFrames = 0.f;
 	this->recoveryFrames = 0.f;
 	this->recoveryFrames = 10.f;
 	this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
-	delete this->animator;
-	this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+	 
+	this->animator = std::make_shared<Animator>(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->initSprite(this->textureRect);
 }
 
@@ -452,8 +452,8 @@ void Player::updateAnimation() {
 			//start animating walking forward
 			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
-			delete this->animator;
-			this->animator = new Animator(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
+			 
+			this->animator = std::make_shared<Animator>(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
 			this->initSprite(this->textureRect);
 			this->setPosition(this->getPosition().x, 425.f);
 		}
@@ -466,10 +466,10 @@ void Player::updateAnimation() {
 		else {
 			//start animating jumping
 			if (this->movementMatrix[0] || this->movementMatrix[1]) {
-				delete this->animator;
+				 
 				
 				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 175, 175);
-				this->animator = new Animator(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
+				this->animator = std::make_shared<Animator>(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
 				if (this->movementMatrix[0]) {
 					this->lockedAnimation = "jumping_f";
 				}
@@ -488,11 +488,11 @@ void Player::updateAnimation() {
 		else {
 			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
-			delete this->animator;
+			 
 			this->attackingTexture = this->currentAttack.getPlayerTexture();
 			this->initSprite(*this->attackingTexture, this->textureRect);
 			int maxW = 150 * this->currentAttack.getAnimationLen();
-			this->animator = new Animator(this->textureRect, maxW, 375, AnimationType::ATTACKING, false, false);
+			this->animator = std::make_shared<Animator>(this->textureRect, maxW, 375, AnimationType::ATTACKING, false, false);
 		}
 	} else if (this->state == State::GETTING_UP) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::GETTING_UP) {
@@ -505,9 +505,9 @@ void Player::updateAnimation() {
 			this->sprite.move(0.f, -50.f);
 			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 275, 200);
-			delete this->animator;
+			 
 			this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
-			this->animator = new Animator(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
+			this->animator = std::make_shared<Animator>(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
 		}
 	}	else if (this->state == State::HIT_STAGGERED && this->position == Position::AIRBORNE) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::FALLING) {
@@ -520,9 +520,9 @@ void Player::updateAnimation() {
 			//this->sprite.move(0.f, -50.f);
 			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
-			delete this->animator;
+			 
 			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
-			this->animator = new Animator(this->textureRect, 3000, 150, AnimationType::FALLING, true, false, 300);
+			this->animator = std::make_shared<Animator>(this->textureRect, 3000, 150, AnimationType::FALLING, true, false, 300);
 		}
 	}
 	else {
@@ -537,8 +537,8 @@ void Player::updateAnimation() {
 				this->setPosition(this->getPosition().x, 425.f);
 				
 				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
-				delete this->animator;
-				this->animator = new Animator(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
+				 
+				this->animator = std::make_shared<Animator>(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 				this->initSprite(this->textureRect);
 			}
 		}

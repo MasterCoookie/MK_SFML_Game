@@ -9,15 +9,13 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
-	std::for_each(this->scenesToExecute.begin(), this->scenesToExecute.end(), [this](Scene* s) {																		// for each <3 brachu 
-		delete s;
-		});
+	
 }
 
 void SceneManager::run()
 {
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
-		std::ranges::for_each(scenesToExecute, [this](Scene* s) {																		// for each <3 brachu 
+		std::ranges::for_each(scenesToExecute, [this](std::shared_ptr<Scene> s) {																		// for each <3 brachu 
 			this->executeScene(s);									
 			});
 		if (this->interSceneData[0] != "rematch" && this->window->isOpen()) {
@@ -27,7 +25,7 @@ void SceneManager::run()
 
 }
 
-void SceneManager::executeScene(Scene* s)
+void SceneManager::executeScene(std::shared_ptr<Scene> s)
 {
 	s->setInterSceneValues(this->interSceneData);
 	s->run();
@@ -44,15 +42,15 @@ void SceneManager::initWindow()
 
 void SceneManager::initScenesToExecute()
 {
-	this->scenesToExecute.push_back(new SceneWelcomeScreen(this->window));
-	this->scenesToExecute.push_back(new SceneMenu(this->window));
-	this->scenesToExecute.push_back(new GameEngine(this->window));
+	this->scenesToExecute.push_back(std::make_shared<SceneWelcomeScreen>(this->window));
+	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
+	this->scenesToExecute.push_back(std::make_shared<GameEngine>(this->window));
 
 }
 
 void SceneManager::initRematch()
 {
-	this->scenesToExecute.push_back(new SceneMenu(this->window));
-	this->scenesToExecute.push_back(new GameEngine(this->window));
+	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
+	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
 }
 

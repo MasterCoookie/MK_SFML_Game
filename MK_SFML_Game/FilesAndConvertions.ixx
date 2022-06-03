@@ -3,7 +3,7 @@
 export module FilesAndConvertions;
 
 export std::string convertBoolToString(bool matrix[7]);
-export AttackMove* ReadAttackMoveFromFile(std::istream& os, std::string charName);
+export std::shared_ptr<AttackMove> ReadAttackMoveFromFile(std::istream& os, std::string charName);
 
 std::string convertBoolToString(bool matrix[7])
 {
@@ -13,7 +13,7 @@ std::string convertBoolToString(bool matrix[7])
 	}
 	return index;
 }
-AttackMove* ReadAttackMoveFromFile(std::istream& os, std::string charName)
+std::shared_ptr<AttackMove> ReadAttackMoveFromFile(std::istream& os, std::string charName)
 {
 	float xSize;
 	float ySize;
@@ -56,7 +56,7 @@ AttackMove* ReadAttackMoveFromFile(std::istream& os, std::string charName)
 	if (!playerAtkTexture->loadFromFile(path2)) {
 		std::cout << "ERR: ATTACKMOVE::PLAYERATKTEXTURE: Could not load texture file" << std::endl;
 	}
-	AttackMove* newAttackMove = new AttackMove(xSize, ySize, atkTexture, playerAtkTexture, knockback, knockup,
+	std::shared_ptr<AttackMove> newAttackMove = std::make_shared<AttackMove>(xSize, ySize, atkTexture, playerAtkTexture, knockback, knockup,
 		yOffset, xOffset, startupTimeMax, lifespanMax, (TargetHeight)targetH, dmg, onHitStagger, onBlockRecovery,
 		onHitRecovery, onBlockRecovery, onMissRecovery);
 	return newAttackMove;

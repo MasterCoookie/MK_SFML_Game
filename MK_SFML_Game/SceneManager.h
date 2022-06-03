@@ -14,12 +14,12 @@ public:
 private:
 
 	std::shared_ptr<sf::RenderWindow> window;
-	void executeScene(Scene* s);
+	void executeScene(std::shared_ptr<Scene> s);
 	void initWindow();
 	void initScenesToExecute();
 	void initRematch();
 private:
 	std::vector<std::string> interSceneData;
-	std::vector<Scene*> scenesToExecute;
+	std::vector<std::shared_ptr<Scene>> scenesToExecute;
 };
 

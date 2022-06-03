@@ -24,7 +24,7 @@ void GUIMessage::render(std::shared_ptr<sf::RenderTarget> win)
 	win->draw(this->text);
 }
 
-void GUIMessage::updateMessage(std::string msg, sf::View* view)
+void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 {
 	this->text.setString(msg);
 	sf::Vector2f vec = view->getCenter();
