@@ -7,6 +7,7 @@ std::string transform(int n, std::string message) {
 	while (std::getline(s,newString)) {
 		
 	}
+	return toReturn;
 }
 GUIMessage::GUIMessage()
 {
