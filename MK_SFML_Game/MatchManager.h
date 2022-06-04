@@ -19,6 +19,7 @@ public:
 
 	void beginRound();
 	void endRound(std::string winnerName);
+	void endMatch();
 private:
 	void initVariables();
 	void updateTimer();

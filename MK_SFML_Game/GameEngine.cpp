@@ -129,9 +129,18 @@ void GameEngine::pollEvents() {
 			if (e.Event::key.code == sf::Keyboard::Escape) {
 				this->window->close();
 			}
-			//reading attack inputs
-			this->player1->setMovementMatrix((e.Event::key.code == sf::Keyboard::F), (e.Event::key.code == sf::Keyboard::G), (e.Event::key.code == sf::Keyboard::H));
-			this->player2->setMovementMatrix((e.Event::key.code == sf::Keyboard::Left), (e.Event::key.code == sf::Keyboard::Down), (e.Event::key.code == sf::Keyboard::Right));
+			if (this->matchManager->hasMatchEnded()) {
+				if (e.Event::key.code == sf::Keyboard::F2) {
+					//rematch here
+					std::cout << "Rematch\n";
+				} else if (e.Event::key.code == sf::Keyboard::F3) {
+					//change chars here
+				}
+			} else {
+				//reading attack inputs
+				this->player1->setMovementMatrix((e.Event::key.code == sf::Keyboard::F), (e.Event::key.code == sf::Keyboard::G), (e.Event::key.code == sf::Keyboard::H));
+				this->player2->setMovementMatrix((e.Event::key.code == sf::Keyboard::Left), (e.Event::key.code == sf::Keyboard::Down), (e.Event::key.code == sf::Keyboard::Right));
+			}
 		}
 	}
 }
@@ -306,23 +315,29 @@ void GameEngine::updatePlayersScreenCollision() {
 void GameEngine::updateAttacksCollision() {
 	if (this->player1->getCurrentAttack().getIsActive() && this->player1->getCurrentAttack().getBounds().intersects(this->player2->getBounds())) {
 		this->player2->takeHit(this->player1->getCurrentAttack());
-		if (this->player2->getHp() <= 0) {
+		if (!this->matchManager->isRoundResetPlanned() && this->player2->getHp() <= 0) {
 			this->player1->winRound();
 			this->player2->looseRound();
 			this->wcplayer1->update();
 			this->matchManager->endRound(this->player1->getCharName());
 			this->player2->blockGetup();
+			if (this->player1->getRoundsWon() >= 2) {
+				this->matchManager->endMatch();
+			}
 		}
 	}
 
 	if (this->player2->getCurrentAttack().getIsActive() && this->player2->getCurrentAttack().getBounds().intersects(this->player1->getBounds())) {
 		this->player1->takeHit(this->player2->getCurrentAttack());
-		if (this->player1->getHp() <= 0) {
+		if (!this->matchManager->isRoundResetPlanned() && this->player1->getHp() <= 0) {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
 			this->matchManager->endRound(this->player2->getCharName());
 			this->player1->blockGetup();
+			if (this->player1->getRoundsWon() >= 2) {
+				this->matchManager->endMatch();
+			}
 		}
 	}
 }
@@ -360,11 +375,17 @@ void GameEngine::updateMatchManager() {
 			this->player2->looseRound();
 			this->wcplayer1->update();
 			this->matchManager->endRound(this->player1->getCharName());
+			if (this->player1->getRoundsWon() >= 2) {
+				this->matchManager->endMatch();
+			}
 		} else if (p1_hp < p2_hp) {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
 			this->matchManager->endRound(this->player2->getCharName());
+			if (this->player2->getRoundsWon() >= 2) {
+				this->matchManager->endMatch();
+			}
 		} else {
 			this->player1->winRound();
 			this->player2->winRound();
@@ -387,19 +408,13 @@ void GameEngine::resetRound() {
 	this->player1->reset();
 	this->player2->reset();
 	this->initPlayersPos();
-	/*this->player1->setPosition(840.f, 425.f);
-	this->player2->setPosition(1720.f, 425.f);*/
 	this->view->setCenter(1280.f, this->view->getCenter().y);
 	this->window->setView(*this->view);
 	
 	
 	this->matchManager->resetRoundTimer();
 	std::cout << "Round ended!\n";
-	if (this->player1->getRoundsWon() >= 2) {
-		std::cout << "Player1 won!\n";
-	} else if (this->player2->getRoundsWon() >= 2) {
-		std::cout << "Player2 won!\n";
-	}
+	 
 }
 
 void GameEngine::render() {

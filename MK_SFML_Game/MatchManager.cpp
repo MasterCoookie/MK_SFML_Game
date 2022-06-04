@@ -9,7 +9,7 @@ MatchManager::~MatchManager() {
 }
 
 const bool MatchManager::getAreInputsBlocked() {
-	if (this->inputsBlockedFrames <= this->inputsBlockedFramesMax+1) {
+	if (this->matchEnded || this->inputsBlockedFrames <= this->inputsBlockedFramesMax+1) {
 		return true;
 	}
 	return false;
@@ -24,7 +24,7 @@ const bool MatchManager::hasMatchEnded() {
 }
 
 const bool MatchManager::resetNow() {
-	return (++this->resetFrames >= this->resetFramesMax);
+	return (!this->matchEnded && ++this->resetFrames >= this->resetFramesMax);
 }
 
 std::string MatchManager::getMsg() {
@@ -64,6 +64,12 @@ void MatchManager::endRound(std::string winnerNum) {
 	} else {
 		this->matchEnded = true;
 	}
+}
+
+void MatchManager::endMatch() {
+	this->matchEnded = true;
+	this->msgQueue.push_back("Press F2 to rematch\nPress F3 to change characters");
+	//this->updateMsgQueue();
 }
 
 void MatchManager::initVariables() {
