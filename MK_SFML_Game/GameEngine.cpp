@@ -410,7 +410,11 @@ void GameEngine::resetRound() {
 	this->initPlayersPos();
 	this->view->setCenter(1280.f, this->view->getCenter().y);
 	this->window->setView(*this->view);
-	
+	this->hbplayer1->reset();
+	this->hbplayer2->reset();
+	this->timerGUI->reset();
+	this->wcplayer1->reset();
+	this->wcplayer2->reset();
 	
 	this->matchManager->resetRoundTimer();
 	std::cout << "Round ended!\n";

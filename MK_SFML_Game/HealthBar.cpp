@@ -58,3 +58,19 @@ void HealthBar::move(float offsetX, float offsetY)
 	this->backgroundShape->move(offsetX, offsetY);
 	this->text.move(offsetX, offsetY);
 }
+
+void HealthBar::reset()
+{
+	if (this->isLeft) {
+		this->healthShape->setPosition({ 730.f,50.f });
+		this->backgroundShape->setPosition({ 730.f,50.f });
+		this->text.setPosition(730.f, 50);
+		this->originalPos = sf::Vector2f(730.f, 50.f);
+	}
+	else {
+		this->healthShape->setPosition({ 1380.f,50.f });
+		this->backgroundShape->setPosition({ 1380.f,50.f });
+		this->text.setPosition(1380 + 445 - this->text.getLocalBounds().width, 50);
+		this->originalPos = sf::Vector2f(1380.f, 50.f);
+	}
+}

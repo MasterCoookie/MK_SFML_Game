@@ -9,6 +9,7 @@ public:
 	void render(std::shared_ptr<sf::RenderTarget> win) override;
 	void update(float currentHealth);
 	void move(float offsetX, float offsetY) override;
+	void reset() override;
 private:
 	bool isLeft;
 	std::unique_ptr < sf::RectangleShape> healthShape;

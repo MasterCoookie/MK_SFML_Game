@@ -25,6 +25,12 @@ void GUIMessage::render(std::shared_ptr<sf::RenderTarget> win)
 	win->draw(this->text);
 }
 
+void GUIMessage::reset()
+{
+	//this->text.setPosition(1280 - this->text.getLocalBounds().width / 2, 480 - this->text.getLocalBounds().height / 2);
+	//no need to reset;
+}
+
 void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 {
 	

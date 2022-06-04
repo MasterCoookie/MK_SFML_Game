@@ -34,3 +34,13 @@ void WinCircle::move(float offsetX, float offsetY)
 {
 	this->circle->move(offsetX, offsetY);
 }
+
+void WinCircle::reset()
+{
+	if (isLeft) {
+		this->circle->setPosition({ 660, 200 });
+	}
+	else {
+		this->circle->setPosition({ 1280 * 2 - 700, 200 });
+	}
+}

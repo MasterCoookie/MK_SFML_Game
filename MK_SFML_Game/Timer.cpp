@@ -25,6 +25,11 @@ void Timer::move(float offsetX, float offsetY)
 	this->text.move(offsetX, offsetY);
 }
 
+void Timer::reset()
+{
+	this->text.setPosition(1260, 50);
+}
+
 void Timer::initText()
 {
 	this->font = std::make_unique<sf::Font>();
