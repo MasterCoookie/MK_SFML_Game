@@ -1,5 +1,6 @@
 #include "GUIMessage.h"
 
+
 GUIMessage::GUIMessage()
 {
 	this->font = std::make_unique<sf::Font>();
@@ -26,9 +27,10 @@ void GUIMessage::render(std::shared_ptr<sf::RenderTarget> win)
 
 void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 {
-	this->text.setString(msg);
+	
 	sf::Vector2f vec = view->getCenter();
 	
+	this->text.setString(msg);
 	this->text.setPosition(vec.x - this->text.getLocalBounds().width / 2, vec.y - this->text.getLocalBounds().height / 2);
 
 	//sf::FloatRect vec = this->text.getLocalBounds();

@@ -1,4 +1,6 @@
 #pragma once
+#include <sstream>
+#include <iomanip>
 #include "GameGUIElement.h"
 class GUIMessage :
     public GameGUIElement
