@@ -5,7 +5,9 @@ std::string transform(int n, std::string message) {
 	s << message;
 	std::string newString, toReturn;
 	while (std::getline(s,newString)) {
-		
+		for (int i = 0; i < (n - newString.size())/2;i++) {
+
+		}
 	}
 	return toReturn;
 }
