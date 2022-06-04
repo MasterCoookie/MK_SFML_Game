@@ -1,6 +1,13 @@
 #include "GUIMessage.h"
 
-
+std::string transform(int n, std::string message) {
+	std::stringstream s;
+	s << message;
+	std::string newString, toReturn;
+	while (std::getline(s,newString)) {
+		
+	}
+}
 GUIMessage::GUIMessage()
 {
 	this->font = std::make_unique<sf::Font>();
