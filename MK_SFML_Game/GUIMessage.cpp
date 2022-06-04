@@ -1,16 +1,6 @@
 #include "GUIMessage.h"
 
-std::string transform(int n, std::string message) {
-	std::stringstream s;
-	s << message;
-	std::string newString, toReturn;
-	while (std::getline(s,newString)) {
-		for (int i = 0; i < (n - newString.size())/2;i++) {
 
-		}
-	}
-	return toReturn;
-}
 GUIMessage::GUIMessage()
 {
 	this->font = std::make_unique<sf::Font>();
@@ -39,10 +29,29 @@ void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 {
 	
 	sf::Vector2f vec = view->getCenter();
-	
-	this->text.setString(msg);
+	std::string myString = this->transform(100, msg);
+	this->text.setString(myString);
 	this->text.setPosition(vec.x - this->text.getLocalBounds().width / 2, vec.y - this->text.getLocalBounds().height / 2);
 
 	//sf::FloatRect vec = this->text.getLocalBounds();
 
 }
+
+std::string GUIMessage::transform(int n, std::string message)
+{
+	std::stringstream s;
+	s << message;
+	std::string newString, toReturn="";
+	while (std::getline(s, newString)) {
+		for (int i = 0; i < (n - newString.size()) / 2; i++) {
+			toReturn += " ";
+		}
+		toReturn += newString;
+		for (int i = 0; i < (n - newString.size()) / 2; i++) {
+			toReturn += " ";
+		}
+		toReturn += "\n";
+	}
+	return toReturn;
+}
+
