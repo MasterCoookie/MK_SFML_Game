@@ -193,7 +193,7 @@ void AttackMove::update() {
 	if (this->startupTime >= this->startupTimeMax && !isActive && !this->wasHitRegistered) {
 		this->throwAttack();
 	}
-	if (this->lifespan >= this->lifespanMax) {
+	if (this->lifespan > this->lifespanMax) {
 		this->endAttack();
 	}
 }

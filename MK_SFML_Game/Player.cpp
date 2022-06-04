@@ -516,7 +516,7 @@ void Player::updateAnimation() {
 			 
 			this->attackingTexture = this->currentAttack.getPlayerTexture();
 			this->initSprite(*this->attackingTexture, this->textureRect);
-			int maxW = 150 * this->currentAttack.getAnimationLen();
+			int maxW = 150 * (this->currentAttack.getAnimationLen()+1);
 			this->animator = std::make_shared<Animator>(this->textureRect, maxW, 375, AnimationType::ATTACKING, false, false);
 		}
 	} else if (this->state == State::GETTING_UP) {
