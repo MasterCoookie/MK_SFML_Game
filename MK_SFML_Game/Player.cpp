@@ -99,7 +99,7 @@ void Player::jump() {
 		//change pos
 		this->position = Position::AIRBORNE;
 		//change texture
-		this->sprite.setTexture(*this->playerTextures.find("ducking")->second, true);
+		this->sprite.setTexture(*this->playerTextures.find("jumping")->second, true);
 
 		//move up ??
 		//this->setPosition(this->getPosition().x, this->getPosition().y - 150.f);
@@ -463,7 +463,24 @@ void Player::updateAnimation() {
 			this->initSprite(this->textureRect);
 			this->setPosition(this->getPosition().x, 425.f);
 		}
-	} else if(this->state == State::IDLE && this->position == Position::AIRBORNE) {
+	} else if (this->state == State::IDLE && this->position == Position::STANDING && this->movementMatrix[1]) {
+		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::WALKING_B) {
+			//continue animate walking forward
+			this->animator->update();
+			this->initSprite(*this->playerTextures.find("walking_b")->second, this->textureRect);
+		}
+		else {
+			//start animating walking forward
+
+			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
+			int tex_size = (*(this->playerTextures.find("walking_b")->second)).getSize().x;
+
+			this->animator = std::make_shared<Animator>(this->textureRect, tex_size, 375, AnimationType::WALKING_B, true, false);
+			this->initSprite(this->textureRect);
+			this->setPosition(this->getPosition().x, 425.f);
+		}
+	}
+	else if(this->state == State::IDLE && this->position == Position::AIRBORNE) {
 			//continue animate jumping forward
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
 				this->animator->update();
@@ -475,7 +492,9 @@ void Player::updateAnimation() {
 				 
 				
 				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 175, 175);
-				this->animator = std::make_shared<Animator>(this->textureRect, 2275, 175, AnimationType::JUMPING, true, false, 175);
+				int tex_size = (*(this->playerTextures.find("jumping_f")->second)).getSize().x;
+
+				this->animator = std::make_shared<Animator>(this->textureRect, tex_size, 175, AnimationType::JUMPING, true, false, 175);
 				if (this->movementMatrix[0]) {
 					this->lockedAnimation = "jumping_f";
 				}
@@ -531,7 +550,8 @@ void Player::updateAnimation() {
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
 			 
 			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
-			this->animator = std::make_shared<Animator>(this->textureRect, 3000, 150, AnimationType::FALLING, true, false, 300);
+			int tex_size = (*(this->playerTextures.find("falling")->second)).getSize().x;
+			this->animator = std::make_shared<Animator>(this->textureRect, tex_size, 150, AnimationType::FALLING, true, false, 300);
 		}
 	}
 	else {
