@@ -296,7 +296,7 @@ bool Player::canMove() {
 }
 
 bool Player::canAttack() {
-	return this->state == State::IDLE;
+	return (this->state == State::IDLE && this->position != Position::AIRBORNE);
 }
 
 void Player::initVariables() {

@@ -149,7 +149,7 @@ const bool AttackMove::getIsActive() const {
 }
 
 bool AttackMove::getHasEnded() {
-	return (this->lifespan >= this->lifespanMax);
+	return (this->lifespan > this->lifespanMax);
 }
 
 const sf::RectangleShape& AttackMove::getShape() const {
@@ -199,7 +199,7 @@ void AttackMove::update() {
 }
 
 void AttackMove::render(std::shared_ptr<sf::RenderTarget> win) {
-	if (this->isActive) {
+	if (this->isActive && !((this->lifespan + 1) > this->lifespanMax)) {
 		this->sprite.setTexture(*this->atkTexture);
 		win->draw(this->sprite);
 	}
