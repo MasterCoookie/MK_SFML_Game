@@ -41,7 +41,11 @@ void HealthBar::render(std::shared_ptr<sf::RenderTarget> win)
 
 void HealthBar::update(float currentHealth)
 {
-	this->healthShape->setSize({ 450.f * currentHealth / 100,50.f });
+	if (currentHealth > 0.0) { this->healthShape->setSize({ 450.f * currentHealth / 100,50.f }); }
+	else
+	{
+		this->healthShape->setSize({ 0 / 100,50.f });
+	}
 	if (this->isLeft) {}
 	else {
 		sf::Vector2f newVec = this->originalPos;
