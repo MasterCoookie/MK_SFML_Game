@@ -10,7 +10,7 @@ Player::Player(std::string _charName) {
 	this->charName = _charName;
 	std::thread async_init_variables(init_gameobject_variables, this);
 	// init player baset on character name
-	this->GameObject::initTexture("./Characters/" + _charName + "/standing_1.png");
+	this->GameObject::initTexture("./Characters/" + _charName + "/standing.png");
 	this->initSprite(this->textureRect);
 	this->animator = std::make_shared<Animator>(this->textureRect, 1500, 375, AnimationType::STANDING, true, true);
 	this->movesMatrix = std::make_shared <AttackMovesMatrix>(_charName);
