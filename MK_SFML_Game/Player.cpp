@@ -457,8 +457,9 @@ void Player::updateAnimation() {
 			//start animating walking forward
 			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
+			int tex_size = (* (this->playerTextures.find("walking_f")->second)).getSize().x;
 			 
-			this->animator = std::make_shared<Animator>(this->textureRect, 1800, 375, AnimationType::WALKING_F, true, false);
+			this->animator = std::make_shared<Animator>(this->textureRect, tex_size, 375, AnimationType::WALKING_F, true, false);
 			this->initSprite(this->textureRect);
 			this->setPosition(this->getPosition().x, 425.f);
 		}
