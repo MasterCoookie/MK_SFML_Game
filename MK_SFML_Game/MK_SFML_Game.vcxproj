@@ -161,6 +161,7 @@
     <ClCompile Include="async_functions.ixx" />
     <ClCompile Include="AttackMove.cpp" />
     <ClCompile Include="AttackMovesMatrix.cpp" />
+    <ClCompile Include="BackgroundElement.cpp" />
     <ClCompile Include="FilesAndConvertions.ixx" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameGUIElement.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Arena.h" />
     <ClInclude Include="AttackMove.h" />
     <ClInclude Include="AttackMovesMatrix.h" />
+    <ClInclude Include="BackgroundElement.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameGUIElement.h" />
     <ClInclude Include="GameObject.h" />

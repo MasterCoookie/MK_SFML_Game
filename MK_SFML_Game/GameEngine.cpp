@@ -15,6 +15,7 @@ GameEngine::GameEngine(std::shared_ptr<sf::RenderWindow> win) {
 	this->window->setView(*this->view);
 	this->initVariables();
 	this->initWorld("bcg.png");
+	this->initArena();
 	//this->initHealthBars();
 	this->initWinCircles();
 }
@@ -108,6 +109,11 @@ void GameEngine::initPlayersPos() {
 	this->player1->setPosition(840.f, 800.f - this->player1->getBounds().height);
 	this->player2->setRightFacing(false);
 	this->player2->setPosition(1720.f, 800.f - this->player2->getBounds().height);
+}
+
+void GameEngine::initArena()
+{
+	this->arena = std::make_unique<Arena>();
 }
 
 void GameEngine::initWindow() {
@@ -421,7 +427,7 @@ void GameEngine::resetRound() {
 	this->timerGUI->reset();
 	this->wcplayer1->reset();
 	this->wcplayer2->reset();
-	
+	this->arena->reset();
 	this->matchManager->resetRoundTimer();
 	std::cout << "Round ended!\n";
 	 
@@ -436,7 +442,7 @@ void GameEngine::render() {
 
 	this->player1->render(this->window);
 	this->player2->render(this->window);
-
+	this->arena->render(this->window);
 	this->hbplayer1->render(this->window);
 	this->hbplayer2->render(this->window);
 	this->timerGUI->render(this->window);

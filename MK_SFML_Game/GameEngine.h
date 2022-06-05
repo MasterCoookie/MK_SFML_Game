@@ -7,7 +7,7 @@
 #include "Timer.h"
 #include "WinCircle.h"
 #include "GUIMessage.h"
-
+#include "Arena.h"
 #include "MatchManager.h"
 
 class GameEngine : public Scene{
@@ -35,6 +35,7 @@ private:
 	void initWinCircles();
 	void initGUIMsg();
 	void initPlayersPos();
+	void initArena();
 	void pollEvents() override;
 
 	//otehers
@@ -80,4 +81,5 @@ private:
 	std::unique_ptr<WinCircle> wcplayer1;
 	std::unique_ptr<WinCircle> wcplayer2;
 	std::unique_ptr<GUIMessage> msg;
+	std::unique_ptr<Arena> arena;
 };
