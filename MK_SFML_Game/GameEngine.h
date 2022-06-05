@@ -53,7 +53,7 @@ private:
 	void updateMatchManager();
 
 	bool isRunning;
-	
+	std::string result;
 	
 
 	// renders
