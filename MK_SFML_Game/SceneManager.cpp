@@ -3,7 +3,6 @@ SceneManager::SceneManager()
 {
 	this->initWindow();
 	this->interSceneData = { "" };
-	this->historyOfSceneData = {};
 	this->initScenesToExecute();
 	
 }
@@ -65,9 +64,8 @@ void SceneManager::initRematchWithoutChange()
 {
 	this->scenesToExecute.clear();
 	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
-	this->interSceneData.clear();
-	this->interSceneData.push_back( this->historyOfSceneData[this->historyOfSceneData.size() - 2][0]);
-	this->interSceneData.push_back( this->historyOfSceneData[this->historyOfSceneData.size() - 2][1]);
+	this->interSceneData[0] = this->interSceneData[1];
+	this->interSceneData[1] = this->interSceneData[2];
 
 }
 

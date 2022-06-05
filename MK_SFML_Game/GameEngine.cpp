@@ -34,7 +34,7 @@ void GameEngine::run() {
 
 std::vector<std::string> GameEngine::getResult()
 {
-	std::vector<std::string> vec={this->result};
+	std::vector<std::string> vec={this->result, this->player1->getCharName(),this->player2->getCharName()};
 	return vec;
 }
 
