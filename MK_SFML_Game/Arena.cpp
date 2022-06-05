@@ -23,7 +23,7 @@ Arena::Arena()
 	this->vectorOfElements.push_back(std::make_unique<BackgroundElement>(klocek, 2434,773 ));
 	this->vectorOfElements.push_back(std::make_unique<BackgroundElement>(lewyHak, 48, -19));
 	this->vectorOfElements.push_back(std::make_unique<BackgroundElement>(prawyHak, 2326, -17));
-	this->vectorOfElements.push_back(std::make_unique<BackgroundElement>(head, -5, 635));
+	this->vectorOfElements.push_back(std::make_unique<BackgroundElement>(head, 0, 645));
 }
 
 void Arena::render(std::shared_ptr<sf::RenderTarget> win)
