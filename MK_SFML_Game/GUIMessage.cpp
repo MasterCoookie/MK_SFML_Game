@@ -10,7 +10,7 @@ GUIMessage::GUIMessage()
 	this->text.setFont(*this->font);
 	this->text.setString("");
 	this->text.setCharacterSize(80);
-	this->text.setFillColor(sf::Color::Blue);
+	this->text.setFillColor(sf::Color::Red);
 	this->text.setStyle(sf::Text::Bold);
 	this->text.setPosition(1280-this->text.getLocalBounds().width/2, 480-this->text.getLocalBounds().height/2);
 }

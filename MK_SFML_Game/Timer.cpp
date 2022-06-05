@@ -39,7 +39,7 @@ void Timer::initText()
 	this->text.setFont(*this->font);
 	this->text.setString("00");
 	this->text.setCharacterSize(40);
-	this->text.setFillColor(sf::Color::Black);
+	this->text.setFillColor(sf::Color(255, 140, 0));
 	this->text.setStyle(sf::Text::Bold);
 	this->text.setPosition(1280-(this->text.getLocalBounds().width/2), 55);
 }
