@@ -341,7 +341,7 @@ void GameEngine::updateAttacksCollision() {
 			this->wcplayer2->update();
 			this->matchManager->endRound(this->player2->getCharGUIName());
 			this->player1->blockGetup();
-			if (this->player1->getRoundsWon() >= 2) {
+			if (this->player2->getRoundsWon() >= 2) {
 				this->matchManager->endMatch();
 			}
 		}
