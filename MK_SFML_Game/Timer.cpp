@@ -27,7 +27,7 @@ void Timer::move(float offsetX, float offsetY)
 
 void Timer::reset()
 {
-	this->text.setPosition(1260, 50);
+	this->text.setPosition(1280 - (this->text.getLocalBounds().width / 2), 55);
 }
 
 void Timer::initText()
@@ -37,9 +37,9 @@ void Timer::initText()
 		std::cout << "Czcionka nie wczytana";
 	}
 	this->text.setFont(*this->font);
-	this->text.setString("00:00");
+	this->text.setString("00");
 	this->text.setCharacterSize(40);
 	this->text.setFillColor(sf::Color::Black);
 	this->text.setStyle(sf::Text::Bold);
-	this->text.setPosition(1260, 50);
+	this->text.setPosition(1280-(this->text.getLocalBounds().width/2), 55);
 }
