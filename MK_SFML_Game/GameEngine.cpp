@@ -25,7 +25,7 @@ GameEngine::~GameEngine() {
 
 void GameEngine::run() {
 	//gameloop
-	while (this->window->isOpen()) {
+	while (this->window->isOpen() && this->isRunning) {
 		this->pollEvents();
 		this->update();
 		this->render();
@@ -43,6 +43,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 }
 
 void GameEngine::initVariables() {
+	this->isRunning = true;
 	this->matchManager = std::make_unique < MatchManager >();
 	this->initTimer();
 	this->initGUIMsg();
@@ -132,9 +133,11 @@ void GameEngine::pollEvents() {
 			if (this->matchManager->hasMatchEnded()) {
 				if (e.Event::key.code == sf::Keyboard::F2) {
 					//rematch here
+					this->isRunning = false;
 					std::cout << "Rematch\n";
 				} else if (e.Event::key.code == sf::Keyboard::F3) {
 					//change chars here
+					this->isRunning = false;
 				}
 			} else {
 				//reading attack inputs
