@@ -36,6 +36,10 @@ void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 	
 	sf::Vector2f vec = view->getCenter();
 	std::string myString = this->transform(100, msg);
+	this->text.setString(msg);
+	while (this->text.getLocalBounds().width > 1280) {
+		this->text.setCharacterSize(this->text.getCharacterSize()-1);
+	}
 	this->text.setString(myString);
 	this->text.setPosition(vec.x - this->text.getLocalBounds().width / 2, vec.y - this->text.getLocalBounds().height / 2);
 
