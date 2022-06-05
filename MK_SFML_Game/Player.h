@@ -35,7 +35,7 @@ public:
 	const int getRoundsWon();
 	const float getHp();
 	const std::string getCharName();
-	
+	const std::string getCharGUIName();
 	//overrides
 	void update() override;
 	void render(std::shared_ptr<sf::RenderTarget> win) override;
@@ -65,6 +65,7 @@ public:
 	void updateAnimation();
 
 	void initVariables() override;
+	
 
 private:
 	//properties
@@ -108,10 +109,11 @@ private:
 	//inits
 	
 	void initTexturesMap();
-
+	void initGUIName();
 	//private methods
 	bool wasAttackBlocked(const AttackMove& hitBy);
 	
 	std::string charName;
+	std::string charGUIname;
 	std::string lockedAnimation;
 };

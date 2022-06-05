@@ -8,6 +8,7 @@ Player::Player() {
 
 Player::Player(std::string _charName) {
 	this->charName = _charName;
+	this->initGUIName();
 	std::thread async_init_variables(init_gameobject_variables, this);
 	// init player baset on character name
 	this->GameObject::initTexture("./Characters/" + _charName + "/standing.png");
@@ -280,6 +281,11 @@ const std::string Player::getCharName() {
 	return this->charName;
 }
 
+const std::string Player::getCharGUIName()
+{
+	return this->charGUIname;
+}
+
 void Player::update() {
 	std::cout << this->getPosition().y << "\n";
 }
@@ -327,6 +333,23 @@ void Player::initVariables() {
 		{ "falling", nullptr },
 	};
 	this->initTexturesMap();
+}
+
+void Player::initGUIName()
+{
+	std::string read, toSet = " ";
+	std::string path = ".\\Characters\\" + this->charName + "\\charname.txt";
+	std::ifstream myFile;
+	myFile.open(path);
+	if (myFile.is_open()) {
+		while (myFile >> read) {
+			toSet += read;
+			toSet += " ";
+		}
+
+		myFile.close();
+	}
+	this->charGUIname = toSet;
 }
 
 void Player::initTexturesMap() {

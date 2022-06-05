@@ -69,7 +69,7 @@ void GameEngine::initPlayers(std::string p1charName, std::string p2charName) {
 	ldscreen.loadPlayers();
 	this->player1 = ldscreen.getPlayerOne();
 	this->player2 = ldscreen.getPlayerTwo();
-	this->initHealthBars(p1charName, p2charName);
+	this->initHealthBars(this->player1->getCharGUIName(), this->player2->getCharGUIName());
 
 	//place players in the right position
 	this->initPlayersPos();
@@ -319,7 +319,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player1->winRound();
 			this->player2->looseRound();
 			this->wcplayer1->update();
-			this->matchManager->endRound(this->player1->getCharName());
+			this->matchManager->endRound(this->player1->getCharGUIName());
 			this->player2->blockGetup();
 			if (this->player1->getRoundsWon() >= 2) {
 				this->matchManager->endMatch();
@@ -333,7 +333,7 @@ void GameEngine::updateAttacksCollision() {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
-			this->matchManager->endRound(this->player2->getCharName());
+			this->matchManager->endRound(this->player2->getCharGUIName());
 			this->player1->blockGetup();
 			if (this->player1->getRoundsWon() >= 2) {
 				this->matchManager->endMatch();

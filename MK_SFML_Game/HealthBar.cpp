@@ -8,19 +8,8 @@ HealthBar::HealthBar(bool isLeft, std::string name)
 		std::cout << "Czcionka nie wczytana";
 	}
 	this->text.setFont(*this->font);
-	std::string read,toSet=" ";
-	std::string path = ".\\Characters\\" + name + "\\charname.txt";
-	std::ifstream myFile;
-	myFile.open(path);
-	if (myFile.is_open()) {
-		while (myFile >> read) {
-			toSet += read;
-			toSet += " ";
-		}
-		
-		myFile.close();
-	}
-	this->text.setString(toSet);
+
+	this->text.setString(name);
 	this->text.setCharacterSize(30);
 	this->text.setFillColor(sf::Color::Blue);
 	this->text.setStyle(sf::Text::Bold);
