@@ -15,11 +15,15 @@ SceneManager::~SceneManager()
 void SceneManager::run()
 {
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
-		std::ranges::for_each(scenesToExecute, [this](std::shared_ptr<Scene> s) {																		// for each <3 brachu 
-			this->executeScene(s);									
-			});
-		if (this->interSceneData[0] != "rematch" && this->window->isOpen()) {
+		for (int i = 0; i < this->scenesToExecute.size(); i++) {
+			this->executeScene(this->scenesToExecute[i]);
+			//this->scenesToExecute.erase(this->scenesToExecute.begin());
+		}
+		if (this->interSceneData[0] == "F3" && this->window->isOpen()) {
 			this->initRematch();
+		}
+		else if (this->interSceneData[0] == "F2" && this->window->isOpen()) {
+
 		}
 	}
 
@@ -50,6 +54,7 @@ void SceneManager::initScenesToExecute()
 
 void SceneManager::initRematch()
 {
+	this->scenesToExecute.clear();
 	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
 	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
 }

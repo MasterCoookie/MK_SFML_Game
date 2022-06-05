@@ -34,7 +34,7 @@ void GameEngine::run() {
 
 std::vector<std::string> GameEngine::getResult()
 {
-	std::vector<std::string> vec={""};
+	std::vector<std::string> vec={this->result};
 	return vec;
 }
 
@@ -44,6 +44,7 @@ void GameEngine::setInterSceneValues(std::vector<std::string>& vec) {
 
 void GameEngine::initVariables() {
 	this->isRunning = true;
+	this->result = "";
 	this->matchManager = std::make_unique < MatchManager >();
 	this->initTimer();
 	this->initGUIMsg();
@@ -134,9 +135,11 @@ void GameEngine::pollEvents() {
 				if (e.Event::key.code == sf::Keyboard::F2) {
 					//rematch here
 					this->isRunning = false;
+					this->result = "F2";
 					std::cout << "Rematch\n";
 				} else if (e.Event::key.code == sf::Keyboard::F3) {
 					//change chars here
+					this->result = "F3";
 					this->isRunning = false;
 				}
 			} else {

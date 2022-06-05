@@ -66,7 +66,8 @@ private:
 	sf::Sprite worldBcg;
 	std::shared_ptr<sf::View> view;
 	
-
+	bool isRunning;
+	std::string result;
 	//Players
 	std::shared_ptr<Player> player1;
 	std::shared_ptr<Player> player2;
