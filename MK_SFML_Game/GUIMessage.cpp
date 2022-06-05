@@ -4,7 +4,7 @@
 GUIMessage::GUIMessage()
 {
 	this->font = std::make_unique<sf::Font>();
-	if (!this->font->loadFromFile("./Textures/arial.ttf")) {
+	if (!this->font->loadFromFile("./Textures/font.ttf")) {
 		std::cout << "Czcionka nie wczytana";
 	}
 	this->text.setFont(*this->font);

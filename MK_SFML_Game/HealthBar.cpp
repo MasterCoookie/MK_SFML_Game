@@ -4,12 +4,24 @@ HealthBar::HealthBar(bool isLeft, std::string name)
 {
 	this->isLeft = isLeft;
 	this->font = std::make_unique<sf::Font>();
-	if (!this->font->loadFromFile("./Textures/arial.ttf")) {
+	if (!this->font->loadFromFile("./Textures/font.ttf")) {
 		std::cout << "Czcionka nie wczytana";
 	}
 	this->text.setFont(*this->font);
-	this->text.setString(name);
-	this->text.setCharacterSize(40);
+	std::string read,toSet=" ";
+	std::string path = ".\\Characters\\" + name + "\\charname.txt";
+	std::ifstream myFile;
+	myFile.open(path);
+	if (myFile.is_open()) {
+		while (myFile >> read) {
+			toSet += read;
+			toSet += " ";
+		}
+		
+		myFile.close();
+	}
+	this->text.setString(toSet);
+	this->text.setCharacterSize(30);
 	this->text.setFillColor(sf::Color::Blue);
 	this->text.setStyle(sf::Text::Bold);
 	this->healthShape = std::make_unique < sf::RectangleShape>();
