@@ -18,8 +18,10 @@ private:
 	void initWindow();
 	void initScenesToExecute();
 	void initRematch();
+	void initRematchWithoutChange();
 private:
 	std::vector<std::string> interSceneData;
+	std::vector<std::vector<std::string>> historyOfSceneData;
 	std::vector<std::shared_ptr<Scene>> scenesToExecute;
 };
 

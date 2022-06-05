@@ -3,6 +3,7 @@ SceneManager::SceneManager()
 {
 	this->initWindow();
 	this->interSceneData = { "" };
+	this->historyOfSceneData = {};
 	this->initScenesToExecute();
 	
 }
@@ -23,7 +24,7 @@ void SceneManager::run()
 			this->initRematch();
 		}
 		else if (this->interSceneData[0] == "F2" && this->window->isOpen()) {
-
+			this->initRematchWithoutChange();
 		}
 	}
 
@@ -34,6 +35,7 @@ void SceneManager::executeScene(std::shared_ptr<Scene> s)
 	s->setInterSceneValues(this->interSceneData);
 	s->run();
 	this->interSceneData = s->getResult();
+	this->historyOfSceneData.push_back(this->interSceneData);
 }
 
 void SceneManager::initWindow()
@@ -57,5 +59,15 @@ void SceneManager::initRematch()
 	this->scenesToExecute.clear();
 	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
 	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
+}
+
+void SceneManager::initRematchWithoutChange()
+{
+	this->scenesToExecute.clear();
+	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
+	this->interSceneData.clear();
+	this->interSceneData.push_back( this->historyOfSceneData[this->historyOfSceneData.size() - 2][0]);
+	this->interSceneData.push_back( this->historyOfSceneData[this->historyOfSceneData.size() - 2][1]);
+
 }
 
