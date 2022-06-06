@@ -12,9 +12,7 @@ AttackMovesMatrix::AttackMovesMatrix(std::string charName)
 			std::string key;
 			myFile >> key;
 			this->attackMoveMatrix.insert({ key, ReadAttackMoveFromFile(myFile, charName)});
-		}
-		//std::cout << myFile.is_open();
-	
+		}	
 	}
 }
 

@@ -13,6 +13,7 @@ public:
     void updateMessage(std::string msg, std::shared_ptr<sf::View> view);
     std::string transform(int n,std::string s);
 private:
+    void initText();
     std::unique_ptr<sf::Font> font;
     sf::Text text;
 };

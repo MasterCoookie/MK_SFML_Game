@@ -7,18 +7,9 @@ HealthBar::HealthBar(bool isLeft, std::string name)
 	this->initShapes();
 	if (this->isLeft) {
 		this->setPosition(730.f, 50.f);
-		//this->healthShape->setPosition({ 730.f,50.f });
-		//this->backgroundShape->setPosition({ 730.f,50.f });
-		//this->text.setPosition(730.f, 60.f);
-		//this->originalPos = sf::Vector2f(730.f, 50.f);
 	}
 	else {
 		this->setPosition(1380.f, 50.f);
-
-		//this->healthShape->setPosition({ 1380.f,50.f });
-		//this->backgroundShape->setPosition({ 1380.f,50.f });
-		//this->text.setPosition(1380+445-this->text.getLocalBounds().width, 60.f);
-		//this->originalPos = sf::Vector2f(1380.f, 50.f);
 	}
 }
 
@@ -57,18 +48,9 @@ void HealthBar::reset()
 {
 	if (this->isLeft) {
 		this->setPosition(730.f, 50.f);
-
-		//this->healthShape->setPosition({ 730.f,50.f });
-		//this->backgroundShape->setPosition({ 730.f,50.f });
-		//this->text.setPosition(730.f, 60.f);
-		//this->originalPos = sf::Vector2f(730.f, 50.f);
 	}
 	else {
 		this->setPosition(1380.f, 50.f);
-		//this->healthShape->setPosition({ 1380.f,50.f });
-		//this->backgroundShape->setPosition({ 1380.f,50.f });
-		//this->text.setPosition(1380 + 445 - this->text.getLocalBounds().width, 60.f);
-		//this->originalPos = sf::Vector2f(1380.f, 50.f);
 	}
 }
 

@@ -3,16 +3,7 @@
 
 GUIMessage::GUIMessage()
 {
-	this->font = std::make_unique<sf::Font>();
-	if (!this->font->loadFromFile("./Textures/font.ttf")) {
-		std::cout << "Czcionka nie wczytana";
-	}
-	this->text.setFont(*this->font);
-	this->text.setString("");
-	this->text.setCharacterSize(80);
-	this->text.setFillColor(sf::Color::Red);
-	this->text.setStyle(sf::Text::Bold);
-	this->text.setPosition(1280-this->text.getLocalBounds().width/2, 480-this->text.getLocalBounds().height/2);
+	this->initText();
 }
 
 void GUIMessage::move(float offsetX, float offsetY)
@@ -27,8 +18,6 @@ void GUIMessage::render(std::shared_ptr<sf::RenderTarget> win)
 
 void GUIMessage::reset()
 {
-	//this->text.setPosition(1280 - this->text.getLocalBounds().width / 2, 480 - this->text.getLocalBounds().height / 2);
-	//no need to reset;
 }
 
 void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
@@ -42,9 +31,6 @@ void GUIMessage::updateMessage(std::string msg, std::shared_ptr<sf::View> view)
 	}
 	this->text.setString(myString);
 	this->text.setPosition(vec.x - this->text.getLocalBounds().width / 2, vec.y - this->text.getLocalBounds().height / 2);
-
-	//sf::FloatRect vec = this->text.getLocalBounds();
-
 }
 
 std::string GUIMessage::transform(int n, std::string message)
@@ -63,5 +49,19 @@ std::string GUIMessage::transform(int n, std::string message)
 		toReturn += "\n";
 	}
 	return toReturn;
+}
+
+void GUIMessage::initText()
+{
+	this->font = std::make_unique<sf::Font>();
+	if (!this->font->loadFromFile("./Textures/font.ttf")) {
+		std::cout << "Czcionka nie wczytana";
+	}
+	this->text.setFont(*this->font);
+	this->text.setString("");
+	this->text.setCharacterSize(80);
+	this->text.setFillColor(sf::Color::Red);
+	this->text.setStyle(sf::Text::Bold);
+	this->text.setPosition(1280 - this->text.getLocalBounds().width / 2, 480 - this->text.getLocalBounds().height / 2);
 }
 

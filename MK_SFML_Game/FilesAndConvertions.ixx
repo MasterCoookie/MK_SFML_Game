@@ -30,10 +30,16 @@ std::shared_ptr<AttackMove> ReadAttackMoveFromFile(std::istream& os, std::string
 	int onHitRecovery;
 	int onBlockRecovery;
 	int onMissRecovery;
-	//std::string key;
+	
 	std::string atkTexName;
 	std::string playerAtkTexName;
-	os >> xSize >> ySize >> knockback >> knockup >> yOffset >> xOffset
+	os 
+		>> xSize
+		>> ySize 
+		>> knockback 
+		>> knockup 
+		>> yOffset 
+		>> xOffset
 		>> startupTimeMax
 		>> lifespanMax
 		>> targetH
