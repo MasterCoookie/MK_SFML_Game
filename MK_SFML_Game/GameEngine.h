@@ -27,6 +27,7 @@ private:
 
 	//inits
 	void initWindow();
+	void initView();
 	void initVariables();
 	void initWorld(std::string textureName);
 	void initPlayers(std::string p1charName, std::string p2charName);
@@ -52,6 +53,8 @@ private:
 	void updateAttacksCollision();
 	void updateView();
 	void updateMatchManager();
+	void updatePlayersMovement();
+	void updatePlayersAttacks();
 
 	bool isRunning;
 	std::string result;

@@ -11,8 +11,7 @@ GameEngine::GameEngine() {
 GameEngine::GameEngine(std::shared_ptr<sf::RenderWindow> win) {
 	//all inits
 	this->window = win;
-	this->view = std::make_shared <sf::View> (sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
-	this->window->setView(*this->view);
+	this->initView();
 	this->initVariables();
 	this->initWorld("bcg.png");
 	this->initArena();
@@ -123,6 +122,11 @@ void GameEngine::initWindow() {
 	this->window->setVerticalSyncEnabled(false);
 }
 
+void GameEngine::initView() {
+	this->view = std::make_shared <sf::View>(sf::FloatRect(0.f, 0.f, 1280.f, 960.f));
+	this->window->setView(*this->view);
+}
+
 void GameEngine::pollEvents() {
 	//eventy - exiting game
 	sf::Event e;
@@ -183,27 +187,9 @@ void GameEngine::update() {
 
 		this->updateView();
 
-		if (this->player1->getState() != State::BLOCKING) {
-			this->player1->updateMovement();
-		}
+		this->updatePlayersMovement();
 
-		if (this->player2->getState() != State::BLOCKING) {
-			this->player2->updateMovement();
-		}
-
-		if (this->player1->canAttack() && this->player1->selectAttack()) {
-			this->player1->attack();
-		}
-		else {
-			this->player1->updateAttack();
-		}
-
-		if (this->player2->canAttack() && this->player2->selectAttack()) {
-			this->player2->attack();
-		}
-		else {
-			this->player2->updateAttack();
-		}
+		this->updatePlayersAttacks();
 	}
 	else {
 		this->player1->updateRecovery();
@@ -308,7 +294,6 @@ void GameEngine::updatePlayersCollision() {
 }
 
 void GameEngine::updatePlayersScreenCollision() {
-	//TODO - async functions for both players
 	if (this->player1->getPosition().x < this->view->getCenter().x - 640.f) {
 		this->player1->setPosition(this->view->getCenter().x - 640.f, this->player1->getPosition().y);
 	}
@@ -386,7 +371,8 @@ void GameEngine::updateMatchManager() {
 			this->player1->winRound();
 			this->player2->looseRound();
 			this->wcplayer1->update();
-			this->matchManager->endRound(this->player1->getCharName());
+			this->matchManager->endRound(this->player1->getCharGUIName());
+			this->player2->blockGetup();
 			if (this->player1->getRoundsWon() >= 2) {
 				this->matchManager->endMatch();
 			}
@@ -394,16 +380,46 @@ void GameEngine::updateMatchManager() {
 			this->player2->winRound();
 			this->player1->looseRound();
 			this->wcplayer2->update();
-			this->matchManager->endRound(this->player2->getCharName());
+			this->matchManager->endRound(this->player2->getCharGUIName());
+			this->player1->blockGetup();
 			if (this->player2->getRoundsWon() >= 2) {
 				this->matchManager->endMatch();
 			}
 		} else {
 			this->player1->winRound();
 			this->player2->winRound();
+			this->matchManager->endRound("Nobody");
+			this->player1->blockGetup();
+			this->player2->blockGetup();
 		}
 	}
 	this->timerGUI->update(this->matchManager->getRoundTimer());
+}
+
+void GameEngine::updatePlayersMovement() {
+	if (this->player1->getState() != State::BLOCKING) {
+		this->player1->updateMovement();
+	}
+
+	if (this->player2->getState() != State::BLOCKING) {
+		this->player2->updateMovement();
+	}
+}
+
+void GameEngine::updatePlayersAttacks() {
+	if (this->player1->canAttack() && this->player1->selectAttack()) {
+		this->player1->attack();
+	}
+	else {
+		this->player1->updateAttack();
+	}
+
+	if (this->player2->canAttack() && this->player2->selectAttack()) {
+		this->player2->attack();
+	}
+	else {
+		this->player2->updateAttack();
+	}
 }
 
 void GameEngine::moveGUIElements(float offsetX, float offsetY)
@@ -442,13 +458,19 @@ void GameEngine::render() {
 
 	this->player1->render(this->window);
 	this->player2->render(this->window);
+
 	this->arena->render(this->window);
+
 	this->hbplayer1->render(this->window);
 	this->hbplayer2->render(this->window);
+
 	this->timerGUI->render(this->window);
+
 	this->wcplayer1->render(this->window);
 	this->wcplayer2->render(this->window);
+
 	this->msg->render(this->window);
+
 	//display stuff
 	this->window->display();
 }
