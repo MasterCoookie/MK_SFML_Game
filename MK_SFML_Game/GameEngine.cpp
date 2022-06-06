@@ -368,29 +368,36 @@ void GameEngine::updateMatchManager() {
 		const float p1_hp = this->player1->getHp();
 		const float p2_hp = this->player2->getHp();
 		if (p1_hp > p2_hp) {
-			this->player1->winRound();
-			this->player2->looseRound();
-			this->wcplayer1->update();
-			this->matchManager->endRound(this->player1->getCharGUIName());
-			this->player2->blockGetup();
-			if (this->player1->getRoundsWon() >= 2) {
-				this->matchManager->endMatch();
+			if (!this->matchManager->isRoundResetPlanned()) {
+				this->player1->winRound();
+				this->player2->looseRound();
+				this->wcplayer1->update();
+				this->matchManager->endRound(this->player1->getCharGUIName());
+				this->player2->blockGetup();
+				if (this->player1->getRoundsWon() >= 2) {
+					this->matchManager->endMatch();
+				}
 			}
+			
 		} else if (p1_hp < p2_hp) {
-			this->player2->winRound();
-			this->player1->looseRound();
-			this->wcplayer2->update();
-			this->matchManager->endRound(this->player2->getCharGUIName());
-			this->player1->blockGetup();
-			if (this->player2->getRoundsWon() >= 2) {
-				this->matchManager->endMatch();
+			if (!this->matchManager->isRoundResetPlanned()) {
+				this->player2->winRound();
+				this->player1->looseRound();
+				this->wcplayer2->update();
+				this->matchManager->endRound(this->player2->getCharGUIName());
+				this->player1->blockGetup();
+				if (this->player2->getRoundsWon() >= 2) {
+					this->matchManager->endMatch();
+				}
 			}
 		} else {
-			this->player1->winRound();
-			this->player2->winRound();
-			this->matchManager->endRound("Nobody");
-			this->player1->blockGetup();
-			this->player2->blockGetup();
+			if (!this->matchManager->isRoundResetPlanned()) {
+				this->player1->winRound();
+				this->player2->winRound();
+				this->matchManager->endRound("Nobody");
+				this->player1->blockGetup();
+				this->player2->blockGetup();
+			}
 		}
 	}
 	this->timerGUI->update(this->matchManager->getRoundTimer());
