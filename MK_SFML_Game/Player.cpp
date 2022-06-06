@@ -68,12 +68,11 @@ void Player::setState(const State& state) {
 }
 
 void Player::winRound() {
-	//this->reset();
 	++this->roundsWon;
 }
 
 void Player::looseRound() {
-	//this->reset();
+
 }
 
 void Player::blockGetup() {
@@ -172,14 +171,6 @@ void Player::recover(const float frames) {
 }
 
 bool Player::selectAttack() {
-	//TMP
-	//TODO - actually select an attack
-	//if (this->state != State::ATTACKING && this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6]) {
-	//	this->state = State::ATTACKING;
-	//	//this->currentAttack = AttackMove(this->getPosition(), 125, 50, this->isRightFacing, this->charName);
-	//	return true;
-	//}
-	//return false;
 	if (this->state != State::ATTACKING && (this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
 
 		if (this->movesMatrix->doesAttackMoveExist(this->movementMatrix)) {
@@ -187,17 +178,13 @@ bool Player::selectAttack() {
 			this->state = State::ATTACKING;
 			return true;
 		}
-		
 	}
 	return false;
 }
 
 void Player::attack() {
 	if ((this->movementMatrix[4] || this->movementMatrix[5] || this->movementMatrix[6])) {
-		if (this->selectAttack()) {
-			//this->currentAttack.throwAttack();
-			//this->state = State::ATTACKING;
-		}
+		if (this->selectAttack()) {}
 	}
 }
 
@@ -208,8 +195,6 @@ void Player::takeHit(AttackMove& hitBy) {
 				std::cout << "Blocked\n";
 				hitBy.registerBlock();
 				this->hp -= hitBy.getDmg() / 10.f;
-				//TMP
-				std::cout << this->hp << "\n";
 
 				this->stagger(State::BLOCK_STAGGERED, static_cast<float>(hitBy.getOnBlockStagger()));
 			}
@@ -375,15 +360,8 @@ bool Player::wasAttackBlocked(const AttackMove& hitBy) {
 	return true;
 }
 
-
-void Player::updateMovement() {
-	//move for momentum
-	GameObject::move(xAxisMomentum, yAxisMomentum);
-	// gravity
-	this->yAxisMomentum += 4.5f;
-	
-	const unsigned int landing_border = (this->state != State::HIT_STAGGERED) ? 425 : 655;//655
-
+void Player::updateLanding() {
+	const unsigned int landing_border = (this->state != State::HIT_STAGGERED) ? 425 : 655;
 	//check for landing
 	if (this->getPosition().y > landing_border) {
 		this->yAxisMomentum = 0;
@@ -392,7 +370,7 @@ void Player::updateMovement() {
 			if (this->state == State::HIT_STAGGERED) {
 				this->position = Position::LYING;
 
-				
+
 				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
 				this->initSprite(*(this->playerTextures.find("lying")->second), this->textureRect);
 
@@ -402,10 +380,12 @@ void Player::updateMovement() {
 				this->position = Position::STANDING;
 				this->setPosition(this->getPosition().x, 425);
 			}
-			
+
 		}
 	}
+}
 
+void Player::updateDuck() {
 	//check if still ducking
 	if (!this->movementMatrix[3] && this->position == Position::DUCKING) {
 		//stand up if button was released
@@ -414,6 +394,18 @@ void Player::updateMovement() {
 		this->initSprite(this->textureRect);
 		this->setPosition(this->getPosition().x, this->getPosition().y - 125.f);
 	}
+}
+
+
+void Player::updateMovement() {
+	//move for momentum
+	GameObject::move(xAxisMomentum, yAxisMomentum);
+	// gravity
+	this->yAxisMomentum += 4.5f;
+
+	this->updateLanding();
+
+	this->updateDuck();
 }
 
 void Player::updateAttack() {
@@ -428,8 +420,6 @@ void Player::updateAttack() {
 void Player::updateStagger() {
 	if (!(this->position == Position::AIRBORNE)) {
 		if (this->staggerFrames > 0.f) {
-			//tmp
-			//std::cout << this->staggerFrames << "\n";
 			--this->staggerFrames;
 		}
 		else {
@@ -439,7 +429,6 @@ void Player::updateStagger() {
 				} else {
 					this->state = State::IDLE;
 				}
-				
 			}
 			else if (this->state == State::BLOCK_STAGGERED) {
 				this->dropBlock(this->movementMatrix[3]);
@@ -475,10 +464,8 @@ void Player::updateAnimation() {
 			//continue animate walking forward
 			this->animator->update();
 			this->initSprite(*this->playerTextures.find("walking_f")->second, this->textureRect);
-		}
-		else {
-			//start animating walking forward
-			
+		} else {
+			//start animating walking forward			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 			int tex_size = (* (this->playerTextures.find("walking_f")->second)).getSize().x;
 			 
@@ -491,8 +478,7 @@ void Player::updateAnimation() {
 			//continue animate walking forward
 			this->animator->update();
 			this->initSprite(*this->playerTextures.find("walking_b")->second, this->textureRect);
-		}
-		else {
+		} else {
 			//start animating walking forward
 
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
@@ -508,33 +494,26 @@ void Player::updateAnimation() {
 			if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::JUMPING) {
 				this->animator->update();
 				this->initSprite(*this->playerTextures.find(this->lockedAnimation)->second, this->textureRect);
-		}
-		else {
+		} else {
 			//start animating jumping
 			if (this->movementMatrix[0] || this->movementMatrix[1]) {
-				 
-				
 				this->textureRect = std::make_shared<sf::IntRect>(0, 0, 175, 175);
 				int tex_size = (*(this->playerTextures.find("jumping_f")->second)).getSize().x;
 
 				this->animator = std::make_shared<Animator>(this->textureRect, tex_size, 175, AnimationType::JUMPING, true, false, 175);
 				if (this->movementMatrix[0]) {
 					this->lockedAnimation = "jumping_f";
-				}
-				else {
+				} else {
 					this->lockedAnimation = "jumping_b";
 				}
 			}
 		}
-	} 
-	else if (this->state == State::ATTACKING) {
+	} else if (this->state == State::ATTACKING) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::ATTACKING) {
 			//continue animate attacking
 			this->animator->update();
 			this->initSprite(*this->attackingTexture, this->textureRect);
-		}
-		else {
-			
+		} else {
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 150, 375);
 			 
 			this->attackingTexture = this->currentAttack.getPlayerTexture();
@@ -557,19 +536,15 @@ void Player::updateAnimation() {
 
 				this->initSprite(*this->playerTextures.find("getting_up")->second, this->textureRect);
 				this->animator = std::make_shared<Animator>(this->textureRect, 2750, 200, AnimationType::GETTING_UP, false, false, 275);
-			}
-			
+			}			
 		}
-	}	else if (this->state == State::HIT_STAGGERED && this->position == Position::AIRBORNE) {
+	} else if (this->state == State::HIT_STAGGERED && this->position == Position::AIRBORNE) {
 		if (this->animator != nullptr && this->animator->getCurrAnimationType() == AnimationType::FALLING) {
 			//continue animate falling
 			this->animator->update();
 			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
-		}
-		else {
-			//start getup falling
-			//this->sprite.move(0.f, -50.f);
-			
+		} else {
+			//start getup falling			
 			this->textureRect = std::make_shared<sf::IntRect>(0, 0, 300, 150);
 			 
 			this->initSprite(*this->playerTextures.find("falling")->second, this->textureRect);
@@ -583,8 +558,7 @@ void Player::updateAnimation() {
 				//continue animate standing
 				this->animator->update();
 				this->initSprite(this->textureRect);
-			}
-			else {
+			} else {
 				//start animating standing
 				this->setPosition(this->getPosition().x, 425.f);
 				

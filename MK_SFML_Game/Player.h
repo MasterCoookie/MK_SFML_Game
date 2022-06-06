@@ -106,12 +106,13 @@ private:
 	//copy of an attack
 	AttackMove currentAttack;
 
-	//inits
-	
 	void initTexturesMap();
 	void initGUIName();
 	//private methods
 	bool wasAttackBlocked(const AttackMove& hitBy);
+
+	void updateLanding();
+	void updateDuck();
 	
 	std::string charName;
 	std::string charGUIname;

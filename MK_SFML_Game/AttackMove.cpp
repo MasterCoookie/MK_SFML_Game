@@ -87,8 +87,6 @@ AttackMove::AttackMove(const AttackMove& move, const sf::Vector2f _pos, bool _is
 		this->sprite.scale(-1.f, 1.f);
 		this->knockback = -this->knockback;
 	}
-
-	
 }
 
 AttackMove::~AttackMove() {
@@ -178,7 +176,6 @@ void AttackMove::registerBlock(){
 }
 
 void AttackMove::endAttack() {
-	//TODO
 	this->isActive = false;
 }
 
@@ -203,7 +200,6 @@ void AttackMove::render(std::shared_ptr<sf::RenderTarget> win) {
 		this->sprite.setTexture(*this->atkTexture);
 		win->draw(this->sprite);
 	}
-	
 }
 
 void AttackMove::initVariables() {
