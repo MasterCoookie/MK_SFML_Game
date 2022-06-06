@@ -175,7 +175,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneWelcomeScreen.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="GamePatykovyMordulec.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SelectableGUIElement.cpp" />
     <ClCompile Include="SelGUIElementsMatrix.cpp" />
@@ -199,7 +199,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneWelcomeScreen.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="GamePatykovyMordulec.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SelectableGUIElement.h" />
     <ClInclude Include="SelGUIElementsMatrix.h" />

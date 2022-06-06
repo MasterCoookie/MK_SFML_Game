@@ -1,5 +1,5 @@
-#include "SceneManager.h"
-SceneManager::SceneManager()
+#include "GamePatykovyMordulec.h"
+GamePatykovyMordulec::GamePatykovyMordulec()
 {
 	this->initWindow();
 	this->interSceneData = { "" };
@@ -7,12 +7,12 @@ SceneManager::SceneManager()
 	
 }
 
-SceneManager::~SceneManager()
+GamePatykovyMordulec::~GamePatykovyMordulec()
 {
 	
 }
 
-void SceneManager::run()
+void GamePatykovyMordulec::run()
 {
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
 		for (int i = 0; i < this->scenesToExecute.size(); i++) {
@@ -29,7 +29,7 @@ void SceneManager::run()
 
 }
 
-void SceneManager::executeScene(std::shared_ptr<Scene> s)
+void GamePatykovyMordulec::executeScene(std::shared_ptr<Scene> s)
 {
 	s->setInterSceneValues(this->interSceneData);
 	s->run();
@@ -37,7 +37,7 @@ void SceneManager::executeScene(std::shared_ptr<Scene> s)
 	this->historyOfSceneData.push_back(this->interSceneData);
 }
 
-void SceneManager::initWindow()
+void GamePatykovyMordulec::initWindow()
 {
 	//initializes window with set params
 	this->window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1280, 960), "Patykovy Mordulec", sf::Style::Titlebar | sf::Style::Close);
@@ -45,7 +45,7 @@ void SceneManager::initWindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
-void SceneManager::initScenesToExecute()
+void GamePatykovyMordulec::initScenesToExecute()
 {
 	this->scenesToExecute.push_back(std::make_shared<SceneWelcomeScreen>(this->window));
 	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
@@ -53,14 +53,14 @@ void SceneManager::initScenesToExecute()
 
 }
 
-void SceneManager::initRematch()
+void GamePatykovyMordulec::initRematch()
 {
 	this->scenesToExecute.clear();
 	this->scenesToExecute.push_back(std::make_shared<SceneMenu>(this->window));
 	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));
 }
 
-void SceneManager::initRematchWithoutChange()
+void GamePatykovyMordulec::initRematchWithoutChange()
 {
 	this->scenesToExecute.clear();
 	this->scenesToExecute.push_back(std::make_shared <GameEngine>(this->window));

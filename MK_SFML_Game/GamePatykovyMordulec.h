@@ -5,11 +5,11 @@
 #include "SceneWelcomeScreen.h"
 #include "SceneMenu.h"
 
-class SceneManager
+class GamePatykovyMordulec
 {
 public:
-	SceneManager();
-	~SceneManager();
+	GamePatykovyMordulec();
+	~GamePatykovyMordulec();
 	void run();
 private:
 
