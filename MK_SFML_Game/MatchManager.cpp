@@ -69,7 +69,6 @@ void MatchManager::endRound(std::string winnerNum) {
 void MatchManager::endMatch() {
 	this->matchEnded = true;
 	this->msgQueue.push_back("Press F2 to rematch\nPress F3 to change characters\nEsc to quit");
-	//this->updateMsgQueue();
 }
 
 void MatchManager::initVariables() {
