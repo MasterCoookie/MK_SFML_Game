@@ -66,7 +66,7 @@ void SceneMenu::pollEvents()
 }
 void SceneMenu::update()
 {
-	//test
+	
 	this->sincePlayerOneSwitched += 1;
 	this->sincePlayerTwoSwitched += 1;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
@@ -138,7 +138,7 @@ void SceneMenu::initBackground(std::string textureName)
 {
 	this->menuScreenTexture = std::make_unique<sf::Texture>();
 	if (!this->menuScreenTexture->loadFromFile("./Textures/" + textureName)) {
-		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load menu img" << std::endl;
+		std::cout << " ! ERR: SCENEMENU: could not load menu img" << std::endl;
 	}
 	//set load to loaded texture
 	this->menuScreenSprite.setTexture(*(this->menuScreenTexture));

@@ -66,7 +66,7 @@ void SceneWelcomeScreen::initTexture(std::string textureName)
 {
 	this->loadingScreenTexture = std::make_unique<sf::Texture>();
 	if (!this->loadingScreenTexture->loadFromFile("./Textures/" + textureName)) {
-		std::cout << " ! ERR: GAMEENGINE::INITWORLD: could not load laod img" << std::endl;
+		std::cout << " ! ERR: SCENEWELCOMESCREEEN: could not load laod img" << std::endl;
 	}
 	//set load to loaded texture
 	this->loadingScreenSprite.setTexture(*(this->loadingScreenTexture));

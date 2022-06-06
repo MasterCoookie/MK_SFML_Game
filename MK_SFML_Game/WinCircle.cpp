@@ -22,12 +22,9 @@ void WinCircle::update()
 
 void WinCircle::render(std::shared_ptr<sf::RenderTarget> win)
 {
-	if (isVisble) {
-		win->draw(*(this->circle));
-	}
-	else {
-		//do not display
-	}
+	if (!isVisble) return;
+	win->draw(*(this->circle));
+
 }
 
 void WinCircle::move(float offsetX, float offsetY)

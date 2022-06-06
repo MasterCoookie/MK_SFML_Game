@@ -3,33 +3,22 @@
 HealthBar::HealthBar(bool isLeft, std::string name)
 {
 	this->isLeft = isLeft;
-	this->font = std::make_unique<sf::Font>();
-	if (!this->font->loadFromFile("./Textures/font.ttf")) {
-		std::cout << "Czcionka nie wczytana";
-	}
-	this->text.setFont(*this->font);
-
-	this->text.setString(name);
-	this->text.setCharacterSize(30);
-	this->text.setFillColor(sf::Color::Blue);
-	this->text.setStyle(sf::Text::Bold);
-	this->healthShape = std::make_unique < sf::RectangleShape>();
-	this->healthShape->setFillColor(sf::Color(0, 255, 0));
-	this->healthShape->setSize({ 450.f, 50.f });
-	this->backgroundShape = std::make_unique < sf::RectangleShape>();
-	this->backgroundShape->setFillColor(sf::Color(255,0, 0));
-	this->backgroundShape->setSize({ 450.f, 50.f });
+	this->initText(name);
+	this->initShapes();
 	if (this->isLeft) {
-		this->healthShape->setPosition({ 730.f,50.f });
-		this->backgroundShape->setPosition({ 730.f,50.f });
-		this->text.setPosition(730.f, 60.f);
-		this->originalPos = sf::Vector2f(730.f, 50.f);
+		this->setPosition(730.f, 50.f);
+		//this->healthShape->setPosition({ 730.f,50.f });
+		//this->backgroundShape->setPosition({ 730.f,50.f });
+		//this->text.setPosition(730.f, 60.f);
+		//this->originalPos = sf::Vector2f(730.f, 50.f);
 	}
 	else {
-		this->healthShape->setPosition({ 1380.f,50.f });
-		this->backgroundShape->setPosition({ 1380.f,50.f });
-		this->text.setPosition(1380+445-this->text.getLocalBounds().width, 60.f);
-		this->originalPos = sf::Vector2f(1380.f, 50.f);
+		this->setPosition(1380.f, 50.f);
+
+		//this->healthShape->setPosition({ 1380.f,50.f });
+		//this->backgroundShape->setPosition({ 1380.f,50.f });
+		//this->text.setPosition(1380+445-this->text.getLocalBounds().width, 60.f);
+		//this->originalPos = sf::Vector2f(1380.f, 50.f);
 	}
 }
 
@@ -67,15 +56,55 @@ void HealthBar::move(float offsetX, float offsetY)
 void HealthBar::reset()
 {
 	if (this->isLeft) {
-		this->healthShape->setPosition({ 730.f,50.f });
-		this->backgroundShape->setPosition({ 730.f,50.f });
-		this->text.setPosition(730.f, 60.f);
-		this->originalPos = sf::Vector2f(730.f, 50.f);
+		this->setPosition(730.f, 50.f);
+
+		//this->healthShape->setPosition({ 730.f,50.f });
+		//this->backgroundShape->setPosition({ 730.f,50.f });
+		//this->text.setPosition(730.f, 60.f);
+		//this->originalPos = sf::Vector2f(730.f, 50.f);
 	}
 	else {
-		this->healthShape->setPosition({ 1380.f,50.f });
-		this->backgroundShape->setPosition({ 1380.f,50.f });
-		this->text.setPosition(1380 + 445 - this->text.getLocalBounds().width, 60.f);
-		this->originalPos = sf::Vector2f(1380.f, 50.f);
+		this->setPosition(1380.f, 50.f);
+		//this->healthShape->setPosition({ 1380.f,50.f });
+		//this->backgroundShape->setPosition({ 1380.f,50.f });
+		//this->text.setPosition(1380 + 445 - this->text.getLocalBounds().width, 60.f);
+		//this->originalPos = sf::Vector2f(1380.f, 50.f);
+	}
+}
+
+void HealthBar::initText(std::string name)
+{
+	this->font = std::make_unique<sf::Font>();
+	if (!this->font->loadFromFile("./Textures/font.ttf")) {
+		std::cout << "Czcionka nie wczytana";
+	}
+	this->text.setFont(*this->font);
+	this->text.setString(name);
+	this->text.setCharacterSize(30);
+	this->text.setFillColor(sf::Color::Blue);
+	this->text.setStyle(sf::Text::Bold);
+
+}
+
+void HealthBar::initShapes()
+{
+	this->healthShape = std::make_unique < sf::RectangleShape>();
+	this->healthShape->setFillColor(sf::Color(0, 255, 0));
+	this->healthShape->setSize({ 450.f, 50.f });
+	this->backgroundShape = std::make_unique < sf::RectangleShape>();
+	this->backgroundShape->setFillColor(sf::Color(255, 0, 0));
+	this->backgroundShape->setSize({ 450.f, 50.f });
+	this->backgroundShape->setOutlineThickness(2.f);
+	this->backgroundShape->setOutlineColor(sf::Color::Yellow);
+}
+
+void HealthBar::setPosition(float x, float y)
+{
+	this->healthShape->setPosition({ x,y });
+	this->backgroundShape->setPosition({ x,y });
+	this->text.setPosition(x, y+10);
+	this->originalPos = sf::Vector2f(x, y);
+	if (!isLeft) {
+		this->text.setPosition(x + 445 - this->text.getLocalBounds().width, y+10);
 	}
 }

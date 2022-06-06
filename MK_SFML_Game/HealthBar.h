@@ -11,6 +11,9 @@ public:
 	void move(float offsetX, float offsetY) override;
 	void reset() override;
 private:
+	void initText(std::string name);
+	void initShapes();
+	void setPosition(float x, float y);
 	bool isLeft;
 	std::unique_ptr < sf::RectangleShape> healthShape;
 	std::unique_ptr < sf::RectangleShape> backgroundShape;

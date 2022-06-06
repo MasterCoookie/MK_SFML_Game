@@ -17,7 +17,6 @@ void GamePatykovyMordulec::run()
 	while (this->interSceneData[0] != "exit" && this->window->isOpen()) {
 		for (int i = 0; i < this->scenesToExecute.size(); i++) {
 			this->executeScene(this->scenesToExecute[i]);
-			//this->scenesToExecute.erase(this->scenesToExecute.begin());
 		}
 		if (this->interSceneData[0] == "F3" && this->window->isOpen()) {
 			this->initRematch();
