@@ -6,6 +6,7 @@ SceneMenu::SceneMenu(std::shared_ptr<sf::RenderWindow> win)
 	this->initBackground("menu.png");
 	this->initVariables();
 	this->initCharactersMatrix("./SceneMenu/elem1.png");
+	this->initText();
 	this->playerOneChoice = this->matrix->getPlayerOneChoice();
 	this->playerTwoChoice = this->matrix->getPlayerTwoChoice();
 	this->playerOneDisplay = std::make_unique<PickedCharacterDisplay>(150, 375, true);
@@ -126,6 +127,9 @@ void SceneMenu::render()
 	this->matrix->render(this->window);
 	this->playerOneDisplay->render(this->window);
 	this->playerTwoDisplay->render(this->window);
+	this->window->draw(this->PickYour);
+	this->window->draw(this->player1);
+	this->window->draw(this->player2);
 	this->window->display();
 }
 
@@ -142,6 +146,34 @@ void SceneMenu::initBackground(std::string textureName)
 	}
 	//set load to loaded texture
 	this->menuScreenSprite.setTexture(*(this->menuScreenTexture));
+}
+
+void SceneMenu::initText()
+{
+	this->font = std::make_unique<sf::Font>();
+	if (!this->font->loadFromFile("./Textures/font.ttf")) {
+		std::cout << "Czcionka nie wczytana";
+	}
+	this->PickYour.setFont(*this->font);
+	this->PickYour.setString("CHOOSE YOUR FIGHTER");
+	this->PickYour.setCharacterSize(50);
+	this->PickYour.setFillColor(sf::Color::Yellow);
+	this->PickYour.setStyle(sf::Text::Bold);
+	this->PickYour.setPosition(640 - this->PickYour.getLocalBounds().width / 2, 20.f);
+
+	this->player1.setFont(*this->font);
+	this->player1.setString("Player One");
+	this->player1.setCharacterSize(25);
+	this->player1.setFillColor(sf::Color::Red);
+	this->player1.setStyle(sf::Text::Bold);
+	this->player1.setPosition(15, 120.f);
+
+	this->player2.setFont(*this->font);
+	this->player2.setString("Player Two");
+	this->player2.setCharacterSize(25);
+	this->player2.setFillColor(sf::Color::Blue);
+	this->player2.setStyle(sf::Text::Bold);
+	this->player2.setPosition(1280-this->player1.getLocalBounds().width-20, 120.f);
 }
 
 void SceneMenu::setAreCharactersPicked(bool value)
