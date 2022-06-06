@@ -15,7 +15,7 @@ public:
 		int _startupTimeMax, int _lifespanMax,
 		TargetHeight _targetH, int _dmg,
 		int _onHitStagger, int _onBlockStagger, 
-		int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery);
+		float _onHitRecovery, int _onBlockRecovery, float _onMissRecovery);
 	//somewhat of a copy constructor used when attack is selected
 	AttackMove(const AttackMove& move, const sf::Vector2f _pos, bool _isRightFacing);
 	~AttackMove();

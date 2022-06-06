@@ -62,7 +62,7 @@ AttackMove::AttackMove(const sf::Vector2f pos, float xSize, float ySize, bool is
 }
 
 AttackMove::AttackMove(float _xSize, float _ySize, std::shared_ptr<sf::Texture> _atkTexture, std::shared_ptr<sf::Texture> _playerAtkTexture, int _knockback, int _knockup, float _xOffset, float _yOffset, int _startupTimeMax, int _lifespanMax,
-	TargetHeight _targetH, int _dmg, int _onHitStagger, int _onBlockStagger, int _onHitRecovery, int _onBlockRecovery, int _onMissRecovery) :
+	TargetHeight _targetH, int _dmg, int _onHitStagger, int _onBlockStagger, float _onHitRecovery, int _onBlockRecovery, float _onMissRecovery) :
 	atkTexture(_atkTexture), playerAtkTexture(_playerAtkTexture), knockback(_knockback), knockup(_knockup), xOffset(_xOffset), yOffset(_yOffset), startupTimeMax(_startupTimeMax), lifespanMax(_lifespanMax), targetH(_targetH), dmg(_dmg),
 	onHitStagger(_onHitStagger), onBlockStagger(_onBlockStagger), onHitRecovery(_onHitRecovery), onBlockRecovery(_onBlockRecovery), onMissRecovery(_onMissRecovery) {
 	init_gameobject_variables(this);
