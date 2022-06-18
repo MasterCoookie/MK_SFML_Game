@@ -2,7 +2,7 @@
 <!---
 title: Angielski 06.05.2022
 subtitle: 
-author: "Wojciech Ptaś"
+author: "Wojciech Ptaś, Jan Kocurek"
 
 date: 05.05.2022r.
 -->
@@ -16,9 +16,44 @@ header-includes: |
 ---
 # 1. Temat projektu
 
-Celem projektu było odtworzenie pierwszej części z popularnej serii gier - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Projekt przyjął nazwę "Patykovy Mordulec".
+Celem projektu było odtworzenie pierwszej części z popularnej serii gier automatowych - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Projekt przyjął żartobliwą nazwę "Patykovy Mordulec".
 
 # 2. Analiza tematu
+
+Zadanie wymaga sprawnej realizacji wielu aspektów tworzenia gry komputerowej. Dodatkowo praca musi być równo podzielona pomiędzy 2 osoby. Najważniejsze zagadnienia:
+
+## 2.1 Podstawowy silnik gry
+
+Konieczne jest utworzenie slinika pozwalającego na wyświetlanie dwuwymiarowych grafik. Powinien on również wspierać obsługę prostej fizyki, detekcję kolizji oraz dać możliwość implementacji wymaganych nowoczesnych bibliotek języka C++.
+
+## 2.2 Interfejs i nawigacja
+
+W celu oddania stylu realizacji menu oraz interfejsu orygninalnego wzorca, należy pozostawić sterowanie nawigacją klawiaturze. Menu wyboru postaci oraz ekrany kończące pozostać mają proste i przejrzyste.
+
+## 2.3 Kluczowe aspekty rozgrywki
+
+Odwzorowane mają zostać najważniejsze aspekty gry typu bijatyka, takie jak poruszanie, skakanie, wyprowadzanie różnorodych ciosów, blokowanie czy uniki. Dodatkowo gracze mają mieć możliwość wyboru postaci, które różnić będą się nie tylko wyglądem ale również zestawem ruchów oraz powiązanym z nim "stylem walki".
+
+## 2.4 Cykl trwania meczu
+
+Każdy mecz podzielony zostanie na niezależne rundy. Po rozpoczęniu rozgrywki czas do zakończenia rundy pozostanie ograniczony. Rudna trwać będzie do momentu, aż któremuś z graczy skończą się punkty zdrowia, lub do upłynięcia czasu. Mecz kończy się w momencie wygrania przez jednego z graczy 2 rund. 
+
+## 2.5 Elementy GUI
+
+Na ekranie gry poza samymi postaciami znajdować będą się ulokowane w stałych miejscach elementy Graficznego Interfejsu Użytkownika. Będą to między innymi paski, reprezentujące ilość posiadanych punktów zdrowia każdego z graczy oraz licznik czasu rundy. Ich wygląd również wzorowany będzie na oryginalnej inspiracji.
+
+## 2.6 Treści i zawartość
+
+Poza typowo technicznymi aspektami, projekt zakłada dodanie do napisanej gry podstawowych zawartości. W celu oddania oryginalnej oprawy graficznej rysowane elementy, takie jak grafiki postaci lub areny wyglądem będą przypominały grę retro. Dodatkowo utworzone będą oryginalne postacie, wraz z pasujacymi do ich wyglądu zestawami ruchów. Same postacie będą musiały przejść przez proces optymalizacji oraz balansowania, w celu zapewnienia sprawiedliwej i zajmującej rozgrywki.
+
+## 2.7 Optymalizacja
+
+Gry gatunku bijatyka mocno opierają się na szybkich reakjcach graczy. Z tego powodu płynna i responsywna rozgrywka jest wyjątkowo istotna. Wymagane jest, aby silnik posostawiał wiele miejsca na optymalizację. Ważne jest unikanie czasochłonnych operacji oraz sprawna identyfikacja punków krytycznych.  
+
+## 2.8 Biblioteki zewnętrzne
+
+W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano się wykorzystać bibliotekę Simple and Fast Multimedia Library. Pozwala ona na proste wprowadzanie wielu istotnych mechanik, takich jak wczytywanie i wyświetlanie grafik, zliczanie czasu lub detekcję kolizji.
+
 
 # 3. Specyfikacja zewnętrzna
 
