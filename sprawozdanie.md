@@ -63,3 +63,9 @@ W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano si�
  Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami.
 # 6. Uwagi i wnioski
 
+## 6.1 Praca zespołowa i organizacja
+Elementem który pozowlił utrzymać wysoką produktywność oraz uniknąć wielu kłopotów podczas późniejszych faz realizacji projektu było przykładne i konkretne podzielenie się obowiązkami oraz ustalenie wspólnej wizji produtku końcowego w pierwszej fazie pracy zadaniem. Praca została rozłożona w taki sposób, aby obydwie osoby pracujące nad projektem nie przeszkadzały sobie nawzajem. Tworzone komponenty pozostały mało zależne od siebie, a interfejsy kompatybilne. W ten sposób mogły być tworzone, testowane i modyfikowane jednocześnie bez wzajemnego utrudniania pracy.
+
+## 6.2 Kłopotliwe aspekty produkcji gier
+
+## 6.3 Nowoczesne biblioteki języka C++
