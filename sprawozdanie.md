@@ -20,7 +20,7 @@ Celem projektu było odtworzenie pierwszej części z popularnej serii gier auto
 
 # 2. Analiza tematu
 
-Zadanie wymaga sprawnej realizacji wielu aspektów tworzenia gry komputerowej. Dodatkowo praca musi być równo podzielona pomiędzy 2 osoby. Najważniejsze zagadnienia:
+Zadanie wymaga sprawnej realizacji wielu aspektów tworzenia gry komputerowej. Dodatkowo praca musi być w miarę możliwości równo podzielona pomiędzy 2 osoby. Najważniejsze zagadnienia:
 
 ## 2.1 Podstawowy silnik gry
 
