@@ -1,5 +1,4 @@
 ---
-<<<<<<< Updated upstream
 <!---
 title: Angielski 06.05.2022
 subtitle: 
@@ -8,7 +7,6 @@ author: "Wojciech Ptaś, Jan Kocurek"
 date: 05.05.2022r.
 -->
 =======
->>>>>>> Stashed changes
 geometry: margin=3cm
 date: 05.05.2022r.
 header-includes: |
@@ -22,11 +20,11 @@ header-includes: |
 
 # 1. Temat projektu
 
-<<<<<<< Updated upstream
+
 Celem projektu było odtworzenie pierwszej części z popularnej serii gier automatowych - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Projekt przyjął żartobliwą nazwę "Patykovy Mordulec".
 =======
 Celem projektu było odtworzenie pierwszej części z popularnej serii gier - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Gra przyjęła nazwę "Patykovy Mordulec".
->>>>>>> Stashed changes
+
 
 # 2. Analiza tematu
 
