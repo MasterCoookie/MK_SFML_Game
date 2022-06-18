@@ -1,0 +1,1 @@
+pandoc -s sprawozdanie.md -o sprawozdanie.pdf
