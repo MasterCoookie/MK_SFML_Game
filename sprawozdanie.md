@@ -1,12 +1,6 @@
 ---
-<!---
-title: Angielski 06.05.2022
-subtitle: 
-author: "Wojciech Ptaś, Jan Kocurek"
-
-date: 05.05.2022r.
--->
 geometry: margin=3cm
+date: 05.05.2022r.
 header-includes: |
         \usepackage{polski}
         \usepackage[polish]{babel}
@@ -14,6 +8,8 @@ header-includes: |
         \usepackage{fvextra}
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
+
+
 # 1. Temat projektu
 
 Celem projektu było odtworzenie pierwszej części z popularnej serii gier automatowych - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Projekt przyjął żartobliwą nazwę "Patykovy Mordulec".
@@ -56,6 +52,14 @@ W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano si�
 
 
 # 3. Specyfikacja zewnętrzna
+Program można uruchomić z linii poleceń, lub klikając dwukrotnie na plik wykonywalny programu. Po uruchomieniu, wyświetla się ekran powitalny, który po 5 sekundach przechodzi do ekranu wyboru postaci - menu.  
+
+|![](menu.png)|
+|:--:|
+| **Rys. 1: Ekran wyboru postaci**|
+
+Gracze mogą wybierać spośród 4 unikalnych postaci, za pomocą klawiszy *WSAD* oraz *IKJL*. Portrety aktualnie wybranych postaci posiadają odpowiednie kolory tła, dla gracza pierwszego czerwone, a dla gracza drugiego - niebieskie. Oprócz tego, po lewej i prawej stronie ekranu wyświetlana jest animacja, w której biorą udział aktualnie wybrane postacie.
+Aby zakończyć etap wyboru postaci i przejść do rozgrywki, gracz pierwszy powinien wcisnąć i przytrzymać klawisz *TAB* a gracz drugi, klawisz *ENTER*.
 
 # 4. Specyfikacja wewnętrzna
 
