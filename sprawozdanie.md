@@ -52,7 +52,7 @@ Gry gatunku bijatyka mocno opierają się na szybkich reakjcach graczy. Z tego p
 
 ## 2.8 Biblioteki zewnętrzne
 
-W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano się wykorzystać bibliotekę Simple and Fast Multimedia Library. Pozwala ona na proste wprowadzanie wielu istotnych mechanik, takich jak wczytywanie i wyświetlanie grafik, zliczanie czasu lub detekcję kolizji.
+W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano się wykorzystać bibliotekę Simple and Fast Multimedia Library. Pozwala ona na proste wprowadzanie wielu istotnych mechanik, takich jak wczytywanie i wyświetlanie grafik, operacje związane z liczeniem czasu lub detekcję kolizji.
 
 
 # 3. Specyfikacja zewnętrzna
