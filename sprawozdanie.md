@@ -90,8 +90,23 @@ Rozgrywka trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większ�
 
 ### 3.4.2 Poruszanie się
 
-Gracz lewy porusza się za pomocą klawiszy *WSAD* a prawy, za pomoca klawiszy *IKJL*. Klawisze *W* i *I* są odpowiedzialne za skok w górę. Klawisze *AD* oraz *JL* za poruszanie się odpowiednio w lewo i w prawo, a klawisze *S* i *K* za kucanie.
+Gracz pierwszy porusza się za pomocą klawiszy *WSAD* a drugi, za pomoca klawiszy *IKJL*. Klawisze *W* i *I* są odpowiedzialne za skok w górę. Klawisze *AD* oraz *JL* za poruszanie się odpowiednio w lewo i w prawo, a klawisze *S* i *K* za kucanie.
 
+### 3.4.3 Blokowanie
+
+Ataki mogą zostać zablokowane zarówno w pozycji stojącej jak i kucającej. Co ważne, atak wyprowadzony z dołu może zostać zablokowany tylko kucając, tak samo jak atak wyprowadzony z góry może zostać zablokowany tylko stojąc. Podczas blokowania nie można wykonać ataku. Aby wykonać blok, gracz pierwszy powinien nacisnąć klawisz *T*, a gracz drugi strzałkę w górę.
+
+### 3.4.4 Atakowanie
+
+Każda z postaci posiada unikalny zestaw ataków, aktywowanych różnymi kombinacjami klawiszy, dla gracza pierwszego *TGFH* oraz dla gracza drugiego strzałkami. Istnieją trzy rodzaje ataków, wyprowadzone z dołu, z góry i ze środka. Ma to znaczenie przy blokowaniu ataków, dlatego wykonanie ataku nie gwarantuje zawsze trafienia i odwrotnie, nieumiejętne zablokowanie może doprowadzić do otrzymania ciosu. Każdy z ataków posiada własną animację, oraz liczbę klatek do jego aktywowania, w tym czasie gracz wykonujący narażony jest na kontrę. Istniejące w grze ataki podrzucające przeciwnika, można wykorzystać do rozpoczęcia sekwencji ataków, które nie mogą zostać powstrzymane, ze względu na brak możliwości sterowania podczas upadku i lotu.
+
+### 3.5 Koniec rundy i meczu
+
+Gdy zakończy się czas, lub jeden z graczy straci całe życie (pasek zdrowia wypełni się kolorem czerwonym) runda dobiego końca. Wyświetla się komunikat o zwycięzcy rundy i rozpoczyna się kolejna. Pod paskiem zdrowia gracza, który wygrał rundę pojawia się złote koło, informujące o jednym zwycięstwie. Po dwóch wygranych rundach mecz dobiega końca, zostaje ogłoszony jego zwycięzca.
+
+### 3.6 Powtórny mecz
+
+Po zakończeniu meczu gracze mają możliwość rozpoczęcia nowego meczu z tymi samymi lub innymi postaciami, w zależności od klawisza *F2* lub *F3*, który zostanie wciśnięty. Jeśli chcą zakończyć rozgrywkę, wystarczy kliknąć klawisz *Escape*.
 
 # 4. Specyfikacja wewnętrzna
 
@@ -185,6 +200,7 @@ for (const auto& val : std::views::values(this->playerTextures) | std::views::fi
 
 # 5. Testowanie
  Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza.
+ 
 # 6. Uwagi i wnioski
 
 ## 6.1 Praca zespołowa i organizacja
