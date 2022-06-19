@@ -71,6 +71,94 @@ Aby zakończyć etap wyboru postaci i przejść do rozgrywki, gracz pierwszy pow
 
 # 4. Specyfikacja wewnętrzna
 
+## 4.1 Diagram klas
+Diagram klas, zgodny ze standardami UML, wraz z wydzielonymi odpowidzialnościami każdego z autorów, znajduje się w załączniku. 
+
+## 4.2 Wykorzystane nowoczesne biblioteki języka C++
+
+###### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
+
+lorem
+
+###### 4.2.2 Biblioteki silnika, animatora oraz mechanik - Jan Kocurek
+
+Korzystając z funkcjonalności *modules* standardu C++20 utworzono moduł `async_functions.ixx`. Zawiera on zestawy operacji, których wykonywanie jest niezależne od innych elmentów kodu. Dzięki temu można wykonywać je asynchronicznie, korzystając z funkcjonalności biblioteki standardowej `std::async`.
+
+
+```cpp
+export module async_functions;
+
+export void async_read_input(GameEngine* g);
+export void async_move_players(std::shared_ptr<Player> p1, std::shared_ptr<Player> p2);
+export void async_recovery(std::shared_ptr<Player> p);
+export void async_animation(std::shared_ptr<Player> p);
+export const bool update_view(GameEngine* g, std::shared_ptr<Player> p1, std::shared_ptr<Player> p2, std::shared_ptr<sf::View> view, const float& dist_between_players);
+export void init_gameobject_variables(GameObject* gameObject);
+
+module :private;
+//ciała funkcji
+```
+
+||
+|:--:|
+| **Fragment kodu modułu**|
+
+```cpp
+std::thread animation_th_p1(async_animation, this->player1);
+std::thread animation_th_p2(async_animation, this->player2);
+
+animation_th_p1.join();
+animation_th_p2.join();
+
+```
+
+||
+|:--:|
+| **Przykład zastosowania, fragment `GameEngine.cpp`**|
+
+Dodatkowo, dwie z funkcji modułu wykorzystuje funkcjonalość `std::semaphore`. Elementy kalkulacji ruchu postaci oraz odczytywania wprowadzanej przez gracza kombinacji klawiszy wykonują się jednocześnie. W momencie, gdy odczyt jest gotowy, funkcja `async_read_input` zwalnia semafor, na który oczekuje funkcja `async_move_players`.
+
+```cpp
+void async_read_input(GameEngine* g) {
+	g->updateInput();
+	prepare.release();
+}
+
+void async_move_players(std::shared_ptr<Player> p1, std::shared_ptr<Player> p2) {
+	bool can_p1_move = p1->canMove();
+	bool can_p2_move = p2->canMove();
+	prepare.acquire();
+
+	if (can_p1_move) {
+		p1->duck();
+		p1->move();
+		p1->jump();
+	}
+	if (can_p2_move) {
+		p2->duck();
+		p2->move();
+		p2->jump();
+	}
+}
+```
+
+||
+|:--:|
+| **Omawiany fragment modułu**|
+
+Kontener tekstur każdej z postaci przed wczytaniem inicializowany jest wartościami `nullptr`. Jeśli odczyt którejś z funkcji nie powiedzie się, w wielu miejscach zgłoszony zostać może błąd dostępu. W celu weryfikacji poprawnego odczytania tekstur wykrozystano funkcjonalość `std::ranges`.
+
+```cpp
+auto didLoad = [](const std::shared_ptr<sf::Texture> pointer) { return pointer == nullptr; };
+for (const auto& val : std::views::values(this->playerTextures) | std::views::filter(didLoad)) {
+        std::cout << "PLAYER::initTexturesMap() CRITCAL ERROR: nullptr in map!\n";
+}
+```
+
+||
+|:--:|
+| **Zastosowanie biblioteki `ranges`**|
+
 # 5. Testowanie
  Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami.
 # 6. Uwagi i wnioski
