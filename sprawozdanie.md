@@ -52,7 +52,7 @@ Poza typowo technicznymi aspektami, projekt zakłada dodanie do napisanej gry po
 
 ## 2.7 Optymalizacja
 
-Gry gatunku bijatyka mocno opierają się na szybkich reakjcach graczy. Z tego powodu płynna i responsywna rozgrywka jest wyjątkowo istotna. Wymagane jest, aby silnik posostawiał wiele miejsca na optymalizację. Ważne jest unikanie czasochłonnych operacji oraz sprawna identyfikacja punków krytycznych.  
+Gry gatunku bijatyka mocno opierają się na szybkich reakjcach graczy. Z tego powodu płynna i responsywna rozgrywka jest wyjątkowo istotna. Wymagane jest, aby silnik posostawiał wiele miejsca na optymalizację. Ważne jest unikanie czasochłonnych operacji oraz sprawna identyfikacja punktów krytycznych.  
 
 ## 2.8 Biblioteki zewnętrzne
 
@@ -60,7 +60,15 @@ W celu realizacji podstawowych elementów silnika oraz rozgrywki zdecydowano si�
 
 
 # 3. Specyfikacja zewnętrzna
-Program można uruchomić z linii poleceń, lub klikając dwukrotnie na plik wykonywalny programu. Po uruchomieniu, wyświetla się ekran powitalny, który po 5 sekundach przechodzi do ekranu wyboru postaci - menu.  
+
+
+
+## 3.1 Uruchamianie
+Program można uruchomić z linii poleceń, lub klikając dwukrotnie na plik wykonywalny programu. 
+
+## 3.2 Ekran wyboru postaci
+
+Po uruchomieniu, wyświetla się ekran powitalny, który po 5 sekundach przechodzi do ekranu wyboru postaci - menu.  
 
 |![](menu.png)|
 |:--:|
@@ -69,10 +77,26 @@ Program można uruchomić z linii poleceń, lub klikając dwukrotnie na plik wyk
 Gracze mogą wybierać spośród 4 unikalnych postaci, za pomocą klawiszy *WSAD* oraz *IKJL*. Portrety aktualnie wybranych postaci posiadają odpowiednie kolory tła, dla gracza pierwszego czerwone, a dla gracza drugiego - niebieskie. Oprócz tego, po lewej i prawej stronie ekranu wyświetlana jest animacja, w której biorą udział aktualnie wybrane postacie.
 Aby zakończyć etap wyboru postaci i przejść do rozgrywki, gracz pierwszy powinien wcisnąć i przytrzymać klawisz *TAB* a gracz drugi, klawisz *ENTER*.
 
+## 3.3 Ekran ładowania
+
+W czasie ładowania się gry (wczytywania z pliku tekstur poszczególnych postaci i ataków) wyświetlany jest odpowiedni ekran, prezentujący postępy. Ponieważ wczytanie gry odbywa się bardzo szybko, na nowoczesnych komputerach ekran ładowania nie zostanie raczej w ogóle zauważony przez użytkownika.
+
+## 3.4 Rozgrywka
+
+Właściwy mecz rozpoczyna się od wyświetlenia numeru rundy, oraz komunikatu tekstowego oznaczającego początek walki ( *Fight!* ). Dopiero po zniknięciu tekstu, możliwe jest poruszanie się postaciami, wtedy też odliczanie rozpoczyna zegar. 
+
+### 3.4.1 Zegar
+Rozgrywka trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większą ilością zdrowia.
+
+### 3.4.2 Poruszanie się
+
+Gracz lewy porusza się za pomocą klawiszy *WSAD* a prawy, za pomoca klawiszy *IKJL*. Klawisze *W* i *I* są odpowiedzialne za skok w górę. Klawisze *AD* oraz *JL* za poruszanie się odpowiednio w lewo i w prawo, a klawisze *S* i *K* za kucanie.
+
+
 # 4. Specyfikacja wewnętrzna
 
 # 5. Testowanie
- Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami.
+ Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza.
 # 6. Uwagi i wnioski
 
 ## 6.1 Praca zespołowa i organizacja
