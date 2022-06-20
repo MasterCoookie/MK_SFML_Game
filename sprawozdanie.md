@@ -284,4 +284,6 @@ Elementem który pozowlił utrzymać wysoką produktywność oraz uniknąć wiel
 
 ## 6.2 Kłopotliwe aspekty produkcji gier
 
+Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, było błędne oszacowanie czasu potrzebnego do ukończenia konkretnych aspektów projektu. Elementy takie jak animowanie, <<(napisz co cię zaskoczyło rozmiarem Wojtek)>> czy kreacja postaci okazały się zaskakująco czasochłonne. Jednocześnie silnik, fizyka lub <<(napisz Wojtek co było ez)>> zostały ukończone o wiele szybciej niż zakładano. Sytuacja ta dobrze obrazuje, jak cenne podczas produkcji każdego złożonego programu jest doświadczenie jego twórców.
+
 ## 6.3 Nowoczesne biblioteki języka C++
