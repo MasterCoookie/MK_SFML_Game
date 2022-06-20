@@ -115,11 +115,87 @@ Diagram klas, zgodny ze standardami UML, wraz z wydzielonymi odpowidzialnościam
 
 ## 4.2 Wykorzystane nowoczesne biblioteki języka C++
 
-###### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
+#### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
 
-lorem
+Do odczytu wszystkich ataków z pliku podczas wczytywania gry zdecydowano się wykorzystać bibliotekę *filesystem* w celu wygodnego iterowania się po danym folderze. Posłużono się w tym celu klasą *std::filesystem::directory_iterator*
 
-###### 4.2.2 Biblioteki silnika, animatora oraz mechanik - Jan Kocurek
+```cpp
+	...
+	std::filesystem::path sandbox = s;
+	for (const auto& dir_entry :std::filesystem::directory_iterator{ sandbox }) {
+		std::filesystem::path sandbox = dir_entry;
+		std::ifstream myFile(sandbox.string());
+		...
+	}
+```
+
+||
+|:--:|
+| **Fragment kodu wykorzystujący bibliotekę filesystem**|
+
+W celu przyśpieszenia procesu wczytywania postaci obu graczy, zdecydowano się wykorzystać bibliotekę *thread* w celu wykonywania operacji wielowątkowo. Konieczne również okazało się wykorzystanie *std::future* w celu przechowania wyników operacji wykonywanych wielowątkowo. Ponadto, oba wątki wczytujące postacie sygnalizują ukończenie pracy za pomocą semafora. Wszystkie funkcje służące do obsługi tego procesu, umieszczono w module *AsyncLoading.ixx*.
+
+```cpp
+#include <thread>
+#include <future>
+#include "LoadingScreen.h"
+export module AsyncLoading;
+
+std::counting_semaphore<2> toLoad{ 0 };
+export void LoadPlayer(std::promise<std::shared_ptr<Player>> & prom, std::string charName);
+export void DisplayLoadingStatus(LoadingScreen* load);
+void LoadPlayer(std::promise<std::shared_ptr<Player>>& prom, std::string charName)
+{
+	std::shared_ptr<Player> newPlayer = std::make_shared<Player>(charName);
+	prom.set_value(newPlayer);
+	toLoad.release();
+	return;
+}
+
+void DisplayLoadingStatus(LoadingScreen* load)
+{
+	bool arebothLoaded = false;
+	int loadingPercent = 0;
+	while (!arebothLoaded) {
+		if (toLoad.try_acquire()) {
+			loadingPercent += 50;
+			if (loadingPercent == 100) {
+				arebothLoaded = true;
+			}
+		}
+		load->update(loadingPercent);
+		load->render();
+	}
+
+}
+```
+||
+|:--:|
+| **Fragment kodu wykorzystujący bibliotekę thread, future i moduły**|
+
+Funkcja *LoadPlayer*, gdy zakończy swoje działanie, zwalnia semafor *toLoad*, dzięki czemu, funkcja *DisplayLoadingStatus* wie, ile graczy zostało już wczytanych. Wczytana postać, przechowywana jest w strukturze *std::promise*, dzięki czemu możliwe jest je odczytanie w głównym wątku.
+
+```cpp
+
+std::promise<std::shared_ptr<Player>> promPlayerOne;
+	std::future<std::shared_ptr<Player>> loadedPlayerOne = promPlayerOne.get_future();
+	std::promise<std::shared_ptr<Player>> promPlayerTwo;
+	std::future<std::shared_ptr<Player>> loadedPlayerTwo = promPlayerTwo.get_future();
+	std::thread th1(&LoadPlayer, std::ref(promPlayerOne), this->playerOneName);
+	std::thread th2(&LoadPlayer, std::ref(promPlayerTwo), this->playerTwoName);
+	DisplayLoadingStatus(this);
+	th1.join();
+	th2.join();
+	this->playerOne = loadedPlayerOne.get();
+	this->playerTwo = loadedPlayerTwo.get();
+```
+	
+||
+|:--:|
+| **Wywołanie funkcji LoadPlayer z wykorzystaniem biblioteki thread**|
+
+
+#### 4.2.2 Biblioteki silnika, animatora oraz mechanik - Jan Kocurek
 
 Korzystając z funkcjonalności *modules* standardu C++20 utworzono moduł `async_functions.ixx`. Zawiera on zestawy operacji, których wykonywanie jest niezależne od innych elmentów kodu. Dzięki temu można wykonywać je asynchronicznie, korzystając z funkcjonalności biblioteki standardowej `std::async`.
 
@@ -199,7 +275,7 @@ for (const auto& val : std::views::values(this->playerTextures) | std::views::fi
 | **Zastosowanie biblioteki `ranges`**|
 
 # 5. Testowanie
- Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza.
+ Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza. Program został sprawdzony pod kątem wycieków pamięci, jednak dzięki zastosowaniu wskaźników typu *smartpointery*, w programie nie znajdują się wycieki pamięci, oprócz tych, wynikających z właśności samej biblioteki *SFML*, która posiada wycieki pamięci, przez sterowniki kart graficznych.
  
 # 6. Uwagi i wnioski
 
