@@ -106,7 +106,7 @@ Gdy zakończy się czas, lub jeden z graczy straci całe życie (pasek zdrowia w
 
 ### 3.6 Powtórny mecz
 
-Po zakończeniu meczu gracze mają możliwość rozpoczęcia nowego meczu z tymi samymi lub innymi postaciami, w zależności od klawisza *F2* lub *F3*, który zostanie wciśnięty. Jeśli chcą zakończyć rozgrywkę, wystarczy kliknąć klawisz *Escape*.
+Po zakończeniu meczu gracze mają możliwość rozpoczęcia nowego meczu z tymi samymi lub innymi postaciami, w zależności od klawisza *F2* lub *F3*, który zostanie wciśnięty. Jeśli chcą zakończyć rozgrywkę, wystarczy kliknąć klawisz *Escape*. Po zakończeniu meczu wyświetla się na ekranie komunikat, informujący o dostępnych opcjach.
 
 # 4. Specyfikacja wewnętrzna
 
@@ -284,6 +284,6 @@ Elementem który pozowlił utrzymać wysoką produktywność oraz uniknąć wiel
 
 ## 6.2 Kłopotliwe aspekty produkcji gier
 
-Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, było błędne oszacowanie czasu potrzebnego do ukończenia konkretnych aspektów projektu. Elementy takie jak animowanie, <<(napisz co cię zaskoczyło rozmiarem Wojtek)>> czy kreacja postaci okazały się zaskakująco czasochłonne. Jednocześnie silnik, fizyka lub <<(napisz Wojtek co było ez)>> zostały ukończone o wiele szybciej niż zakładano. Sytuacja ta dobrze obrazuje, jak cenne podczas produkcji każdego złożonego programu jest doświadczenie jego twórców.
+Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, było błędne oszacowanie czasu potrzebnego do ukończenia konkretnych aspektów projektu. Elementy takie jak animowanie, tworzenie interaktywnego menu, czy kreacja postaci okazały się zaskakująco czasochłonne. Jednocześnie silnik, fizyka lub wczytywanie danych z plików zostały ukończone o wiele szybciej niż zakładano. Sytuacja ta dobrze obrazuje, jak cenne podczas produkcji każdego złożonego programu jest doświadczenie jego twórców. Tworzenie komponentów, z którymi już kiedyś zetknięto się podczas programowania, okazywały się zdecydowanie prostsze niż te, charakterystyczne dla gier komputerowych, z którymi nasz zespoł nie miał dużego doświadczenia od strony deweloperskiej.
 
 ## 6.3 Nowoczesne biblioteki języka C++
