@@ -86,7 +86,8 @@ W czasie ładowania się gry (wczytywania z pliku tekstur poszczególnych postac
 Właściwy mecz rozpoczyna się od wyświetlenia numeru rundy, oraz komunikatu tekstowego oznaczającego początek walki ( *Fight!* ). Dopiero po zniknięciu tekstu, możliwe jest poruszanie się postaciami, wtedy też odliczanie rozpoczyna zegar. 
 
 ### 3.4.1 Zegar
-Rozgrywka trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większą ilością zdrowia.
+
+Każda z rund trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większą ilością zdrowia.
 
 ### 3.4.2 Poruszanie się
 
