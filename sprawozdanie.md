@@ -54,7 +54,7 @@ Dodatkowo utworzone będą oryginalne postacie, wraz z pasujacymi do ich wygląd
 
 ## 2.7 Optymalizacja
 
-Gry gatunku bijatyka mocno opierają się na szybkich reakjcach graczy. Z tego powodu płynna i responsywna rozgrywka jest wyjątkowo istotna. Wymagane jest, aby silnik posostawiał wiele miejsca na optymalizację. Ważne jest unikanie czasochłonnych operacji oraz sprawna identyfikacja punktów krytycznych.  
+Gry z gatunku bijatyka mocno opierają się na szybkich reakcjach graczy. Z tego powodu płynna i responsywna rozgrywka jest wyjątkowo istotna. Wymagane jest, aby silnik posostawiał wiele miejsca na optymalizację. Ważne jest unikanie czasochłonnych operacji oraz sprawna identyfikacja punktów krytycznych.  
 
 ## 2.8 Biblioteki zewnętrzne
 
@@ -95,7 +95,7 @@ Właściwy mecz rozpoczyna się od wyświetlenia numeru rundy, oraz komunikatu t
 
 ### 3.4.1 Zegar
 
-Każda z rund trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większą ilością zdrowia.
+Każda z rund trwa 90 sekund, po upływie tego czasu zwycięża gracz z większą ilością zdrowia.
 
 ### 3.4.2 Poruszanie się
 
@@ -123,7 +123,7 @@ Po zakończeniu meczu gracze mają możliwość rozpoczęcia nowego meczu z tymi
 
 ## 4.1 Diagram klas
 Diagram klas, zgodny ze standardami UML, wraz z wydzielonymi odpowidzialnościami każdego z autorów, znajduje się w załączniku. 
-
+Kolorem żółtym zaznaczono klasy zaimplementowane przez Jana Kocurka, a niebieskim przez Wojciecha Ptasia.
 ## 4.2 Wykorzystane nowoczesne biblioteki języka C++
 
 ### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
