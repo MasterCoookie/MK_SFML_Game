@@ -44,7 +44,9 @@ Na ekranie gry poza samymi postaciami znajdować będą się ulokowane w stałyc
 
 ## 2.6 Treści i zawartość
 
-Poza typowo technicznymi aspektami, projekt zakłada dodanie do napisanej gry podstawowych zawartości. W celu oddania oryginalnej oprawy graficznej rysowane elementy, takie jak grafiki postaci lub areny wyglądem będą przypominały grę retro. Dodatkowo utworzone będą oryginalne postacie, wraz z pasujacymi do ich wyglądu zestawami ruchów. Same postacie będą musiały przejść przez proces optymalizacji oraz balansowania, w celu zapewnienia sprawiedliwej i zajmującej rozgrywki.
+Poza typowo technicznymi aspektami, projekt zakłada dodanie do napisanej gry podstawowych zawartości. W celu oddania oryginalnej oprawy graficznej rysowane elementy, takie jak grafiki postaci lub areny wyglądem będą przypominały grę retro.
+
+Dodatkowo utworzone będą oryginalne postacie, wraz z pasujacymi do ich wyglądu zestawami ruchów. Same postacie będą musiały przejść przez proces optymalizacji oraz balansowania, w celu zapewnienia sprawiedliwej i zajmującej rozgrywki.
 
 |![](attack_3.png)|
 |:--:|
@@ -75,6 +77,7 @@ Po uruchomieniu, wyświetla się ekran powitalny, który po 5 sekundach przechod
 | **Rys. 3: Ekran wyboru postaci**|
 
 Gracze mogą wybierać spośród 4 unikalnych postaci, za pomocą klawiszy *WSAD* oraz *IKJL*. Portrety aktualnie wybranych postaci posiadają odpowiednie kolory tła, dla gracza pierwszego czerwone, a dla gracza drugiego - niebieskie. Oprócz tego, po lewej i prawej stronie ekranu wyświetlana jest animacja, w której biorą udział aktualnie wybrane postacie.
+
 Aby zakończyć etap wyboru postaci i przejść do rozgrywki, gracz pierwszy powinien wcisnąć i przytrzymać klawisz *TAB* a gracz drugi, klawisz *ENTER*.
 
 ## 3.3 Ekran ładowania
@@ -104,7 +107,9 @@ Ataki mogą zostać zablokowane zarówno w pozycji stojącej jak i kucającej. C
 
 ### 3.4.4 Atakowanie
 
-Każda z postaci posiada unikalny zestaw ataków, aktywowanych różnymi kombinacjami klawiszy, dla gracza pierwszego *TGFH* oraz dla gracza drugiego strzałkami. Istnieją trzy rodzaje ataków, wyprowadzone z dołu, z góry i ze środka. Ma to znaczenie przy blokowaniu ataków, dlatego wykonanie ataku nie gwarantuje zawsze trafienia i odwrotnie, nieumiejętne zablokowanie może doprowadzić do otrzymania ciosu. Każdy z ataków posiada własną animację, oraz liczbę klatek do jego aktywowania, w tym czasie gracz wykonujący narażony jest na kontrę. Istniejące w grze ataki podrzucające przeciwnika, można wykorzystać do rozpoczęcia sekwencji ataków, które nie mogą zostać powstrzymane, ze względu na brak możliwości sterowania podczas upadku i lotu.
+Każda z postaci posiada unikalny zestaw ataków, aktywowanych różnymi kombinacjami klawiszy, dla gracza pierwszego *TGFH* oraz dla gracza drugiego strzałkami. Istnieją trzy rodzaje ataków, wyprowadzone z dołu, z góry i ze środka. Ma to znaczenie przy blokowaniu ataków, dlatego wykonanie ataku nie gwarantuje zawsze trafienia i odwrotnie, nieumiejętne zablokowanie może doprowadzić do otrzymania ciosu.
+
+Każdy z ataków posiada własną animację, oraz liczbę klatek do jego aktywowania, w tym czasie gracz wykonujący narażony jest na kontrę. Istniejące w grze ataki podrzucające przeciwnika, można wykorzystać do rozpoczęcia sekwencji ataków, które nie mogą zostać powstrzymane, ze względu na brak możliwości sterowania podczas upadku i lotu.
 
 ### 3.5 Koniec rundy i meczu
 
@@ -281,17 +286,27 @@ for (const auto& val : std::views::values(this->playerTextures) | std::views::fi
 | **Zastosowanie biblioteki `ranges`**|
 
 # 5. Testowanie
- Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz lub w momencie zmiany stanu postaci, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza. Program został sprawdzony pod kątem wycieków pamięci, jednak dzięki zastosowaniu wskaźników typu *smartpointery*, w programie nie znajdują się wycieki pamięci, oprócz tych, wynikających z właśności samej biblioteki *SFML*, która posiada wycieki pamięci, przez sterowniki kart graficznych.
+ Program był wielokrotnie uruchamiany i rozgrywany różnymi dostępnymi postaciami. Ponadto, pojedyncze komponenty były testowane jednostkowo. Zwrócono szczególnie uwagę na możliwe błędy występujące przy wcisnięciu wielu klawiszy na raz lub w momencie zmiany stanu postaci, takie jak na przykład kucanie postaci podczas skoku. Wykryte nieprawidłowści zostały skutecznie wyeliminowane, w czym bardzo przydatne było zastosowanie uproszczonej maszyny stanów dla pozycji gracza.
+ 
+ Program został sprawdzony pod kątem wycieków pamięci, jednak dzięki zastosowaniu wskaźników typu *smartpointery*, w programie nie znajdują się wycieki pamięci, oprócz tych, wynikających z właśności samej biblioteki *SFML*, która posiada wycieki pamięci, przez sterowniki kart graficznych.
  
 # 6. Uwagi i wnioski
 
 ## 6.1 Praca zespołowa i organizacja
-Elementem który pozowlił utrzymać wysoką produktywność oraz uniknąć wielu kłopotów podczas późniejszych faz realizacji projektu było przykładne i konkretne podzielenie się obowiązkami oraz ustalenie wspólnej wizji produtku końcowego w pierwszej fazie pracy zadaniem. Praca została rozłożona w taki sposób, aby obydwie osoby pracujące nad projektem nie przeszkadzały sobie nawzajem. Tworzone komponenty pozostały mało zależne od siebie, a interfejsy kompatybilne. W ten sposób mogły być tworzone, testowane i modyfikowane jednocześnie bez wzajemnego utrudniania pracy. Wyjątkowo przydatne okazało się korzystanie z systemu kontroli wersji GIT. Umożliwił on bezproblemową współpracę nad kodem oraz pomógł lepiej kontrolować historię pisanego kodu.
+Elementem który pozowlił utrzymać wysoką produktywność oraz uniknąć wielu kłopotów podczas późniejszych faz realizacji projektu było przykładne i konkretne podzielenie się obowiązkami oraz ustalenie wspólnej wizji produtku końcowego w pierwszej fazie pracy zadaniem. Praca została rozłożona w taki sposób, aby obydwie osoby pracujące nad projektem nie przeszkadzały sobie nawzajem. Tworzone komponenty pozostały mało zależne od siebie, a interfejsy kompatybilne. W ten sposób mogły być tworzone, testowane i modyfikowane jednocześnie bez wzajemnego utrudniania pracy.
+
+Wyjątkowo przydatne okazało się korzystanie z systemu kontroli wersji GIT. Umożliwił on bezproblemową współpracę nad kodem oraz pomógł lepiej kontrolować historię pisanego kodu.
 
 ## 6.2 Kłopotliwe aspekty produkcji gier
 
-Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, było błędne oszacowanie czasu potrzebnego do ukończenia konkretnych aspektów projektu. Elementy takie jak animowanie, tworzenie interaktywnego menu, czy kreacja postaci okazały się zaskakująco czasochłonne. Jednocześnie silnik, fizyka lub wczytywanie danych z plików zostały ukończone o wiele szybciej niż zakładano. Sytuacja ta dobrze obrazuje, jak cenne podczas produkcji każdego złożonego programu jest doświadczenie jego twórców. Tworzenie komponentów, z którymi już kiedyś zetknięto się podczas programowania, okazywały się zdecydowanie prostsze niż te, charakterystyczne dla gier komputerowych, z którymi nasz dwuosobowy zespoł nie miał dużego doświadczenia od strony deweloperskiej.
+Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, było błędne oszacowanie czasu potrzebnego do ukończenia konkretnych aspektów projektu. Elementy takie jak animowanie, tworzenie interaktywnego menu, czy kreacja postaci okazały się zaskakująco czasochłonne. Jednocześnie silnik, fizyka lub wczytywanie danych z plików zostały ukończone o wiele szybciej niż zakładano. Sytuacja ta dobrze obrazuje, jak cenne podczas produkcji każdego złożonego programu jest doświadczenie jego twórców.
+
+Tworzenie komponentów, z którymi już kiedyś zetknięto się podczas programowania, okazywały się zdecydowanie prostsze niż te, charakterystyczne dla gier komputerowych, z którymi nasz dwuosobowy zespoł nie miał dużego doświadczenia od strony deweloperskiej.
 
 ## 6.3 Nowoczesne biblioteki języka C++
 
-Zastosowanie w projekcie nowoczesnych bibliotek znacznie pomogło zrozumieć i utrwalić wiadomości z laboratoriów. Wyjątkowo przyjemne i mało problematyczne okazało się korzystanie z funkcjonalości pozwalających na asynchroniczne wykonywanie kodu, takich jak `std::thread` czy `std::semaphore`. Istotnym jednak przy ich stosowaniu było wybieranie odpowiednich fragmentów kodu do asynchronizacji. Jeśli rozdzielana pomiędzy wątki operacja była zbyt mało czasochłonna, czas alokacji nowego wątku oraz łączenia go z głównym okazywał się większy, od czasu zyskanego na wielowątkowym wykonaniu operacji. Asynchroniczność najlepiej sprawdzała się w sytuacjach, gdy pracowano na niezwiązanych z sobą fragmentach programu (jak wczytywanie postaci). Również metody synchronizacji okazały się bardzo proste w implementacji, co dowodzi że język C++ w istocie należy do rodziny języków wysokopoziomowych. Najbardziej problematyczne okazało się korzystanie z modułów. Poza znacznym wydłużeniem czasu kompilacji i wykonywania kodu, ich użycie powodowało problemy z działaniem funkcji *IntelliSense* edytora *Visual Studio*, co znacznie utrudniało pracę nad programem. Pozostaje mieć nadzieję, że ta funkcjonalność ze standardu C++ 20, zostanie w przyszłości dobrze zaimplementowana, gdyż ma naprawdę spory potencjał, co udowadnia popularność modułów w innych językach programowania. Funkcjonalność `std::ranges` znacznie poprawiła czytelność kodu wykonującego operacje na kontenerze `std::map`, nawet jeśli nie poprawiła czasu wykonywania operacji. Użycie biblioteki `filesystem`, znaczenie uprościło operowanie na całych folderach, ciężko jest sobie wyobrazić projekt pracujący na plikach, nie korzystający z tej biblioteki.
+Zastosowanie w projekcie nowoczesnych bibliotek znacznie pomogło zrozumieć i utrwalić wiadomości z laboratoriów. Wyjątkowo przyjemne i mało problematyczne okazało się korzystanie z funkcjonalości pozwalających na asynchroniczne wykonywanie kodu, takich jak `std::thread` czy `std::semaphore`. Istotnym jednak przy ich stosowaniu było wybieranie odpowiednich fragmentów kodu do asynchronizacji. Jeśli rozdzielana pomiędzy wątki operacja była zbyt mało czasochłonna, czas alokacji nowego wątku oraz łączenia go z głównym okazywał się większy, od czasu zyskanego na wielowątkowym wykonaniu operacji. Asynchroniczność najlepiej sprawdzała się w sytuacjach, gdy pracowano na niezwiązanych z sobą fragmentach programu (jak wczytywanie postaci). Również metody synchronizacji okazały się bardzo proste w implementacji, co dowodzi że język C++ w istocie należy do rodziny języków wysokopoziomowych.
+
+Najbardziej problematyczne okazało się korzystanie z modułów. Poza znacznym wydłużeniem czasu kompilacji i wykonywania kodu, ich użycie powodowało problemy z działaniem funkcji *IntelliSense* edytora *Visual Studio*, co znacznie utrudniało pracę nad programem. Pozostaje mieć nadzieję, że ta funkcjonalność ze standardu C++ 20, zostanie w przyszłości dobrze zaimplementowana, gdyż ma naprawdę spory potencjał, co udowadnia popularność modułów w innych językach programowania.
+
+Funkcjonalność `std::ranges` znacznie poprawiła czytelność kodu wykonującego operacje na kontenerze `std::map`, nawet jeśli nie poprawiła czasu wykonywania operacji. Użycie biblioteki `filesystem`, znaczenie uprościło operowanie na całych folderach, ciężko jest sobie wyobrazić projekt pracujący na plikach, nie korzystający z tej biblioteki.
