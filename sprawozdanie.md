@@ -12,7 +12,7 @@ header-includes: |
 
 # 1. Temat projektu
 
-Celem projektu było odtworzenie pierwszej części z popularnej serii gier automatowych - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ oraz metodyki obiektowej. Projekt przyjął żartobliwą nazwę "Patykovy Mordulec".
+Celem projektu było odtworzenie pierwszej części z popularnej serii gier automatowych - "Mortal Kombat", wraz z wykorzystaniem nowoczesnych technik programowania w języku C++ (omawianych na laboratoriach) oraz metodyki obiektowej. Projekt przyjął żartobliwą nazwę "Patykovy Mordulec". Realizowany był w dwuosobowym zespole.
 
 # 2. Analiza tematu
 
