@@ -85,6 +85,11 @@ W czasie ładowania się gry (wczytywania z pliku tekstur poszczególnych postac
 
 Właściwy mecz rozpoczyna się od wyświetlenia numeru rundy, oraz komunikatu tekstowego oznaczającego początek walki ( *Fight!* ). Dopiero po zniknięciu tekstu, możliwe jest poruszanie się postaciami, wtedy też odliczanie rozpoczyna zegar. 
 
+|![](game.png)|
+|:--:|
+| **Rys. 3: Ekran rozgrywki**|
+
+
 ### 3.4.1 Zegar
 
 Każda z rund trwa 90 sekund, po tym upływie tego czasu zwycięża gracz z większą ilością zdrowia.
@@ -116,7 +121,7 @@ Diagram klas, zgodny ze standardami UML, wraz z wydzielonymi odpowidzialnościam
 
 ## 4.2 Wykorzystane nowoczesne biblioteki języka C++
 
-#### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
+### 4.2.1 Biblioteki menagera scen, wczytywania i GUI - Wojciech Ptaś
 
 Do odczytu wszystkich ataków z pliku podczas wczytywania gry zdecydowano się wykorzystać bibliotekę *filesystem* w celu wygodnego iterowania się po danym folderze. Posłużono się w tym celu klasą *std::filesystem::directory_iterator*
 
@@ -196,7 +201,7 @@ std::promise<std::shared_ptr<Player>> promPlayerOne;
 | **Wywołanie funkcji LoadPlayer z wykorzystaniem biblioteki thread**|
 
 
-#### 4.2.2 Biblioteki silnika, animatora oraz mechanik - Jan Kocurek
+### 4.2.2 Biblioteki silnika, animatora oraz mechanik - Jan Kocurek
 
 Korzystając z funkcjonalności *modules* standardu C++20 utworzono moduł `async_functions.ixx`. Zawiera on zestawy operacji, których wykonywanie jest niezależne od innych elmentów kodu. Dzięki temu można wykonywać je asynchronicznie, korzystając z funkcjonalności biblioteki standardowej `std::async`. Moduł ten importowany jest w miejscach wykorzystujacych operacje wielowątkowe.
 
@@ -289,4 +294,4 @@ Podczas realizacji projektu napotkano kilka problemów. Najczęstszym z nich, by
 
 ## 6.3 Nowoczesne biblioteki języka C++
 
-Zastosowanie w projekcie nowoczesnych bibliotek znacznie pomogło zrozumieć i utrwalić wiadomości z laboratoriów. Wyjątkowo przyjemne i mało problematyczne okazało się korzystanie z funkcjonalości pozwalających na asynchroniczne wykonywanie kodu, takich jak `std::thread` czy `std::semaphore`. Istotnym jednak przy ich stosowaniu było wybieranie odpowiednich fragmentów kodu do asynchronizacji. Jeśli rozdzielana pomiędzy wątki operacja była zbyt mało czasochłonna, czas alokacji nowego wątku oraz łączenia go z głównym okazywał się większy, od czasu zyskanego na wielowątkowym wykonaniu operacji. <<(tu coś powiedz o tym wczytywaniu bo to fajne zastosowanie Wojtek)>> Najbardziej problematyczne okazało się korzystanie z modułów. Poza znacznym wydłużeniem czasu kompilacji i wykonywania kodu, ich użycie powodowało problemy z działaniem funkcji *IntelliSense* edytora *Visual Studio*, co znacznie utrudniało pracę nad programem. Funkcjonalność `std::ranges` znacznie poprawiła czytelność kodu wykonującego operacje na kontenerze `std::map`, nawet jeśli nie poprawiła czasu wykonywania operacji. 
+Zastosowanie w projekcie nowoczesnych bibliotek znacznie pomogło zrozumieć i utrwalić wiadomości z laboratoriów. Wyjątkowo przyjemne i mało problematyczne okazało się korzystanie z funkcjonalości pozwalających na asynchroniczne wykonywanie kodu, takich jak `std::thread` czy `std::semaphore`. Istotnym jednak przy ich stosowaniu było wybieranie odpowiednich fragmentów kodu do asynchronizacji. Jeśli rozdzielana pomiędzy wątki operacja była zbyt mało czasochłonna, czas alokacji nowego wątku oraz łączenia go z głównym okazywał się większy, od czasu zyskanego na wielowątkowym wykonaniu operacji. Asynchroniczność najlepiej sprawdzała się w sytuacjach, gdy pracowano na niezwiązanych z sobą fragmentach programu (jak wczytywanie postaci). Również metody synchronizacji okazały się bardzo proste w implementacji, co dowodzi że język C++ w istocie należy do rodziny języków wysokopoziomowych. Najbardziej problematyczne okazało się korzystanie z modułów. Poza znacznym wydłużeniem czasu kompilacji i wykonywania kodu, ich użycie powodowało problemy z działaniem funkcji *IntelliSense* edytora *Visual Studio*, co znacznie utrudniało pracę nad programem. Pozostaje mieć nadzieję, że ta funkcjonalność ze standardu C++ 20, zostanie w przyszłości dobrze zaimplementowana, gdyż ma naprawdę spory potencjał, co udowadnia popularność modułów w innych językach programowania. Funkcjonalność `std::ranges` znacznie poprawiła czytelność kodu wykonującego operacje na kontenerze `std::map`, nawet jeśli nie poprawiła czasu wykonywania operacji. Użycie biblioteki `filesystem`, znaczenie uprościło operowanie na całych folderach, ciężko jest sobie wyobrazić projekt pracujący na plikach, nie korzystający z tej biblioteki.
